@@ -1,0 +1,72 @@
+#+TITLE: [ADR-002] - Three-Layer Architecture for Language Features
+
+* Status
+  :PROPERTIES:
+  :Status: Accepted
+  :END:
+
+* Date
+  2025-07-29
+
+* Deciders
+  - san
+  - GitHub Copilot
+
+* Context
+  - *Problem Statement*: To provide a rich and performant user experience for Org Mode, we need a robust architecture that can handle everything from simple syntax highlighting to complex, document-wide analysis without blocking the UI. A monolithic approach, where all logic resides in the main extension thread, risks poor performance and is difficult to maintain.
+  - *Driving Forces*:
+    - The need for high-performance, instant feedback for basic text styling.
+    - The need for complex, dynamic styling that goes beyond simple text coloring (e.g., background colors for headlines).
+    - The need for computationally expensive, whole-document analysis (e.g., parsing, building an AST, providing diagnostics) that must not impact editor responsiveness.
+
+* Decision
+  *We have decided to adopt a three-layer architecture for implementing Org Mode language features, with each layer having distinct responsibilities.*
+
+  1.  *Layer 1: TextMate Grammar* (`org.tmLanguage.json`) for static, high-performance syntax highlighting.
+  2.  *Layer 2: Decoration API* (`vscode.window.createTextEditorDecorationType`) for dynamic, rich visual enhancements.
+  3.  *Layer 3: Language Server* (`Language Server Protocol`) for intelligent, out-of-process document analysis.
+
+* Considered Options
+** Option 1: Monolithic Architecture (Extension-only)
+   - *Description*: Implement all features—parsing, styling, commands—directly within the main extension process.
+   - *Pros*:
+     - Simpler initial setup.
+   - *Cons*:
+     - All parsing and analysis would run on the UI thread, risking editor lag.
+     - Limited to the styling capabilities of the Decoration API.
+     - Codebase would become tightly coupled and hard to maintain.
+
+** Option 2: Three-Layer Architecture (The Chosen Option)
+   - *Description*: Separate responsibilities into three specialized layers as described above.
+   - *Pros*:
+     - *Optimal Performance*: Uses the best tool for each job, from the fastest TextMate engine to the non-blocking Language Server.
+     - *Separation of Concerns*: A clean, maintainable, and scalable architecture.
+     - *Rich Functionality*: Enables a full spectrum of features that no single layer could provide alone.
+   - *Cons*:
+     - More complex initial setup, requiring communication between the extension and the language server.
+
+* Rationale
+  The three-layer architecture is the professional standard for building rich language support in VS Code. It directly addresses our core requirements by delegating tasks to the component best suited for them.
+
+  - *TextMate* provides the fastest possible feedback for simple syntax, ensuring a fluid typing experience.
+  - *Decorations* provide the visual richness that TextMate cannot, such as background colors.
+  - The *Language Server* offloads all heavy computation, guaranteeing the editor remains responsive at all times.
+
+  This clear separation of concerns is a strategic investment in the project's long-term health, performance, and scalability.
+
+* Consequences
+** Positive
+   - We have a clear roadmap for where to implement different types of features.
+   - The architecture is highly performant and scalable by design.
+   - The extension will feel responsive and professional to the end-user.
+
+** Negative
+   - We will need to set up the Language Server and the client-server communication protocol, which adds initial complexity.
+
+** Impact
+   - We will need to create a new sub-project or directory for the Language Server.
+   - Our current headline styling logic, which is currently inlined in `extension.ts`, will need to be refactored to fit this new architecture. Specifically, the parsing logic will move to the Language Server, while the Decoration application will remain in the extension client.
+
+* References
+  - [[https://code.visualstudio.com/api/language-extensions/overview]]
+  - [[https://microsoft.github.io/language-server-protocol/]]

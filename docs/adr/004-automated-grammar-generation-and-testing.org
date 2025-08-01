@@ -1,0 +1,73 @@
+#+TITLE: [ADR-004] - Automated Grammar Generation and Testing
+
+* Status
+  :PROPERTIES:
+  :Status: Proposed
+  :END:
+
+* Date
+  2025-08-01
+
+* Deciders
+  - [Your Name/Team Name]
+
+* Context
+** Problem Statement
+   The current TextMate grammar file (`org.tmLanguage.json`) is written and maintained manually in JSON. This process is error-prone, difficult to read and comment, and lacks an automated way to verify its correctness. As the grammar complexity grows to match Org Mode's features, manual maintenance will become a significant bottleneck and source of bugs.
+
+** Driving Forces
+   - **Maintainability**: JSON is not ideal for writing and maintaining complex, nested grammars with comments.
+   - **Correctness**: We need a reliable way to test the grammar against various Org Mode constructs to prevent regressions and ensure accuracy.
+   - **Efficiency**: Automating the generation from a more human-readable format (like YAML) will speed up development and reduce errors.
+   - **Best Practices**: Leading examples, such as `microsoft/vscode-markdown-tm-grammar`, use an automated generation and testing workflow, proving its effectiveness.
+
+* Decision
+  We have decided to adopt an automated workflow for TextMate grammar development, which includes:
+  1.  Writing the grammar rules in a human-readable YAML file (`org.tmLanguage.yaml`).
+  2.  Using a script (e.g., based on `yaml-tmLanguage` or a similar library) to compile the YAML source into the final `org.tmLanguage.json` file required by VS Code.
+  3.  Implementing an automated testing suite (e.g., using `vscode-tmgrammar-test`) to validate the grammar's output against sample Org Mode snippets.
+
+* Considered Options
+** Option 1: Adopt Automated Generation and Testing (Recommended)
+   - *Description*: Implement the workflow described in the "Decision" section, mirroring the approach of `vscode-markdown-tm-grammar`.
+   - *Pros*:
+     - Source grammar in YAML is easier to read, write, and comment.
+     - Automated testing ensures high quality and prevents regressions.
+     - Reduces manual errors during development.
+     - Aligns with modern best practices for TextMate grammar development.
+   - *Cons*:
+     - Introduces new development dependencies (e.g., a YAML-to-JSON grammar compiler, a testing library).
+     - Adds a build step to the development workflow.
+
+** Option 2: Continue Manual Maintenance (Status Quo)
+   - *Description*: Continue to edit the `org.tmLanguage.json` file directly by hand.
+   - *Pros*:
+     - No new dependencies or build steps are required.
+     - Simple for very small, infrequent changes.
+   - *Cons*:
+     - Highly error-prone, especially with complex JSON structures.
+     - Difficult to review changes.
+     - No straightforward way to implement comprehensive, automated tests.
+     - Becomes unscalable as grammar complexity increases.
+
+* Rationale
+  The chosen approach (Option 1) directly addresses the core problems of maintainability and correctness. While it adds a small amount of complexity to the build process, the long-term benefits far outweigh this cost. A robust, testable grammar is fundamental to achieving our project's mission of implementing Org Mode features accurately. This investment in our development infrastructure will pay dividends by enabling faster, more reliable feature development in the future.
+
+* Consequences
+** Positive
+   - The grammar's source of truth will be more maintainable and easier to understand.
+   - A safety net of automated tests will catch regressions early.
+   - Developer productivity for grammar-related tasks will increase.
+   - The overall quality and stability of syntax highlighting will be significantly improved.
+
+** Negative
+   - The project's dependency footprint will increase.
+   - Developers will need to familiarize themselves with the new workflow (running the build script after changing the YAML file).
+
+** Impact
+   - *On Codebase*: A new `org.tmLanguage.yaml` file will be created in `syntaxes/`. The existing `org.tmLanguage.json` will become a build artifact. New test files and build scripts will be added.
+   - *On Teams*: The development workflow for syntax highlighting will change. Documentation will need to be updated to reflect the new process.
+   - *On Users*: No direct negative impact. Users will experience more accurate and reliable syntax highlighting.
+
+* References
+  - [[https://github.com/microsoft/vscode-markdown-tm-grammar][vscode-markdown-tm-grammar repository]] (Inspiration for this workflow)

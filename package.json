@@ -9,19 +9,36 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
-  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:org"
+  ],
+  "main": "./client/dist/extension.js",
   "contributes": {
-    "commands": [
+    "languages": [
       {
-        "command": "orgdown-vscode.helloWorld",
-        "title": "Hello World"
+        "id": "org",
+        "aliases": [
+          "Org Mode",
+          "org"
+        ],
+        "extensions": [
+          ".org"
+        ],
+        "configuration": "./syntaxes/org.configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "org",
+        "scopeName": "text.org",
+        "path": "./syntaxes/org.tmLanguage.json"
       }
     ]
   },
   "scripts": {
-    "vscode:prepublish": "pnpm run package",
-    "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
+    "postinstall": "pnpm --filter ./client install && pnpm --filter ./server install",
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "pnpm --parallel compile",
     "watch": "npm-run-all -p watch:*",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",

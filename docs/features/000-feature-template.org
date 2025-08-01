@@ -1,0 +1,54 @@
+#+TITLE: [Feature-XXX] - Title of the Feature
+
+|                |                                                                    |
+|----------------+--------------------------------------------------------------------|
+| *ID*           | ~[Unique-ID]~                                                      |
+| *Status*       | Draft | In Review | Ready for Dev | In Development | Done | Deferred |
+| *Owner*        | ~[Your Name/Team]~                                                 |
+| *Related ADRs* | ~[ADR-XXX]~                                                        |
+
+* 1. Summary
+  A brief, one-to-two-sentence summary of the feature.
+
+* 2. Background and Motivation
+  Explain the "why" behind this feature. What user problem does it solve? What is the context?
+
+* 3. User Stories
+  - *As a* [type of user], *I want to* [perform some action], *so that I can* [achieve some goal].
+  - *As a* [another type of user], *I want to* [perform another action], *so that I can* [achieve another goal].
+
+* 4. Functional Requirements
+  This section details the specific behaviors of the feature. Use RFC 2119 keywords (MUST, SHOULD, MAY).
+  - The system *MUST* provide a command named ~orgdown.newFeature~.
+  - The command *SHOULD* be accessible via the command palette.
+  - The feature *MAY* have a configurable setting.
+
+* 5. Non-Functional Requirements
+  - *Performance*: The feature's core logic MUST execute in under 100ms on a standard machine.
+  - *Usability*: The feature MUST be discoverable and easy to use. A keybinding SHOULD be provided.
+  - *Accessibility*: Any new UI elements MUST adhere to WCAG 2.1 AA standards.
+
+* 6. Proposed Technical Implementation
+  A high-level overview of the technical approach.
+  - *Affected Modules/Files*:
+    - ~src/...~
+  - *New Components*:
+    - ~class NewFeatureProvider~ will be responsible for...
+  - *Data Structures*:
+    - A new interface ~INewFeatureData~ will be defined as...
+
+* 7. Acceptance Criteria
+  A checklist to verify that the feature is complete and correct.
+  - [ ] *Given* [a precondition], *when* [an action is performed], *then* [an expected result occurs].
+  - [ ] *Given* [another precondition], *when* [another action is performed], *then* [another expected result occurs].
+  - [ ] All new code paths are covered by unit tests.
+
+* 8. Out of Scope
+  Clearly define what this feature will *not* do to prevent scope creep.
+  - This feature will not support multi-user collaboration.
+  - This feature will not initially provide a graphical interface.
+
+* 9. Open Questions
+  List any unresolved questions or issues that need to be addressed.
+  - How should we handle error case X?
+  - What is the desired behavior on platform Y?

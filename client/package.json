@@ -1,0 +1,18 @@
+{
+  "name": "orgdown-client",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Client part of the Orgdown VS Code extension",
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -b",
+    "watch": "tsc -b -w"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.89.0",
+    "typescript": "^5.4.5"
+  }
+}

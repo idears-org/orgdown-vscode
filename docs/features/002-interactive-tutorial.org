@@ -1,0 +1,58 @@
+#+TITLE: [FEA-002] Interactive Tutorial
+#+AUTHOR: GitHub Copilot
+#+DATE: <2025-07-31 Thu>
+#+STATUS: Proposed
+
+* 1. Feature Overview
+To provide a user-friendly and effective onboarding experience, we will create an interactive tutorial, similar to the one that ships with Emacs. This tutorial will guide new users through the core features of Org Mode by having them directly interact with a live Org document within VS Code.
+
+* 2. Rationale
+- *Problem*: Learning Org Mode's syntax and features can be intimidating for new users. Static documentation is often less engaging and effective than hands-on practice.
+- *Goal*: Lower the barrier to entry for Orgdown by providing an immediate, guided, "learn-by-doing" experience. This will help users grasp the fundamentals quickly and increase adoption.
+
+* 3. High-Level Design
+The feature will be implemented using a combination of a dedicated tutorial file and a set of custom VS Code commands, triggered by special `command:` URIs within that file.
+
+**3.1. Entry Point**
+- A new command, `orgdown.showTutorial`, will be added to the extension.
+- When executed, this command will:
+  1. Create a new, untitled Org document (`untitled:tutorial.org`).
+  2. Populate this document with the content of the interactive tutorial.
+  3. Display an information message to the user, e.g., "Welcome to the Orgdown interactive tutorial! Follow the instructions in this file to learn the basics."
+
+**3.2. Tutorial Content**
+- The tutorial will be a `.org` file, structured as a series of lessons.
+- Each lesson will explain a concept (e.g., headlines, emphasis, lists) and provide one or more interactive links.
+- These links will look like this: `[[Click here to try it](command:orgdown.tutorial.actionName)]`
+
+**3.3. Interactive Commands**
+- A suite of internal commands, prefixed with `orgdown.tutorial.`, will be created to power the interactions.
+- These commands will perform small, specific text-editing actions in the active editor.
+- Examples:
+  - `orgdown.tutorial.insertHeadline`: Inserts `* ` at the current cursor position.
+  - `orgdown.tutorial.insertBoldText`: Inserts `*bold text*` and places the selection on "bold text".
+  - `orgdown.tutorial.createList`: Inserts a sample unordered list.
+  - `orgdown.tutorial.toggleTodo`: Finds the nearest headline and cycles its TODO keyword.
+- These commands will be registered in `package.json` but will be hidden from the command palette, as they are intended to be called only from within the tutorial.
+
+* 4. Proposed Tutorial Outline
+The tutorial will cover the following core concepts in order:
+1.  **Headlines**: Creating different levels.
+2.  **Emphasis**: Bold, italic, underline, strikethrough, code.
+3.  **Lists**: Unordered, ordered, and checklists.
+4.  **Links**: Creating external links.
+5.  **TODO Items**: Basic TODO states (`TODO`/`DONE`).
+6.  **Basic Tables**: Inserting a simple table structure.
+7.  **Code Blocks**: Inserting a simple code block.
+8.  **Conclusion**: Links to further documentation and the project's GitHub page.
+
+* 5. Technical Implementation Details
+- **Command Registration**: All commands (`orgdown.showTutorial` and `orgdown.tutorial.*`) will be registered in the `contributes.commands` section of `client/package.json`.
+- **Command Logic**: The implementation for these commands will reside in a new file, `client/src/features/interactive-tutorial.ts`.
+- **Tutorial File**: The content for the tutorial will be stored as a template string or in a separate `.org` file within the extension's assets, to be read and loaded dynamically.
+- **Editor API**: The tutorial commands will make heavy use of the `vscode.TextEditor` and `vscode.TextEditorEdit` APIs to insert snippets, move the cursor, and manage selections.
+
+* 6. Future Enhancements
+- **Multi-stage Tutorial**: More advanced tutorials could be created for topics like properties, advanced tables, or export settings.
+- **Localization**: The tutorial content could be localized into different languages.
+- **State Checking**: More advanced commands could check the user's input to verify they completed a step correctly before moving on.

@@ -1,0 +1,51 @@
+* Project Overview: Orgdown for VS Code
+
+** Core Goal
+
+The primary objective of this project is to implement 80% or more of the features and keybindings of Spacemacs' Org Mode within a VS Code extension. This will provide a powerful and familiar Org Mode experience for users who prefer the VS Code editor.
+
+** Target Audience
+
+- Users of Spacemacs Org Mode who want to transition to VS Code.
+- VS Code users looking for a comprehensive and efficient solution for note-taking, task management, and document structuring.
+
+** Key Features Roadmap
+
+*** 1. Display & Styling
+   - [ ] *Headline Styling*: Apply different font sizes, weights, or colors based on headline level (*, **, ***, etc.).
+   - [ ] *Keyword Styling*: Provide distinct colors for status keywords like ~TODO~ and ~DONE~.
+   - [ ] *Emphasis Styling*: Correctly render *bold*, /italic/, _underline_, +strikethrough+, and ~code~ text.
+   - [ ] *Timestamp Styling*: Give dates and times a unique visual style.
+   - [ ] *Block Styling*: Provide distinct backgrounds or borders for ~SRC~, ~QUOTE~, and ~EXAMPLE~ blocks.
+
+*** 2. Basic Structure & Editing
+   - [ ] *Headline Folding*: Collapse and expand headlines to navigate documents efficiently.
+   - [ ] *Promote/Demote Headlines*: Change a headline's level (e.g., ** to ***).
+   - [ ] *Promote/Demote Subtrees*: Change the level of a headline and all its children.
+   - [ ] *List Editing*: Support creation and manipulation of itemized lists.
+   - [ ] *Paragraph Filling*: Re-flow a paragraph to fit a specific width.
+
+*** 3. Task Management
+   - [ ] *TODO State Cycling*: Change task status with a single command (e.g., TODO -> DONE).
+   - [ ] *Custom TODO Sequences*: Allow users to define their own workflows (e.g., TODO -> IN-PROGRESS -> DONE).
+   - [ ] *Timestamp Insertion*: Quickly insert ~SCHEDULED~, ~DEADLINE~, or ~CLOSED~ timestamps.
+
+*** 4. Tables
+   - [ ] *Table Creation*: Quickly create new tables.
+   - [ ] *Table Re-alignment*: Automatically format and align columns.
+   - [ ] *Row/Column Manipulation*: Add, delete, and move rows and columns.
+
+*** 5. Linking
+   - [ ] *Internal Linking*: Create and follow links to other headlines within the project.
+   - [ ] *External Linking*: Create and follow links to web pages and local files.
+
+*** 6. Exporting
+   - [ ] *Export to HTML*: Provide a basic HTML export function.
+
+** Technology Stack
+
+- *Language:* TypeScript
+- *Platform:* VS Code Extension API
+- *Bundler:* esbuild
+- *Linter:* ESLint
+- *Package Manager:* pnpm

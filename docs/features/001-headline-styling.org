@@ -1,0 +1,54 @@
+#+TITLE: [Feature-001] - Headline Styling
+
+|                |                                                                    |
+|----------------+--------------------------------------------------------------------|
+| *ID*           | ~001~                                                              |
+| *Status*       | Ready for Dev                                                      |
+| *Owner*        | san                                                                |
+| *Related ADRs* | N/A                                                                |
+
+* 1. Summary
+  Implement visual styling for Org Mode headlines in the VS Code editor, applying different styles (e.g., font size, weight, color) based on the headline's level.
+
+* 2. Background and Motivation
+  Org Mode documents rely on a hierarchical structure defined by headlines. Providing distinct visual cues for each headline level allows users to understand the document's structure at a glance, improving readability and navigation. This is a foundational feature for replicating the classic Org Mode experience.
+
+* 3. User Stories
+  - *As a* user, *I want to* see headlines styled differently based on their level, *so that I can* visually distinguish the document's structure without having to count the asterisks.
+
+* 4. Functional Requirements
+  - The system *MUST* apply styles to lines that are valid Org Mode headlines (e.g., ~*~, ~**~, ~***~).
+  - The styling *MUST* differentiate between multiple levels (e.g., at least levels 1 through 5).
+  - The styles *SHOULD* be configurable by the user in VS Code settings.
+  - The styling *MUST* be applied dynamically as the user types or edits a document.
+
+* 5. Non-Functional Requirements
+  - *Performance*: Styling updates *MUST NOT* introduce noticeable lag during typing or scrolling, even in large documents.
+  - *Usability*: The default styles should be aesthetically pleasing and accessible (e.g., sufficient color contrast).
+
+* 6. Proposed Technical Implementation
+  - *Affected Modules/Files*:
+    - ~src/extension.ts~ (to register the styling logic)
+    - A new file, e.g., ~src/styling/headline-styler.ts~, will contain the core logic.
+  - *New Components*:
+    - A ~HeadlineStyler~ class will be responsible for:
+      1. Defining decoration types for each headline level using the ~vscode.window.createTextEditorDecorationType~ API.
+      2. Parsing the active text editor's content to find all headlines and their ranges.
+      3. Applying the appropriate decorations to the ranges.
+      4. Listening to workspace events (~onDidChangeTextDocument~) to trigger updates.
+  - *Configuration*:
+    - User-configurable styles will be read from ~vscode.workspace.getConfiguration('orgdown.styles.headlines')~.
+
+* 7. Acceptance Criteria
+  - [ ] *Given* a ~.org~ file is opened, *when* it contains headlines of different levels, *then* each headline level is rendered with a distinct visual style.
+  - [ ] *Given* a user types a new line starting with ~*~, *then* the line is immediately styled as a level 1 headline.
+  - [ ] *Given* a user adds an asterisk to an existing headline (e.g., ~*~ -> ~**~), *then* its style immediately updates to the level 2 style.
+  - [ ] *Given* a user changes a headline style in the VS Code settings, *then* the changes are immediately reflected in all open ~.org~ editors without requiring a reload.
+
+* 8. Out of Scope
+  - This feature will not style any other part of the headline, such as TODO keywords or tags. This will be handled by other styling features.
+  - This feature does not implement folding, only visual styling.
+
+* 9. Open Questions
+  - What should the default color/style scheme be? (Suggestion: Start with a scheme inspired by popular Emacs themes like `doom-one` or `gruvbox`).
+  - How many levels deep should we provide default styles for? (Suggestion: 8 levels).

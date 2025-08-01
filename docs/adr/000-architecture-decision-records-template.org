@@ -1,0 +1,66 @@
+#+TITLE: [ADR-000] - Title of Decision
+
+* Status
+  :PROPERTIES:
+  :Status: Proposed | Accepted | Rejected | Superseded by [ADR-XXX] | Deprecated
+  :END:
+
+* Date
+  YYYY-MM-DD
+
+* Deciders
+  - [Name/Team]
+
+* Context
+  This section describes the problem or challenge that needs a decision. It should cover the technical, business, and operational context.
+  - *Problem Statement*: What is the issue we are facing?
+  - *Driving Forces*: What are the key factors influencing this decision (e.g., performance requirements, user feedback, technical debt)?
+
+* Decision
+  This section provides a clear and concise statement of the chosen approach.
+
+  *We have decided to [describe the chosen solution].*
+
+* Considered Options
+** Option 1: [Name of the first option]
+   - *Description*: A brief explanation of the option.
+   - *Pros*:
+     - Pro 1
+     - Pro 2
+   - *Cons*:
+     - Con 1
+     - Con 2
+
+** Option 2: [Name of the second option]
+   - *Description*: A brief explanation of the option.
+   - *Pros*:
+     - Pro 1
+     - Pro 2
+   - *Cons*:
+     - Con 1
+     - Con 2
+
+  /Add more options as necessary/
+
+* Rationale
+  This section explains *why* the chosen decision was made.
+  - *Reasoning*: Justify the decision based on the context and the evaluation of options. Compare the chosen option against the others.
+  - *Alignment*: How does this decision align with project goals, principles, and long-term vision?
+
+* Consequences
+** Positive
+   - What are the expected positive outcomes?
+   - What benefits will this decision bring to the project or the team?
+
+** Negative
+   - What are the known drawbacks, risks, or trade-offs?
+   - What technical debt is being incurred?
+
+** Impact
+   - *On Codebase*: How will this affect the existing code?
+   - *On Teams*: How will this affect development, testing, or operations?
+   - *On Users*: Is there any user-facing impact?
+
+* References
+  - [[Link to related documents, tickets, or discussions]]
+  - [[Link to external resources or articles]]

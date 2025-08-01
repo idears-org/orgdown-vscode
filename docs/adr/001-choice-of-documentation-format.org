@@ -1,0 +1,66 @@
+#+TITLE: [ADR-001] - Choice of Documentation Format
+
+* Status
+  :PROPERTIES:
+  :Status: Accepted
+  :END:
+
+* Date
+  2025-07-29
+
+* Deciders
+  - san
+  - GitHub Copilot
+
+* Context
+  - *Problem Statement*: As a project dedicated to building an Org Mode extension for VS Code, we must decide on the format for our own project documentation. The core question is whether to use the industry-standard Markdown or to "dogfood" our own product by using Org Mode.
+  - *Driving Forces*:
+    - The desire for thematic consistency and "dogfooding".
+    - The need for a readable and stable documentation format from the project's inception.
+
+* Decision
+  *We have decided to use Org Mode for all project documentation from the outset.*
+
+  This decision is based on the principle of "dogfooding" and the inherent readability of Org Mode as a plain text format.
+
+* Considered Options
+** Option 1: Use Markdown
+   - *Description*: Use ~.md~ files for all project documentation.
+   - *Pros*:
+     - *Universality*: Excellent native support in VS Code, GitHub, and most other development tools.
+     - *Low Barrier to Entry*: Most developers are immediately familiar with Markdown.
+   - *Cons*:
+     - *No Dogfooding*: We lose the primary opportunity to test and experience our own extension.
+     - *Thematic Dissonance*: An Org Mode project documented in Markdown lacks conceptual integrity.
+
+** Option 2: Use Org Mode Immediately (The Chosen Option)
+   - *Description*: Use ~.org~ files for all project documentation from the start.
+   - *Pros*:
+     - *Immediate Dogfooding*: Forces us to use and improve our own product from day one.
+     - *Thematic Consistency*: Aligns the project's documentation with its core purpose.
+     - *Excellent Readability*: As a structured plain text format, Org Mode files are highly readable even without any special rendering tools, mitigating the risk of an immature toolchain.
+   - *Cons*:
+     - *Initial Tooling Friction*: Perfect previewing and advanced features will depend on our own extension's progress, or require other tools in the interim.
+     - *Learning Curve*: New contributors might be less familiar with Org syntax compared to Markdown.
+
+* Rationale
+  The decision to adopt Org Mode immediately is a strategic commitment to the project's core mission. The most compelling argument is the "dogfooding" principle—we must use the tool we are building.
+
+  The primary counterargument, the "chicken-and-egg" problem of tooling, is significantly mitigated by Org Mode's nature as a highly readable plain text format. The source files can be effectively authored and understood without any specialized tools, thus ensuring that documentation work is never blocked. The benefits of immediate, constant feedback on our own product far outweigh the minor inconvenience of imperfect rendering in the early stages. This approach forces us to prioritize features that enhance our own development workflow, leading to a more robust and practical product.
+
+* Consequences
+** Positive
+   - The development team will be the first and most active user of the extension, leading to rapid feedback and improvement cycles.
+   - The project maintains a strong conceptual and thematic integrity.
+   - We are forced to build a genuinely useful product because we depend on it ourselves.
+
+** Negative
+   - A potential, minor friction for new contributors who may be unfamiliar with Org Mode syntax.
+   - The documentation workflow will evolve alongside the extension, which may introduce some initial instability compared to using a mature format like Markdown.
+
+** Impact
+   - All developers will create and edit documentation in ~.org~ format.
+   - We will need to convert all existing ~.md~ documentation to ~.org~.
+
+* References
+  - N/A

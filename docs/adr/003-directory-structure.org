@@ -1,0 +1,78 @@
+#+TITLE: [ADR-003] - Directory Structure
+
+* Status
+  :PROPERTIES:
+  :Status: Accepted
+  :END:
+
+* Date
+  2025-07-29
+
+* Deciders
+  - san
+  - GitHub Copilot
+
+* Context
+  - *Problem Statement*: As the project grows, a clear and consistent directory structure is essential for maintainability, scalability, and ease of navigation. We need to formally document the purpose of each top-level directory.
+  - *Driving Forces*:
+    - The adoption of a three-layer architecture (ADR-002) necessitates a clear separation between the client (VS Code extension) and the language server.
+    - The need for a dedicated space for documentation, including ADRs and feature specifications.
+    - The importance of keeping configuration files at the root for easy access and standard compliance.
+
+* Decision
+  *We have decided to adopt a monorepo-like structure with distinct top-level directories for the client, server, documentation, and shared resources.*
+
+  - `client/`: Contains all code related to the VS Code extension client, which handles the UI and user-facing interactions.
+  - `server/`: Contains all code for the Language Server, which performs heavy lifting like parsing and analysis.
+  - `docs/`: Contains all project documentation, including ADRs, feature specifications, and general project overviews.
+  - `syntaxes/`: Contains the TextMate grammar for Org Mode syntax highlighting.
+  - `samples/`: Contains sample `.org` files for testing and demonstration.
+  - Root (`/`): Contains project-wide configuration files (`package.json`, `tsconfig.json`, etc.) and repository metadata (`README.md`, `CHANGELOG.md`).
+
+* Considered Options
+** Option 1: Single Project Structure
+   - *Description*: Place all source code (client and server) in a single `src/` directory.
+   - *Pros*:
+     - Simpler for very small projects.
+   - *Cons*:
+     - Blurs the lines between the client and server, violating the separation of concerns outlined in ADR-002.
+     - Harder to manage dependencies for the client and server independently.
+     - Less scalable as the project grows.
+
+** Option 2: Separate Repositories
+   - *Description*: Create separate Git repositories for the client and the server.
+   - *Pros*:
+     - Complete separation of concerns.
+   - *Cons*:
+     - Significantly more complex to manage, requiring coordination between two repositories for builds, testing, and releases.
+     - Harder to share common code or types.
+     - Makes atomic commits across client and server impossible.
+
+** Option 3: Monorepo with Top-Level Directories (The Chosen Option)
+   - *Description*: Use a single repository with dedicated directories for each logical part of the project.
+   - *Pros*:
+     - Clear separation of concerns that aligns perfectly with ADR-002.
+     - Easy to manage dependencies for each part of the project using pnpm workspaces.
+     - Facilitates atomic commits and simplifies the release process.
+     - Provides a single, unified view of the entire project.
+   - *Cons*:
+     - The root directory can become cluttered if not managed carefully.
+
+* Rationale
+  The chosen monorepo structure provides the best balance of separation of concerns and ease of management. It directly supports our three-layer architecture and provides a scalable foundation for future growth. It is a standard and well-understood pattern for developing complex VS Code extensions with a language server.
+
+* Consequences
+** Positive
+   - The project structure is clear, logical, and easy for any developer to understand.
+   - The separation of client and server is enforced at the file system level.
+   - The `docs/` directory provides a centralized location for all project knowledge.
+
+** Negative
+   - None anticipated at this time.
+
+** Impact
+   - This ADR formalizes the existing structure. No code changes are required.
+   - All future development must adhere to this documented structure.
+
+* References
+  - [[ADR-002: Three-Layer Architecture]]
