@@ -1,2 +1,68 @@
+
+* Link abbreviation definitions
 #+LINK: org https://orgmode.org/manual/
+#+LINK: doc file:docs/manual.pdf
+#+LINK: mailto mailto:someone@example.com
+#+LINK: img file:image.png
+
+* Basic usage
 [[org][Org Manual]]
+[[doc][Project Manual]]
+[[mailto][Contact Email]]
+[[img][Logo]]
+
+* Abbreviation in headline
+** See [[org][Org Manual]] for details
+
+* Abbreviation in list
+- [[org][Org Manual]]
+- [[doc][Project Manual]]
+
+* Abbreviation in table
+| Type   | Link                |
+|--------+---------------------|
+| Org    | [[org][Manual]]     |
+| Doc    | [[doc][Manual PDF]] |
+
+* Abbreviation in property drawer
+:PROPERTIES:
+:Manual: [[doc][Project Manual]]
+:END:
+
+* Abbreviation in comment
+#+COMMENT: [[org][Org Manual]]
+
+* Abbreviation with inline markup
+*Important*: [[org][Org Manual]]
+
+* Nested abbreviation (edge case)
+[[org][See [[doc][Manual]]]]
+
+* Abbreviation with empty description
+[[org][]]
+
+* Abbreviation with missing target (error)
+[[][No target]]
+
+* Abbreviation with missing brackets (error)
+[[org][Manual]
+
+* Abbreviation with tags
+* Org Manual :link:
+  [[org][Org Manual]]
+
+* Abbreviation with priority and todo
+*** TODO [#A] Review [[doc][Manual]]
+
+* Abbreviation in drawer
+:LOGBOOK:
+:Visit: [[org][Org Manual]]
+:END:
+
+* Abbreviation in block
+#+BEGIN_QUOTE
+See [[org][Org Manual]] for details.
+#+END_QUOTE
+
+* Abbreviation in plain text
+For more info, visit [[org][Org Manual]] or [[doc][Project Manual]].

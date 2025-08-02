@@ -1,3 +1,23 @@
 * [#A] TODO Headline :tag1:tag2:
 * TODO [#B] Headline :tag3:
 * Headline :tagA:tagB: [#C] TODO
+
+#+FILETAGS: :filetagA:filetagB:
+
+* [#A] TODO Headline :tag1:tag1:
+* [#B] TODO Headline :@special:
+* [#C] TODO Headline :
+
+* [#A] TODO Headline with drawer :drawerA:
+:PROPERTIES:
+:TagProp: tag-prop
+:END:
+
+* [#B] TODO Headline with table :tableB:
+| Tag | Value |
+|-----+-------|
+| tagB | 2 |
+
+* [#C] TODO Headline with list :listC:
+- itemA
+- itemB

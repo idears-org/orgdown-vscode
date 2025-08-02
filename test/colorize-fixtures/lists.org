@@ -5,6 +5,69 @@
 1. First
 2. Second
    1. Subitem
+
+* Multi-level and mixed types
+ - Tasks [50%]
+   - [X] Subitem 1
+   - [ ] Subitem 2
+   - [X] Subitem 3
+   - [ ] Subitem 4
+
+ - Progress [2/4]
+   - [X] Subitem 1
+   - [ ] Subitem 2
+   - [X] Subitem 3
+   - [ ] Subitem 4
+
+ - Partial [-]
+   - [X] Subitem 1
+   - [ ] Subitem 2
+   - [ ] Subitem 3
+   - [ ] Subitem 4
+
+ - Item A
+  1. Subitem A1
+     - Subsubitem A1a
+       - [ ] Deep checkbox
+         - Term :: Deep definition
+
+* Ordered and unordered mixed nesting
+1. Ordered
+   - Unordered inside ordered
+     1. Ordered inside unordered
+
+* Checkbox and normal item mixed
+- [ ] Checkbox 1
+- Item without checkbox
+  - [X] Nested checked
+  - Nested normal
+
+* Nested description list
+- Term1 :: Definition1
+  - Subterm :: Subdefinition
+
+* List items with inline markup
+- *Bold* item
+- /Italic/ item
+- _Underline_ item
+- =Code= item
+- ~Verbatim~ item
+
+* List items with links, tags, special chars
+- Link item [[https://orgmode.org][OrgMode]]
+- Tag item :tag:
+- Emoji item 😀
+- Punctuation !@#$%^&*()
+
+* List item with drawer
+- Item with drawer
+  :PROPERTIES:
+  :Created: 2025-08-02
+  :END:
+
+* List item with comment
+- Item with comment
+  # This is a comment
 - Term :: Definition
 - Another Term :: Another Definition
    1. Subitem

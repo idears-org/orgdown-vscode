@@ -1,8 +1,71 @@
-* Timestamps
-<2025-08-01 Fri>
-[2025-08-01 Fri]
-DEADLINE: <2025-08-02 Sat>
-SCHEDULED: <2025-08-03 Sun>
-* Repeat
-<2025-08-01 Fri +1w>
-CLOCK: [2025-08-01 Fri 10:00]--[2025-08-01 Fri 11:00]
+
+
+* Active timestamp
+  <2025-08-01 Fri>
+
+* Inactive timestamp
+  [2025-08-01 Fri]
+
+* Meeting at 10am
+  <2025-08-01 Fri 10:00>
+
+* Time range example
+  <2025-08-01 Fri 10:00-12:00>
+
+* Date range example
+  <2025-08-01 Fri>--<2025-08-05 Tue>
+
+* Repeat every week
+  <2025-08-01 Fri +1w>
+
+* Advanced repeater
+  <2025-08-01 Fri +2d/3w>
+
+* Warning period
+  <2025-08-01 Fri -5d>
+
+* Diary-style timestamp
+  <%%(diary-float t 4 2)>
+
+* Multiple timestamps in one entry
+  <2025-08-01 Fri> <2025-08-02 Sat>
+
+* Headline with timestamp <2025-08-03 Sun>
+
+* [#B] Priority headline
+  <2025-08-04 Mon>
+
+* Headline with tags :tag1:tag2:
+  [2025-08-05 Tue]
+
+* COMMENT Commented headline <2025-08-06 Wed>
+
+* Property drawer timestamps
+  :PROPERTIES:
+  :Created: <2025-08-07 Thu>
+  :Reviewed: [2025-08-08 Fri]
+  :END:
+
+* LOGBOOK drawer
+  :LOGBOOK:
+  CLOCK: [2025-08-09 Sat 10:00]--[2025-08-09 Sat 11:00]
+  :END:
+
+* Block with timestamp
+  #+BEGIN_QUOTE
+  <2025-08-10 Sun>
+  #+END_QUOTE
+
+Table example
+| Task      | Date                |
+|-----------+---------------------|
+| Meeting   | <2025-08-11 Mon>    |
+| Review    | [2025-08-12 Tue]    |
+
+List example
+- <2025-08-13 Wed>
+- [2025-08-14 Thu]
+
+Plain text timestamp: <2025-08-15 Fri>
+
+Another plain text timestamp: [2025-08-16 Sat]

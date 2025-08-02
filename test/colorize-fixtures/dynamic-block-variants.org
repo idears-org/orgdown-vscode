@@ -1,4 +1,38 @@
-#+BEGIN: agenda
+* Edge cases
+
+#+BEGIN: clocktable
+| Headline | Time |
+|----------+------|
+| Task 1   | 2:00 |
+# missing #+END:
+
+#+BEGIN: clocktable :maxlevel
+| Headline | Time |
+|----------+------|
+| Task 1   | 2:00 |
 #+END:
-#+BEGIN: columnview
+
+#+BEGIN: clocktable :maxlevel 2
+| Headline | Time |
+|----------+------|
+| Task 1   | 2:00 |
+#+END: extra
+
+#+BEGIN: customblock
+Some custom content here.
+# missing #+END:
+
+#+BEGIN: agenda :files
+- TODO Task 1
+- DONE Task 2
 #+END:
+
+#+BEGIN: list-of-links :maxlevel 1
+- [[file:README.md][README]]
+- [[https://orgmode.org][Org Mode]]
+#+END: unexpected
+
+#+BEGIN: columnview :maxlevel 3 :columns "ITEM,TIME"
+* Task 1
+* Task 2
+#+END: typo

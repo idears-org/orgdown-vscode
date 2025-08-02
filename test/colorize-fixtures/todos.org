@@ -1,5 +1,0 @@
-* TODO Task 1
-* DONE Task 2
-* WAITING Task 3
-* CANCELLED Task 4
-** TODO Subtask

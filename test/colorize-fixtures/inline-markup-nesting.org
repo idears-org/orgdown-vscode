@@ -1,3 +1,56 @@
-* /italic *bold _underline~/ text*/
-* =code *bold= ~verbatim~/=
-* [[https://orgmode.org][*bold link*]]
+
+* Nested inline markup
+/italic *bold _underline~/ text*/
+=code *bold= ~verbatim~/=
+*bold /italic/ _underline_*
+/italic/ *bold* _underline_ +strike+ =code= ~verbatim~
+
+* Inline markup nesting in headline
+** Headline with /italic *bold*/ and =code ~verbatim~/=
+
+* Inline markup nesting in list
+- /italic *bold*/ item
+- =code *bold= ~verbatim~/= item
+
+* Inline markup nesting in table
+| Type   | Example                |
+|--------+------------------------|
+| Mix    | /italic *bold*/        |
+| Mix2   | =code *bold= ~verb~/=  |
+
+* Inline markup nesting with link
+[[https://orgmode.org][*bold /italic/ link*]]
+
+* Inline markup nesting with footnote
+See /italic *bold*/[fn:1].
+[fn:1] Nested markup footnote.
+
+* Inline markup nesting with LaTeX
+$\LaTeX$ /italic *bold*/ \alpha^2_3
+
+* Inline markup nesting with tags
+* Example :inline:
+  /italic *bold*/
+
+* Inline markup nesting with priority and todo
+*** TODO [#A] Review /italic *bold*/
+
+* Inline markup nesting in drawer
+:LOGBOOK:
+:Note: /italic *bold*/
+:END:
+
+* Inline markup nesting in block
+#+BEGIN_QUOTE
+/italic *bold*/ =code *bold= ~verbatim~/=
+#+END_QUOTE
+
+* Inline markup nesting in plain text
+This is /italic *bold*/ and =code *bold= ~verbatim~/=.
+
+* Edge cases
+/not closed *bold _underline+
+/italic *bold*/_/nested/_
+*bold*/italic/
+*bold* * *not bold*
+*bold* /italic/ *bold*

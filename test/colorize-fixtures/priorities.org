@@ -1,4 +1,0 @@
-* [#A] High priority
-* [#B] Medium priority
-* [#C] Low priority
-** [#A] Subheadline with priority

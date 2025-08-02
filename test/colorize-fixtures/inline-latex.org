@@ -1,0 +1,29 @@
+* Inline LaTeX Fixture
+
+This fixture is for testing inline LaTeX fragments:
+
+Some math: $\alpha + \beta = \gamma$
+Inline: \( x^2 + y^2 = z^2 \)
+Display: \[ \int_0^1 x dx \]
+
+* Headline with inline LaTeX $E=mc^2$
+
+- List item with LaTeX: $\frac{a}{b}$ and $\sqrt{x}$
+
+| Table | With | LaTeX |
+|-------+------+-------|
+| $x_i$ | $y_j$| $z_k$ |
+
+# This is a comment with LaTeX $\sum_{i=1}^n i$
+
+* Inline markup mixed: *bold $a^2$* / =code $b^2$= / _italic $c^2$_
+
+Some text with unclosed LaTeX: $x^2 + y^2
+
+Some text with nested $a_{b_{c}}$
+
+Some text with multiple $x$ $y$ $z$
+
+Multilingual: 公式 $\int_0^\infty e^{-x} dx$ 中文
+Математика: $\sin(\theta)$ русский
+数学: $\sum_{i=1}^n i$ 日本語

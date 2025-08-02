@@ -5,3 +5,108 @@
 | Bob    |  25 |    88 |
 |--------+-----+-------|
 #+TBLFM: $3=$2*3
+
+* Table with alignment
+| Left   | Center   | Right |
+|:-------|:--------:|------:|
+| l1     |   c1     |   r1  |
+| l2     |   c2     |   r2  |
+
+* Table with empty cells and special chars
+| Name | Age | Note |
+|------+-----+------|
+| Tom  |     | !@#$ |
+|      |  42 |      |
+
+* Table with inline markup
+| *Bold* | /Italic/ | =Code= |
+|--------+----------+--------|
+| Data   | Value    | 123    |
+
+* Table with header and footer
+| Name | Age |
+|------+-----|
+| Alice|  30 |
+|------+-----|
+| Total|  30 |
+
+* Table with links, tags, emoji
+| Link [[https://orgmode.org][OrgMode]] | :tag: | 😀 |
+|--------------------------------------+-------+----|
+| Row 1                                | t1    | e1 |
+
+* Table with comment
+| A | B |
+|---+---|
+| 1 | 2 |
+# This is a comment below the table
+
+* Table with headline and drawer
+** Table Section
+  :PROPERTIES:
+  :Created: 2025-08-02
+  :END:
+| X | Y |
+|---+---|
+| 1 | 2 |
+
+# Edge cases: column width, alignment, grouping, export attributes, radio tables, multi-header, nested tables
+
+* Table with column width and alignment cookies
+| Name <10> | Age <r5> | Score <c8> |
+|-----------+---------+-----------|
+| Alice     | 30      | 95        |
+| Bob       | 25      | 88        |
+|-----------+---------+-----------|
+
+* Table with column groups
+| N | N^2 | N^3 | N^4 | sqrt(n) | sqrt[4](N) |
+|---+-----+-----+-----+---------+------------|
+| / | <   |     | >   | <       | >          |
+| 1 | 1   | 1   | 1   | 1.4142  | 1.1892     |
+| 2 | 4   | 8   | 16  | 1.4142  | 1.1892     |
+|---+-----+-----+-----+---------+------------|
+
+* Table with export attributes (HTML/LaTeX/ODT)
+#+CAPTION: This is a table with lines around and between cells
+#+ATTR_HTML: :border 2 :rules all :frame border
+#+ATTR_LATEX: :environment longtable :align l|lp{3cm}r|l
+#+ATTR_ODT: :rel-width 50
+| Name  | Phone | Age |
+|-------+-------+-----|
+| Peter | 1234  | 17  |
+| Anna  | 4321  | 25  |
+
+* Radio table example
+#+ORGTBL: SEND salesfigures orgtbl-to-latex
+| Month | Days | Nr sold | per day |
+|-------+------+---------+---------|
+| Jan   | 23   | 55      | 2.4     |
+| Feb   | 21   | 16      | 0.8     |
+| March | 22   | 278     | 12.6    |
+#+TBLFM: $4=$3/$2;%.1f
+
+* Table with multi-row header
+| Name | Age | Score |
+|------+-----+-------|
+|      |     |       |
+|------+-----+-------|
+| Tom  | 22  | 80    |
+| Ann  | 24  | 90    |
+
+* Nested Table Section
+** Nested Table Section
+:PROPERTIES:
+:Type: Nested
+:END:
+
+| Item | Value |
+|------+-------|
+| A    | 1     |
+| B    | 2     |
+
+* Table with nested table (as cell content)
+| Outer | Inner Table |
+|-------+-------------|
+| Row 1 | | a | b |\n|---+---|\n| 1 | 2 | |
+| Row 2 | text        |

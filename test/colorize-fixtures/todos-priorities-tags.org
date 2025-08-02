@@ -1,3 +1,0 @@
-* TODO [#A] Headline :tag1:
-* DONE [#B] Headline :tag2:
-* WAITING [#C] Headline :tag3:tag4:

@@ -1,2 +1,34 @@
 ** COMMENT This subtree is commented
-*** TODO This should not be exported
+Some content in a commented subtree.
+
+# This is a line comment and should not be exported
+
+* Headline with COMMENT block below
+#+BEGIN_COMMENT
+This block should be ignored by export and colorization.
+It can contain headlines, lists, tables, etc.
+** COMMENT Nested headline in block
+- List item in comment block
+| Table | In | Comment |
+#+END_COMMENT
+
+* Headline with COMMENT subtree
+** COMMENT Subtree headline
+Some content in commented subtree.
+
+* Headline with COMMENTED (should not be treated as comment)
+** COMMENTED This is not a valid comment subtree
+Some content that should not be ignored.
+
+# COMMENT This is a line comment, not a subtree
+
+* List with comment
+- Item 1
+  # This is a comment in a list
+- Item 2
+
+* Table with comment
+| Col1 | Col2 |
+|------|------|
+# This is a comment in a table
+|  A   |  B   |

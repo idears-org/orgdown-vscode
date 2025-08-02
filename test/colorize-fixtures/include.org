@@ -1,2 +1,28 @@
-* Include
+* Include Fixture
+
+This fixture is for testing Org Mode #+INCLUDE directive and its variants.
+
 #+INCLUDE: "otherfile.org"
+#+INCLUDE: "otherfile.org" :lines "1-10"
+#+INCLUDE: "otherfile.org" :minlevel 2
+#+INCLUDE: "otherfile.org" :lines "5-"
+#+INCLUDE: "otherfile.org" :example
+#+INCLUDE: "otherfile.org" :only-contents t
+#+INCLUDE: "otherfile.org" :comments t
+
+* Headline with include below
+#+INCLUDE: "headline.org"
+
+- List item with include
+  #+INCLUDE: "list.org"
+
+| Table | With | Include |
+|-------+------+--------|
+| #+INCLUDE: "table.org" | Foo | Bar |
+
+# This is a comment with #+INCLUDE: "commented.org"
+
+* Malformed include
+#+INCLUDE "missing-colon.org"
+#+INCLUDE:
+#+INCLUDE: ""

@@ -1,0 +1,26 @@
+* Project Tasks
+  - [ ] Task 1
+  - [X] Task 2
+  - [ ] Task 3
+
+** Subproject [2/3]
+  - [X] Subtask 1
+  - [ ] Subtask 2
+  - [X] Subtask 3
+
+* TODO [#A] Checklist headline :tag:
+  - [ ] Item A
+  - [X] Item B
+    - [ ] Subitem B1
+
+* COMMENT Checklist headline with progress [50%]
+  - [X] Completed
+  - [ ] Incomplete
+  - [ ] Another
+
+* Headline with drawer and checkbox list
+:PROPERTIES:
+:Created: 2025-08-02
+:END:
+  - [ ] Drawer item 1
+  - [X] Drawer item 2

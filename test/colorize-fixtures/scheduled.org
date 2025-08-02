@@ -1,0 +1,38 @@
+
+* TODO Simple scheduled
+  SCHEDULED: <2025-08-01 Fri>
+
+* TODO Scheduled with time
+  SCHEDULED: <2025-08-02 Sat 09:00>
+
+* TODO Scheduled with repeat
+  SCHEDULED: <2025-08-03 Sun +1w>
+
+* TODO Scheduled with range
+  SCHEDULED: <2025-08-04 Mon>--<2025-08-06 Wed>
+
+* TODO Scheduled with inactive timestamp
+  SCHEDULED: [2025-08-07 Thu]
+
+* TODO Scheduled with priority and tags [#B] :meeting:
+  SCHEDULED: <2025-08-08 Fri>
+
+* COMMENT Scheduled in commented headline
+  SCHEDULED: <2025-08-09 Sat>
+
+* TODO Scheduled with drawer
+  SCHEDULED: <2025-08-10 Sun>
+  :PROPERTIES:
+  :Effort:   1h
+  :END:
+
+* TODO Scheduled with block
+  SCHEDULED: <2025-08-11 Mon>
+  #+BEGIN_EXAMPLE
+  Example block after planning line.
+  #+END_EXAMPLE
+
+* TODO Scheduled with DEADLINE and CLOSED
+  SCHEDULED: <2025-08-12 Tue>
+  DEADLINE: <2025-08-13 Wed>
+  CLOSED: [2025-08-13 Wed 18:00]

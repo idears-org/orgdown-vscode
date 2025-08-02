@@ -1,0 +1,41 @@
+#+TITLE: Keywords Fixture
+#+AUTHOR: Example Author
+#+OPTIONS: toc:nil
+
+* This fixture is for testing Org Mode keywords and settings.
+
+#+SETUPFILE: setup.org
+#+TODO: TODO | DONE
+
+#+DATE: 2025-08-02
+#+EMAIL: example@example.com
+#+DESCRIPTION: This is a test document for Org keywords.
+#+KEYWORDS: org, test, keyword, example
+#+LANGUAGE: en
+#+PROPERTY: global-property value
+#+FILETAGS: project, orgdown
+#+STARTUP: overview
+#+SEQ_TODO: TODO | WAIT | DONE
+#+ARCHIVE: %s_archive::* Archived Tasks
+#+CATEGORY: Test
+#+PRIORITIES: A B C
+#+TAGS: @work @home
+#+EXPORT_FILE_NAME: export.html
+#+HTML_HEAD: <style>body{font-size:14px;}</style>
+#+LATEX_HEADER: \usepackage{amsmath}
+#+CUSTOM_KEY: custom value
+
+# This is a comment line and should not be parsed as a keyword
+#+INVALIDKEY This line is missing a colon
+#+TITLE: Overwritten Title
+
+* Headline with keyword below
+#+AUTHOR: Headline Author
+
+- List item with keyword
+  #+CATEGORY: ListCategory
+
+#+OPTIONS: toc:t num:nil
+#+OPTIONS: toc:nil
+
+#+SETUPFILE: another-setup.org

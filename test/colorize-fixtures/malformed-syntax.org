@@ -1,0 +1,54 @@
+* Malformed Blocks
+#+BEGIN_SRC python
+print("Missing END_SRC")
+#+BEGIN_QUOTE
+Quoted text without END_QUOTE
+
+* Malformed Links
+[[https://example.com]
+[[broken-link][Missing closing brackets
+
+* Malformed Inline Markup
+*bold
+/italic
+_underline
+=code
+~verbatim
++strike
+H~2~O x^2^ y_{sub
+
+* Malformed List
+- Item 1
+- Item 2
+  - Subitem 2.1
+    - Subsubitem 2.1.1
+1. Ordered item
+1 Ordered item missing dot
+
+* Malformed Table
+| Name | Value
+|------|-------
+| Foo  | Bar
+
+* Malformed Drawer
+:PROPERTIES:
+:Missing END
+
+* Malformed Planning
+SCHEDULED <2025-08-10>
+DEADLINE <2025-08-11>
+CLOSED [2025-08-12
+
+* Malformed Timestamp
+<2025-08-10
+[2025-08-10
+
+* Malformed Keyword
+#+KEYWORD value
+#+KEYWORD:
+#+KEYWORD
+
+* Malformed Special Block
+#+BEGIN_LATEX
+\alpha
+# Missing END_LATEX

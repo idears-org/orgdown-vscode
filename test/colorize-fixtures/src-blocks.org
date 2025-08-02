@@ -14,3 +14,265 @@ ls -la
 #+BEGIN_SRC emacs-lisp
 (message "Hello, Org!")
 #+END_SRC
+
+#+BEGIN_SRC python :results output :session foo
+print("With parameters and session")
+#+END_SRC
+
+#+BEGIN_SRC PYTHON
+print("Uppercase language name")
+#+END_SRC
+
+#+BEGIN_SRC shell :var x=1 :exports code
+ls -la
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(message "With tangle param")
+#+END_SRC
+
+#+BEGIN_SRC unknownlang
+Unknown language block
+#+END_SRC
+
+#+BEGIN_SRC python
+#+BEGIN_SRC shell
+Nested SRC block
+ls
+#+END_SRC
+#+END_SRC
+
+#+BEGIN_SRC python
+# Unclosed block example
+print("Missing END_SRC")
+
+#+BEGIN_SRC shell
+ls -la
+#+END_SR
+
+* Headline before SRC block
+#+BEGIN_SRC python
+print("Block after headline")
+#+END_SRC
+
+:PROPERTIES:
+:src: value
+:END:
+#+BEGIN_SRC shell
+Block after drawer
+#+END_SRC
+
+- List item
+  #+BEGIN_SRC python
+  print("List item block")
+  #+END_SRC
+
+| Table | SRC Block |
+|-------|-----------|
+| Cell  | #+BEGIN_SRC shell echo \"Table cell block\" #+END_SRC |
+
+# Comment before SRC block
+#+BEGIN_SRC emacs-lisp
+(message "Block after comment")
+#+END_SRC
+
+#+BEGIN_SRC css
+body { color: red; }
+#+END_SRC
+
+#+BEGIN_SRC html
+<div>HTML block</div>
+#+END_SRC
+
+#+BEGIN_SRC ini
+[section]
+key=value
+#+END_SRC
+
+#+BEGIN_SRC java
+public class Main { public static void main(String[] args) { } }
+#+END_SRC
+
+#+BEGIN_SRC lua
+print("Hello from Lua!")
+#+END_SRC
+
+#+BEGIN_SRC makefile
+all:
+    @echo "Makefile block"
+#+END_SRC
+
+#+BEGIN_SRC perl
+print "Hello from Perl!";
+#+END_SRC
+
+#+BEGIN_SRC r
+print("Hello from R!")
+#+END_SRC
+
+#+BEGIN_SRC ruby
+puts "Hello from Ruby!"
+#+END_SRC
+
+#+BEGIN_SRC php
+<?php echo "Hello from PHP!"; ?>
+#+END_SRC
+
+#+BEGIN_SRC sql
+SELECT 1;
+#+END_SRC
+
+#+BEGIN_SRC vb
+Dim x As Integer = 1
+#+END_SRC
+
+#+BEGIN_SRC xml
+<root>XML block</root>
+#+END_SRC
+
+#+BEGIN_SRC xsl
+<xsl:template match=\"/\">XSL block</xsl:template>
+#+END_SRC
+
+#+BEGIN_SRC yaml
+foo: bar
+#+END_SRC
+
+#+BEGIN_SRC bat
+@echo off
+#+END_SRC
+
+#+BEGIN_SRC clojure
+(println \"Hello from Clojure!\")
+#+END_SRC
+
+#+BEGIN_SRC coffee
+console.log \"Hello from CoffeeScript!\"
+#+END_SRC
+
+#+BEGIN_SRC c
+#include <stdio.h>
+int main() { printf(\"Hello, C!\\n\"); return 0; }
+#+END_SRC
+
+#+BEGIN_SRC cpp
+#include <iostream>
+int main() { std::cout << \"Hello, C++!\" << std::endl; }
+#+END_SRC
+
+#+BEGIN_SRC diff
+--- a
++++ b
+@@
+#+END_SRC
+
+#+BEGIN_SRC dockerfile
+FROM node:alpine
+#+END_SRC
+
+#+BEGIN_SRC go
+package main
+func main() { println(\"Hello, Go!\") }
+#+END_SRC
+
+#+BEGIN_SRC groovy
+println \"Hello from Groovy!\"
+#+END_SRC
+
+#+BEGIN_SRC pug
+p Hello from Pug
+#+END_SRC
+
+#+BEGIN_SRC js
+console.log(\"Hello from JS!\");
+#+END_SRC
+
+#+BEGIN_SRC json
+{\"hello\": \"world\"}
+#+END_SRC
+
+#+BEGIN_SRC less
+@color: red;
+#+END_SRC
+
+#+BEGIN_SRC objc
+@implementation Hello
+@end
+#+END_SRC
+
+#+BEGIN_SRC swift
+print(\"Hello from Swift!\")
+#+END_SRC
+
+#+BEGIN_SRC scss
+$color: red;
+body { color: $color; }
+#+END_SRC
+
+#+BEGIN_SRC powershell
+Write-Output \"Hello from PowerShell!\"
+#+END_SRC
+
+#+BEGIN_SRC julia
+println(\"Hello from Julia!\")
+#+END_SRC
+
+#+BEGIN_SRC rust
+fn main() { println!(\"Hello from Rust!\"); }
+#+END_SRC
+
+#+BEGIN_SRC scala
+object Main extends App { println(\"Hello from Scala!\") }
+#+END_SRC
+
+#+BEGIN_SRC ts
+console.log(\"Hello from TypeScript!\");
+#+END_SRC
+
+#+BEGIN_SRC tsx
+const x = <div>Hello TSX</div>;
+#+END_SRC
+
+#+BEGIN_SRC csharp
+Console.WriteLine(\"Hello from C#\");
+#+END_SRC
+
+#+BEGIN_SRC fsharp
+printfn \"Hello from F#\"
+#+END_SRC
+
+#+BEGIN_SRC dart
+void main() { print('Hello from Dart!'); }
+#+END_SRC
+
+#+BEGIN_SRC handlebars
+{{! Handlebars block }}
+#+END_SRC
+
+#+BEGIN_SRC markdown
+# Markdown block
+#+END_SRC
+
+#+BEGIN_SRC log
+Log entry
+#+END_SRC
+
+#+BEGIN_SRC erlang
+io:format(\"Hello from Erlang!~n\").
+#+END_SRC
+
+#+BEGIN_SRC elixir
+IO.puts \"Hello from Elixir!\"
+#+END_SRC
+
+#+BEGIN_SRC latex
+\\textbf{Hello from LaTeX!}
+#+END_SRC
+
+#+BEGIN_SRC bibtex
+@article{hello, author={\"World\"}}
+#+END_SRC
+
+#+BEGIN_SRC twig
+{{ twig_block }}
+#+END_SRC

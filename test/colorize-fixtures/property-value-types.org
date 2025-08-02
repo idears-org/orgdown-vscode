@@ -1,7 +1,29 @@
+* Property Value Types Demo
 :PROPERTIES:
-:Age: 30
-:Birthday: <2025-08-01>
-:Website: [[https://orgmode.org][Org Mode]]
-:Tags: tag1,tag2
+:String: Hello World
+:Number: 42
+:Float: 3.1415
+:Date: <2025-08-02>
+:Boolean: t
+:Empty:
 :List: (a b c)
+:CommaList: a,b,c
+:Link: [[https://orgmode.org][Org Mode]]
+:ID: 98765
+:CATEGORY: Demo
+:CUSTOM_ID: demo-1
 :END:
+** Subheadline
+:PROPERTIES:
+:Override: Sub
+:END:
+*** Sub-subheadline
+# Inherits parent properties except :Override:
+* Edge Cases
+:PROPERTIES:
+:Duplicate: value1
+:Duplicate: value2
+:Empty:
+:END:
+** No Properties
+# Headline without drawer

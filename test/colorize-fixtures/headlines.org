@@ -18,3 +18,28 @@ DEADLINE: <2025-08-04 Mon>
 SCHEDULED: <2025-08-05 Tue>
 * Headline with deadline only
 DEADLINE: <2025-08-06 Wed>
+* COMMENT This is a commented headline :commented:
+* WAITING/TODO/DONE Fast todo sequence headline :fast:
+* Headline with emoji 😀 :emoji:
+* Headline with punctuation !@#$%^&*() :punct:
+* Headline with drawer
+:PROPERTIES:
+:Created: 2025-08-02
+:END:
+* Headline with property
+  :property: value
+* Project Tasks [50%]
+  - [X] Task 1
+  - [ ] Task 2
+  - [X] Task 3
+  - [ ] Task 4
+
+** Subproject [2/4]
+  - [X] Subtask 1
+  - [ ] Subtask 2
+  - [X] Subtask 3
+  - [ ] Subtask 4
+
+* Partial Progress [-]
+  - [X] Task 1
+  - [ ] Task 2

@@ -1,7 +1,0 @@
-* Headline with scheduled
-SCHEDULED: <2025-08-01 Fri>
-* Headline with deadline
-DEADLINE: <2025-08-02 Sat>
-* Headline with both
-SCHEDULED: <2025-08-03 Sun>
-DEADLINE: <2025-08-04 Mon>

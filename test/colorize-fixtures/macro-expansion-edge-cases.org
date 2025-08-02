@@ -1,4 +1,73 @@
+
+* Basic macro expansion
 #+MACRO: greet Hello, $1!
 {{{greet(John)}}}
+
+* Nested macro expansion
 #+MACRO: wrap {{{greet($1)}}}
 {{{wrap(Jane)}}}
+
+* Multi-parameter macro
+#+MACRO: info $1 is $2 years old.
+{{{info(Alice, 30)}}}
+
+* Macro in headline
+** Author: {{{greet(John)}}}
+
+* Macro in list
+- {{{greet(John)}}}
+- {{{info(Bob, 25)}}}
+
+* Macro in table
+| Name  | Info                      |
+|-------+---------------------------|
+| Alice | {{{info(Alice, 30)}}}     |
+| Bob   | {{{info(Bob, 25)}}}       |
+
+* Macro in property drawer
+:PROPERTIES:
+:Author: {{{greet(John)}}}
+:END:
+
+* Macro in comment
+#+COMMENT: {{{greet(John)}}}
+
+* Macro with inline markup
+/italic/ {{{greet(John)}}} *bold*
+
+* Macro with footnote
+{{{greet(John)}}}[fn:macro]
+[fn:macro] Macro in footnote.
+
+* Macro with LaTeX
+$\LaTeX$ {{{greet(John)}}}
+
+* Macro with tags
+* Example :macro:
+  {{{greet(John)}}}
+
+* Macro with priority and todo
+*** TODO [#A] Review {{{greet(John)}}}
+
+* Macro in drawer
+:LOGBOOK:
+:Note: {{{greet(John)}}}
+:END:
+
+* Macro in block
+#+BEGIN_QUOTE
+{{{greet(John)}}}
+#+END_QUOTE
+
+* Macro in plain text
+The author is {{{greet(John)}}} and {{{info(Alice, 30)}}}.
+
+* Macro with emoji and multilingual
+{{{greet(你好)}}} {{{info(Привет, 20)}}} {{{greet(こんにちは)}}}
+
+* Edge cases
+{{{greet()}}}         # missing argument
+{{{info(Alice)}}}     # missing second argument
+{{{unknown}}}         # undefined macro
+{{{greet(John, Bob)}}} # extra argument
+{{{greet(John)}}      # missing closing braces

@@ -1,0 +1,91 @@
+* OrgDown tmLanguage Coverage & Testing Plan
+
+** Purpose
+To ensure OrgDown's tmLanguage provides robust, accurate, and comprehensive syntax highlighting for all Org Mode features by following a systematic, fixture-driven testing workflow.
+
+** Phase 1: Feature-by-Feature Fixture Design
+This phase focuses on creating a dedicated test fixture for every individual Org Mode syntax element and its variations. The goal is to isolate each feature to test it thoroughly.
+
+*** Core Syntax Fixtures [23/23]
+    - [x] **Headlines**: Levels, TODO keywords, priorities, tags, commented headlines.
+      _fixtures: headlines.org_
+    - [x] **Lists**: Unordered, ordered, description, checkboxes (with states).
+      _fixtures: lists.org, checkbox-list-edge-cases.org, headline-with-checkbox-list.org_
+    - [x] **Tables**: Simple, with alignment, with formulas.
+      _fixtures: tables.org, table-formula-edge-cases.org_
+    - [x] **Blocks**: SRC, EXAMPLE, QUOTE, VERSE, CENTER, COMMENT, custom blocks.
+      _fixtures: blocks.org, src-blocks.org, special-block-types.org_
+    - [x] **Drawers**: PROPERTIES, LOGBOOK, custom drawers.
+      _fixtures: drawers.org_
+    - [x] **Planning**: SCHEDULED, DEADLINE, CLOSED timestamps.
+      _fixtures: planning-line.org, scheduled.org_
+    - [x] **Timestamps**: Active, inactive, ranges, repeaters.
+      _fixtures: timestamps.org, timestamp-edge-cases.org_
+    - [x] **Links**: Internal, external, file links, custom IDs, abbreviations.
+      _fixtures: links.org, link-abbreviation.org_
+    - [x] **Footnotes**: Definitions and inline references.
+      _fixtures: footnote-edge-cases.org_
+    - [x] **Inline Markup**: Bold, italic, underline, verbatim, code, strike-through, `sub_script`, `super^script`.
+      _fixtures: inline-markup.org, inline-markup-nesting.org_
+    - [x] **Macros**: Definition and usage.
+      _fixtures: macros.org, macro-expansion-edge-cases.org_
+    - [x] **Dynamic Blocks**: Basic structure.
+      _fixtures: dynamic-blocks.org, dynamic-block-variants.org_
+    - [x] **Properties**: Inheritance and value types.
+      _fixtures: property-inheritance.org, property-value-types.org_
+    - [x] **Horizontal Rules**: Standard `-----`.
+      _fixtures: horizontal-rules.org_
+    - [x] **Tags**: In headlines and file-level (`#+FILETAGS:`).
+      _fixtures: tags.org, priority-todo-tags-edge-cases.org_
+    - [x] **Keywords**: For various `#+KEY: value` settings like `TITLE`, `AUTHOR`, `OPTIONS`.
+      _fixtures: keywords.org_
+    - [x] **Comments**: Line comments, `COMMENT` blocks, and commented subtrees.
+      _fixtures: comment-subtree.org_
+    - [x] **Special Blocks**: LATEX, HTML.
+      _fixtures: special-block-types.org_
+    - [x] **Multilingual**: Headlines, paragraphs, tables, lists, blocks, drawers, properties, tags, emoji, and plain text in multiple languages (including 中文/Chinese, Japanese, Korean, Russian, Arabic, Hebrew, etc.).
+      _fixtures: multilingual-fixture.org_
+    - [x] **Inline LaTeX**: Fragments like `\alpha`.
+      _fixtures: inline-latex.org_
+    - [x] **Include**: #+INCLUDE directive and variants.
+      _fixtures: include.org_
+    - [x] **Kitchen Sink**: A comprehensive file combining all features for integration testing.
+      _fixtures: kitchen-sink.org_
+    - [x] **Archive**: Archive heading with Lists in lists, blocks in lists, etc.
+      _fixtures: archive-subtree.org_
+*** Edge Case & Nesting Fixtures [3/3]
+    - [x] **Malformed Syntax**: Incomplete blocks, broken links, unterminated markup.
+      _fixtures: malformed-syntax.org_
+    - [x] **Ambiguous Cases**: Syntax that could be interpreted in multiple ways.
+      _fixtures: complex-noweb-reference.org_
+    - [x] **Blocks Edge Cases**: Nesting, mixed case, parameter errors, block/markup/table/list/headline/drawer/paragraph combinations, custom types, error simulation, etc.
+      _fixtures: block-edge-cases.org_
+
+** Phase 2: The Test & Validation Workflow
+For each fixture created in Phase 1, the following iterative process MUST be followed to ensure quality and prevent regressions.
+
+1.  **[ ] Manual Review**: Visually inspect the highlighting in VS Code to confirm it matches expectations.
+2.  **[ ] Snapshot Generation**: Run the test suite to generate a new colorization snapshot (`.json` file).
+3.  **[ ] Snapshot Diff Analysis**:
+    - If it's a new feature, approve the snapshot.
+    - If it's a change, carefully review the diff. Ensure the changes are intended and don't affect unrelated scopes.
+4.  **[ ] Iteration**: If highlighting is incorrect or causes regressions, update the `org.tmLanguage.yaml` grammar and repeat from step 1.
+5.  **[ ] Mark as Complete**: Once the snapshot is approved and stable, check off the corresponding fixture in Phase 1.
+
+** Phase 3: Integration & Regression Automation
+This phase ensures that all features work together harmoniously and that our testing process is automated.
+
+- [ ] **Automate Snapshot Testing**: Integrate the snapshot comparison into a CI workflow (e.g., GitHub Actions) to run on every commit.
+- [ ] **Kitchen Sink Validation**: Regularly review the `kitchen-sink.org` fixture's snapshot to catch any unintended cross-feature interactions.
+- [ ] **Regression Policy**: Any change that unexpectedly alters an existing snapshot MUST be investigated. It's either an intended improvement that needs approval or a bug that needs fixing.
+
+** Phase 4: Maintenance & Evolution
+This section is for ongoing work and documentation.
+
+- [ ] **Issue-Driven Fixes**: When a bug is reported via a GitHub Issue, create a new failing fixture that reproduces the bug, then fix it following the workflow in Phase 2.
+- [ ] **Document Known Limitations**: Maintain a clear, user-facing document outlining any known edge cases or syntax that is not currently supported.
+- [ ] **Grammar Refactoring**: Periodically refactor the `tmLanguage` source for readability and maintainability as it grows.
+
+** Next Steps
+- Begin creating the fixture files (`.org`) under `test/colorize-fixtures/` for each item listed in Phase 1.
+- Follow the workflow in Phase 2 for each new fixture.

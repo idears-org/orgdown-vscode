@@ -19,3 +19,126 @@ Verse line 2
 #+BEGIN_COMMENT
 This is a comment block.
 #+END_COMMENT
+
+#+BEGIN_SRC emacs-lisp :results output :exports both
+(message "Hello Org SRC block!")
+#+END_SRC
+
+#+BEGIN_SRC python :var x=1 :results value
+x + 2
+#+END_SRC
+
+#+BEGIN_SRC shell :results verbatim
+ls -l
+#+END_SRC
+
+#+BEGIN_SRC org :exports code
+* This is a headline inside a SRC block
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp :results value
+;; Inline markup inside SRC block: *bold* /italic/ =code=
+(concat "Edge" "Case")
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+Example with *inline markup* and /special/ =code= inside.
+#+END_EXAMPLE
+
+#+BEGIN_QUOTE
+Quote block with a list:
+- Item 1
+- Item 2
+#+END_QUOTE
+
+#+BEGIN_VERSE
+Verse with a table:
+| A | B |
+|---+---|
+| 1 | 2 |
+#+END_VERSE
+
+#+BEGIN_CENTER
+Centered text with a drawer below.
+:PROPERTIES:
+:Type: Centered
+:END:
+#+END_CENTER
+
+#+BEGIN_COMMENT
+Comment block with a headline:
+** Headline in comment
+#+END_COMMENT
+
+#+BEGIN_SRC python :results output
+# Block with result insertion
+print("Result line")
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp :results value
+;; Block with error simulation
+(/ 1 0)
+#+END_SRC
+
+#+BEGIN_SRC custom-block-type
+Custom block content.
+#+END_SRC
+
+# Block nesting edge case
+* Headline with block
+#+BEGIN_SRC emacs-lisp
+(message "Nested under headline")
+#+END_SRC
+
+- List item with block:
+  #+BEGIN_EXAMPLE
+  List example block
+  #+END_EXAMPLE
+
+| Table | Block |
+|-------+------|
+| Row 1 | #+BEGIN_SRC python :results value\n1+1\n#+END_SRC |
+| Row 2 | Text |
+
+# Block with comment and paragraph
+#+BEGIN_SRC org
+Paragraph before
+#+BEGIN_COMMENT
+Comment inside SRC block
+#+END_COMMENT
+Paragraph after
+#+END_SRC
+
+# Block keyword case-insensitivity edge cases
+
+#+begin_src emacs-lisp
+(message "lowercase begin_src")
+#+end_src
+
+#+BeGiN_SrC python :results value
+1+2
+#+EnD_sRc
+
+#+begin_quote
+This is a lowercase quote block.
+#+end_quote
+
+#+BeGiN_ExAmPlE
+MiXeD CaSe example block
+#+EnD_ExAmPlE
+
+#+begin_comment
+lowercase comment block
+#+end_comment
+
+#+BeGiN_CeNtEr
+MiXeD CaSe center block
+#+EnD_CeNtEr
+
+#+begin_verse
+lowercase verse block
+#+end_verse
+
+#+BeGiN_CuStOm-BlOcK-TyPe
+Custom block with mixed case
+#+EnD_CuStOm-BlOcK-TyPe

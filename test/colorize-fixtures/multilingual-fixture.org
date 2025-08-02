@@ -1,0 +1,91 @@
+* English headline
+  This is a paragraph in English.
+
+* Français: titre en français
+  Ceci est un paragraphe en français.
+
+* Deutsch: Überschrift
+
+* English headline
+  This is a paragraph in English.
+
+* Français: titre en français
+  Ceci est un paragraphe en français.
+
+* Deutsch: Überschrift
+  Dies ist ein Absatz auf Deutsch.
+
+* Español: título en español
+  Este es un párrafo en español.
+
+* 日本語の見出し
+  これは日本語の段落です。
+
+* 한국어 제목
+  이것은 한국어 문단입니다。
+
+* Русский заголовок
+  Это абзац на русском языке。
+
+* العربية: عنوان
+  هذا فقرة باللغة العربية。
+
+* עברית: כותרת
+  זהו פסקה בעברית。
+
+* 中文标题
+  这是一段中文内容。
+
+* Headline with emoji 😀🔥🌍
+  This line contains emoji characters。
+
+* Headline with tags :fr:de:es:jp:kr:ru:ar:he:zh:
+  Multilingual tags example。
+
+* Property drawer multilingual
+  :PROPERTIES:
+  :Lang: 日本語
+  :Lang2: Español
+  :Lang3: Русский
+  :Lang4: 中文
+  :END:
+
+* LOGBOOK drawer
+  :LOGBOOK:
+  Started: <2025-08-01 Fri>
+  Finished: <2025-08-02 Sat>
+  :END:
+
+* Table with multilingual content
+  | Language | Example           |
+  |----------+------------------|
+  | English  | Hello            |
+  | Français | Bonjour          |
+  | Deutsch  | Hallo            |
+  | Español  | Hola             |
+  | 日本語   | こんにちは         |
+  | 한국어   | 안녕하세요         |
+  | Русский  | Привет           |
+  | العربية  | مرحبا            |
+  | עברית    | שלום             |
+  | 中文     | 你好             |
+
+* List with multilingual items
+  - Hello (English)
+  - Bonjour (Français)
+  - Hallo (Deutsch)
+  - Hola (Español)
+  - こんにちは (日本語)
+  - 안녕하세요 (한국어)
+  - Привет (Русский)
+  - مرحبا (العربية)
+  - שלום (עברית)
+  - 你好 (中文)
+
+* Block with multilingual text
+  #+BEGIN_QUOTE
+  Hello, Bonjour, Hallo, Hola, こんにちは, 안녕하세요, Привет, مرحبا, שלום, 你好
+  #+END_QUOTE
+
+* Plain text multilingual
+  This line mixes: Hello, Bonjour, Hallo, Hola, こんにちは, 안녕하세요, Привет, مرحبا, שלום, 你好。
