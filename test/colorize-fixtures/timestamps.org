@@ -1,0 +1,8 @@
+* Timestamps
+<2025-08-01 Fri>
+[2025-08-01 Fri]
+DEADLINE: <2025-08-02 Sat>
+SCHEDULED: <2025-08-03 Sun>
+* Repeat
+<2025-08-01 Fri +1w>
+CLOCK: [2025-08-01 Fri 10:00]--[2025-08-01 Fri 11:00]

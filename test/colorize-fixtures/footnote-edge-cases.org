@@ -1,0 +1,3 @@
+This is a footnote reference[fn:1].
+[fn:1] This is the footnote definition.
+[fn:2] Another footnote.

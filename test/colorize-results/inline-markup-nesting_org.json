@@ -1,0 +1,240 @@
+[
+	{
+		"c": "*",
+		"t": "text.org markup.heading.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org markup.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "/italic *bold _underline~/",
+		"t": "text.org markup.heading.org entity.name.section.org markup.italic.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " text*/",
+		"t": "text.org markup.heading.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "*",
+		"t": "text.org markup.heading.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org markup.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "=code *bold=",
+		"t": "text.org markup.heading.org entity.name.section.org markup.inline.raw.org",
+		"r": {
+			"dark_plus": "markup.inline.raw: #CE9178",
+			"light_plus": "markup.inline.raw: #800000",
+			"dark_vs": "markup.inline.raw: #CE9178",
+			"light_vs": "markup.inline.raw: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.inline.raw: #CE9178",
+			"hc_light": "markup.inline.raw: #0F4A85",
+			"light_modern": "markup.inline.raw: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org markup.heading.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "~verbatim~",
+		"t": "text.org markup.heading.org entity.name.section.org markup.inline.raw.org",
+		"r": {
+			"dark_plus": "markup.inline.raw: #CE9178",
+			"light_plus": "markup.inline.raw: #800000",
+			"dark_vs": "markup.inline.raw: #CE9178",
+			"light_vs": "markup.inline.raw: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.inline.raw: #CE9178",
+			"hc_light": "markup.inline.raw: #0F4A85",
+			"light_modern": "markup.inline.raw: #800000"
+		}
+	},
+	{
+		"c": "/=",
+		"t": "text.org markup.heading.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "*",
+		"t": "text.org markup.heading.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org markup.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "[[",
+		"t": "text.org markup.heading.org entity.name.section.org meta.link.org punctuation.definition.link.begin.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "https://orgmode.org",
+		"t": "text.org markup.heading.org entity.name.section.org meta.link.org markup.underline.link.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "][",
+		"t": "text.org markup.heading.org entity.name.section.org meta.link.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "*bold link*",
+		"t": "text.org markup.heading.org entity.name.section.org meta.link.org string.other.link.description.org",
+		"r": {
+			"dark_plus": "string: #CE9178",
+			"light_plus": "string: #A31515",
+			"dark_vs": "string: #CE9178",
+			"light_vs": "string: #A31515",
+			"hc_black": "string: #CE9178",
+			"dark_modern": "string: #CE9178",
+			"hc_light": "string: #0F4A85",
+			"light_modern": "string: #A31515"
+		}
+	},
+	{
+		"c": "]]",
+		"t": "text.org markup.heading.org entity.name.section.org meta.link.org punctuation.definition.link.end.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	}
+]

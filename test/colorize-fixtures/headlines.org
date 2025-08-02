@@ -1,0 +1,20 @@
+* TODO [#A] Headline :tag1:tag2:
+** DONE [#B] Subheadline :tag3:
+*** WAITING [#C] Another level
+* Headline with no TODO or priority
+* Headline with tags :tag4:
+* Headline with priority [#B]
+* Headline with TODO TODO
+* Headline with scheduled and deadline
+SCHEDULED: <2025-08-01 Fri>
+DEADLINE: <2025-08-02 Sat>
+* TODO [#A] Headline with all elements :tagA:tagB:
+SCHEDULED: <2025-08-03 Sun>
+DEADLINE: <2025-08-04 Mon>
+* DONE Headline with only TODO
+* [#C] Headline with only priority
+* Headline with only tags :tagC:
+* Headline with scheduled only
+SCHEDULED: <2025-08-05 Tue>
+* Headline with deadline only
+DEADLINE: <2025-08-06 Wed>

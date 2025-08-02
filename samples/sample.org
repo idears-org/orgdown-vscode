@@ -10,6 +10,10 @@
 
 #+DESCRIPTION: A comprehensive sample file showcasing the core features of Org Mode, structured according to the official manual.
 
+#+BEGIN_SRC python :results output
+   print("Hello, Python from Org Babel!")
+#+END_SRC
+
 * 1. Document Structure
   :PROPERTIES:
   :CUSTOM_ID: doc-struct

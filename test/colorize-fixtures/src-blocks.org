@@ -1,0 +1,16 @@
+* Source Blocks
+#+BEGIN_SRC python
+print("Hello, Org!")
+#+END_SRC
+
+#+BEGIN_SRC javascript
+console.log("Hello, Org!");
+#+END_SRC
+
+#+BEGIN_SRC shell
+ls -la
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(message "Hello, Org!")
+#+END_SRC

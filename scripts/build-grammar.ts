@@ -1,0 +1,154 @@
+import path from 'path';
+import fs from 'fs-extra';
+import yaml from 'js-yaml';
+import { glob } from 'glob';
+// import { fileURLToPath } from 'url';
+
+interface OrgSrcLanguage {
+  name: string;
+  identifiers: string[];
+  source: string | string[];
+  language?: string;
+  additionalContentName?: string[];
+}
+
+const LANGUAGES: OrgSrcLanguage[] = [
+    // language definitions from https://github.com/microsoft/vscode-markdown-tm-grammar/blob/main/build.js
+    { name: 'css', language: 'css', identifiers: ['css', 'css.erb'], source: 'source.css' },
+    { name: 'basic', language: 'html', identifiers: ['html', 'htm', 'shtml', 'xhtml', 'inc', 'tmpl', 'tpl'], source: 'text.html.basic' },
+    { name: 'ini', language: 'ini', identifiers: ['ini', 'conf'], source: 'source.ini' },
+    { name: 'java', language: 'java', identifiers: ['java', 'bsh'], source: 'source.java' },
+    { name: 'lua', language: 'lua', identifiers: ['lua'], source: 'source.lua' },
+    { name: 'makefile', language: 'makefile', identifiers: ['Makefile', 'makefile', 'GNUmakefile', 'OCamlMakefile'], source: 'source.makefile' },
+    { name: 'perl', language: 'perl', identifiers: ['perl', 'pl', 'pm', 'pod', 't', 'PL', 'psgi', 'vcl'], source: 'source.perl' },
+    { name: 'r', language: 'r', identifiers: ['R', 'r', 's', 'S', 'Rprofile', '\\{\\.r.+?\\}'], source: 'source.r' },
+    { name: 'ruby', language: 'ruby', identifiers: ['ruby', 'rb', 'rbx', 'rjs', 'Rakefile', 'rake', 'cgi', 'fcgi', 'gemspec', 'irbrc', 'Capfile', 'ru', 'prawn', 'Cheffile', 'Gemfile', 'Guardfile', 'Hobofile', 'Vagrantfile', 'Appraisals', 'Rantfile', 'Berksfile', 'Berksfile.lock', 'Thorfile', 'Puppetfile'], source: 'source.ruby' },
+    // 	Left to its own devices, the PHP grammar will match HTML as a combination of operators
+    // and constants. Therefore, HTML must take precedence over PHP in order to get proper
+    // syntax highlighting.
+    { name: 'php', language: 'php', identifiers: ['php', 'php3', 'php4', 'php5', 'phpt', 'phtml', 'aw', 'ctp'], source: ['text.html.basic', 'source.php'] },
+    { name: 'sql', language: 'sql', identifiers: ['sql', 'ddl', 'dml'], source: 'source.sql' },
+    { name: 'vs_net', language: 'vs_net', identifiers: ['vb'], source: 'source.asp.vb.net' },
+    { name: 'xml', language: 'xml', identifiers: ['xml', 'xsd', 'tld', 'jsp', 'pt', 'cpt', 'dtml', 'rss', 'opml'], source: 'text.xml' },
+    { name: 'xsl', language: 'xsl', identifiers: ['xsl', 'xslt'], source: 'text.xml.xsl' },
+    { name: 'yaml', language: 'yaml', identifiers: ['yaml', 'yml'], source: 'source.yaml' },
+    { name: 'dosbatch', language: 'dosbatch', identifiers: ['bat', 'batch'], source: 'source.batchfile' },
+    { name: 'clojure', language: 'clojure', identifiers: ['clj', 'cljs', 'clojure'], source: 'source.clojure' },
+    { name: 'coffee', language: 'coffee', identifiers: ['coffee', 'Cakefile', 'coffee.erb'], source: 'source.coffee' },
+    { name: 'c', language: 'c', identifiers: ['c', 'h'], source: 'source.c' },
+    { name: 'cpp', language: 'cpp', identifiers: ['cpp', 'c\\+\\+', 'cxx'], source: 'source.cpp', additionalContentName: ['source.cpp'] },
+    { name: 'diff', language: 'diff', identifiers: ['patch', 'diff', 'rej'], source: 'source.diff' },
+    { name: 'dockerfile', language: 'dockerfile', identifiers: ['dockerfile', 'Dockerfile'], source: 'source.dockerfile' },
+    { name: 'git_commit', identifiers: ['COMMIT_EDITMSG', 'MERGE_MSG'], source: 'text.git-commit' },
+    { name: 'git_rebase', identifiers: ['git-rebase-todo'], source: 'text.git-rebase' },
+    { name: 'go', language: 'go', identifiers: ['go', 'golang'], source: 'source.go' },
+    { name: 'groovy', language: 'groovy', identifiers: ['groovy', 'gvy'], source: 'source.groovy' },
+    { name: 'pug', language: 'pug', identifiers: ['jade', 'pug'], source: 'text.pug' },
+
+    { name: 'js', language: 'javascript', identifiers: ['js', 'jsx', 'javascript', 'es6', 'mjs', 'cjs', 'dataviewjs', '\\{\\.js.+?\\}'], source: 'source.js' },
+    { name: 'js_regexp', identifiers: ['regexp'], source: 'source.js.regexp' },
+    { name: 'json', language: 'json', identifiers: ['json', 'json5', 'sublime-settings', 'sublime-menu', 'sublime-keymap', 'sublime-mousemap', 'sublime-theme', 'sublime-build', 'sublime-project', 'sublime-completions'], source: 'source.json' },
+    { name: 'jsonc', language: 'jsonc', identifiers: ['jsonc'], source: 'source.json.comments' },
+    { name: 'less', language: 'less', identifiers: ['less'], source: 'source.css.less' },
+    { name: 'objc', language: 'objc', identifiers: ['objectivec', 'objective-c', 'mm', 'objc', 'obj-c', 'm', 'h'], source: 'source.objc' },
+    { name: 'swift', language: 'swift', identifiers: ['swift'], source: 'source.swift' },
+    { name: 'scss', language: 'scss', identifiers: ['scss'], source: 'source.css.scss' },
+
+    { name: 'perl6', language: 'perl6', identifiers: ['perl6', 'p6', 'pl6', 'pm6', 'nqp'], source: 'source.perl.6' },
+    { name: 'powershell', language: 'powershell', identifiers: ['powershell', 'ps1', 'psm1', 'psd1', 'pwsh'], source: 'source.powershell' },
+    { name: 'python', language: 'python', identifiers: ['python', 'py', 'py3', 'rpy', 'pyw', 'cpy', 'SConstruct', 'Sconstruct', 'sconstruct', 'SConscript', 'gyp', 'gypi', '\\{\\.python.+?\\}'], source: 'source.python' },
+    { name: 'julia', language: 'julia', identifiers: ['julia', '\\{\\.julia.+?\\}'], source: 'source.julia' },
+    { name: 'regexp_python', identifiers: ['re'], source: 'source.regexp.python' },
+    { name: 'rust', language: 'rust', identifiers: ['rust', 'rs', '\\{\\.rust.+?\\}'], source: 'source.rust' },
+    { name: 'scala', language: 'scala', identifiers: ['scala', 'sbt'], source: 'source.scala' },
+    { name: 'shell', language: 'shellscript', identifiers: ['shell', 'sh', 'bash', 'zsh', 'bashrc', 'bash_profile', 'bash_login', 'profile', 'bash_logout', '.textmate_init', '\\{\\.bash.+?\\}'], source: 'source.shell' },
+    { name: 'ts', language: 'typescript', identifiers: ['typescript', 'ts'], source: 'source.ts' },
+    { name: 'tsx', language: 'typescriptreact', identifiers: ['tsx'], source: 'source.tsx' },
+    { name: 'csharp', language: 'csharp', identifiers: ['cs', 'csharp', 'c#'], source: 'source.cs' },
+    { name: 'fsharp', language: 'fsharp', identifiers: ['fs', 'fsharp', 'f#'], source: 'source.fsharp' },
+    { name: 'dart', language: 'dart', identifiers: ['dart'], source: 'source.dart' },
+    { name: 'handlebars', language: 'handlebars', identifiers: ['handlebars', 'hbs'], source: 'text.html.handlebars' },
+    { name: 'markdown', language: 'markdown', identifiers: ['markdown', 'md'], source: 'text.html.markdown' },
+    { name: 'log', language: 'log', identifiers: ['log'], source: 'text.log' },
+    { name: 'erlang', language: 'erlang', identifiers: ['erlang'], source: 'source.erlang' },
+    { name: 'elixir', language: 'elixir', identifiers: ['elixir'], source: 'source.elixir' },
+    { name: 'latex', language: 'latex', identifiers: ['latex', 'tex'], source: 'text.tex.latex' },
+    { name: 'bibtex', language: 'bibtex', identifiers: ['bibtex'], source: 'text.bibtex' },
+    { name: 'twig', language: 'twig', identifiers: ['twig'], source: 'source.twig' },
+];
+
+const __dirname = path.dirname(__filename);
+const repoRoot = path.resolve(path.join(__dirname, '..'));
+const grammarSourceDir = path.join(repoRoot, 'syntaxes');
+const grammarDestDir = path.join(repoRoot, 'syntaxes');
+
+function generateOrgSrcBlockDefinitions(): any[] {
+  // 为每种语言生成独立 pattern，pattern 名称可用于 include
+  const patterns = LANGUAGES.map(lang => {
+    // patterns: 只嵌入主 scope（如 source.python），如有多个 scope，全部 include
+    const includes = Array.isArray(lang.source)
+      ? lang.source.map(scope => ({ include: scope }))
+      : [{ include: lang.source }];
+    // contentName: 既用于 VS Code 语法嵌入，也便于 extension 识别
+    let contentName = lang.language ? `meta.embedded.block.${lang.language}` : `meta.embedded.block.${lang.name}`;
+    if (lang.additionalContentName && lang.additionalContentName.length > 0) {
+      contentName += ` ${lang.additionalContentName.join(' ')}`;
+    }
+    return {
+      name: 'markup.fenced_code.block.org',
+      begin: '(?i)^\\s*#\\+BEGIN_SRC[ \t]+(' + lang.identifiers.join('|') + ')(?: .*)?$',
+      end: '(?i)^\\s*#\\+END_SRC',
+      beginCaptures: { '0': { name: 'punctuation.definition.raw.begin.org' } },
+      endCaptures: { '0': { name: 'punctuation.definition.raw.end.org' } },
+      contentName,
+      patterns: includes,
+      // scopeName: 直接嵌入目标语言 scope，便于 VS Code 识别
+      // VS Code 只会用 contentName 作为嵌入区块 scope，patterns.include 决定嵌入语法
+    };
+  });
+  // fallback
+  patterns.push({
+    name: 'markup.fenced_code.block.org.fallback',
+    begin: '(?i)^\\s*#\\+BEGIN_SRC[ \t]+[^\s]+(?: .*)?$',
+    end: '(?i)^\\s*#\\+END_SRC',
+    beginCaptures: { '0': { name: 'punctuation.definition.raw.begin.org' } },
+    endCaptures: { '0': { name: 'punctuation.definition.raw.end.org' } },
+    contentName: 'meta.embedded.block.fallback',
+    patterns: [ { include: '#inline-markup' } ],
+  });
+  return patterns;
+}
+
+function generateOrgSrcBlockIncludes(): any[] {
+  // 生成所有 markup.fenced_code.block.org 的 include
+  return [
+    ...LANGUAGES.map(() => ({ include: '#markup.fenced_code.block.org' })),
+    { include: '#markup.fenced_code.block.org.fallback' }
+  ];
+}
+
+async function buildGrammar() {
+  const yamlFiles = await glob('*.tmLanguage.yaml', { cwd: grammarSourceDir });
+  for (const yamlFile of yamlFiles) {
+  const sourcePath = path.join(grammarSourceDir, yamlFile);
+  const destPath = path.join(grammarDestDir, yamlFile.replace(/\.yaml$/, '.json'));
+  console.log(`Building ${path.basename(destPath)} from ${path.basename(sourcePath)}`);
+  const grammarYaml = (await fs.readFile(sourcePath)).toString('utf8');
+  let grammar = yaml.load(grammarYaml) as any;
+  // 替换 org-src-blocks 占位符（definitions 和 includes）
+  if (grammar.repository && grammar.repository['org-src-blocks']) {
+    grammar.repository['org-src-blocks'].patterns = [
+    ...generateOrgSrcBlockDefinitions(),
+    // 也可单独插入 includes 到主 patterns，如有需要
+    ];
+  }
+  // 如需 include 列表，可在主 patterns 或其它位置插入 generateOrgSrcBlockIncludes()
+  const grammarJson = JSON.stringify(grammar, null, 2);
+  await fs.writeFile(destPath, grammarJson);
+  }
+}
+
+buildGrammar().catch(err => {
+  console.error(err);
+  process.exit(1);
+});

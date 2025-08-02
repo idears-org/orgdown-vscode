@@ -1,0 +1,6 @@
+* Links
+[[https://orgmode.org][Org Mode]]
+[[file:README.md]]
+[[id:123456]]
+[[mailto:someone@example.com]]
+[[news:comp.lang.python]]

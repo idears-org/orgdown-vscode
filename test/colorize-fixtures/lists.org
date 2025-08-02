@@ -1,0 +1,10 @@
+- Item 1
+- Item 2
+  - Nested Item
+- [ ] Checkbox Item
+1. First
+2. Second
+   1. Subitem
+- Term :: Definition
+- Another Term :: Another Definition
+   1. Subitem

@@ -1,0 +1,3 @@
+* Inline Markup
+/bold/ *italic* _underline_ +strikethrough+ =code= ~verbatim~
+[[https://orgmode.org][Org Mode]] [fn:1] $\LaTeX$ \alpha^2_3

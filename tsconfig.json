@@ -6,7 +6,7 @@
 			"ES2022"
 		],
 		"sourceMap": true,
-		"rootDir": "client/src",
+		"rootDir": ".",
 		"strict": true,   /* enable all strict type-checking options */
 		/* Additional Checks */
 		// "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
@@ -14,7 +14,10 @@
 		// "noUnusedParameters": true,  /* Report errors on unused parameters. */
 	},
 	"include": [
-		"client/src"
+		"client/src",
+		"test",
+		"server/src",
+		"scripts"
 	],
 	"exclude": [
 		"node_modules",

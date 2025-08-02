@@ -1,0 +1,10 @@
+* Drawers
+:PROPERTIES:
+:Created: <2025-08-01>
+:END:
+:LOGBOOK:
+:END:
+:CUSTOM:
+Some custom drawer content
+:END:
+:PROPERTIES:

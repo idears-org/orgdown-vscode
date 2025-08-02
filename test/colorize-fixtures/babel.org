@@ -1,0 +1,12 @@
+* Babel
+#+BEGIN_SRC python :results output
+print("Result")
+#+END_SRC
+
+#+RESULTS:
+: Result
+
+#+BEGIN_SRC shell :session foo :noweb yes
+ls
+#+END_SRC
+

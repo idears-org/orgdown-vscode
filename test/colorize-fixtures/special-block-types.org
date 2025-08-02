@@ -1,0 +1,7 @@
+#+BEGIN_HTML
+<div>HTML block</div>
+#+END_HTML
+
+#+BEGIN_LATEX
+\frac{a}{b}
+#+END_LATEX

@@ -1,0 +1,21 @@
+* Blocks
+#+BEGIN_QUOTE
+This is a quote block.
+#+END_QUOTE
+
+#+BEGIN_EXAMPLE
+Example code or text.
+#+END_EXAMPLE
+
+#+BEGIN_CENTER
+Centered text.
+#+END_CENTER
+
+#+BEGIN_VERSE
+Verse line 1
+Verse line 2
+#+END_VERSE
+
+#+BEGIN_COMMENT
+This is a comment block.
+#+END_COMMENT

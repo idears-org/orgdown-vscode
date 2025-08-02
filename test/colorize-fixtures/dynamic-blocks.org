@@ -1,0 +1,3 @@
+* Dynamic Blocks
+#+BEGIN: clocktable :maxlevel 2
+#+END:

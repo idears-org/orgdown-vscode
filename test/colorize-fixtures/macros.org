@@ -1,0 +1,5 @@
+* Macros
+#+MACRO: author John Doe
+The author is {{{author}}}.
+#+TARGET: mytarget
+See <<mytarget>>

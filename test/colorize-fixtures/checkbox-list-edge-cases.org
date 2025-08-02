@@ -1,0 +1,6 @@
+- [ ] Item 1
+  - [X] Nested checked
+  - [ ] Nested unchecked
+- [X] Item 2
+- [ ] Item 3
+- [X] Item 4

@@ -1,0 +1,7 @@
+:PROPERTIES:
+:Age: 30
+:Birthday: <2025-08-01>
+:Website: [[https://orgmode.org][Org Mode]]
+:Tags: tag1,tag2
+:List: (a b c)
+:END:

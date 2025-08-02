@@ -2,14 +2,15 @@
 
 * Status
   :PROPERTIES:
-  :Status: Proposed
+  :Status: Accepted
   :END:
 
 * Date
   2025-08-01
 
 * Deciders
-  - [Your Name/Team Name]
+  - san
+  - GitHub Copilot
 
 * Context
 ** Problem Statement
@@ -24,8 +25,13 @@
 * Decision
   We have decided to adopt an automated workflow for TextMate grammar development, which includes:
   1.  Writing the grammar rules in a human-readable YAML file (`org.tmLanguage.yaml`).
-  2.  Using a script (e.g., based on `yaml-tmLanguage` or a similar library) to compile the YAML source into the final `org.tmLanguage.json` file required by VS Code.
-  3.  Implementing an automated testing suite (e.g., using `vscode-tmgrammar-test`) to validate the grammar's output against sample Org Mode snippets.
+  2.  Using a TypeScript build script (`build-grammar.ts`) to compile the YAML source into the final `org.tmLanguage.json` file required by VS Code.
+  3.  Automatically checking all scope names and includes for theme compatibility using `test-scope-naming.ts`.
+  4.  Implementing snapshot-based regression tests using `colorization.test.ts`, which tokenizes all fixtures in `test/colorize-fixtures/` and compares results to snapshots in `test/colorize-results/`.
+  5.  Integrating all steps into `package.json` scripts for one-command execution:
+      - Build: `pnpm run build:grammar`
+      - Test (scope check + snapshot regression): `pnpm test`
+  6.  Integrating the workflow into CI to guarantee compliance and regression safety for every release. CI only needs to run `pnpm test` to verify all grammar correctness and regression safety.
 
 * Considered Options
 ** Option 1: Adopt Automated Generation and Testing (Recommended)
@@ -65,9 +71,15 @@
    - Developers will need to familiarize themselves with the new workflow (running the build script after changing the YAML file).
 
 ** Impact
-   - *On Codebase*: A new `org.tmLanguage.yaml` file will be created in `syntaxes/`. The existing `org.tmLanguage.json` will become a build artifact. New test files and build scripts will be added.
-   - *On Teams*: The development workflow for syntax highlighting will change. Documentation will need to be updated to reflect the new process.
-   - *On Users*: No direct negative impact. Users will experience more accurate and reliable syntax highlighting.
+   - *On Codebase*: A new `org.tmLanguage.yaml` file will be created in `syntaxes/`. The existing `org.tmLanguage.json` will become a build artifact. New test files (`test/colorization.test.ts`, fixtures, and snapshots) and build scripts will be added. Scope check and regression test scripts will be part of the workflow.
+   - *On Teams*: The development workflow for syntax highlighting will change. Documentation will need to be updated to reflect the new process, including build, scope check, and regression testing.
+   - *On Users*: No direct negative impact. Users will experience more accurate and reliable syntax highlighting, with improved theme compatibility and regression safety.
 
 * References
   - [[https://github.com/microsoft/vscode-markdown-tm-grammar][vscode-markdown-tm-grammar repository]] (Inspiration for this workflow)
+  - scripts/build-grammar.ts
+  - test/integration/colorization.test.ts
+  - test/unit/grammar-scope-naming.test.ts
+  - package.json scripts
+  - test/colorize-fixtures/
+  - test/colorize-results/

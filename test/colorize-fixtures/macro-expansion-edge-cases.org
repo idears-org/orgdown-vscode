@@ -1,0 +1,4 @@
+#+MACRO: greet Hello, $1!
+{{{greet(John)}}}
+#+MACRO: wrap {{{greet($1)}}}
+{{{wrap(Jane)}}}

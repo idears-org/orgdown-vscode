@@ -1,0 +1,8 @@
+#+BEGIN_SRC python :noweb yes
+<<block1>>
+#+END_SRC
+
+#+BEGIN_SRC python
+# block1
+print("Hello from block1")
+#+END_SRC
