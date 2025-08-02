@@ -11,7 +11,8 @@
 			"request": "launch",
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}",
-				"${workspaceFolder}/samples/sample.org"
+				"${workspaceFolder}/samples/sample.org",
+				"${workspaceFolder}/test/colorize-fixtures"
 			],
 			"outFiles": [
 				"${workspaceFolder}/client/dist/**/*.js"
