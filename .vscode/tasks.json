@@ -1,37 +1,14 @@
 // See https://go.microsoft.com/fwlink/?LinkId=733558
 // for the documentation about the tasks.json format
 {
-	"version": "2.0.0",
-	"problemMatcher": [
-		{
-			"name": "esbuild-watch",
-			"owner": "esbuild-watch",
-			"fileLocation": "relative",
-			"pattern": [
-				{
-					"regexp": "\\s+([^:]+):(\\d+):(\\d+):",
-					"file": 1,
-					"line": 2,
-					"column": 3
-				},
-				{
-					"regexp": "✘ \\[ERROR\\] ([^\\s].*)",
-					"message": 1
-				}
-			],
-			"background": {
-				"activeOnStart": true,
-				"beginsPattern": "^\\[watch\\] build started$",
-				"endsPattern": "^\\[watch\\] build finished$"
-			}
-		}
-	],
-	"tasks": [
-		{
+    "version": "2.0.0",
+    "tasks": [
+        {
             "label": "watch",
             "dependsOn": [
-                "npm: watch:tsc",
-                "npm: watch:esbuild"
+                "watch:client",
+                "watch:server",
+                "watch:grammar"
             ],
             "presentation": {
                 "reveal": "never"
@@ -42,67 +19,52 @@
             }
         },
         {
-            "type": "npm",
-            "script": "watch:esbuild",
-            "group": "build",
-            "problemMatcher": {
-                "owner": "esbuild-watch",
-                "fileLocation": "relative",
-                "pattern": [
-                    {
-                        "regexp": "\\s+([^:]+):(\\d+):(\\d+):",
-                        "file": 1,
-                        "line": 2,
-                        "column": 3
-                    },
-                    {
-                        "regexp": "✘ \\[ERROR\\] ([^\\s].*)",
-                        "message": 1
-                    }
-                ],
-                "background": {
-                    "activeOnStart": true,
-                    "beginsPattern": "^\\[watch\\] build started$",
-                    "endsPattern": "^\\[watch\\] build finished$"
-                }
-            },
+            "label": "watch:client",
+            "type": "shell",
+            "command": "pnpm",
+            "args": [
+                "run",
+                "watch:client"
+            ],
             "isBackground": true,
-            "label": "npm: watch:esbuild",
+            "group": "build",
+            "problemMatcher": "$esbuild-watch",
             "presentation": {
                 "group": "watch",
                 "reveal": "never"
             }
         },
-		{
-            "type": "npm",
-            "script": "watch:tsc",
+        {
+            "label": "watch:server",
+            "type": "shell",
+            "command": "pnpm",
+            "args": [
+                "run",
+                "watch:server"
+            ],
+            "isBackground": true,
             "group": "build",
             "problemMatcher": "$tsc-watch",
-            "isBackground": true,
-            "label": "npm: watch:tsc",
             "presentation": {
                 "group": "watch",
                 "reveal": "never"
             }
         },
-		{
-			"type": "npm",
-			"script": "watch-tests",
-			"problemMatcher": "$tsc-watch",
-			"isBackground": true,
-			"presentation": {
-				"reveal": "never",
-				"group": "watchers"
-			},
-			"group": "build"
-		},
-		{
-			"label": "tasks: watch-tests",
-			"dependsOn": [
-				"npm: watch",
-				"npm: watch-tests"
-			],
-			"problemMatcher": []
-		}
-	]
+        {
+            "label": "watch:grammar",
+            "type": "shell",
+            "command": "pnpm",
+            "args": [
+                "run",
+                "watch:grammar"
+            ],
+            "isBackground": true,
+            "group": "build",
+            "problemMatcher": "$esbuild-watch",
+            "presentation": {
+                "group": "watch",
+                "reveal": "never"
+            }
+        }
+    ]
 }
