@@ -8,58 +8,188 @@ This phase focuses on creating a dedicated test fixture for every individual Org
 
 *** Core Syntax Fixtures [23/23]
     - [x] **Headlines**: Levels, TODO keywords, priorities, tags, commented headlines.
-      _fixtures: headlines.org_
+      _fixtures: F01-headlines.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Lists**: Unordered, ordered, description, checkboxes (with states).
-      _fixtures: lists.org, checkbox-list-edge-cases.org, headline-with-checkbox-list.org_
+      _fixtures: F02-lists.org, F03-checkbox-list-edge-cases.org, F04-headline-with-checkbox-list.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Tables**: Simple, with alignment, with formulas.
-      _fixtures: tables.org, table-formula-edge-cases.org_
+      _fixtures: F05-tables.org, F06-table-formula-edge-cases.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Blocks**: SRC, EXAMPLE, QUOTE, VERSE, CENTER, COMMENT, custom blocks.
-      _fixtures: blocks.org, src-blocks.org, special-block-types.org_
+      _fixtures: F07-blocks.org, F08-src-blocks.org, F09-special-block-types.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Drawers**: PROPERTIES, LOGBOOK, custom drawers.
-      _fixtures: drawers.org_
+      _fixtures: F10-drawers.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Planning**: SCHEDULED, DEADLINE, CLOSED timestamps.
-      _fixtures: planning-line.org, scheduled.org_
+      _fixtures: F11-planning-line.org, F12-scheduled.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Timestamps**: Active, inactive, ranges, repeaters.
-      _fixtures: timestamps.org, timestamp-edge-cases.org_
+      _fixtures: F13-timestamps.org, F14-timestamp-edge-cases.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Links**: Internal, external, file links, custom IDs, abbreviations.
-      _fixtures: links.org, link-abbreviation.org_
+      _fixtures: F15-links.org, F16-link-abbreviation.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Footnotes**: Definitions and inline references.
-      _fixtures: footnote-edge-cases.org_
+      _fixtures: F17-footnote-edge-cases.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Inline Markup**: Bold, italic, underline, verbatim, code, strike-through, `sub_script`, `super^script`.
-      _fixtures: inline-markup.org, inline-markup-nesting.org_
+      _fixtures: F18-inline-markup.org, F19-inline-markup-nesting.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Macros**: Definition and usage.
-      _fixtures: macros.org, macro-expansion-edge-cases.org_
+      _fixtures: F20-macros.org, F21-macro-expansion-edge-cases.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Dynamic Blocks**: Basic structure.
-      _fixtures: dynamic-blocks.org, dynamic-block-variants.org_
+      _fixtures: F22-dynamic-blocks.org, F23-dynamic-block-variants.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Properties**: Inheritance and value types.
-      _fixtures: property-inheritance.org, property-value-types.org_
+      _fixtures: F24-property-inheritance.org, F25-property-value-types.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Horizontal Rules**: Standard `-----`.
-      _fixtures: horizontal-rules.org_
+      _fixtures: F26-horizontal-rules.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Tags**: In headlines and file-level (`#+FILETAGS:`).
-      _fixtures: tags.org, priority-todo-tags-edge-cases.org_
+      _fixtures: F27-tags.org, F28-priority-todo-tags-edge-cases.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Keywords**: For various `#+KEY: value` settings like `TITLE`, `AUTHOR`, `OPTIONS`.
-      _fixtures: keywords.org_
+      _fixtures: F29-keywords.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Comments**: Line comments, `COMMENT` blocks, and commented subtrees.
-      _fixtures: comment-subtree.org_
+      _fixtures: F30-comment-subtree.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Special Blocks**: LATEX, HTML.
-      _fixtures: special-block-types.org_
+      _fixtures: F09-special-block-types.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Multilingual**: Headlines, paragraphs, tables, lists, blocks, drawers, properties, tags, emoji, and plain text in multiple languages (including 中文/Chinese, Japanese, Korean, Russian, Arabic, Hebrew, etc.).
-      _fixtures: multilingual-fixture.org_
+      _fixtures: F31-multilingual-fixture.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Inline LaTeX**: Fragments like `\alpha`.
-      _fixtures: inline-latex.org_
+      _fixtures: F32-inline-latex.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Include**: #+INCLUDE directive and variants.
-      _fixtures: include.org_
+      _fixtures: F33-include.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Kitchen Sink**: A comprehensive file combining all features for integration testing.
-      _fixtures: kitchen-sink.org_
+      _fixtures: F34-kitchen-sink.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Archive**: Archive heading with Lists in lists, blocks in lists, etc.
-      _fixtures: archive-subtree.org_
+      _fixtures: F35-archive-subtree.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
 *** Edge Case & Nesting Fixtures [3/3]
     - [x] **Malformed Syntax**: Incomplete blocks, broken links, unterminated markup.
-      _fixtures: malformed-syntax.org_
+      _fixtures: F36-malformed-syntax.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Ambiguous Cases**: Syntax that could be interpreted in multiple ways.
-      _fixtures: complex-noweb-reference.org_
+      _fixtures: F37-complex-noweb-reference.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
     - [x] **Blocks Edge Cases**: Nesting, mixed case, parameter errors, block/markup/table/list/headline/drawer/paragraph combinations, custom types, error simulation, etc.
-      _fixtures: block-edge-cases.org_
+      _fixtures: F38-block-edge-cases.org_
+      - [ ] Manual Review
+      - [ ] Snapshot Generation
+      - [ ] Snapshot Diff Analysis
+      - [ ] Iteration
+      - [ ] Mark as Complete
 
 ** Phase 2: The Test & Validation Workflow
 For each fixture created in Phase 1, the following iterative process MUST be followed to ensure quality and prevent regressions.
