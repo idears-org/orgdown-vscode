@@ -1391,90 +1391,205 @@
         }
       ]
     },
-    "headings": {
-      "name": "markup.heading.org",
-      "match": "^(\\*+)\\s+(?:(TODO|DONE|WAITING|NEXT)\\s+)?(?:(\\[#[A-Z0-9]\\])\\s+)?(.*?)(?:\\s+:(.*?):)?\\s*$",
-      "captures": {
-        "1": {
-          "patterns": [
-            {
-              "match": "(\\*)(?=\\s)",
-              "name": "heading.1.org",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.org"
-                }
-              }
-            },
-            {
-              "match": "(\\*\\*)(?=\\s)",
-              "name": "heading.2.org",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.org"
-                }
-              }
-            },
-            {
-              "match": "(\\*\\*\\*)(?=\\s)",
-              "name": "heading.3.org",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.org"
-                }
-              }
-            },
-            {
-              "match": "(\\*\\*\\*\\*)(?=\\s)",
-              "name": "heading.4.org",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.org"
-                }
-              }
-            },
-            {
-              "match": "(\\*\\*\\*\\*\\*)(?=\\s)",
-              "name": "heading.5.org",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.org"
-                }
-              }
-            },
-            {
-              "match": "(\\*{6,})(?=\\s)",
-              "name": "heading.6.org",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.org"
-                }
-              }
-            },
-            {
-              "match": "(\\*+)",
-              "name": "punctuation.definition.heading.org"
-            }
-          ]
-        },
-        "2": {
-          "name": "keyword.other.todo.org"
-        },
-        "3": {
-          "name": "constant.other.priority.org"
-        },
-        "4": {
-          "name": "entity.name.section.org",
-          "patterns": [
-            {
-              "include": "#inline-markup"
-            }
-          ]
-        },
-        "5": {
-          "name": "entity.name.tag.org"
-        }
+    "heading-captures": {
+      "2": {
+        "name": "keyword.other.todo.org"
+      },
+      "3": {
+        "name": "constant.other.priority.org"
+      },
+      "4": {
+        "name": "constant.other.priority.value.org"
+      },
+      "5": {
+        "name": "entity.name.section.org",
+        "patterns": [
+          {
+            "include": "#inline-markup"
+          }
+        ]
+      },
+      "6": {
+        "name": "entity.name.tag.org"
       }
+    },
+    "headings": {
+      "patterns": [
+        {
+          "name": "markup.heading.org heading.1.org",
+          "match": "^(\\*)\\s+(?:(TODO|DONE|WAITING|NEXT)\\s+)?(?:(\\[#([A-Z0-9])\\])\\s+)?(.+?)(?=\\s+:[\\w@:]+:|$)(?:\\s+(:[\\w@:]+:))?\\s*$",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.heading.org"
+            },
+            "2": {
+              "name": "keyword.other.todo.org"
+            },
+            "3": {
+              "name": "constant.other.priority.org"
+            },
+            "4": {
+              "name": "constant.other.priority.value.org"
+            },
+            "5": {
+              "name": "entity.name.section.org",
+              "patterns": [
+                {
+                  "include": "#inline-markup"
+                }
+              ]
+            },
+            "6": {
+              "name": "entity.name.tag.org"
+            }
+          }
+        },
+        {
+          "name": "markup.heading.org heading.2.org",
+          "match": "^(\\*{2})\\s+(?:(TODO|DONE|WAITING|NEXT)\\s+)?(?:(\\[#([A-Z0-9])\\])\\s+)?(.+?)(?=\\s+:[\\w@:]+:|$)(?:\\s+(:[\\w@:]+:))?\\s*$",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.heading.org"
+            },
+            "2": {
+              "name": "keyword.other.todo.org"
+            },
+            "3": {
+              "name": "constant.other.priority.org"
+            },
+            "4": {
+              "name": "constant.other.priority.value.org"
+            },
+            "5": {
+              "name": "entity.name.section.org",
+              "patterns": [
+                {
+                  "include": "#inline-markup"
+                }
+              ]
+            },
+            "6": {
+              "name": "entity.name.tag.org"
+            }
+          }
+        },
+        {
+          "name": "markup.heading.org heading.3.org",
+          "match": "^(\\*{3})\\s+(?:(TODO|DONE|WAITING|NEXT)\\s+)?(?:(\\[#([A-Z0-9])\\])\\s+)?(.+?)(?=\\s+:[\\w@:]+:|$)(?:\\s+(:[\\w@:]+:))?\\s*$",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.heading.org"
+            },
+            "2": {
+              "name": "keyword.other.todo.org"
+            },
+            "3": {
+              "name": "constant.other.priority.org"
+            },
+            "4": {
+              "name": "constant.other.priority.value.org"
+            },
+            "5": {
+              "name": "entity.name.section.org",
+              "patterns": [
+                {
+                  "include": "#inline-markup"
+                }
+              ]
+            },
+            "6": {
+              "name": "entity.name.tag.org"
+            }
+          }
+        },
+        {
+          "name": "markup.heading.org heading.4.org",
+          "match": "^(\\*{4})\\s+(?:(TODO|DONE|WAITING|NEXT)\\s+)?(?:(\\[#([A-Z0-9])\\])\\s+)?(.+?)(?=\\s+:[\\w@:]+:|$)(?:\\s+(:[\\w@:]+:))?\\s*$",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.heading.org"
+            },
+            "2": {
+              "name": "keyword.other.todo.org"
+            },
+            "3": {
+              "name": "constant.other.priority.org"
+            },
+            "4": {
+              "name": "constant.other.priority.value.org"
+            },
+            "5": {
+              "name": "entity.name.section.org",
+              "patterns": [
+                {
+                  "include": "#inline-markup"
+                }
+              ]
+            },
+            "6": {
+              "name": "entity.name.tag.org"
+            }
+          }
+        },
+        {
+          "name": "markup.heading.org heading.5.org",
+          "match": "^(\\*{5})\\s+(?:(TODO|DONE|WAITING|NEXT)\\s+)?(?:(\\[#([A-Z0-9])\\])\\s+)?(.+?)(?=\\s+:[\\w@:]+:|$)(?:\\s+(:[\\w@:]+:))?\\s*$",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.heading.org"
+            },
+            "2": {
+              "name": "keyword.other.todo.org"
+            },
+            "3": {
+              "name": "constant.other.priority.org"
+            },
+            "4": {
+              "name": "constant.other.priority.value.org"
+            },
+            "5": {
+              "name": "entity.name.section.org",
+              "patterns": [
+                {
+                  "include": "#inline-markup"
+                }
+              ]
+            },
+            "6": {
+              "name": "entity.name.tag.org"
+            }
+          }
+        },
+        {
+          "name": "markup.heading.org heading.6.org",
+          "match": "^(\\*{6,})\\s+(?:(TODO|DONE|WAITING|NEXT)\\s+)?(?:(\\[#([A-Z0-9])\\])\\s+)?(.+?)(?=\\s+:[\\w@:]+:|$)(?:\\s+(:[\\w@:]+:))?\\s*$",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.heading.org"
+            },
+            "2": {
+              "name": "keyword.other.todo.org"
+            },
+            "3": {
+              "name": "constant.other.priority.org"
+            },
+            "4": {
+              "name": "constant.other.priority.value.org"
+            },
+            "5": {
+              "name": "entity.name.section.org",
+              "patterns": [
+                {
+                  "include": "#inline-markup"
+                }
+              ]
+            },
+            "6": {
+              "name": "entity.name.tag.org"
+            }
+          }
+        }
+      ]
     },
     "special-blocks": {
       "patterns": [
@@ -1740,11 +1855,11 @@
     },
     "entities": {
       "name": "constant.character.entity.org",
-      "match": "\\[a-zA-Z]+(\\{\\})?"
+      "match": "\\\\[a-zA-Z]+(\\{\\})?"
     },
     "sub-super-scripts": {
       "name": "markup.other.sub-super-script.org",
-      "match": "[_^]({[^}]+}|\\S)"
+      "match": "[_^]({[^}]+}|\\\\S)"
     }
   }
 }

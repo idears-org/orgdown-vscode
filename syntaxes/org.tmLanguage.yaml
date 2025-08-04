@@ -38,106 +38,111 @@ repository:
     patterns:
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_QUOTE"
-        end: "(?i)^#\\+END_QUOTE"
+        begin: (?i)^#\+BEGIN_QUOTE
+        end: (?i)^#\+END_QUOTE
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_EXAMPLE"
-        end: "(?i)^#\\+END_EXAMPLE"
+        begin: (?i)^#\+BEGIN_EXAMPLE
+        end: (?i)^#\+END_EXAMPLE
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_VERSE"
-        end: "(?i)^#\\+END_VERSE"
+        begin: (?i)^#\+BEGIN_VERSE
+        end: (?i)^#\+END_VERSE
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_CENTER"
-        end: "(?i)^#\\+END_CENTER"
+        begin: (?i)^#\+BEGIN_CENTER
+        end: (?i)^#\+END_CENTER
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_COMMENT"
-        end: "(?i)^#\\+END_COMMENT"
+        begin: (?i)^#\+BEGIN_COMMENT
+        end: (?i)^#\+END_COMMENT
   keywords:
     patterns:
       - name: meta.keyword.option.org
-        match: "^\\s*(#\\+([A-Z_]+):)\\s*(.*)"
+        match: ^\s*(#\+([A-Z_]+):)\s*(.*)
         captures:
           1: { name: keyword.other.org }
           2: { name: entity.name.function.option.org }
           3: { name: string.unquoted.value.org }
+  # This anchor defines the common capture groups for all heading levels,
+  # making the main rules cleaner and easier to maintain.
+  heading-captures: &heading-captures
+    2: { name: keyword.other.todo.org }
+    3: { name: constant.other.priority.org }
+    4: { name: constant.other.priority.value.org }
+    5:
+      name: entity.name.section.org
+      patterns:
+        - include: "#inline-markup"
+    6: { name: entity.name.tag.org }
+
   headings:
-    name: markup.heading.org
-    match: "^(\\*+)\\s+(?:(TODO|DONE|WAITING|NEXT)\\s+)?(?:(\\[#[A-Z0-9]\\])\\s+)?(.*?)(?:\\s+:(.*?):)?\\s*$"
-    captures:
-      1:
-        patterns:
-          - match: "(\\*)(?=\\s)"
-            name: heading.1.org
-            captures:
-              1: { name: punctuation.definition.heading.org }
-          - match: "(\\*\\*)(?=\\s)"
-            name: heading.2.org
-            captures:
-              1: { name: punctuation.definition.heading.org }
-          - match: "(\\*\\*\\*)(?=\\s)"
-            name: heading.3.org
-            captures:
-              1: { name: punctuation.definition.heading.org }
-          - match: "(\\*\\*\\*\\*)(?=\\s)"
-            name: heading.4.org
-            captures:
-              1: { name: punctuation.definition.heading.org }
-          - match: "(\\*\\*\\*\\*\\*)(?=\\s)"
-            name: heading.5.org
-            captures:
-              1: { name: punctuation.definition.heading.org }
-          - match: "(\\*{6,})(?=\\s)"
-            name: heading.6.org
-            captures:
-              1: { name: punctuation.definition.heading.org }
-          - match: "(\\*+)"
-            name: punctuation.definition.heading.org
-      2: { name: keyword.other.todo.org }
-      3: { name: constant.other.priority.org }
-      4:
-        name: entity.name.section.org
-        patterns:
-          - include: "#inline-markup"
-      5: { name: entity.name.tag.org }
+    patterns:
+      - name: markup.heading.org heading.1.org
+        match: ^(\*)\s+(?:(TODO|DONE|WAITING|NEXT)\s+)?(?:(\[#([A-Z0-9])\])\s+)?(.+?)(?=\s+:[\w@:]+:|$)(?:\s+(:[\w@:]+:))?\s*$
+        captures:
+          1: { name: punctuation.definition.heading.org }
+          <<: *heading-captures
+      - name: markup.heading.org heading.2.org
+        match: ^(\*{2})\s+(?:(TODO|DONE|WAITING|NEXT)\s+)?(?:(\[#([A-Z0-9])\])\s+)?(.+?)(?=\s+:[\w@:]+:|$)(?:\s+(:[\w@:]+:))?\s*$
+        captures:
+          1: { name: punctuation.definition.heading.org }
+          <<: *heading-captures
+      - name: markup.heading.org heading.3.org
+        match: ^(\*{3})\s+(?:(TODO|DONE|WAITING|NEXT)\s+)?(?:(\[#([A-Z0-9])\])\s+)?(.+?)(?=\s+:[\w@:]+:|$)(?:\s+(:[\w@:]+:))?\s*$
+        captures:
+          1: { name: punctuation.definition.heading.org }
+          <<: *heading-captures
+      - name: markup.heading.org heading.4.org
+        match: ^(\*{4})\s+(?:(TODO|DONE|WAITING|NEXT)\s+)?(?:(\[#([A-Z0-9])\])\s+)?(.+?)(?=\s+:[\w@:]+:|$)(?:\s+(:[\w@:]+:))?\s*$
+        captures:
+          1: { name: punctuation.definition.heading.org }
+          <<: *heading-captures
+      - name: markup.heading.org heading.5.org
+        match: ^(\*{5})\s+(?:(TODO|DONE|WAITING|NEXT)\s+)?(?:(\[#([A-Z0-9])\])\s+)?(.+?)(?=\s+:[\w@:]+:|$)(?:\s+(:[\w@:]+:))?\s*$
+        captures:
+          1: { name: punctuation.definition.heading.org }
+          <<: *heading-captures
+      - name: markup.heading.org heading.6.org
+        match: ^(\*{6,})\s+(?:(TODO|DONE|WAITING|NEXT)\s+)?(?:(\[#([A-Z0-9])\])\s+)?(.+?)(?=\s+:[\w@:]+:|$)(?:\s+(:[\w@:]+:))?\s*$
+        captures:
+          1: { name: punctuation.definition.heading.org }
+          <<: *heading-captures
   special-blocks:
     patterns:
       - name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_QUOTE"
-        end: "(?i)^#\\+END_QUOTE"
+        begin: (?i)^#\+BEGIN_QUOTE
+        end: (?i)^#\+END_QUOTE
         beginCaptures: { "0": { name: punctuation.definition.raw.begin.org } }
         endCaptures: { "0": { name: punctuation.definition.raw.end.org } }
         patterns:
           - include: "#inline-markup"
       - name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_EXAMPLE"
-        end: "(?i)^#\\+END_EXAMPLE"
+        begin: (?i)^#\+BEGIN_EXAMPLE
+        end: (?i)^#\+END_EXAMPLE
         beginCaptures: { "0": { name: punctuation.definition.raw.begin.org } }
         endCaptures: { "0": { name: punctuation.definition.raw.end.org } }
       - name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_VERSE"
-        end: "(?i)^#\\+END_VERSE"
+        begin: (?i)^#\+BEGIN_VERSE
+        end: (?i)^#\+END_VERSE
         beginCaptures: { "0": { name: punctuation.definition.raw.begin.org } }
         endCaptures: { "0": { name: punctuation.definition.raw.end.org } }
         patterns:
           - include: "#inline-markup"
       - name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_CENTER"
-        end: "(?i)^#\\+END_CENTER"
+        begin: (?i)^#\+BEGIN_CENTER
+        end: (?i)^#\+END_CENTER
         beginCaptures: { "0": { name: punctuation.definition.raw.begin.org } }
         endCaptures: { "0": { name: punctuation.definition.raw.end.org } }
       - name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_COMMENT"
-        end: "(?i)^#\\+END_COMMENT"
+        begin: (?i)^#\+BEGIN_COMMENT
+        end: (?i)^#\+END_COMMENT
         beginCaptures: { "0": { name: punctuation.definition.raw.begin.org } }
         endCaptures: { "0": { name: punctuation.definition.raw.end.org } }
   drawers:
     name: meta.drawer.org
-    begin: "^\\s*:(PROPERTIES|LOGBOOK):\\s*$"
-    end: "^\\s*:END:\\s*$"
+    begin: ^\s*:(PROPERTIES|LOGBOOK):\s*$
+    end: ^\s*:END:\s*$
     beginCaptures:
       0: { name: punctuation.definition.drawer.begin.org }
       1: { name: entity.name.function.drawer.org }
@@ -146,32 +151,32 @@ repository:
   lists:
     patterns:
       - name: markup.list.unnumbered.org
-        match: "^(\\s*)([-+*])\\s+(?:\\[( |X|-)\\])?"
+        match: ^(\s*)([-+*])\s+(?:\[( |X|-)\])?
         captures:
           1: { name: string.other.whitespace.leading }
           2: { name: punctuation.definition.list.begin.org }
       - name: markup.list.numbered.org
-        match: "^(\\s*)(\\d+[.)])\\s+(?:\\[( |X|-)\\])?"
+        match: ^(\s*)(\d+[.)])\s+(?:\[( |X|-)\])?
         captures:
           1: { name: string.other.whitespace.leading }
           2: { name: punctuation.definition.list.begin.org }
       - name: markup.list.unnumbered.org
-        match: "^(\\s*).+?\\s*::\\s*"
+        match: ^(\s*).+?\s*::\s*
   tables:
     name: markup.table.org
-    match: "^\\s*\\|.*\\|$"
+    match: ^\s*\|.*\|$
   horizontal-rules:
     name: markup.other.horizontal-rule.org
-    match: "^\\s*-{5,}\\s*$"
+    match: ^\s*-{5,}\s*$
   footnotes:
     patterns:
       - name: meta.footnote.definition.org
-        match: "^\\[fn:([^\\]]+)\\]"
+        match: ^\[fn:([^\]]+)\]
       - name: meta.footnote.reference.org
-        match: "\\[fn:([^\\]]+)\\]"
+        match: '\[fn:([^\]]+)\]'
   paragraph:
-    begin: "^(?=\\S)"
-    end: "^\\s*$"
+    begin: ^(?=\S)
+    end: ^\s*$
     patterns:
       - include: "#inline-markup"
   inline-markup:
@@ -190,7 +195,7 @@ repository:
       - include: "#sub-super-scripts"
   links:
     name: meta.link.org
-    match: "(\\[\\[)([^]]+?)(?:(?:\\]\\[)([^]]+?))?(\\]\\])"
+    match: (\[\[)([^]]+?)(?:(?:\]\[)([^]]+?))?(\]\])
     captures:
       1: { name: punctuation.definition.link.begin.org }
       2: { name: markup.underline.link.org }
@@ -198,34 +203,34 @@ repository:
       4: { name: punctuation.definition.link.end.org }
   timestamps-active:
     name: constant.other.timestamp.active.org
-    match: "<[0-9]{4}-[0-9]{2}-[0-9]{2}.*?>"
+    match: <[0-9]{4}-[0-9]{2}-[0-9]{2}.*?>
   timestamps-inactive:
     name: comment.timestamp.inactive.org
-    match: "\\[[0-9]{4}-[0-9]{2}-[0-9]{2}.*?\\]"
+    match: '\[[0-9]{4}-[0-9]{2}-[0-9]{2}.*?\]'
   latex:
     name: markup.math.org
-    match: "(\\$)[^$\\n]+?(\\$)|(\\\\[(])[^\\n]+?(\\\\[)])|(\\\\[\\[])[^\\n]+?(\\\\[\\]])"
+    match: '(\$)[^$\n]+?(\$)|(\\[(])[^\n]+?(\\[)])|(\\[\[])[^\n]+?(\\[\]])'
   bold:
     name: markup.bold.org
-    match: "(\\*)[^\\s*](.*?)[^\\s*](\\*)"
+    match: (\*)[^\s*](.*?)[^\s*](\*)
   italic:
     name: markup.italic.org
-    match: "(/)[^\\s/](.*?)[^\\s/](/)"
+    match: (/)[^\s/](.*?)[^\s/](/)
   underline:
     name: markup.underline.org
-    match: "(_)[^\\s_](.*?)[^\\s_](_)"
+    match: (_)[^\s_](.*?)[^\s_](_)
   strikethrough:
     name: markup.strikethrough.org
-    match: "(\\+)[^\\s+](.*?[^\\s+])(\\+)"
+    match: (\+)[^\s+](.*?[^\s+])(\+)
   code:
     name: markup.inline.raw.org
-    match: "(~)[^\\s~](.*?)[^\\s~](~)"
+    match: (~)[^\s~](.*?)[^\s~](~)
   verbatim:
     name: markup.inline.raw.org
-    match: "(=)[^\\s=](.*?)[^\\s=](=)"
+    match: (=)[^\s=](.*?)[^\s=](=)
   entities:
     name: constant.character.entity.org
-    match: "\\[a-zA-Z]+(\\{\\})?"
+    match: '\\[a-zA-Z]+(\{\})?'
   sub-super-scripts:
     name: markup.other.sub-super-script.org
-    match: "[_^]({[^}]+}|\\S)"
+    match: '[_^]({[^}]+}|\\S)'
