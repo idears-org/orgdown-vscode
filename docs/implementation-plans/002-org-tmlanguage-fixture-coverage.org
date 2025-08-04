@@ -191,31 +191,38 @@ This phase focuses on creating a dedicated test fixture for every individual Org
       - [ ] Iteration
       - [ ] Mark as Complete
 
-** Phase 2: The Test & Validation Workflow
-For each fixture created in Phase 1, the following iterative process MUST be followed to ensure quality and prevent regressions.
+** The Test-Driven Grammar Workflow (Based on ADR-005)
 
-1.  **[ ] Manual Review**: Visually inspect the highlighting in VS Code to confirm it matches expectations.
-2.  **[ ] Snapshot Generation**: Run the test suite to generate a new colorization snapshot (`.json` file).
-3.  **[ ] Snapshot Diff Analysis**:
-    - If it's a new feature, approve the snapshot.
-    - If it's a change, carefully review the diff. Ensure the changes are intended and don't affect unrelated scopes.
-4.  **[ ] Iteration**: If highlighting is incorrect or causes regressions, update the `org.tmLanguage.yaml` grammar and repeat from step 1.
-5.  **[ ] Mark as Complete**: Once the snapshot is approved and stable, check off the corresponding fixture in Phase 1.
+This workflow treats regular expressions and fixture definitions as the single source of truth, automating grammar generation and testing. All regex patterns are defined only in `src/grammar/regex.ts` and never duplicated in YAML, JSON, or tests.
 
-** Phase 3: Integration & Regression Automation
-This phase ensures that all features work together harmoniously and that our testing process is automated.
+1.  **[x] Define/Update Regex**: All regular expressions are now maintained exclusively in `src/grammar/regex.ts` as the single source of truth (SSoT).
 
-- [ ] **Automate Snapshot Testing**: Integrate the snapshot comparison into a CI workflow (e.g., GitHub Actions) to run on every commit.
-- [ ] **Kitchen Sink Validation**: Regularly review the `kitchen-sink.org` fixture's snapshot to catch any unintended cross-feature interactions.
-- [ ] **Regression Policy**: Any change that unexpectedly alters an existing snapshot MUST be investigated. It's either an intended improvement that needs approval or a bug that needs fixing.
+2.  **[x] Update Fixture & Mappings**: All fixture files now support per-test-case regex selection via `# Use: <regexName>` annotation. Comment formats are unified and capture group mappings are complete.
+
+3.  **[x] Run Explicit, Data-Driven Tests**: The test runner (`grammar-regex.test.ts`) has been refactored to automatically discover all fixtures and validate group/scope mappings for each test case, supporting per-case regex annotation. All tests are passing.
+
+4.  **[x] Generate Grammar**: The grammar build script now automatically injects regex from SSoT, with YAML/JSON generation fully automated and hands-free.
+
+5.  **[x] Validate & Run Snapshot Test**:
+    - Unit and snapshot tests are fully integrated; all changes can be validated with a single command.
+    - Snapshot tests capture all syntax interactions and side effects.
+
+6.  **[ ] Mark as Complete**: Once all tests pass and snapshots are approved, the feature can be marked as complete.
+
+** Phase 3: Automation & CI
+This phase is now fully automated:
+
+- [x] **Automate Unit & Snapshot Testing**: Unit and snapshot tests are integrated into CI (e.g., GitHub Actions) and run automatically on every commit.
+- [x] **Grammar Generation Check**: CI automatically checks that `org.tmLanguage.json` is up-to-date with `regex.ts`. If not, the build fails and developers are prompted to regenerate.
+- [x] **Kitchen Sink Validation**: The `kitchen-sink.org` fixture's snapshot test is a key integration checkpoint for cross-feature validation.
 
 ** Phase 4: Maintenance & Evolution
-This section is for ongoing work and documentation.
+Ongoing maintenance and evolution:
 
-- [ ] **Issue-Driven Fixes**: When a bug is reported via a GitHub Issue, create a new failing fixture that reproduces the bug, then fix it following the workflow in Phase 2.
-- [ ] **Document Known Limitations**: Maintain a clear, user-facing document outlining any known edge cases or syntax that is not currently supported.
-- [ ] **Grammar Refactoring**: Periodically refactor the `tmLanguage` source for readability and maintainability as it grows.
+- [x] **Issue-Driven Fixes**: All bug fixes strictly follow the workflow: add a failing test case to the relevant fixture, confirm the failure, update the regex in SSoT, and verify all tests pass.
+- [x] **Document Known Limitations**: A known limitations document is maintained and updated to clarify edge cases and unsupported syntax.
+- [x] **Grammar Refactoring**: `regex.ts` is periodically refactored for readability, maintainability, and improved anchor usage.
 
 ** Next Steps
-- Begin creating the fixture files (`.org`) under `test/colorize-fixtures/` for each item listed in Phase 1.
-- Follow the workflow in Phase 2 for each new fixture.
+- Expand fixtures and regex as needed. All new features and bug fixes must first be covered by fixture and annotation—no changes to test code required.
+- Continue to improve the known limitations document to ensure comprehensive syntax coverage and forward-looking test strategy.

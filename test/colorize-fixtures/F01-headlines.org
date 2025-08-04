@@ -1,47 +1,77 @@
-* TODO [#A] Headline :tag1:tag2:
-** DONE [#B] Subheadline :tag3:
-*** WAITING [#C] Another level
-**** 4 Headline with no TODO or priority
-***** 5 Headline with no TODO or priority
-****** 6 Headline with no TODO or priority
-* Headline with tags :tag4:
-* [#B] Headline with priority
-* TODO Headline with TODO
-* Headline with scheduled and deadline
-SCHEDULED: <2025-08-01 Fri>
-DEADLINE: <2025-08-02 Sat>
-* TODO [#A] Headline with all elements :tagA:tagB:
-SCHEDULED: <2025-08-03 Sun>
-DEADLINE: <2025-08-04 Mon>
-* DONE Headline with only TODO
-* [#C] Headline with only priority
-* Headline with only tags :tagC:
-* Headline with scheduled only
-SCHEDULED: <2025-08-05 Tue>
-* Headline with deadline only
-DEADLINE: <2025-08-06 Wed>
-* COMMENT This is a commented headline :commented:
-* WAITING/TODO/DONE Fast todo sequence headline :fast:
-* Headline with emoji 😀 :emoji:
-* Headline with punctuation !@#$%^&*() :punct:
-* Headline with drawer
-:PROPERTIES:
-:Created: 2025-08-02
-:END:
-* Headline with property
-  :property: value
-* Project Tasks [50%]
-  - [X] Task 1
-  - [ ] Task 2
-  - [X] Task 3
-  - [ ] Task 4
+#+BEGIN_COMMENT  :regex headlineDetectRegex :description TextMate Scope Annotation (This block will effect the automated test for tm language grammar regex)
+Capture Groups:
+1. stars -> punctuation.definition.heading.org
+2. todo -> keyword.other.todo.org
+3. priority block -> constant.other.priority.org
+4. priority letter -> constant.other.priority.value.org
+5. headline text -> entity.name.section.org
+6. progress/cookie -> constant.other.progress.org
+7. tags -> entity.name.tag.org
+#+END_COMMENT
 
-** Subproject [2/4]
-  - [X] Subtask 1
-  - [ ] Subtask 2
-  - [X] Subtask 3
-  - [ ] Subtask 4
+# Test Case 1: Simple headline
+# Use: headlineLevel1Regex
+* Simple headline
+# Expected groups: [1: "*", 2: undefined, 3: undefined, 4: undefined, 5: "Simple headline", 6: undefined, 7: undefined]
 
-* Partial Progress [-]
-  - [X] Task 1
-  - [ ] Task 2
+# Test Case 2: Complete headline with all elements
+# Use: headlineLevel1Regex
+* TODO [#A] Complete headline example [2/5] :work:project:
+# Expected groups: [1: "*", 2: "TODO", 3: "[#A]", 4: "A", 5: "Complete headline example", 6: "[2/5]", 7: ":work:project:"]
+
+# Test Case 3: Multi-level headline with TODO
+# Use: headlineLevel2Regex
+** DONE Multi-level task
+# Expected groups: [1: "**", 2: "DONE", 3: undefined, 4: undefined, 5: "Multi-level task", 6: undefined, 7: undefined]
+
+# Test Case 4: Priority without TODO
+# Use: headlineLevel3Regex
+*** [#B] Priority headline without todo
+# Expected groups: [1: "***", 2: undefined, 3: "[#B]", 4: "B", 5: "Priority headline without todo", 6: undefined, 7: undefined]
+
+# Test Case 5: Complex headline with unicode and symbols
+# Use: headlineLevel4Regex
+**** WAITING [#C] 复杂标题 with symbols !@#$% :chinese:symbols:
+# Expected groups: [1: "****", 2: "WAITING", 3: "[#C]", 4: "C", 5: "复杂标题 with symbols !@#$%", 6: undefined, 7: ":chinese:symbols:"]
+
+# Test Case 6: Very deep level headline
+# Use: headlineLevel6Regex
+****** NEXT [#A] Deep level headline :deep:level:nested:
+# Expected groups: [1: "******", 2: "NEXT", 3: "[#A]", 4: "A", 5: "Deep level headline", 6: undefined, 7: ":deep:level:nested:"]
+
+# Test Case 7: Headline with single tag
+# Use: headlineLevel1Regex
+* Simple headline with one tag :single:
+# Expected groups: [1: "*", 2: undefined, 3: undefined, 4: undefined, 5: "Simple headline with one tag", 6: undefined, 7: ":single:"]
+
+# Test Case 8: Edge case - headline text with brackets
+# Use: headlineLevel2Regex
+** TODO Task with [brackets] in text :test:
+# Expected groups: [1: "**", 2: "TODO", 3: undefined, 4: undefined, 5: "Task with [brackets] in text", 6: undefined, 7: ":test:"]
+
+# Test Case 9: Headline with progress/cookie
+# Use: headlineLevel1Regex
+* TODO [#A] Project planning [1/3] :project:
+# Expected groups: [1: "*", 2: "TODO", 3: "[#A]", 4: "A", 5: "Project planning", 6: "[1/3]", 7: ":project:"]
+
+# Test Case 10: Headline with percentage progress
+# Use: headlineLevel2Regex
+** DONE Task completion [50%] :done:
+# Expected groups: [1: "**", 2: "DONE", 3: undefined, 4: undefined, 5: "Task completion", 6: "[50%]", 7: ":done:"]
+
+# Test Case 11: Comment headline
+# Use: headlineLevel1Regex
+* COMMENT This is a commented headline :archived:
+# Expected groups: [1: "*", 2: "COMMENT", 3: undefined, 4: undefined, 5: "This is a commented headline", 6: undefined, 7: ":archived:"]
+
+# Test Case 12: Full featured headline
+# Use: headlineLevel3Regex
+*** TODO [#B] Complex task with everything [3/10] :work:urgent:personal:
+# Expected groups: [1: "***", 2: "TODO", 3: "[#B]", 4: "B", 5: "Complex task with everything", 6: "[3/10]", 7: ":work:urgent:personal:"]
+
+# Test Case 13: Headline without tags but with progress
+# Use: headlineLevel4Regex
+**** WAITING Task in progress [75%]
+# Expected groups: [1: "****", 2: "WAITING", 3: undefined, 4: undefined, 5: "Task in progress", 6: "[75%]", 7: undefined]
+
+

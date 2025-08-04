@@ -1,0 +1,84 @@
+* Orgdown VS Code Extension Development Guide
+
+This guide provides practical instructions for contributing to Orgdown's functionality. It is designed to help community contributors add, test, and debug new syntax features using our automated, fixture-driven workflow.
+
+** Syntax Support Workflow
+
+Orgdown uses a unified, test-driven workflow for all syntax features. The process is fully automated and ensures that all grammar rules are consistent, maintainable, and easy to test.
+
+*** 1. Single Source of Truth (SSoT)
+- All regular expressions for syntax highlighting are defined in `src/grammar/regex.ts` as named exports.
+- No regex is duplicated in YAML, JSON, or tests.
+
+*** 2. Grammar Template
+- The TextMate grammar template is located at `syntaxes/org.tmLanguage.template.yaml`.
+- Regex patterns are referenced via placeholders (e.g., `{{headlineRegex}}`).
+- The build script injects regex from SSoT into the template.
+
+*** 3. Fixture-Driven Testing
+- All test cases are defined in fixture files under `test/colorize-fixtures/` (e.g., `F01-headlines.org`).
+- Each fixture contains sample Org Mode content and structured comments mapping regex capture groups to expected TextMate scopes.
+- Each test case can specify its regex via annotation, e.g.:
+
+  #+BEGIN_COMMENT :regex headlineRegex :description Headline Scope Mapping
+  1. stars -> punctuation.definition.heading.org
+  2. todo -> keyword.other.todo.org
+  3. priority block -> constant.other.priority.org
+  4. priority letter -> constant.other.priority.value.org
+  5. headline text -> entity.name.section.org
+  6. tags -> entity.name.tag.org
+  #+END_COMMENT
+
+  # Test Case 1: Simple headline
+  # Use: headlineLevel1Regex
+  * TODO [#A] Headline text :tag1:tag2:
+  # Expected groups: [1: "*", 2: "TODO", 3: "[#A]", 4: "A", 5: "Headline text", 6: ":tag1:tag2:"]
+
+*** 4. Build and Test Commands
+- To build the grammar and run all tests, use:
+
+  pnpm run build:grammar
+  pnpm test:unit
+
+  you can also use the watch script to automatically rebuild on file changes:
+
+  pnpm run watch:grammar
+
+- To run snapshot tests for integration validation:
+
+  pnpm test:integration
+
+*** 5. Adding New Syntax Support
+1. Define or update the regex in `src/grammar/regex.ts`.
+2. Create or update a fixture file in `test/colorize-fixtures/`:
+   - Add sample Org Mode content.
+   - Add a structured comment block mapping capture groups to scopes.
+   - For each test case, annotate the regex to use and expected group values.
+3. Run the build and test commands above.
+4. If tests fail, adjust your regex or fixture until all tests pass.
+5. Commit your changes following Conventional Commits (e.g., `feat: add table syntax support`).
+
+*** 6. Debugging and Validation
+- If a test fails, the error message will indicate which group or scope mapping is inconsistent.
+- You can run tests for a specific fixture by editing the test runner or using filtering in your test command.
+- The CI pipeline will automatically validate grammar and tests on every commit.
+
+*** 7. Example Fixture (for a new syntax)
+
+#+BEGIN_COMMENT :regex tableRegex :description Table Scope Mapping
+1. row -> meta.table.row.org
+2. cell -> meta.table.cell.org
+#+END_COMMENT
+
+# Test Case 1: Simple table row
+# Use: tableRegex
+| Cell 1 | Cell 2 |
+# Expected groups: [1: "| Cell 1 | Cell 2 |", 2: "Cell 1", 3: "Cell 2"]
+
+*** 8. Best Practices
+- Always update or add fixture cases when changing regex.
+- Use clear, descriptive comments for group-to-scope mapping.
+- Validate changes locally before submitting a PR.
+- Follow file naming conventions and commit message guidelines.
+
+For more details, see ADR-005 and implementation plan 002 in the `docs/` directory.

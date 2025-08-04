@@ -128,23 +128,52 @@ function generateOrgSrcBlockIncludes(): any[] {
 }
 
 async function buildGrammar() {
+  // Import regex patterns from the central source
+  const regexModule = await import('../src/grammar/regex.js');
+
+  // First, process the template file
+  const templatePath = path.join(grammarSourceDir, 'org.tmLanguage.template.yaml');
+  const outputPath = path.join(grammarSourceDir, 'org.tmLanguage.yaml');
+
+  if (await fs.pathExists(templatePath)) {
+    console.log('Processing template file...');
+    let templateContent = await fs.readFile(templatePath, 'utf8');
+
+    // Replace all regex placeholders with actual patterns
+    for (const [key, value] of Object.entries(regexModule)) {
+      if (typeof value === 'string') {
+        const placeholder = `{{${key}}}`;
+        // Escape backslashes for YAML string literals
+        const escapedValue = value.replace(/\\/g, '\\\\');
+        templateContent = templateContent.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), escapedValue);
+      }
+    }
+
+    // Write the processed template as the intermediate YAML
+    await fs.writeFile(outputPath, templateContent);
+    console.log('Template processed successfully');
+  }
+
+  // Then process all YAML files (including the generated one)
   const yamlFiles = await glob('*.tmLanguage.yaml', { cwd: grammarSourceDir });
   for (const yamlFile of yamlFiles) {
-  const sourcePath = path.join(grammarSourceDir, yamlFile);
-  const destPath = path.join(grammarDestDir, yamlFile.replace(/\.yaml$/, '.json'));
-  console.log(`Building ${path.basename(destPath)} from ${path.basename(sourcePath)}`);
-  const grammarYaml = (await fs.readFile(sourcePath)).toString('utf8');
-  let grammar = yaml.load(grammarYaml) as any;
-  // 替换 org-src-blocks 占位符（definitions 和 includes）
-  if (grammar.repository && grammar.repository['org-src-blocks']) {
-    grammar.repository['org-src-blocks'].patterns = [
-    ...generateOrgSrcBlockDefinitions(),
-    // 也可单独插入 includes 到主 patterns，如有需要
-    ];
-  }
-  // 如需 include 列表，可在主 patterns 或其它位置插入 generateOrgSrcBlockIncludes()
-  const grammarJson = JSON.stringify(grammar, null, 2);
-  await fs.writeFile(destPath, grammarJson);
+    const sourcePath = path.join(grammarSourceDir, yamlFile);
+    const destPath = path.join(grammarDestDir, yamlFile.replace(/\.yaml$/, '.json'));
+    console.log(`Building ${path.basename(destPath)} from ${path.basename(sourcePath)}`);
+    const grammarYaml = (await fs.readFile(sourcePath)).toString('utf8');
+    let grammar = yaml.load(grammarYaml) as any;
+
+    // Replace org-src-blocks placeholder (definitions and includes)
+    if (grammar.repository && grammar.repository['org-src-blocks']) {
+      grammar.repository['org-src-blocks'].patterns = [
+        ...generateOrgSrcBlockDefinitions(),
+        // Also insert includes to main patterns if needed
+      ];
+    }
+
+    // If include list is needed, it can be inserted into main patterns or other locations generateOrgSrcBlockIncludes()
+    const grammarJson = JSON.stringify(grammar, null, 2);
+    await fs.writeFile(destPath, grammarJson);
   }
 }
 

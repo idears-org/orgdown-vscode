@@ -2,7 +2,7 @@
 
 * Status
   :PROPERTIES:
-  :Status: Accepted
+  :Status: Superseded by [[file:005-unified-grammar-and-test-workflow.org][ADR-005]]
   :END:
 
 * Date

@@ -48,34 +48,34 @@ repository:
   # First layer: headlineDetectRegex matches any headline line and captures the whole line.
   # Second layer: In the first capture group, patterns match specific headline levels (1-6) and extract semantic parts using heading-captures.
   headings:
-    match: "^(\\*+\\s+.*)"
+    match: "{{headlineDetectRegex}}"
     name: markup.heading.org
     captures:
       '1':
         patterns:
           # Each pattern below matches a specific Org headline level and applies semantic captures.
           - name: heading.1.org
-            match: "^(\\*)\\s+(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?(?:(\\[#([A-Z0-9])\\])\\s+)?(.+?)(?:\\s+(\\[[0-9/%]+\\]))?(?=\\s*(?::[\\w@:]+:|$))(?:\\s*(:[\\w@:]+:))?\\s*$"
+            match: "{{headlineLevel1Regex}}"
             captures:
               <<: *heading-captures
           - name: heading.2.org
-            match: "^(\\*{2})\\s+(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?(?:(\\[#([A-Z0-9])\\])\\s+)?(.+?)(?:\\s+(\\[[0-9/%]+\\]))?(?=\\s*(?::[\\w@:]+:|$))(?:\\s*(:[\\w@:]+:))?\\s*$"
+            match: "{{headlineLevel2Regex}}"
             captures:
               <<: *heading-captures
           - name: heading.3.org
-            match: "^(\\*{3})\\s+(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?(?:(\\[#([A-Z0-9])\\])\\s+)?(.+?)(?:\\s+(\\[[0-9/%]+\\]))?(?=\\s*(?::[\\w@:]+:|$))(?:\\s*(:[\\w@:]+:))?\\s*$"
+            match: "{{headlineLevel3Regex}}"
             captures:
               <<: *heading-captures
           - name: heading.4.org
-            match: "^(\\*{4})\\s+(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?(?:(\\[#([A-Z0-9])\\])\\s+)?(.+?)(?:\\s+(\\[[0-9/%]+\\]))?(?=\\s*(?::[\\w@:]+:|$))(?:\\s*(:[\\w@:]+:))?\\s*$"
+            match: "{{headlineLevel4Regex}}"
             captures:
               <<: *heading-captures
           - name: heading.5.org
-            match: "^(\\*{5})\\s+(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?(?:(\\[#([A-Z0-9])\\])\\s+)?(.+?)(?:\\s+(\\[[0-9/%]+\\]))?(?=\\s*(?::[\\w@:]+:|$))(?:\\s*(:[\\w@:]+:))?\\s*$"
+            match: "{{headlineLevel5Regex}}"
             captures:
               <<: *heading-captures
           - name: heading.6.org
-            match: "^(\\*{6,})\\s+(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?(?:(\\[#([A-Z0-9])\\])\\s+)?(.+?)(?:\\s+(\\[[0-9/%]+\\]))?(?=\\s*(?::[\\w@:]+:|$))(?:\\s*(:[\\w@:]+:))?\\s*$"
+            match: "{{headlineLevel6Regex}}"
             captures:
               <<: *heading-captures
   # --------------------------- End Headlines ----------------------------------
@@ -100,29 +100,29 @@ repository:
     patterns:
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_QUOTE"
-        end: "(?i)^#\\+END_QUOTE"
+        begin: "{{quoteBlockBeginRegex}}"
+        end: "{{quoteBlockEndRegex}}"
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_EXAMPLE"
-        end: "(?i)^#\\+END_EXAMPLE"
+        begin: "{{exampleBlockBeginRegex}}"
+        end: "{{exampleBlockEndRegex}}"
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_VERSE"
-        end: "(?i)^#\\+END_VERSE"
+        begin: "{{verseBlockBeginRegex}}"
+        end: "{{verseBlockEndRegex}}"
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_CENTER"
-        end: "(?i)^#\\+END_CENTER"
+        begin: "{{centerBlockBeginRegex}}"
+        end: "{{centerBlockEndRegex}}"
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "(?i)^#\\+BEGIN_COMMENT"
-        end: "(?i)^#\\+END_COMMENT"
+        begin: "{{commentBlockBeginRegex}}"
+        end: "{{commentBlockEndRegex}}"
 
   keywords:
     patterns:
       - name: meta.keyword.option.org
-        match: "^\\s*(#\\+([A-Z_]+):)\\s*(.*)"
+        match: "{{keywordRegex}}"
         captures:
           1: { name: keyword.other.org }
           2: { name: entity.name.function.option.org }
@@ -130,8 +130,8 @@ repository:
 
   drawers:
     name: meta.drawer.org
-    begin: "^\\s*:(PROPERTIES|LOGBOOK):\\s*$"
-    end: "^\\s*:END:\\s*$"
+    begin: "{{drawerBeginRegex}}"
+    end: "{{drawerEndRegex}}"
     beginCaptures:
       0: { name: punctuation.definition.drawer.begin.org }
       1: { name: entity.name.function.drawer.org }
@@ -141,36 +141,36 @@ repository:
   lists:
     patterns:
       - name: markup.list.unnumbered.org
-        match: "^(\\s*)([-+*])\\s+(?:\\[( |X|-)\\])?"
+        match: "{{unorderedListRegex}}"
         captures:
           1: { name: string.other.whitespace.leading }
           2: { name: punctuation.definition.list.begin.org }
       - name: markup.list.numbered.org
-        match: "^(\\s*)(\\d+[.)])\\s+(?:\\[( |X|-)\\])?"
+        match: "{{orderedListRegex}}"
         captures:
           1: { name: string.other.whitespace.leading }
           2: { name: punctuation.definition.list.begin.org }
       - name: markup.list.unnumbered.org
-        match: "^(\\s*).+?\\s*::\\s*"
+        match: "{{descriptionListRegex}}"
 
   tables:
     name: markup.table.org
-    match: "^\\s*\\|.*\\|$"
+    match: "{{tableRegex}}"
 
   horizontal-rules:
     name: markup.other.horizontal-rule.org
-    match: "^\\s*-{5,}\\s*$"
+    match: "{{horizontalRuleRegex}}"
 
   footnotes:
     patterns:
       - name: meta.footnote.definition.org
-        match: "^\\[fn:([^\\]]+)\\]"
+        match: "{{footnoteDefinitionRegex}}"
       - name: meta.footnote.reference.org
-        match: "\\[fn:([^\\]]+)\\]"
+        match: "{{footnoteReferenceRegex}}"
 
   paragraph:
-    begin: "^(?=\\S)"
-    end: "^\\s*$"
+    begin: "{{paragraphBeginRegex}}"
+    end: "{{paragraphEndRegex}}"
     patterns:
       - include: "#inline-markup"
 
@@ -191,7 +191,7 @@ repository:
 
   links:
     name: meta.link.org
-    match: "(\\[\\[)([^]]+?)(?:(?:\\]\\[)([^]]+?))?()"
+    match: "{{linkRegex}}"
     captures:
       1: { name: punctuation.definition.link.begin.org }
       2: { name: markup.underline.link.org }
@@ -200,44 +200,44 @@ repository:
 
   timestamps-active:
     name: constant.other.timestamp.active.org
-    match: "<[0-9]{4}-[0-9]{2}-[0-9]{2}.*?>"
+    match: "{{timestampActiveRegex}}"
 
   timestamps-inactive:
     name: comment.timestamp.inactive.org
-    match: "\\[[0-9]{4}-[0-9]{2}-[0-9]{2}.*?\\]"
+    match: "{{timestampInactiveRegex}}"
 
   latex:
     name: markup.math.org
-    match: "(\\$)[^$\\n]+?(\\$)|(\\\\[(])[^\\n]+?(\\\\[)])|(\\\\[\\[])[^\\n]+?(\\\\[\\]])"
+    match: "{{latexRegex}}"
 
   bold:
     name: markup.bold.org
-    match: "(\\*)[^\\s*](.*?)[^\\s*](\\*)"
+    match: "{{boldRegex}}"
 
   italic:
     name: markup.italic.org
-    match: "(/)[^\\s/](.*?)[^\\s/](/)"
+    match: "{{italicRegex}}"
 
   underline:
     name: markup.underline.org
-    match: "(_)[^\\s_](.*?)[^\\s_](_)"
+    match: "{{underlineRegex}}"
 
   strikethrough:
     name: markup.strikethrough.org
-    match: "(\\+)[^\\s+](.*?[^\\s+])(\\+)"
+    match: "{{strikethroughRegex}}"
 
   code:
     name: markup.inline.raw.org
-    match: "(~)[^\\s~](.*?)[^\\s~](~)"
+    match: "{{codeRegex}}"
 
   verbatim:
     name: markup.inline.raw.org
-    match: "(=)[^\\s=](.*?)[^\\s=](=)"
+    match: "{{verbatimRegex}}"
 
   entities:
     name: constant.character.entity.org
-    match: "\\\\[a-zA-Z]+(\\{\\})?"
+    match: "{{entitiesRegex}}"
 
   sub-super-scripts:
     name: markup.other.sub-super-script.org
-    match: "[_^]({[^}]+}|\\\\S)"
+    match: "{{subSuperScriptRegex}}"

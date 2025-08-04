@@ -2,7 +2,10 @@ import chokidar from 'chokidar';
 import { exec } from 'child_process';
 
 console.log('[watch] build started');
-const watcher = chokidar.watch('syntaxes/org.tmLanguage.yaml', { ignoreInitial: true });
+const watcher = chokidar.watch([
+  'syntaxes/org.tmLanguage.template.yaml',
+  'src/grammar/regex.ts'
+], { ignoreInitial: true });
 
 watcher.on('all', () => {
   exec('pnpm run build:grammar', (err, stdout, stderr) => {

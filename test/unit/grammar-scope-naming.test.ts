@@ -4,7 +4,7 @@ import assert from 'assert';
 import fs from 'fs';
 import path from 'path';
 
-describe('Grammar Scope Naming', function () {
+suite('Grammar Scope Naming', function () {
   const grammarPath = path.join(__dirname, '../../syntaxes/org.tmLanguage.json');
   const allowedPrefixes = [
     'markup.', 'meta.', 'source.', 'comment.', 'string.', 'constant.', 'entity.', 'punctuation.'
@@ -52,8 +52,7 @@ describe('Grammar Scope Naming', function () {
     }
     return problems;
   }
-
-  it('should have only standard and theme-compatible scopes and includes', function () {
+  test('should have only standard and theme-compatible scopes and includes', function () {
     if (!fs.existsSync(grammarPath)) {
       throw new Error('org.tmLanguage.json not found. Please build grammar first.');
     }

@@ -1,9 +1,12 @@
-{
 
-  "require": "ts-node/register",
+{
+  "require": [
+    "ts-node/register"
+  ],
   "extension": [
     "ts"
   ],
+  "ui": "tdd",
   "spec": [
     "test/unit/**/*.test.ts",
     "client/src/**/*.test.ts",

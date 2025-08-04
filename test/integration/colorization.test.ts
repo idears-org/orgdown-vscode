@@ -60,7 +60,7 @@ suite('colorization', () => {
     // Always resolve fixtures from the project root, not the compiled output
     const extensionColorizeFixturePath = join(process.cwd(), 'test', 'colorize-fixtures');
 
-    // 自动打开一个 org 文件，确保扩展被激活
+    // Automatically open an org file to ensure the extension is activated
     setup(async () => {
         const files = fs.readdirSync(extensionColorizeFixturePath).filter(f => f.endsWith('.org'));
         if (files.length > 0) {
@@ -70,12 +70,15 @@ suite('colorization', () => {
         }
     });
 
+    // For each fixture file, run a snapshot-based colorization test
     if (fs.existsSync(extensionColorizeFixturePath)) {
         let fixturesFiles = fs.readdirSync(extensionColorizeFixturePath);
         console.log('Found fixture files:', fixturesFiles);
         fixturesFiles.forEach(fixturesFile => {
             test(fixturesFile, function (done) {
                 console.log('Running test for:', fixturesFile);
+                // This test captures syntax tokens for the fixture and compares them to the previous snapshot.
+                // If the snapshot does not exist, it will be created. If the snapshot changes, the diff must be reviewed.
                 assertUnchangedTokens(join(extensionColorizeFixturePath, fixturesFile), done);
             });
         });
