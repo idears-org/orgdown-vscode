@@ -8,12 +8,12 @@ This phase focuses on creating a dedicated test fixture for every individual Org
 
 *** Core Syntax Fixtures [23/23]
     - [x] **Headlines**: Levels, TODO keywords, priorities, tags, commented headlines.
-      _fixtures: F01-headlines.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
+      _fixtures: F01-headlines.org, F01-headline-edge-case.org_
+      - [x] Manual Review
+      - [x] Snapshot Generation
+      - [x] Snapshot Diff Analysis
+      - [x] Iteration
+      - [x] Mark as Complete
     - [x] **Lists**: Unordered, ordered, description, checkboxes (with states).
       _fixtures: F02-lists.org, F03-checkbox-list-edge-cases.org, F04-headline-with-checkbox-list.org_
       - [ ] Manual Review
