@@ -1,3 +1,29 @@
+* Architecture
+
+This document outlines the high-level architecture of the Orgdown VS Code extension.
+
+** Core Components
+
+The extension is built around a few key components:
+
+1. *Parser*: Responsible for parsing ~.org~ files into an Abstract Syntax Tree (AST). This is the foundation upon which all other features are built. We will need to decide whether to write our own parser or adapt an existing one.
+2. *State Manager*: Manages the state of the active Org document, including the AST, cursor position, and current view.
+3. *Command Executor*: Handles the execution of commands, such as ~org-toggle-todo~, ~org-promote-subtree~, etc. It interacts with the State Manager to modify the document.
+4. *View Renderer*: Responsible for rendering different views, such as the agenda view. It reads from the State Manager.
+5. *Keybinding Manager*: Maps key sequences to commands, replicating the Spacemacs experience.
+
+** Data Flow
+
+The typical data flow for a user action (e.g., pressing a keybinding) is as follows:
+
+#+BEGIN_SRC
+Keypress -> Keybinding Manager -> Command Executor -> State Manager -> (Update Document/Render View)
+#+END_SRC
+
+** Future Considerations
+
+- *Performance*: For large Org files, parsing and state management must be highly efficient.
+- *Extensibility*: The architecture should allow for new features and commands to be added easily.
 * Project Overview: Orgdown for VS Code
 
 ** Core Goal

@@ -9,7 +9,7 @@ Our development process is built on two foundational principles:
 - **Test-Driven Development (TDD)**: We write tests first. This ensures every feature is verifiable and prevents regressions.
 - **Single Source of Truth (SSoT)**: Each piece of logic or data (regular expressions, grammar structure, test cases) is defined in exactly one place, eliminating duplication and inconsistency.
 
-For a deep dive into the architectural decisions behind this workflow, please see [[./docs/adr/005-unified-grammar-and-test-workflow.org][ADR-005: Unified, Multi-Layered Grammar and Testing Workflow]].
+For a deep dive into the architectural decisions behind this workflow, please see [[./adr/005-unified-grammar-and-test-workflow.org][ADR-005: Unified, Multi-Layered Grammar and Testing Workflow]].
 
 ** 2. Quick Start: Fixing a Highlighting Bug
 
@@ -41,7 +41,7 @@ For our Planning Line feature, the design might be:
 
 1.  **Define Logic (Regex)**: In `common/src/grammar/regex.ts`, add your new, named, exported regular expression. Document its capture groups.
 2.  **Define Structure (Grammar)**: In `syntaxes/org.tmLanguage.template.yaml`, add a rule that uses your `{{regex_name}}` and maps its capture groups to the scopes you designed.
-3.  **Define Tests (Fixture)**: In `test/fixtures/`, create a new file (e.g., `F11-planning-line.org`). Add `* Test Case:` headlines for all scenarios. Use the format defined in *Section 4.3*.
+3.  **Define Tests (Fixture)**: In `test/fixtures/`, create a new file (e.g., `F11-planning-line.org`). Add `* Test Case:` headlines for all scenarios. Use the format defined in *Section 4.4*.
 
 *** Step 2: Test-Driven Development (L1 - Unit Test)
 
@@ -70,9 +70,27 @@ Commit all the "source" files you have changed. Do *not* commit generated files.
 
 ** 4. Core Concepts & Conventions
 
-This section defines the official conventions for our testing framework.
+This section defines the official conventions for our testing framework and project structure.
 
-*** 4.1. Syntax Unit (`<syntax>`) Registry
+*** 4.1. File Naming Conventions
+
+To ensure consistency and predictability across the project, all files MUST adhere to the following naming conventions:
+
+- **Source Code (`.ts`)**: Use `kebab-case`.
+  - Example: `headline-parser.ts`
+- **Test Files (`.test.ts`)**: Use the name of the source file, suffixed with `.test`.
+  - Example: `headline-parser.test.ts`
+- **Documentation (`.org`)**:
+  - **ADRs**: Use the format `[NNN]-short-title-in-kebab-case.org`.
+    - Example: `001-choice-of-documentation-format.org`
+  - **Feature Specs**: Use the format `[NNN]-feature-name-in-kebab-case.org`.
+    - Example: `001-headline-folding.org`
+  - **General Docs**: Use `kebab-case`.
+    - Example: `project-overview.org`, `development-workflow.org`
+- **Configuration Files**: Adhere to established community standards.
+  - Example: `package.json`, `tsconfig.json`, `esbuild.js`
+
+*** 4.2. Syntax Unit (`<syntax>`) Registry
 
 A `<syntax>` is a conventional name for a distinct, testable unit of Org Mode grammar.
 
@@ -83,7 +101,7 @@ A `<syntax>` is a conventional name for a distinct, testable unit of Org Mode gr
   - `planning-line`: Represents a line containing `SCHEDULED:`, `DEADLINE:`, or `CLOSED:`.
   - `src-block`: Represents a `#+BEGIN_SRC` ... `#+END_SRC` block.
 
-*** 4.2. Test Type (`<type>`) Registry
+*** 4.3. Test Type (`<type>`) Registry
 
 A `<type>` corresponds to a specific testing capability of our framework. Adding a new type requires modifying the test runner.
 
@@ -93,7 +111,7 @@ A `<type>` corresponds to a specific testing capability of our framework. Adding
   - `folding`: (Future) Tests code folding ranges.
   - `symbols`: (Future) Tests the document symbol tree.
 
-*** 4.3. Official Fixture Format
+*** 4.4. Official Fixture Format
 
 All test cases MUST follow this structure:
 
@@ -129,3 +147,31 @@ All test cases MUST follow this structure:
 - `pnpm lint`: Checks for code style issues.
 - `pnpm check-types`: Checks for TypeScript type errors.
 - `pnpm test`: Runs the full test suite (unit and integration).
+* Development Workflow
+
+This document describes the recommended workflow for developing new features for the Orgdown extension.
+
+** Guiding Principles
+
+- *Clarity over cleverness*: Code should be easy to understand.
+- *Consistency*: Follow the established coding style and patterns.
+- *Test everything*: Every new feature should be accompanied by tests.
+
+** Steps for Adding a New Feature
+
+1. *Create a Feature Document*:
+   - Before writing any code, create a new Org Mode file in the ~docs/features/~ directory (e.g., ~docs/features/my-new-feature.org~).
+   - In this document, describe the feature from a user's perspective, outline the technical approach, and define the acceptance criteria.
+   - This ensures that we (and our AI collaborator) have a clear plan.
+
+2. *Implement the Feature*:
+   - Create a new branch for the feature.
+   - Write the code, following the project's coding standards.
+   - Add or update tests in the ~src/test/~ directory.
+
+3. *Update Documentation*:
+   - If the feature introduces a new command, keybinding, or architectural change, update the relevant documentation (~ARCHITECTURE.org~, etc.).
+
+4. *Submit a Pull Request*:
+   - Push the feature branch and open a pull request.
+   - The pull request description should link to the feature document created in step 1.

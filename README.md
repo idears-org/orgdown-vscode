@@ -1,71 +1,52 @@
-# orgdown-vscode README
+# Orgdown for VS Code
 
-This is the README for your extension "orgdown-vscode". After writing up a brief description, we recommend including the following sections.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/idears-org/orgdown-vscode/master/assets/logo.png" alt="Orgdown Logo" width="150">
+</p>
 
-## Features
+<p align="center">
+  <strong>"OrgMode is the only reason I still keep Emacs on my device, that's why I created this extension."</strong>
+</p>
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+<p align="center">
+  <a href="https://github.com/idears-org/orgdown-vscode/actions"><img src="https://github.com/idears-org/orgdown-vscode/workflows/CI/badge.svg" alt="CI Status"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=orgdown.orgdown-vscode"><img src="https://vsmarketplacebadge.apphb.com/version/orgdown.orgdown-vscode.svg" alt="Marketplace Version"></a>
+</p>
 
 ---
 
-## Following extension guidelines
+## About The Project
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+Welcome to Orgdown! This is a Visual Studio Code extension dedicated to bringing the legendary organizational power of [Emacs' Org Mode](https://orgmode.org/) to the modern, accessible environment of VS Code. Our mission is to faithfully implement 80% or more of the core Org Mode feature set, focusing on robust syntax highlighting, code block execution, and task management.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+This project is built with a professional-grade, test-driven architecture to ensure stability and maintainability.
 
-## Working with Markdown
+Learn more at our project websites: [orgdown.com](https://orgdown.com) & [orgdown.org](https://orgdown.org).
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+## Features & Roadmap
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+We are systematically implementing the full Org Mode feature set. To see a detailed list of currently supported features, as well as our development roadmap for what's coming next, please consult our **[[./docs/implementation-plans/002-org-tmlanguage-fixture-coverage.org][Feature Coverage Dashboard]]**.
 
-## For more information
+## Getting Started
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+Simply install the "Orgdown" extension from the Visual Studio Code Marketplace.
 
-**Enjoy!**
+## How to Contribute
+
+**We welcome and encourage community contributions!**
+
+Whether you're fixing a bug, adding a new piece of syntax highlighting, or implementing a major feature, we have a clear and modern development workflow to guide you.
+
+To get started, please read our comprehensive **[[./docs/development-guide.org][Development Guide]]**. It contains everything you need to know about our architecture, testing philosophy, and step-by-step processes.
+
+## Our Architectural Philosophy
+
+For those interested in the engineering principles behind the project, we follow a strict, documentation-driven design process:
+
+*   **The "Why"**: Our overall system design is detailed in our **[[./docs/architecture.org][Architecture Document]]**.
+*   **The "How"**: Our development process is detailed in the **[[./docs/development-guide.org][Development Guide]]**.
+*   **Specific Decisions**: Significant, specific design decisions are documented in our **Architecture Decision Records (ADRs)**, located in `docs/adr/`.
+
+## License
+
+This project is licensed under the MIT License.
