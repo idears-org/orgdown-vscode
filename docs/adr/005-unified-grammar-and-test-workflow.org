@@ -1,143 +1,65 @@
-* 005. Unified Grammar and Test Workflow
+* 005. A Multi-Layered, Fixture-Driven Testing Architecture
 
-- Status: Proposed
-- Date: 2025-08-04
-- Deciders: san, GitHub Copilot
-- Technical Story: [[https://github.com/orgdown/orgdown-vscode/issues/XX][Link to relevant issue]]
+- Status: Accepted & Implemented
+- Date: 2025-08-06
+- Deciders: san, Gemini
 
-** Context and Problem Statement
+** 1. Context and Problem Statement
 
-The existing tmLanguage workflow relies on manually maintaining regular expressions within `org.tmLanguage.yaml` and validating them through snapshot testing. This process has several drawbacks:
-1.  **Regex Duplication**: Regular expressions used for syntax highlighting might need to be reused elsewhere (e.g., for parsing, commands), leading to duplication and synchronization issues.
-2.  **Maintenance Overhead**: Manually keeping the YAML file, fixture files, and tests in sync is error-prone and time-consuming.
-3.  **Implicit Group Mapping**: The mapping between regex capture groups and their corresponding TextMate scopes is implicitly defined by their order in the YAML. This relationship is not explicitly tested, making refactoring risky.
-4.  **Reactive Testing**: Snapshot tests are effective for catching regressions but are reactive. They don't proactively enforce that the grammar correctly implements the intended scope mapping for each capture group.
+The initial approach to testing our TextMate grammar relied on manual processes and monolithic snapshot tests. This presented several critical challenges:
 
-We need a more robust, automated, and maintainable workflow that treats regular expressions as a single source of truth and explicitly tests the relationship between grammar rules and test cases.
+- **Lack of Granularity**: It was impossible to test a single piece of syntax logic (e.g., one regular expression) in isolation. Any small change required a full, slow, and often noisy snapshot regeneration.
+- **Implicit Connections**: The relationship between a regular expression, its capture groups, and the TextMate scopes they mapped to was implicit and not explicitly tested, making the grammar brittle and hard to refactor.
+- **Poor Developer Experience**: Writing tests was not intuitive. The feedback loop was slow, and it was difficult to document the intent of a specific test case.
 
-** Decision Drivers
+We needed a professional-grade testing architecture that provided a fast feedback loop, high confidence in changes, and a clear, self-documenting way to write and manage tests.
 
-- **Maintainability**: Reduce the effort required to add or modify grammar rules.
-- **Reliability**: Ensure that syntax highlighting is consistently and correctly applied.
-- **Single Source of Truth (SSoT)**: Avoid regex duplication and ensure consistency across the extension.
-- **Test-Driven Development (TDD)**: Enable a workflow where tests can be written to explicitly define and verify highlighting logic.
-- **Developer Experience**: Streamline the process of working with the grammar.
+** 2. The Core Principles (The "Why")
 
-** Considered Options
+To solve these problems, we established two foundational principles that govern our entire testing philosophy.
 
-1.  **Status Quo**: Continue manually editing `org.tmLanguage.yaml` and relying solely on snapshot tests.
-2.  **Regex SSoT + Fixture-Driven Testing & Generation**: Centralize all regular expressions in a TypeScript module (`src/grammar/regex.ts`). Use fixture files (`.org`) to document not only test cases but also the expected mapping of regex capture groups to TextMate scopes. Automate the generation of `org.tmLanguage.yaml` and the execution of tests based on these two sources.
+*** 2.1. The Single Source of Truth (SSoT)
 
-** Decision Outcome
+We enforce a strict separation of concerns by ensuring every piece of our grammar engine is defined in exactly one place.
 
-Chosen option: **"Regex SSoT + Fixture-Driven Testing & Generation"**.
+- **The Logic (`common/src/grammar/regex.ts`)**: This file is the SSoT for *what* we capture. It contains all named regular expressions. Its sole responsibility is to extract substrings from text.
+- **The Structure (`syntaxes/org.tmLanguage.template.yaml`)**: This file is the SSoT for *how* we name the captured data. Its sole responsibility is to map capture groups from the regexes to semantic TextMate scope names.
+- **The Test Cases (`test/fixtures/`)**: These files are the SSoT for *what* we test. They contain the input text and the expected outcomes for all test types.
 
-This approach establishes a clear, automated, and reliable workflow:
+This separation means we can modify one aspect (e.g., a regex pattern) without breaking the others, and it allows us to test each component independently.
 
-1.  **Single Source of Truth**: All regular expressions will be defined and exported from a dedicated TypeScript file, `src/grammar/regex.ts`. Each regex component will be a named export for easy reuse and composition.
+*** 2.2. Multi-Layered Testing
 
-2.  **Intelligent Fixtures**: Fixture files (`test/colorize-fixtures/*.org`) will serve a dual purpose:
-    - Provide the sample text for testing.
-    - Contain structured comments that explicitly document the mapping between regex capture group names (or indices) and their expected TextMate scopes.
-    Example:
-    #+BEGIN_COMMENT  :regex headlineRegex :description TextMate Scope Annotation (This block will effect the automated test for tm language grammar regex)
-    1. stars -> punctuation.definition.heading.org
-    2. todo -> keyword.other.todo.org
-    3. priority block -> constant.other.priority.org
-    4. priority letter -> constant.other.priority.value.org
-    5. headline text -> entity.name.section.org
-    6. tags -> entity.name.tag.org
-    #+END_COMMENT
+No single testing method can provide both speed and high-fidelity validation. Therefore, we use a three-layered approach, where each layer serves a distinct and vital purpose:
 
-3.  **Automated Grammar Generation**: A build script (`scripts/build-grammar.ts`) will:
-    - Import regex patterns from `src/grammar/regex.ts`.
-    - Construct the `match` and `captures` sections for the tmLanguage file.
-    - Generate the final `org.tmLanguage.json` (or the intermediate `org.tmLanguage.yaml`).
+- **L1: Unit Testing (The Fast Loop)**: Its purpose is **speed** and **logic validation**. It tests the SSoT for Logic (`regex.ts`) against the SSoT for Test Cases (`fixtures/*.org`). It answers the question: "Does my regex capture the correct data?" This provides sub-second feedback during development.
 
-4.  **Automated, Explicit Testing**: The unit test suite is fully refactored and now:
-    - Reads each fixture file and supports per-test-case regex selection via `# Use: <regexName>` annotation.
-    - Parses structured comments to understand group-to-scope mapping.
-    - For each test case, executes the specified regex and validates all capture groups and scope assignments.
-    - Fails immediately if any mapping or match is inconsistent, ensuring robust test-driven grammar development.
+- **L2: Manual Verification (The Sanity Check)**: Its purpose is **visual confirmation**. By compiling fixtures into clean `.inspection.org` files, developers can use VS Code's built-in scope inspector to visually confirm that the final highlighting matches the documented intent in the fixture's `:PROPERTIES:` drawer. It answers: "Does the final result *look* right?"
 
-** Consequences
+- **L3: Snapshot Testing (The Safety Net)**: Its purpose is **preventing regressions** in the final, integrated product. It takes the result of the fully compiled grammar applied to the inspection files and compares it to a previously approved snapshot. It answers: "Is the final result *exactly* the same as the last time it was approved?" This is the ultimate guarantee of stability.
+
+Crucially, we decided that **scope testing belongs at L3, not L1**. Forcing L1 unit tests to parse the YAML grammar file would violate the SSoT principle, slow down the fast loop, and make test failures ambiguous. L3 snapshot testing is the correct and most precise tool for validating the final, integrated scope mappings.
+
+** 3. The Decision Outcome: The V7 Fixture Format
+
+Based on these principles, we designed a highly-structured, extensible, and self-documenting fixture format using native Org Mode features. This format is the cornerstone of our entire workflow.
+
+- **Atomic Unit**: Each test case is an atomic unit, defined by a top-level headline (`* Test Case: ...`). This provides unambiguous grouping of all related information.
+- **Structured Metadata**: A `:PROPERTIES:` drawer holds all test configuration:
+  - `:SYNTAX:`: Declares the syntax rule(s) being tested (e.g., `headline`, `planning-line`).
+  - `<SYNTAX_NAME>_REGEX`: Namespaced property to define the regex to use for a specific syntax.
+  - `<SYNTAX_NAME>_SCOPE_*`: Namespaced properties to document the expected scopes for manual L2 verification.
+- **Extensible Results**: A unified `#+RESULTS: <type> [<syntax_name>]` block structure allows for multiple types of test results within a single test case, ensuring the framework is future-proof.
+
+This format is defined in full detail in the [[../development-guide.org][Development Guide]].
+
+** 4. Consequences
 
 - **Positive**:
-    - **High Confidence**: Changes to regex are immediately and explicitly verified against documented expectations.
-    - **Improved Maintainability**: Grammar logic is centralized and easier to reason about.
-    - **Reduced Errors**: Automation eliminates manual synchronization mistakes.
-    - **Clear Documentation**: Fixtures become living documentation of the grammar's behavior.
+  - **High Confidence**: Changes are verified at the logic, visual, and integration levels.
+  - **Superior Maintainability**: Logic, structure, and tests are decoupled and easy to reason about.
+  - **Excellent Developer Experience**: Writing and organizing tests in Org Mode is natural and efficient. The fast TDD loop dramatically speeds up development.
+  - **Self-Documenting**: The fixture files themselves become rich, living documentation of the grammar's behavior.
 - **Negative**:
-    - **Initial Setup Cost**: Requires effort to create the initial `regex.ts` module, the build script, and refactor the test runner.
-    - **Learning Curve**: Developers need to understand the new workflow.
-
-** Implementation Plan
-
-*** File Structure
-
-- src/grammar/regex.ts: All regex patterns for Org Mode syntax highlighting are defined here as named exports. Each pattern is documented with its intended capture groups and usage. This file is the single source of truth (SSoT).
-- syntaxes/org.tmLanguage.template.yaml: The TextMate grammar template, referencing regex via placeholders (e.g., {{headlineRegex}}). No regex is duplicated here.
-- syntaxes/org.tmLanguage.yaml: Intermediate grammar file, generated by the build script with injected regex. Not edited manually.
-- syntaxes/org.tmLanguage.json: Final grammar file, generated from YAML, used by VS Code for highlighting.
-- scripts/build-grammar.ts: Build script that reads regex from regex.ts, injects them into the template, and outputs both YAML and JSON grammar files.
-- test/colorize-fixtures/*.org: Fixture files containing sample Org Mode content and structured comments mapping regex capture groups to expected TextMate scopes. Each test case can specify its regex via `# Use: <regexName>` annotation.
-- test/unit/grammar-regex.test.ts: Refactored test suite that parses fixtures, applies the correct regex per test case, and asserts group-to-scope mapping consistency.
-
-Regex patterns are never duplicated in YAML, JSON, or tests; all are sourced from `src/grammar/regex.ts` (SSoT).
-
-Summary Table:
-
-| File/Script                          | Purpose                                                      |
-|--------------------------------------|--------------------------------------------------------------|
-| src/grammar/regex.ts                 | Single source of regex patterns                              |
-| syntaxes/org.tmLanguage.template.yaml| Grammar template with regex placeholders                     |
-| syntaxes/org.tmLanguage.yaml         | Intermediate grammar with injected regex                     |
-| syntaxes/org.tmLanguage.json         | Final grammar for VS Code                                    |
-| scripts/build-grammar.ts             | Build script for grammar generation                          |
-| test/colorize-fixtures/*.org         | Fixtures with sample text and group-to-scope mapping         |
-| test/unit/grammar-regex.test.ts      | Test suite for regex/grammar/fixture consistency             |
-
-*** Build & Test Process
-
-- Developer edits or adds regex in regex.ts (SSoT).
-- Developer updates or creates fixture files in colorize-fixtures, documenting expected group-to-scope mappings in structured comments. Each test case can specify its regex via annotation.
-- Developer runs build-grammar.ts:
-    - Loads all regex from regex.ts.
-    - Reads org.tmLanguage.template.yaml and replaces placeholders with actual regex.
-    - Outputs org.tmLanguage.yaml (intermediate) and then generates org.tmLanguage.json.
-- Tests in grammar-regex.test.ts are run:
-    - For each fixture, the test parses structured comments to extract expected group-to-scope mappings.
-    - The correct regex is applied to each test case (per-case annotation supported).
-    - The test asserts that each capture group matches the expected content and is assigned the correct scope as defined in the grammar and fixture.
-    - The test cross-validates group numbering and scope assignments in the YAML, regex, and fixture metadata.
-
-*** Regex and Template Integration
-
-- All grammar rules in the template reference regex via named placeholders (e.g., match: {{headlineRegex}}).
-- The build script ensures that only regex defined in regex.ts are injected, preventing manual errors and enforcing SSoT.
-- Capture group mappings in the template are documented and validated against both the regex and the fixture comments. Per-case annotation in fixtures is supported and enforced by the test runner.
-
-*** Test Validation Workflow
-
-- For each syntax feature (e.g., headlines, lists, tables):
-    - The corresponding regex is defined in regex.ts.
-    - The template references the regex via a placeholder.
-    - The fixture file provides sample text and a mapping of capture groups to expected scopes. Each test case can specify its regex.
-    - The test suite parses the fixture, applies the correct regex, and checks that each group is correctly matched and scoped.
-- When a regex or scope mapping changes:
-    - The developer updates the regex and/or fixture comments.
-    - The build script regenerates the grammar.
-    - The test suite immediately validates the change, failing if any mapping is inconsistent.
-
-*** Error Handling and CI Integration
-
-- The build script fails with a clear error if any placeholder in the template does not have a corresponding regex in regex.ts.
-- The test suite fails if any fixture mapping does not match the grammar's capture group assignments, or if per-case annotation is missing or incorrect.
-- The CI pipeline runs both the build script and the test suite to ensure grammar and tests are always in sync. Any mismatch or error will fail the build and require developer attention.
-
-** ADR Validation
-
-This ADR is considered successful when:
-- A developer can add a new capture group to a regex, update the corresponding fixture comment (and per-case annotation if needed), and see the test fail until the grammar generation script is run and the test passes.
-- The `org.tmLanguage.json` file is successfully generated and used by VS Code for highlighting.
-- The entire process is integrated into the CI/CD pipeline, with all build and test steps automated and enforced.
+  - **Increased Complexity**: The architecture has more moving parts than a simple, monolithic test.
+  - **Learning Curve**: Contributors must familiarize themselves with the workflow, which is why the Development Guide is essential.

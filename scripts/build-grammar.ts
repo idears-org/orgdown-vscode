@@ -1,8 +1,7 @@
 import path from 'path';
 import fs from 'fs-extra';
 import yaml from 'js-yaml';
-import { glob } from 'glob';
-// import { fileURLToPath } from 'url';
+import * as regexModule from '@common/grammar/regex.js';
 
 interface OrgSrcLanguage {
   name: string;

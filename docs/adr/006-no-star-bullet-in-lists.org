@@ -1,0 +1,26 @@
+#+TITLE: 005-no-star-bullet-in-lists.org
+#+DATE: 2025-08-05
+#+ADR_NUMBER: 005
+#+STATUS: Accepted
+#+DECISION_MAKER: Human Developer
+
+* Context
+Org Mode allows the use of the star character (*) as a bullet for unordered lists. However, this conflicts with the use of * for headlines, leading to ambiguity and potential parsing errors. In practice, most Org files use - and + for list bullets, and * as a bullet is rare.
+
+* Decision
+The Orgdown VS Code extension will NOT support * as a bullet for list items. Only - and + will be recognized as valid unordered list bullets.
+
+* Consequences
+- Removes ambiguity between headlines and list items.
+- Simplifies grammar and implementation.
+- Reduces risk of parsing errors and user confusion.
+- Slightly diverges from the full Org Mode spec, but only in a rarely used area.
+- Org files using * as a bullet will not be parsed as lists; users should convert such bullets to - or +.
+
+* Alternatives Considered
+- Supporting * as a bullet: increases complexity and ambiguity, not recommended.
+- Warning users about unsupported bullets: could be added in future for better UX.
+
+* Related Documents
+- Fixture: F02-1-plain-lists.org
+- Project Overview: project-overview.org

@@ -1,10 +1,8 @@
-// test/unit/grammar-scope-naming.test.ts
-// Use Mocha assertions to check scope naming conventions and theme compatibility in org.tmLanguage.json
-import assert from 'assert';
+import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 
-suite('Grammar Scope Naming', function () {
+describe('Grammar Scope Naming', () => {
   const grammarPath = path.join(__dirname, '../../syntaxes/org.tmLanguage.json');
   const allowedPrefixes = [
     'markup.', 'meta.', 'source.', 'comment.', 'string.', 'constant.', 'entity.', 'punctuation.'
@@ -52,12 +50,12 @@ suite('Grammar Scope Naming', function () {
     }
     return problems;
   }
-  test('should have only standard and theme-compatible scopes and includes', function () {
+  it('should have only standard and theme-compatible scopes and includes', () => {
     if (!fs.existsSync(grammarPath)) {
       throw new Error('org.tmLanguage.json not found. Please build grammar first.');
     }
     const grammar = JSON.parse(fs.readFileSync(grammarPath, 'utf8'));
     const problems = checkGrammarScopes(grammar);
-    assert.strictEqual(problems.length, 0, `Found non-standard scopes or includes:\n${problems.map(p => '  - ' + p).join('\n')}`);
+    expect(problems.length).toBe(0);
   });
 });

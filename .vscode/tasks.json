@@ -1,70 +1,38 @@
-// See https://go.microsoft.com/fwlink/?LinkId=733558
-// for the documentation about the tasks.json format
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "watch",
-            "dependsOn": [
-                "watch:client",
-                "watch:server",
-                "watch:grammar"
-            ],
-            "presentation": {
-                "reveal": "never"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "watch:client",
-            "type": "shell",
-            "command": "pnpm",
-            "args": [
-                "run",
-                "watch:client"
-            ],
-            "isBackground": true,
-            "group": "build",
-            "problemMatcher": "$esbuild-watch",
-            "presentation": {
-                "group": "watch",
-                "reveal": "never"
-            }
-        },
-        {
-            "label": "watch:server",
-            "type": "shell",
-            "command": "pnpm",
-            "args": [
-                "run",
-                "watch:server"
-            ],
-            "isBackground": true,
-            "group": "build",
-            "problemMatcher": "$tsc-watch",
-            "presentation": {
-                "group": "watch",
-                "reveal": "never"
-            }
-        },
-        {
-            "label": "watch:grammar",
-            "type": "shell",
-            "command": "pnpm",
-            "args": [
-                "run",
-                "watch:grammar"
-            ],
-            "isBackground": true,
-            "group": "build",
-            "problemMatcher": "$esbuild-watch",
-            "presentation": {
-                "group": "watch",
-                "reveal": "never"
-            }
-        }
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "npm",
+      "script": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$esbuild"],
+      "detail": "Clean, generate grammar, and build the extension."
+    },
+    {
+      "label": "dev",
+      "type": "npm",
+      "script": "dev",
+      "problemMatcher": ["$esbuild"],
+      "isBackground": true,
+      "detail": "Watch for changes and rebuild the extension and grammar."
+    },
+    {
+      "label": "test:unit",
+      "type": "npm",
+      "script": "test:unit",
+      "group": "test",
+      "detail": "Run unit tests with Vitest."
+    },
+    {
+      "label": "lint",
+      "type": "npm",
+      "script": "lint",
+      "problemMatcher": ["$eslint-compact"],
+      "detail": "Run ESLint checks."
+    }
+  ]
 }

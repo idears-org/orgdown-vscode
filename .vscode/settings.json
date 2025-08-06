@@ -1,24 +1,25 @@
 // Place your settings in this file to overwrite default and user settings.
 {
+    "files.eol": "\n",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
     "files.exclude": {
-        "out": false,
-        "dist": false
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "dist": true,
+        "out": true,
+        "**/*.tsbuildinfo": true
     },
     "search.exclude": {
         "out": true,
         "dist": true
     },
-    "typescript.tsc.autoDetect": "off",
-
-    "mochaExplorer.launcherScript": "node_modules/mocha-explorer-launcher-scripts/vscode-test",
-    "mochaExplorer.ui": "tdd",
-    "mochaExplorer.autoload": false,
-    "mochaExplorer.ipcRole": "server",
-    "mochaExplorer.require": [
-        "ts-node/register"
-    ],
-    "mochaExplorer.env": {
-        "VSCODE_VERSION": "stable",
-        "ELECTRON_RUN_AS_NODE": null
-    },
+    "typescript.tsc.autoDetect": "off"
 }

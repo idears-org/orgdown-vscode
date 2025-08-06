@@ -1,0 +1,63 @@
+#+TITLE: Inspection for F01-headlines.org (Auto-Generated)
+# DO NOT EDIT. Run 'pnpm build:inspections' to regenerate.
+
+* Fixture: F01-headlines.org
+#+DESCRIPTION: Test Suite for Headlines
+
+#+TITLE: Test Suite for Headlines
+
+** Normal Cases
+
+** Test: Simple headline
+*** Simple headline
+
+
+** Test: Complete headline with all elements
+*** TODO [#A] Complete headline example [2/5] :work:project:
+
+
+** Test: Multi-level headline with TODO
+**** DONE Multi-level task
+
+
+** Test: Priority without TODO
+***** [#B] Priority headline without todo
+
+
+** Test: Complex headline with unicode and symbols
+****** WAITING [#C] 复杂标题 with symbols !@#$% :chinese:symbols:
+
+
+** Test: Very deep level headline
+******** NEXT [#A] Deep level headline :deep:level:nested:
+
+
+** Test: Headline with single tag
+*** Simple headline with one tag :single:
+
+
+** Test: Headline with progress/cookie
+*** TODO [#A] Project planning [1/3] :project:
+
+
+** Test: Headline with percentage progress
+**** DONE Task completion [50%] :done:
+
+
+** Test: Comment headline
+*** COMMENT This is a commented headline :archived:
+
+
+** Test: Full featured headline
+***** TODO [#B] Complex task with everything [3/10] :work:urgent:personal:
+
+
+** Test: Headline without tags but with progress
+****** WAITING Task in progress [75%]
+
+
+** Edge Cases
+
+** Test: Edge case - headline text with brackets
+**** TODO Task with [brackets] in text :test:
+

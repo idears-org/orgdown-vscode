@@ -1,84 +1,131 @@
 * Orgdown VS Code Extension Development Guide
 
-This guide provides practical instructions for contributing to Orgdown's functionality. It is designed to help community contributors add, test, and debug new syntax features using our automated, fixture-driven workflow.
+Welcome, contributor! This guide provides practical instructions for contributing to Orgdown. It is designed to help you add, test, and debug new features using our automated, multi-layered testing workflow.
 
-** Syntax Support Workflow
+** 1. Core Philosophy
 
-Orgdown uses a unified, test-driven workflow for all syntax features. The process is fully automated and ensures that all grammar rules are consistent, maintainable, and easy to test.
+Our development process is built on two foundational principles:
 
-*** 1. Single Source of Truth (SSoT)
-- All regular expressions for syntax highlighting are defined in `src/grammar/regex.ts` as named exports.
-- No regex is duplicated in YAML, JSON, or tests.
+- **Test-Driven Development (TDD)**: We write tests first. This ensures every feature is verifiable and prevents regressions.
+- **Single Source of Truth (SSoT)**: Each piece of logic or data (regular expressions, grammar structure, test cases) is defined in exactly one place, eliminating duplication and inconsistency.
 
-*** 2. Grammar Template
-- The TextMate grammar template is located at `syntaxes/org.tmLanguage.template.yaml`.
-- Regex patterns are referenced via placeholders (e.g., `{{headlineRegex}}`).
-- The build script injects regex from SSoT into the template.
+For a deep dive into the architectural decisions behind this workflow, please see [[./docs/adr/005-unified-grammar-and-test-workflow.org][ADR-005: Unified, Multi-Layered Grammar and Testing Workflow]].
 
-*** 3. Fixture-Driven Testing
-- All test cases are defined in fixture files under `test/colorize-fixtures/` (e.g., `F01-headlines.org`).
-- Each fixture contains sample Org Mode content and structured comments mapping regex capture groups to expected TextMate scopes.
-- Each test case can specify its regex via annotation, e.g.:
+** 2. Quick Start: Fixing a Highlighting Bug
 
-  #+BEGIN_COMMENT :regex headlineRegex :description Headline Scope Mapping
-  1. stars -> punctuation.definition.heading.org
-  2. todo -> keyword.other.todo.org
-  3. priority block -> constant.other.priority.org
-  4. priority letter -> constant.other.priority.value.org
-  5. headline text -> entity.name.section.org
-  6. tags -> entity.name.tag.org
-  #+END_COMMENT
+This is the most common contribution. Here’s your fast track:
 
-  # Test Case 1: Simple headline
-  # Use: headlineLevel1Regex
-  * TODO [#A] Headline text :tag1:tag2:
-  # Expected groups: [1: "*", 2: "TODO", 3: "[#A]", 4: "A", 5: "Headline text", 6: ":tag1:tag2:"]
+1.  **Find the Fixture**: Go to `test/fixtures/`. Find the `.org` file corresponding to the buggy feature (e.g., `F01-headlines.org`).
+2.  **Create a Failing Test**: Add a new `* Test Case:` headline that reproduces the bug. Add the incorrect input in a `#+BEGIN_SRC` block.
+3.  **Run the Test**: Run `pnpm test:unit`. Watch it fail. This is expected!
+4.  **Fix the Regex**: Go to `common/src/grammar/regex.ts`. Find the relevant regular expression and fix it.
+5.  **Verify the Fix**: Re-run `pnpm test:unit`. It should now pass.
+6.  **Update Snapshots**: Run `pnpm test:integration`. It will likely fail because the visual output has changed. Review the changes in the `.snap` file and, if they are correct, run `pnpm test:integration -u` to update the snapshot.
+7.  **Commit**: Commit your changes to the fixture file, `regex.ts`, and the updated snapshot file.
 
-*** 4. Build and Test Commands
-- To build the grammar and run all tests, use:
+** 3. The Full Workflow: Adding a New Feature
 
-  pnpm run build:grammar
-  pnpm test:unit
+Let's walk through the process of adding a new feature, for example, syntax highlighting for Org Mode's **Planning Lines** (e.g., `SCHEDULED: <...>`).
 
-  you can also use the watch script to automatically rebuild on file changes:
+*** Step 0: Design the TextMate Scopes
 
-  pnpm run watch:grammar
+Before writing code, design a clear TextMate scope naming scheme. This ensures our highlighting is semantic and compatible with themes. (See *Section 4.1* for principles).
 
-- To run snapshot tests for integration validation:
+For our Planning Line feature, the design might be:
+- `meta.planning.org`
+  - `keyword.other.planning.org`
+  - `meta.timestamp.org`
+    - `constant.numeric.date.org`
 
-  pnpm test:integration
+*** Step 1: Define the Blueprints (The SSoTs)
 
-*** 5. Adding New Syntax Support
-1. Define or update the regex in `src/grammar/regex.ts`.
-2. Create or update a fixture file in `test/colorize-fixtures/`:
-   - Add sample Org Mode content.
-   - Add a structured comment block mapping capture groups to scopes.
-   - For each test case, annotate the regex to use and expected group values.
-3. Run the build and test commands above.
-4. If tests fail, adjust your regex or fixture until all tests pass.
-5. Commit your changes following Conventional Commits (e.g., `feat: add table syntax support`).
+1.  **Define Logic (Regex)**: In `common/src/grammar/regex.ts`, add your new, named, exported regular expression. Document its capture groups.
+2.  **Define Structure (Grammar)**: In `syntaxes/org.tmLanguage.template.yaml`, add a rule that uses your `{{regex_name}}` and maps its capture groups to the scopes you designed.
+3.  **Define Tests (Fixture)**: In `test/fixtures/`, create a new file (e.g., `F11-planning-line.org`). Add `* Test Case:` headlines for all scenarios. Use the format defined in *Section 4.3*.
 
-*** 6. Debugging and Validation
-- If a test fails, the error message will indicate which group or scope mapping is inconsistent.
-- You can run tests for a specific fixture by editing the test runner or using filtering in your test command.
-- The CI pipeline will automatically validate grammar and tests on every commit.
+*** Step 2: Test-Driven Development (L1 - Unit Test)
 
-*** 7. Example Fixture (for a new syntax)
+This loop validates your regex logic against your test fixtures.
 
-#+BEGIN_COMMENT :regex tableRegex :description Table Scope Mapping
-1. row -> meta.table.row.org
-2. cell -> meta.table.cell.org
-#+END_COMMENT
+1.  Run `pnpm test:unit`.
+2.  The test runner will parse your fixture file, apply the regex specified in `:REGEX:`, and compare the results against the `#+RESULTS: regex` table.
+3.  Adjust your regex in `regex.ts` until all tests pass.
 
-# Test Case 1: Simple table row
-# Use: tableRegex
-| Cell 1 | Cell 2 |
-# Expected groups: [1: "| Cell 1 | Cell 2 |", 2: "Cell 1", 3: "Cell 2"]
+*** Step 3: Build the Final Artifacts
 
-*** 8. Best Practices
-- Always update or add fixture cases when changing regex.
-- Use clear, descriptive comments for group-to-scope mapping.
-- Validate changes locally before submitting a PR.
-- Follow file naming conventions and commit message guidelines.
+1.  Run `pnpm build:grammar`: Generates the final `syntaxes/org.tmLanguage.json`.
+2.  Run `pnpm build:inspections`: Generates human-readable inspection files in `test/inspections/`.
 
-For more details, see ADR-005 and implementation plan 002 in the `docs/` directory.
+*** Step 4: End-to-End Validation (L2 & L3)
+
+1.  **Manual Scope Verification (L2)**: Open the generated `.inspection.org` file. Use `Developer: Inspect Editor Tokens and Scopes` and verify that the highlighted scopes match the `:SCOPE_...:` properties in your fixture.
+2.  **Snapshot Testing (L3)**: Run `pnpm test:integration`. On the first run, it will fail and create a `.snap` file. Review this snapshot carefully. If it is correct, run `pnpm test:integration -u` to accept it.
+
+*** Step 5: Commit Your Work
+
+Commit all the "source" files you have changed. Do *not* commit generated files.
+
+- **DO commit**: `common/src/**/*.ts`, `syntaxes/org.tmLanguage.template.yaml`, `test/fixtures/*.org`, `test/integration/__snapshots__/*.snap`
+- **DO NOT commit**: `syntaxes/org.tmLanguage.json`, `test/inspections/*.org`
+
+** 4. Core Concepts & Conventions
+
+This section defines the official conventions for our testing framework.
+
+*** 4.1. Syntax Unit (`<syntax>`) Registry
+
+A `<syntax>` is a conventional name for a distinct, testable unit of Org Mode grammar.
+
+- *Principles*: Must have semantic cohesion, relate to a specific implementation in the grammar, and be testable at an appropriate granularity.
+- *Registry*: (This list should be expanded as new syntaxes are added)
+  - `headline`: Represents a headline, including stars, keyword, priority, and tags.
+  - `list-item`: Represents any type of list item (unordered, ordered, checkbox).
+  - `planning-line`: Represents a line containing `SCHEDULED:`, `DEADLINE:`, or `CLOSED:`.
+  - `src-block`: Represents a `#+BEGIN_SRC` ... `#+END_SRC` block.
+
+*** 4.2. Test Type (`<type>`) Registry
+
+A `<type>` corresponds to a specific testing capability of our framework. Adding a new type requires modifying the test runner.
+
+- *Principles*: Must correspond to a user-facing feature and have a unique, machine-parsable result structure.
+- *Registry*: (This list will expand as the extension's capabilities grow)
+  - `regex`: Tests regex capture groups. The result block is a table of `| Group # | Expected Value |`.
+  - `folding`: (Future) Tests code folding ranges.
+  - `symbols`: (Future) Tests the document symbol tree.
+
+*** 4.3. Official Fixture Format
+
+All test cases MUST follow this structure:
+
+#+begin_src org
+* Test Case: A descriptive name for the test
+  :PROPERTIES:
+  :SYNTAX:     syntax-name-1, syntax-name-2
+  :SYNTAX_NAME_1_REGEX:      theRegexToTest
+  :SYNTAX_NAME_1_SCOPE_1:    scope.for.group.1 (required)
+  :SYNTAX_NAME_2_REGEX:      anotherRegex
+  :END:
+
+  #+BEGIN_SRC org
+  The actual Org Mode text to test.
+  #+END_SRC
+
+  # This tests the 'regex' feature for the 'syntax-name-1' syntax
+  #+RESULTS: regex syntax-name-1
+  | Group # | Expected Value |
+  |---------+----------------|
+  | ...     | ...            |
+
+  # This tests the 'regex' feature for the 'syntax-name-2' syntax
+  #+RESULTS: regex syntax-name-2
+  | Group # | Expected Value |
+  |---------+----------------|
+  | ...     | ...            |
+#+end_src
+
+** 5. Useful Commands
+
+- `pnpm dev`: Watches source files and rebuilds them automatically.
+- `pnpm lint`: Checks for code style issues.
+- `pnpm check-types`: Checks for TypeScript type errors.
+- `pnpm test`: Runs the full test suite (unit and integration).

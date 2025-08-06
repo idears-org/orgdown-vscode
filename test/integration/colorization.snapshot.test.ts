@@ -21,7 +21,7 @@ function assertUnchangedTokens(testFixurePath: any, done: any) {
     let fileName = basename(testFixurePath);
     vscode.commands.executeCommand('_workbench.captureSyntaxTokens', vscode.Uri.file(testFixurePath)).then(data => {
         try {
-            let resultsFolderPath = join(dirname(dirname(testFixurePath)), 'colorize-results');
+            let resultsFolderPath = join(dirname(dirname(testFixurePath)), 'grammar-snapshot');
             if (!fs.existsSync(resultsFolderPath)) {
                 fs.mkdirSync(resultsFolderPath);
             }
@@ -58,7 +58,7 @@ function assertUnchangedTokens(testFixurePath: any, done: any) {
 suite('colorization', () => {
     console.log('Colorization test suite started');
     // Always resolve fixtures from the project root, not the compiled output
-    const extensionColorizeFixturePath = join(process.cwd(), 'test', 'colorize-fixtures');
+    const extensionColorizeFixturePath = join(process.cwd(), 'test', 'grammar-inspections');
 
     // Automatically open an org file to ensure the extension is activated
     setup(async () => {

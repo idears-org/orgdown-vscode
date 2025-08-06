@@ -1,228 +1,99 @@
-* OrgDown tmLanguage Coverage & Testing Plan
+* Orgdown Feature Coverage Dashboard
 
-** Purpose
-To ensure OrgDown's tmLanguage provides robust, accurate, and comprehensive syntax highlighting for all Org Mode features by following a systematic, fixture-driven testing workflow.
+** 1. Purpose
 
-** Phase 1: Feature-by-Feature Fixture Design
-This phase focuses on creating a dedicated test fixture for every individual Org Mode syntax element and its variations. The goal is to isolate each feature to test it thoroughly.
+This document serves as the official checklist and roadmap for tracking which Org Mode features are covered by our new, standardized testing framework. Its goal is to provide a clear overview of project status and to guide new contributions.
 
-*** Core Syntax Fixtures [23/23]
-    - [x] **Headlines**: Levels, TODO keywords, priorities, tags, commented headlines.
-      _fixtures: F01-headlines.org, F01-headline-edge-case.org_
-      - [x] Manual Review
-      - [x] Snapshot Generation
-      - [x] Snapshot Diff Analysis
-      - [x] Iteration
-      - [x] Mark as Complete
-    - [x] **Lists**: Unordered, ordered, description, checkboxes (with states).
-      _fixtures: F02-lists.org, F03-checkbox-list-edge-cases.org, F04-headline-with-checkbox-list.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Tables**: Simple, with alignment, with formulas.
-      _fixtures: F05-tables.org, F06-table-formula-edge-cases.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Blocks**: SRC, EXAMPLE, QUOTE, VERSE, CENTER, COMMENT, custom blocks.
-      _fixtures: F07-blocks.org, F08-src-blocks.org, F09-special-block-types.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Drawers**: PROPERTIES, LOGBOOK, custom drawers.
-      _fixtures: F10-drawers.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Planning**: SCHEDULED, DEADLINE, CLOSED timestamps.
-      _fixtures: F11-planning-line.org, F12-scheduled.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Timestamps**: Active, inactive, ranges, repeaters.
-      _fixtures: F13-timestamps.org, F14-timestamp-edge-cases.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Links**: Internal, external, file links, custom IDs, abbreviations.
-      _fixtures: F15-links.org, F16-link-abbreviation.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Footnotes**: Definitions and inline references.
-      _fixtures: F17-footnote-edge-cases.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Inline Markup**: Bold, italic, underline, verbatim, code, strike-through, `sub_script`, `super^script`.
-      _fixtures: F18-inline-markup.org, F19-inline-markup-nesting.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Macros**: Definition and usage.
-      _fixtures: F20-macros.org, F21-macro-expansion-edge-cases.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Dynamic Blocks**: Basic structure.
-      _fixtures: F22-dynamic-blocks.org, F23-dynamic-block-variants.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Properties**: Inheritance and value types.
-      _fixtures: F24-property-inheritance.org, F25-property-value-types.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Horizontal Rules**: Standard `-----`.
-      _fixtures: F26-horizontal-rules.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Tags**: In headlines and file-level (`#+FILETAGS:`).
-      _fixtures: F27-tags.org, F28-priority-todo-tags-edge-cases.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Keywords**: For various `#+KEY: value` settings like `TITLE`, `AUTHOR`, `OPTIONS`.
-      _fixtures: F29-keywords.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Comments**: Line comments, `COMMENT` blocks, and commented subtrees.
-      _fixtures: F30-comment-subtree.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Special Blocks**: LATEX, HTML.
-      _fixtures: F09-special-block-types.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Multilingual**: Headlines, paragraphs, tables, lists, blocks, drawers, properties, tags, emoji, and plain text in multiple languages (including 中文/Chinese, Japanese, Korean, Russian, Arabic, Hebrew, etc.).
-      _fixtures: F31-multilingual-fixture.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Inline LaTeX**: Fragments like `\alpha`.
-      _fixtures: F32-inline-latex.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Include**: #+INCLUDE directive and variants.
-      _fixtures: F33-include.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Kitchen Sink**: A comprehensive file combining all features for integration testing.
-      _fixtures: F34-kitchen-sink.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Archive**: Archive heading with Lists in lists, blocks in lists, etc.
-      _fixtures: F35-archive-subtree.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-*** Edge Case & Nesting Fixtures [3/3]
-    - [x] **Malformed Syntax**: Incomplete blocks, broken links, unterminated markup.
-      _fixtures: F36-malformed-syntax.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Ambiguous Cases**: Syntax that could be interpreted in multiple ways.
-      _fixtures: F37-complex-noweb-reference.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
-    - [x] **Blocks Edge Cases**: Nesting, mixed case, parameter errors, block/markup/table/list/headline/drawer/paragraph combinations, custom types, error simulation, etc.
-      _fixtures: F38-block-edge-cases.org_
-      - [ ] Manual Review
-      - [ ] Snapshot Generation
-      - [ ] Snapshot Diff Analysis
-      - [ ] Iteration
-      - [ ] Mark as Complete
+For the complete technical workflow on how to add a new feature or test case, please see the [[../development-guide.org][Development Guide]].
 
-** The Test-Driven Grammar Workflow (Based on ADR-005)
+** 2. How to Contribute
 
-This workflow treats regular expressions and fixture definitions as the single source of truth, automating grammar generation and testing. All regex patterns are defined only in `src/grammar/regex.ts` and never duplicated in YAML, JSON, or tests.
+1.  **Pick an Unchecked Item**: Find a feature below that is not yet marked as `[X]`, preferably starting with a `[Priority: High]` item.
+2.  **Consult the Guide**: Follow the step-by-step instructions in the [[../development-guide.org][Development Guide]] to implement it.
+3.  **Create or Update the Fixture**: The primary deliverable is the fixture file specified in the checklist (e.g., `test/fixtures/F05-tables.org`).
+4.  **Submit a Pull Request**: Once all tests pass and snapshots are updated, submit your PR.
 
-1.  **[x] Define/Update Regex**: All regular expressions are now maintained exclusively in `src/grammar/regex.ts` as the single source of truth (SSoT).
+** 3. Fixture Implementation Status
 
-2.  **[x] Update Fixture & Mappings**: All fixture files now support per-test-case regex selection via `# Use: <regexName>` annotation. Comment formats are unified and capture group mappings are complete.
+*** Core Structure [Priority: High]
+- [X] **Headlines**: Levels, TODOs, priorities, tags, commented headlines.
+  _fixture: ~test/fixtures/F01-headlines.org~, ~test/fixtures/F01-headline-edge-cases.org~
+  _syntax: `headline`_
+- [X] **Lists**: Unordered, ordered, description lists.
+  _fixture: ~test/fixtures/F02-1-plain-lists.org~, ~test/fixtures/F02-2-description-lists.org~
+  _syntax: `list-item`_
+- [ ] **Checkboxes**: List items with checkbox markers `[ ]`, `[X]`, `[-]`.
+  _fixture: ~test/fixtures/F02-list-edge-cases.org~
+  _syntax: `checkbox-item`_
+- [ ] **Horizontal Rules**: Standard `-----`.
+  _fixture: ~test/fixtures/F26-horizontal-rules.org~
+  _syntax: `horizontal-rule`_
 
-3.  **[x] Run Explicit, Data-Driven Tests**: The test runner (`grammar-regex.test.ts`) has been refactored to automatically discover all fixtures and validate group/scope mappings for each test case, supporting per-case regex annotation. All tests are passing.
+*** Block-Level Elements [Priority: High]
+- [ ] **Standard Blocks**: EXAMPLE, QUOTE, VERSE, CENTER, COMMENT.
+  _fixture: ~test/fixtures/F07-blocks.org~, ~test/fixtures/F09-special-block-types.org~
+  _syntax: `standard-block`_
+- [ ] **Source Code Blocks**: `#+BEGIN_SRC` ... `#+END_SRC` with language identifiers.
+  _fixture: ~test/fixtures/F08-src-blocks.org~
+  _syntax: `src-block`_
+- [ ] **Dynamic Blocks**: `#+BEGIN:` ... `#+END:`.
+  _fixture: ~test/fixtures/F22-dynamic-blocks.org~, ~test/fixtures/F23-dynamic-block-variants.org~
+  _syntax: `dynamic-block`_
 
-4.  **[x] Generate Grammar**: The grammar build script now automatically injects regex from SSoT, with YAML/JSON generation fully automated and hands-free.
+*** Metadata and Planning [Priority: High]
+- [ ] **Keywords**: File-level keywords like `#+TITLE`, `#+AUTHOR`, `#+FILETAGS`.
+  _fixture: ~test/fixtures/F29-keywords.org~, ~test/fixtures/F27-tags.org~
+  _syntax: `keyword`_
+- [ ] **Drawers**: PROPERTIES, LOGBOOK, and custom drawers.
+  _fixture: ~test/fixtures/F10-drawers.org~
+  _syntax: `drawer`_
+- [ ] **Planning Lines**: SCHEDULED, DEADLINE, CLOSED timestamps.
+  _fixture: ~test/fixtures/F11-planning-line.org~, ~test/fixtures/F12-scheduled.org~
+  _syntax: `planning-line`_
+- [ ] **Timestamps**: Active, inactive, ranges, and repeaters.
+  _fixture: ~test/fixtures/F13-timestamps.org~, ~test/fixtures/F14-timestamp-edge-cases.org~
+  _syntax: `timestamp`_
+- [ ] **Properties**: Property inheritance and value types.
+  _fixture: ~test/fixtures/F24-property-inheritance.org~, ~test/fixtures/F25-property-value-types.org~
+  _syntax: `property`_
 
-5.  **[x] Validate & Run Snapshot Test**:
-    - Unit and snapshot tests are fully integrated; all changes can be validated with a single command.
-    - Snapshot tests capture all syntax interactions and side effects.
+*** Inline Elements [Priority: Medium]
+- [ ] **Links**: All link types (internal, external, file, etc.).
+  _fixture: ~test/fixtures/F15-links.org~, ~test/fixtures/F16-link-abbreviation.org~
+  _syntax: `link`_
+- [ ] **Inline Markup**: Bold, italic, underline, verbatim, code, strike-through.
+  _fixture: ~test/fixtures/F18-inline-markup.org~, ~test/fixtures/F19-inline-markup-nesting.org~
+  _syntax: `inline-markup`_
+- [ ] **Footnotes**: Definitions and inline references.
+  _fixture: ~test/fixtures/F17-footnote-edge-cases.org~
+  _syntax: `footnote`_
+- [ ] **Macros**: Definition and usage.
+  _fixture: ~test/fixtures/F20-macros.org~, ~test/fixtures/F21-macro-expansion-edge-cases.org~
+  _syntax: `macro`_
+- [ ] **Inline LaTeX**: Math fragments like `\alpha`, `$ ... $`, etc.
+  _fixture: ~test/fixtures/F32-inline-latex.org~
+  _syntax: `inline-latex`_
 
-6.  **[ ] Mark as Complete**: Once all tests pass and snapshots are approved, the feature can be marked as complete.
+*** Advanced Features & Edge Cases [Priority: Medium]
+- [ ] **Tables**: Simple tables, alignment, and formulas.
+  _fixture: ~test/fixtures/F05-tables.org~, ~test/fixtures/F06-table-formula-edge-cases.org~
+  _syntax: `table`_
+- [ ] **Comments**: Line comments and commented subtrees.
+  _fixture: ~test/fixtures/F30-comment-subtree.org~
+  _syntax: `comment`_
+- [ ] **Include Directive**: `#+INCLUDE` keyword.
+  _fixture: ~test/fixtures/F33-include.org~
+  _syntax: `include`_
+- [ ] **Archive & Tags**: Archive subtrees and tags.
+  _fixture: ~test/fixtures/F35-archive-subtree.org~, ~test/fixtures/F27-tags.org~
+  _syntax: `archive`, `tag`_
 
-** Phase 3: Automation & CI
-This phase is now fully automated:
-
-- [x] **Automate Unit & Snapshot Testing**: Unit and snapshot tests are integrated into CI (e.g., GitHub Actions) and run automatically on every commit.
-- [x] **Grammar Generation Check**: CI automatically checks that `org.tmLanguage.json` is up-to-date with `regex.ts`. If not, the build fails and developers are prompted to regenerate.
-- [x] **Kitchen Sink Validation**: The `kitchen-sink.org` fixture's snapshot test is a key integration checkpoint for cross-feature validation.
-
-** Phase 4: Maintenance & Evolution
-Ongoing maintenance and evolution:
-
-- [x] **Issue-Driven Fixes**: All bug fixes strictly follow the workflow: add a failing test case to the relevant fixture, confirm the failure, update the regex in SSoT, and verify all tests pass.
-- [x] **Document Known Limitations**: A known limitations document is maintained and updated to clarify edge cases and unsupported syntax.
-- [x] **Grammar Refactoring**: `regex.ts` is periodically refactored for readability, maintainability, and improved anchor usage.
-
-** Next Steps
-- Expand fixtures and regex as needed. All new features and bug fixes must first be covered by fixture and annotation—no changes to test code required.
-- Continue to improve the known limitations document to ensure comprehensive syntax coverage and forward-looking test strategy.
+*** Integration & Stress Tests [Priority: Low]
+- [ ] **Multilingual**: Fixtures with non-ASCII characters.
+  _fixture: ~test/fixtures/F31-multilingual-fixture.org~_
+- [ ] **Malformed Syntax**: Tests for graceful handling of broken syntax.
+  _fixture: ~test/fixtures/F36-malformed-syntax.org~_
+- [ ] **Complex Nesting**: Deeply nested and combined structures.
+  _fixture: ~test/fixtures/F37-complex-noweb-reference.org~, ~test/fixtures/F38-block-edge-cases.org~_
+- [ ] **Kitchen Sink**: A single, comprehensive file combining all features.
+  _fixture: ~test/fixtures/F34-kitchen-sink.org~_

@@ -1,0 +1,172 @@
+#+TITLE: Test Suite for Headlines
+#+PROPERTY: SNAPSHOT_ID F01-headlines_org
+
+* Normal Cases
+
+#+NAME: Simple headline
+#+BEGIN_SRC org
+* Simple headline
+#+END_SRC
+#+RESULTS: headlineLevel1Regex
+| Group # | Expected Value    |
+|---------+-------------------|
+| 1       | *                 |
+| 5       | Simple headline   |
+
+#+NAME: Complete headline with all elements
+#+BEGIN_SRC org
+* TODO [#A] Complete headline example [2/5] :work:project:
+#+END_SRC
+#+RESULTS: headlineLevel1Regex
+| Group # | Expected Value          |
+|---------+-------------------------|
+| 1       | *                       |
+| 2       | TODO                    |
+| 3       | [#A]                    |
+| 4       | A                       |
+| 5       | Complete headline example |
+| 6       | [2/5]                   |
+| 7       | :work:project:          |
+
+#+NAME: Multi-level headline with TODO
+#+BEGIN_SRC org
+** DONE Multi-level task
+#+END_SRC
+#+RESULTS: headlineLevel2Regex
+| Group # | Expected Value     |
+|---------+--------------------|
+| 1       | **                 |
+| 2       | DONE               |
+| 5       | Multi-level task   |
+
+#+NAME: Priority without TODO
+#+BEGIN_SRC org
+*** [#B] Priority headline without todo
+#+END_SRC
+#+RESULTS: headlineLevel3Regex
+| Group # | Expected Value                   |
+|---------+----------------------------------|
+| 1       | ***                              |
+| 3       | [#B]                             |
+| 4       | B                                |
+| 5       | Priority headline without todo   |
+
+#+NAME: Complex headline with unicode and symbols
+#+BEGIN_SRC org
+**** WAITING [#C] 复杂标题 with symbols !@#$% :chinese:symbols:
+#+END_SRC
+#+RESULTS: headlineLevel4Regex
+| Group # | Expected Value              |
+|---------+-----------------------------|
+| 1       | ****                        |
+| 2       | WAITING                     |
+| 3       | [#C]                        |
+| 4       | C                           |
+| 5       | 复杂标题 with symbols !@#$% |
+| 7       | :chinese:symbols:           |
+
+#+NAME: Very deep level headline
+#+BEGIN_SRC org
+****** NEXT [#A] Deep level headline :deep:level:nested:
+#+END_SRC
+#+RESULTS: headlineLevel6Regex
+| Group # | Expected Value        |
+|---------+-----------------------|
+| 1       | ******                |
+| 2       | NEXT                  |
+| 3       | [#A]                  |
+| 4       | A                     |
+| 5       | Deep level headline   |
+| 7       | :deep:level:nested:   |
+
+#+NAME: Headline with single tag
+#+BEGIN_SRC org
+* Simple headline with one tag :single:
+#+END_SRC
+#+RESULTS: headlineLevel1Regex
+| Group # | Expected Value                 |
+|---------+--------------------------------|
+| 1       | *                              |
+| 5       | Simple headline with one tag   |
+| 7       | :single:                       |
+
+#+NAME: Headline with progress/cookie
+#+BEGIN_SRC org
+* TODO [#A] Project planning [1/3] :project:
+#+END_SRC
+#+RESULTS: headlineLevel1Regex
+| Group # | Expected Value       |
+|---------+----------------------|
+| 1       | *                    |
+| 2       | TODO                 |
+| 3       | [#A]                 |
+| 4       | A                    |
+| 5       | Project planning     |
+| 6       | [1/3]                |
+| 7       | :project:            |
+
+#+NAME: Headline with percentage progress
+#+BEGIN_SRC org
+** DONE Task completion [50%] :done:
+#+END_SRC
+#+RESULTS: headlineLevel2Regex
+| Group # | Expected Value      |
+|---------+---------------------|
+| 1       | **                  |
+| 2       | DONE                |
+| 5       | Task completion     |
+| 6       | [50%]               |
+| 7       | :done:              |
+
+#+NAME: Comment headline
+#+BEGIN_SRC org
+* COMMENT This is a commented headline :archived:
+#+END_SRC
+#+RESULTS: headlineLevel1Regex
+| Group # | Expected Value                 |
+|---------+--------------------------------|
+| 1       | *                              |
+| 2       | COMMENT                        |
+| 5       | This is a commented headline   |
+| 7       | :archived:                     |
+
+#+NAME: Full featured headline
+#+BEGIN_SRC org
+*** TODO [#B] Complex task with everything [3/10] :work:urgent:personal:
+#+END_SRC
+#+RESULTS: headlineLevel3Regex
+| Group # | Expected Value                   |
+|---------+----------------------------------|
+| 1       | ***                              |
+| 2       | TODO                             |
+| 3       | [#B]                             |
+| 4       | B                                |
+| 5       | Complex task with everything     |
+| 6       | [3/10]                           |
+| 7       | :work:urgent:personal:           |
+
+#+NAME: Headline without tags but with progress
+#+BEGIN_SRC org
+**** WAITING Task in progress [75%]
+#+END_SRC
+#+RESULTS: headlineLevel4Regex
+| Group # | Expected Value         |
+|---------+------------------------|
+| 1       | ****                   |
+| 2       | WAITING                |
+| 5       | Task in progress       |
+| 6       | [75%]                  |
+
+* Edge Cases
+
+#+NAME: Edge case - headline text with brackets
+#+BEGIN_SRC org
+** TODO Task with [brackets] in text :test:
+#+END_SRC
+#+RESULTS: headlineLevel2Regex
+| Group # | Expected Value                   |
+|---------+----------------------------------|
+| 1       | **                               |
+| 2       | TODO                             |
+| 5       | Task with [brackets] in text   |
+| 7       | :test:                           |

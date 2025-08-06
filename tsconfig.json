@@ -1,26 +1,10 @@
 {
-	"compilerOptions": {
-		"module": "Node16",
-		"target": "ES2022",
-		"lib": [
-			"ES2022"
-		],
-		"sourceMap": true,
-		"rootDir": ".",
-		"strict": true,   /* enable all strict type-checking options */
-		/* Additional Checks */
-		// "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
-		// "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */
-		// "noUnusedParameters": true,  /* Report errors on unused parameters. */
-	},
-	"include": [
-		"client/src",
-		"test",
-		"server/src",
-		"scripts"
-	],
-	"exclude": [
-		"node_modules",
-		".vscode-test"
-	]
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "types": ["node"],
+    "rootDir": "."
+  },
+  "include": ["client/src", "server/src", "common/src"],
+  "references": [{ "path": "./tsconfig.scripts.json" }]
 }
