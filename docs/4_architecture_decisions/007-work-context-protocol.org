@@ -1,0 +1,77 @@
+#+TITLE: [ADR-007] - Work Context Protocol for AI Collaboration
+#+DATE: 2025-08-06
+#+STATUS: Accepted
+#+DECIDERS: san, Gemini
+
+* 1. Context and Problem Statement
+  :PROPERTIES:
+  :Status: Accepted
+  :END:
+
+The current state of collaboration with Large Language Models (LLMs) like Gemini in long-running, complex software projects is inefficient. The primary challenges are:
+- *Context Window Limitations*: The finite size of the context window means the LLM cannot "see" the entire project at once.
+- *Attention Drift*: In long conversations, the LLM's attention can drift, losing track of initial instructions, key constraints, or the specific goal of a task.
+- *Repetitive Re-explanation*: The human developer must constantly repeat the context, goals, and constraints for each task, which is time-consuming and error-prone.
+- *Lack of Traceability*: The reasoning and context for a specific task are often lost in the ephemeral chat history, making it difficult to review or onboard others.
+
+We need a systematic, reliable, and low-overhead method to manage and focus the AI's attention on a per-task basis.
+
+* 2. Decision
+We have decided to adopt a lightweight, file-system-based **"Work Context Protocol" (WCP)**. This protocol formalizes the way we define, load, and manage the context for any given task.
+
+The WCP consists of four core components:
+1.  *The `GEMINI.md` Charter*: A document at the project root that defines the rules of the WCP, making the protocol explicit and transparent.
+2.  *The `work/` Directory*: A new top-level directory that serves as the "workbench" for all tasks. It is structured by task type (e.g., `work/features/`, `work/bugfixes/`).
+3.  *The Global Context File (`work/global_context.org`)*: A file defining a set of documents that can be inherited by all tasks.
+4.  *The Task File*: A dedicated `.org` file for each task (e.g., `work/features/003-checkbox-items.org`). This file is the Single Source of Truth (SSoT) for a task's context. It contains:
+    - Metadata (ID, branch, status).
+    - A clear goal.
+    - A checklist-driven plan.
+    - An `:AI_CONTEXT_FILES:` property that explicitly lists the file paths for the task.
+    - An optional `:AI_INHERIT_GLOBAL_CONTEXT: nil` property to prevent the global context from being loaded.
+
+The workflow is initiated by the human, guided by the AI through an interactive "onboarding" process, and results in a task file that becomes the primary instruction set for the AI.
+
+* 3. Considered Options
+
+**Option 1: Status Quo (Implicit Context via Chat History)**
+- *Description*: Continue relying on the conversational history to manage context.
+- *Pros*: No setup required.
+- *Cons*: Highly inefficient, unreliable, not scalable, prone to attention drift, and lacks traceability.
+
+**Option 2: Heavyweight Tooling (Custom VS Code Extension)**
+- *Description*: Build a dedicated VS Code extension to manage context, with custom commands and UI elements.
+- *Pros*: Potentially seamless UI integration within VS Code.
+- *Cons*: High development and maintenance cost, lacks portability (tied to a specific editor), and is overly complex for the problem at hand.
+
+**Option 3: Work Context Protocol (The Chosen Option)**
+- *Description*: A lightweight protocol based on files and directories, managed via the CLI and editor.
+- *Pros*:
+  - *Zero-dependency*: Works with any editor and standard CLI tools (`git`).
+  - *Portable and Universal*: The principles are applicable to any project or LLM.
+  - *Version Controllable*: The entire context and workflow are stored in version-controlled text files.
+  - *Self-Documenting*: The `work/` directory becomes a rich, traceable log of the project's history.
+  - *Explicit and Reliable*: Provides a clear, unambiguous way to direct the AI's focus.
+- *Cons*: Requires discipline from both the human and AI to adhere to the protocol.
+
+* 4. Rationale
+The Work Context Protocol (Option 3) was chosen because it strikes the optimal balance between structure and flexibility. It directly solves the problem of context management without the high overhead of custom tooling.
+
+This approach aligns with established software engineering best practices like "Configuration as Code" and borrows philosophical strengths from knowledge management systems like Zettelkasten (atomic, linked notes). By making the context explicit and version-controlled, we transform it from a fleeting conversation into a durable, reliable asset. This empowers the human user to act as a precise "attention dispatcher" for the AI, leading to a significant increase in efficiency, accuracy, and traceability.
+
+* 5. Consequences
+
+**Positive**:
+- Collaboration efficiency will be dramatically improved.
+- The AI's focus will be precise and reliable for each task, reducing errors.
+- The development process becomes self-documenting; the `work/` directory serves as a detailed project log.
+- Onboarding new contributors (human or AI) to a specific task becomes trivial: they just need to read the task file.
+
+**Negative**:
+- It introduces a new process that requires discipline to follow.
+- It adds a new top-level directory (`work/`) to the project structure.
+
+**Impact**:
+- A new `work/` directory with a `templates/` subdirectory will be created.
+- The `GEMINI.md` file will be updated to formally define this protocol.
+- All new significant tasks (features, bug fixes) will be initiated and managed via this protocol.

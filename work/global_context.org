@@ -1,0 +1,9 @@
+#+TITLE: Global Project Context
+
+This file defines the set of documents that are considered essential context for ALL tasks within the Orgdown project. Any new task context will automatically inherit these files.
+
+:PROPERTIES:
+:AI_GLOBAL_CONTEXT_FILES:
+- /Users/san/Project/personal_proj/orgdown-vscode/docs/2_contributing/development_guide.org
+- /Users/san/Project/personal_proj/orgdown-vscode/docs/3_reference/architecture.org
+:END:

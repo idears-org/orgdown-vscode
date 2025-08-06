@@ -1,0 +1,29 @@
+#+title: Workflow 001: wcp-refinement
+#+properties:
+:ID:       001
+:TYPE:     workflow
+:BRANCH:   workflow/001-wcp-refinement
+:DESC:     wcp-refinement
+:AI_INHERIT_GLOBAL_CONTEXT: nil
+:END:
+
+* Goal
+Refine the Work Context Protocol (WCP) to make global context inheritance optional.
+
+* Global Context
+:PROPERTIES:
+:AI_GLOBAL_CONTEXT_FILES:
+:END:
+
+* Task Context
+:PROPERTIES:
+:AI_CONTEXT_FILES:
+- /Users/san/Project/personal_proj/orgdown-vscode/GEMINI.md
+- /Users/san/Project/personal_proj/orgdown-vscode/docs/4_architecture_decisions/007-work-context-protocol.org
+:END:
+
+* Plan
+- [X] Propose making global context inheritance optional via a property in the task file.
+- [ ] Update `GEMINI.md` to reflect the new `:AI_INHERIT_GLOBAL_CONTEXT:` property and associated logic.
+- [ ] Update `docs/4_architecture_decisions/007-work-context-protocol.org` to document the change.
+- [ ] Add `:AI_INHERIT_GLOBAL_CONTEXT: nil` to this task file as a demonstration.
