@@ -1,0 +1,13 @@
+#+TITLE: WCP Task Index
+
+This file provides a master index of all tasks managed by the Work Context Protocol. It is automatically updated by the AI assistant.
+
+* Tasks by Status
+
+** In Progress
+
+** Pending
+
+** Completed
+
+** Abandoned

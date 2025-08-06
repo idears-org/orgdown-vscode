@@ -1,0 +1,14 @@
+#+TITLE: Default Project Context
+#+DESCRIPTION: This context is automatically loaded for any branch that does not follow the WCP naming convention (e.g., main, develop). It provides a high-level starting point for general project work.
+
+:PROPERTIES:
+:AI_CONTEXT_FILES:
+- /Users/san/Project/personal_proj/orgdown-vscode/README.md
+- /Users/san/Project/personal_proj/orgdown-vscode/docs/3_reference/architecture.org
+- /Users/san/Project/personal_proj/orgdown-vscode/docs/2_contributing/development_guide.org
+:END:
+
+* AI Instructions
+The files listed above are high-level entry points. When a task requires deeper understanding, you MUST analyze their content for references to more specific documents (e.g., ADRs, feature specifications, etc.).
+
+If you identify a relevant referenced document, you MUST inform the user and ask for permission before loading it into the active context. Do NOT load referenced files automatically.

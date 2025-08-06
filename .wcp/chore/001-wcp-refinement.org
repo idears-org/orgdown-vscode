@@ -1,0 +1,20 @@
+#+TITLE: Chore 001: WCP V4.0 Evolution
+#+properties:
+:ID:       001
+:TYPE:     chore
+:BRANCH:   chore/001-wcp-refinement
+:DESC:     WCP V4.0 Evolution
+:AI_INHERIT_GLOBAL_CONTEXT: nil
+:END:
+
+* Goal
+Evolve the Work Context Protocol to V4.0, transforming it into a project intelligence operating system by incorporating a master task index, granular task tracking, and a mechanism for capturing meta-knowledge.
+
+* Plan
+- [X] Redesign WCP to include a master index, granular tracking, and a project intelligence file.
+- [X] Rename the `work/` directory to `.wcp/` for better semantic clarity and to hide it by default.
+- [X] Create the `.wcp/_index.org` master task dashboard.
+- [X] Create the `PROJECT_INTELLIGENCE.org` file for capturing meta-knowledge.
+- [X] Update `GEMINI.md` to the full WCP V4.0 specification.
+- [X] Upgrade task templates in `.wcp/templates/` to include structured subtasks and progress logs.
+- [ ] Update `docs/4_architecture_decisions/007-work-context-protocol.org` to reflect the final WCP V4.0 architecture.

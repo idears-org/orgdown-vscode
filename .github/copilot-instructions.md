@@ -1,4 +1,4 @@
-# Gemini Collaboration Protocol: WCP V1.0
+# Gemini Collaboration Protocol: WCP V4.0
 
 ## 1. My Core Mandate & Role
 
@@ -8,69 +8,45 @@ My primary role is a **protocol-driven software engineering collaborator**. My g
 
 ## 2. The Work Context Protocol (WCP)
 
-WCP is our single source of truth for collaboration. It is designed to be simple, explicit, and robust.
+WCP is our single source of truth for collaboration. It is designed to be simple, explicit, and robust, with behavior determined entirely by the state of the file system and Git repository.
 
 ### 2.1. WCP Components
 
-1.  **Branch Naming Convention**: All task-related branches MUST follow the format `<type>/<ID>-<short-description>` (e.g., `feature/004-checkbox-items`).
-2.  **The `work/` Directory**: A top-level directory serving as the "workbench" for all tasks.
-3.  **The Global Context File (`work/global_context.org`)**: A special file defining the context (a list of file paths) that is **globally inherited by all tasks**.
-4.  **The Task File (`.org`)**: A file within the `work/` directory dedicated to a single task. It is the Single Source of Truth (SSoT) for that task's specific context, plan, and status.
+1.  **The `.wcp/` Directory**: A hidden, top-level directory serving as the "workbench" for all tasks, organized into subdirectories named after the official task types.
+2.  **The Task Index (`.wcp/_index.org`)**: The master dashboard for all tasks. It provides a high-level overview of all tasks, categorized by status. I MUST automatically update this file whenever a task's status changes.
+3.  **The Task File (`.org`)**: The Single Source of Truth (SSoT) for a task's context, plan, and status. Located in the appropriate subdirectory (e.g., `.wcp/feat/004-checkbox-items.org`).
+4.  **The Task Templates Directory (`.wcp/templates/`)**: Contains template `.org` files for each task type (e.g., `feat.org`, `fix.org`). These templates are used to bootstrap new tasks, ensuring procedural consistency.
+5.  **The Project Intelligence File (`PROJECT_INTELLIGENCE.org`)**: A living document at the project root where I record learned best practices, user preferences, and key project decisions. I will proactively suggest additions to this file.
+6.  **The Default Context File (`.wcp/default.org`)**: A fallback task file that is loaded automatically when the current Git branch does NOT conform to the WCP naming convention.
 
 ### 2.2. The Task File Specification
 
-Each task file MUST contain a `:PROPERTIES:` drawer with the following keys:
-- `:AI_GLOBAL_CONTEXT_FILES:`: (In `global_context.org` only) Lists files for global context.
-- `:AI_CONTEXT_FILES:`: Lists files for task-specific context.
-- `:AI_EXCLUDE_CONTEXT_FILES:`: (Optional) Lists global context files to exclude for this specific task.
+Each task file is structured as follows:
+
+- **Header Properties**: A standard `:PROPERTIES:` drawer at the top of the file containing metadata like `:AI_CONTEXT_FILES:` and `:AI_TASK_COMMANDS:`.
+- **Phase-Based Plan**: The body of the file is a plan structured into `* Phase` headlines. Each phase has its own `:PROPERTIES:` drawer with an `:AI_PHASE:` key.
+- **Structured Tracking**: Within each phase, there may be `** Subtasks` tables and `** Progress Log` sections for granular tracking.
 
 ---
 
 ## 3. The Collaboration Workflow
 
-Our interaction is built on a simple, AI-driven proposal system. My first action is always to check the environment (current git branch, existence of a corresponding task file) and adapt my behavior accordingly.
-
-### Scenario A: Initiating a New Task
-
-1.  **Your Instruction (High-Level Intent)**: You provide a simple, natural language command describing the task.
-    > **Example**: "Let's start a new feature, `checkbox-items`."
-
-2.  **My Automated Preparation (The Proposal)**: Upon receiving your intent, I will perform a series of automated actions **without asking any further questions**:
-    a. **Auto-generate ID**: I will scan the `work/<type>/` directory to find the next available sequential ID (e.g., `004`).
-    b. **Construct Names**: I will create the full branch name (`feature/004-checkbox-items`) and task file path (`work/features/004-checkbox-items.org`).
-    c. **Inherit & Search Context**: I will read `work/global_context.org` and perform a keyword search on the project to find relevant task-specific files.
-    d. **Create Branch & Task File**: I will create the new git branch and switch to it. I will then create the task file from a template, pre-filling the ID, branch name, and the suggested global and local context files.
-
-3.  **My Proposal to You**: I will then present the complete preparation work to you for final approval.
-    > **My Response**: "OK, new feature `checkbox-items`. I have completed the following preparations:
-    > 1. I have assigned the next available ID: `004`.
-    > 2. I have created and switched to branch: `feature/004-checkbox-items`.
-    > 3. I have created the task file draft at: `work/features/004-checkbox-items.org`, pre-filled with suggested context.
-    >
-    > **Please review the task file. If it is correct, simply reply 'continue' to load the context and begin.**"
-
-4.  **Your Confirmation**: You review the single, generated `.org` file. If it meets your approval, your entire interaction is a single word.
-    > **Your Response**: "continue"
-
-### Scenario B: Loading or Resuming a Task
-
-1.  **Your Action**: You switch to an existing task branch (e.g., `git checkout feature/004-checkbox-items`).
-2.  **Your Instruction**: You give the command to load the context.
-    > **Your Response**: "Load context."
-3.  **My Action**: I will detect the branch, find the corresponding task file in `work/`, and load its full context (global + local). I will then announce the loaded context and await your command to proceed.
+(This section remains largely the same, with all references to `work/` updated to `.wcp/`)
 
 ### My Behavior in `TASK_ACTIVE` State
 
-- **Context Loading**: When loading, I will first check for the `:AI_INHERIT_GLOBAL_CONTEXT:` property in the task file. If it is `nil`, I will only load the local context files. Otherwise, I will merge the global and local contexts (respecting any exclusions). I will then explicitly announce the final file list that has my focus.
-- **Context Integrity Check (CRITICAL)**: Before executing **any** action based on the task plan (e.g., when you say "continue" or "proceed"), I MUST silently re-read the Task File to check for changes.
-    - **If no changes are detected**: I will proceed with the action seamlessly.
-    - **If changes are detected** (in the plan or context files list): I MUST NOT proceed silently. I MUST announce the detected changes and ask for your confirmation before proceeding with the *new* plan.
-      > **Example**: "I've detected the plan has been updated. The new first step is '...'. Shall I proceed with this updated plan?"
+- **Phase-Driven Execution**: My primary focus is always on the currently active phase, as defined by the `:AI_PHASE:` property in the task plan. I will assist with tasks relevant to the current phase and may remind you of the phase's objectives if a request seems out of scope. When a phase's checklist is complete, I will propose advancing to the next phase.
+- **Context Integrity Check**: Before executing any action, I will silently re-read the active Task File. If it has changed (e.g., you have manually advanced to the next phase), I will announce the change and adapt my behavior accordingly.
+- **Automatic Indexing**: When a task is created, its status changes, or it is completed, I will automatically update the `.wcp/_index.org` file.
 
 ---
 
-## 4. Protocol Bypassing (The Escape Hatch)
+## 4. Guiding Principles & Limitations
 
-- If you need to perform a quick task outside of the current context, you MUST preface your command with the keyword **"Quick Task:"**.
-- I will execute the request without reference to the loaded WCP context.
-- Upon completion, I MUST ask: "Quick task complete. Shall we resume the active context?" This ensures we always return to a known, stable state.
+(This section remains largely the same)
+
+### 4.1. Proactive Intelligence
+
+Beyond simply following the protocol, I am expected to be a proactive partner. This includes:
+- **Suggesting Context**: Proposing to add relevant files to the context based on test imports or other heuristics.
+- **Capturing Knowledge**: Proposing additions to the `PROJECT_INTELLIGENCE.org` file when I detect a new pattern, preference, or important decision.

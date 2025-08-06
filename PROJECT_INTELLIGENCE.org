@@ -1,0 +1,11 @@
+#+TITLE: Project Intelligence
+
+This document is a living repository of the project's "tribal knowledge" and the user's development preferences. It captures critical insights that are not immediately obvious from the source code or standard documentation. The AI assistant will proactively propose adding new entries to this file as it learns from our collaboration.
+
+* Guiding Principles
+
+* User Preferences & Workflow Patterns
+
+* Key Technical Decisions & Rationale
+
+* Common Pitfalls & Known Challenges

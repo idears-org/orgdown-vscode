@@ -1,0 +1,41 @@
+#+TITLE: Fix: ${description}
+
+* Goal
+- [A clear, concise description of the bug and the desired correct behavior.]
+
+* Phase 1: Replication
+:PROPERTIES:
+:AI_PHASE: Replication
+:END:
+
+** Subtasks
+| ID  | Description                      | Status      | Updated    |
+|-----|----------------------------------|-------------|------------|
+| 1.1 | Create failing regression test   | Not Started |            |
+
+** Progress Log
+
+* Phase 2: Implementation
+:PROPERTIES:
+:AI_PHASE: Implementation
+:END:
+
+** Subtasks
+| ID  | Description                      | Status      | Updated    |
+|-----|----------------------------------|-------------|------------|
+| 2.1 | Implement code change to fix bug | Not Started |            |
+
+** Progress Log
+
+* Phase 3: Verification
+:PROPERTIES:
+:AI_PHASE: Verification
+:END:
+
+** Subtasks
+| ID  | Description                      | Status      | Updated    |
+|-----|----------------------------------|-------------|------------|
+| 3.1 | Verify regression test passes    | Not Started |            |
+| 3.2 | Run related project tests        | Not Started |            |
+
+** Progress Log

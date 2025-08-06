@@ -1,0 +1,44 @@
+#+TITLE: Feat: ${description}
+
+* Goal
+- [A clear, concise description of the feature's purpose.]
+
+* Phase 1: Design & Documentation
+:PROPERTIES:
+:AI_PHASE: Design
+:END:
+
+** Subtasks
+| ID  | Description                               | Status      | Updated    |
+|-----|-------------------------------------------|-------------|------------|
+| 1.1 | Discuss implementation strategies         | Not Started |            |
+| 1.2 | Create/Update design document             | Not Started |            |
+
+** Progress Log
+
+* Phase 2: Implementation
+:PROPERTIES:
+:AI_PHASE: Implementation
+:END:
+
+** Subtasks
+| ID  | Description                      | Status      | Updated    |
+|-----|----------------------------------|-------------|------------|
+| 2.1 | Create file skeletons            | Not Started |            |
+| 2.2 | Implement core feature logic     | Not Started |            |
+
+** Progress Log
+
+* Phase 3: Verification & QA
+:PROPERTIES:
+:AI_PHASE: Verification
+:END:
+
+** Subtasks
+| ID  | Description                      | Status      | Updated    |
+|-----|----------------------------------|-------------|------------|
+| 3.1 | Write unit tests                 | Not Started |            |
+| 3.2 | Write integration tests          | Not Started |            |
+| 3.3 | Run all tests and linter         | Not Started |            |
+
+** Progress Log
