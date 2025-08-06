@@ -1,3 +1,6 @@
+syntaxes/org.tmLanguage.json
+syntaxes/org.tmLanguage.yaml
+
 out
 dist
 node_modules
