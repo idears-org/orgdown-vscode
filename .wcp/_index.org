@@ -6,7 +6,10 @@ This file provides a master index of all tasks managed by the Work Context Proto
 
 ** In Progress
 
+
 ** Pending
+
+- [chore/002] Grammar 开发工作流梳理
 
 ** Completed
 - [chore/001] WCP V5.0 Evolution

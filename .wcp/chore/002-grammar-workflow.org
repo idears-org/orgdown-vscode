@@ -1,0 +1,51 @@
+#+TITLE: [chore/002] Grammar 开发工作流梳理
+#+DATE: 2025-08-07
+#+CATEGORY: chore
+#+STATUS: In Progress
+
+* Task Overview
+本任务旨在系统性梳理 orgdown-vscode 项目的 grammar（语法）开发工作流，明确各阶段流程、工具链、最佳实践与注意事项，为后续开发和协作提供权威参考。
+
+* Phases
+** 1. 需求收集与分析
+- 明确语法需求、范围与目标
+- 参考 /docs/3_reference/feature_specs/grammar.org
+- 记录关键用例与边界情况
+
+** 2. 语法设计与规范制定
+- 设计 org.tmLanguage.yaml 语法规则
+- 维护 /syntaxes 目录下相关文件
+- 规范命名、注释与分层
+
+** 3. 语法实现与生成
+- 使用 scripts/build-grammar.ts 自动生成 tmLanguage.json
+- 保持 template.yaml 与 json 同步
+- 记录生成流程与常见问题
+
+** 4. 测试用例编写与验证
+- 在 /test/colorize-fixtures/ 下补充/维护覆盖用例
+- 运行自动化测试，确保语法高亮正确
+- 记录测试覆盖率与缺陷
+
+** 5. 迭代与维护
+- 记录变更、问题与改进建议
+- 更新 docs/3_reference/feature_specs/grammar.org
+- 归档历史决策与经验
+
+* Subtasks
+| Phase | Subtask | Status |
+|-------+---------+--------|
+| 1     | 梳理需求与边界用例 | TODO |
+| 2     | 梳理语法文件结构与规范 | TODO |
+| 3     | 梳理生成流程与工具链 | TODO |
+| 4     | 梳理测试用例与验证流程 | TODO |
+| 5     | 梳理维护与迭代机制 | TODO |
+
+* Progress Log
+- 2025-08-07: 任务创建，初步规划各阶段内容。
+
+* References
+- /docs/3_reference/feature_specs/grammar.org
+- /syntaxes/org.tmLanguage.yaml
+- /scripts/build-grammar.ts
+- /test/colorize-fixtures/

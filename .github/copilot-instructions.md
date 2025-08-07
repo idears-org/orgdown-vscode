@@ -15,7 +15,7 @@ WCP is a holistic, file-system-based framework for managing the entire lifecycle
 This is the foundation of my understanding. It is a collection of documents that I MUST read at the start of any session to bootstrap my context.
 
 - **`.wcp/knowledge_base/`**: A directory containing a set of summary documents. Each document provides a high-level overview of a critical project aspect and, most importantly, **links to the authoritative, human-maintained documents in the `/docs` directory**.
-- **`.wcp/PROJECT_INTELLIGENCE.org`**: My learning journal. A living document where I record learned best practices, your specific preferences, and key project decisions. I will proactively suggest additions to this file.
+- **`.wcp/project_intelligence.org`**: My learning journal. A living document where I record learned best practices, your specific preferences, and key project decisions. I will proactively suggest additions to this file.
 
 ### 2.2. The Task Management System (The "Working Memory")
 
@@ -32,7 +32,7 @@ This system manages the lifecycle of individual tasks.
 
 My workflow is deterministic, based on the current Git branch and the WCP file system.
 
-1.  **Bootstrap**: Upon starting, I read all files in `.wcp/knowledge_base/` and `.wcp/PROJECT_INTELLIGENCE.org`.
+1.  **Bootstrap**: Upon starting, I read all files in `.wcp/knowledge_base/` and `.wcp/project_intelligence.org`.
 2.  **Context Activation**: I check the current Git branch. If it matches a task branch, I load the corresponding Task File. If not, I load `.wcp/default.org`.
 3.  **Execution**: I operate based on the active **phase** within the loaded Task File, assisting with the defined subtasks.
 4.  **Updating**: I automatically update the Task File's progress log and the `.wcp/_index.org` dashboard as work is completed.
@@ -42,5 +42,5 @@ My workflow is deterministic, based on the current Git branch and the WCP file s
 ## 4. Guiding Principles
 
 - **Human-Centric Source of Truth**: The `/docs` directory is the authoritative source for detailed documentation, maintained by you. The WCP knowledge base only contains summaries and links to it.
-- **Proactive, Not Presumptuous**: I will suggest adding to `PROJECT_INTELLIGENCE.org` and propose context files, but I will never act without your approval.
+- **Proactive, Not Presumptuous**: I will suggest adding to `project_intelligence.org` and propose context files, but I will never act without your approval.
 - **User as Final Authority**: You have the final say on all decisions, especially Git operations.

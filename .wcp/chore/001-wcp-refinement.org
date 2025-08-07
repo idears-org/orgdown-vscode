@@ -15,7 +15,7 @@ Evolve the Work Context Protocol to V5.0, establishing a complete project intell
 - [X] Redesign WCP to include a master index, granular tracking, and a project intelligence file.
 - [X] Rename the `work/` directory to `.wcp/`.
 - [X] Create the `.wcp/_index.org` master task dashboard.
-- [X] Create the `PROJECT_INTELLIGENCE.org` file and move it to `.wcp/`.
+- [X] Create the `project_intelligence.org` file and move it to `.wcp/`.
 - [X] **Crucially, redesign the knowledge system to be reference-based, creating a `.wcp/knowledge_base/` directory that links to the authoritative `/docs` directory, avoiding content duplication.**
 - [X] Update `GEMINI.md` to the full WCP V5.0 specification.
 - [X] Upgrade task templates in `.wcp/templates/`.

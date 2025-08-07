@@ -33,7 +33,7 @@ This system serves as the AI's bootloader, providing the foundational knowledge 
   - **Crucially, these files do not contain exhaustive documentation.** Instead, they provide high-level summaries and contain explicit `[[file:]]` links to the detailed, authoritative, human-maintained documents within the main `/docs` directory.
   - This design adheres to the DRY (Don't Repeat Yourself) principle, ensuring the `/docs` folder remains the single source of truth.
 
-- **Component: AI Learning Journal (`.wcp/PROJECT_INTELLIGENCE.org`)**
+- **Component: AI Learning Journal (`.wcp/project_intelligence.org`)**
   - A living document where the AI is required to record learned user preferences, project-specific patterns, and the rationale for nuanced decisions. The AI must proactively suggest additions to this file to persist its learning.
 
 **2.2. The Task Management System: The AI's Working Memory**
