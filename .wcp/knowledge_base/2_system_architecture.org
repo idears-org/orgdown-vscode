@@ -1,0 +1,12 @@
+#+TITLE: System Architecture Summary
+
+* High-Level Overview
+This project follows a three-layer architecture comprising a client, a server, and a common library. The primary goal is to ensure separation of concerns between the VS Code frontend logic and the language server backend.
+
+* Authoritative Documents
+For a complete understanding, you MUST refer to the following authoritative documents:
+
+- **Core Architecture**: [[file:../../docs/3_reference/architecture.org][Main Architecture Document]]
+- **Key Decisions (ADRs)**:
+  - [[file:../../docs/4_architecture_decisions/002-three-layer-architecture.org][ADR-002: Three-Layer Architecture]]
+  - [[file:../../docs/4_architecture_decisions/005-unified-grammar-and-test-workflow.org][ADR-005: Unified Grammar and Test Workflow]]

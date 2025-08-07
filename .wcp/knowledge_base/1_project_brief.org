@@ -1,0 +1,10 @@
+#+TITLE: Project Brief Summary
+
+* Core Mission
+The primary objective of this project is to implement a significant portion of Emacs' Org Mode features within a VS Code extension, providing a modern and accessible Org Mode experience.
+
+* Authoritative Documents
+For a complete understanding of the project's goals, scope, and user experience, you MUST refer to the following documents:
+
+- **User Guide**: [[file:../../docs/1_user_guide/README.md]]
+- **Contributing Guide**: [[file:../../docs/2_contributing/development_guide.org]]

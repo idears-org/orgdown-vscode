@@ -9,5 +9,6 @@ This file provides a master index of all tasks managed by the Work Context Proto
 ** Pending
 
 ** Completed
+- [chore/001] WCP V5.0 Evolution
 
 ** Abandoned

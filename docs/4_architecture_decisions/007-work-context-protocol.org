@@ -1,68 +1,75 @@
-#+TITLE: [ADR-007] - Work Context Protocol for AI Collaboration
+#+TITLE: [ADR-007] Work Context Protocol (WCP) for AI Collaboration
 #+DATE: 2025-08-06
-#+STATUS: Accepted (Evolved to V4.0 on 2025-08-06)
+#+STATUS: Evolved to V5.0
 #+DECIDERS: san, Gemini
 
 * 1. Context and Problem Statement
-  :PROPERTIES:
-  :Status: Accepted
-  :END:
 
-To collaborate effectively on a complex software project, the AI and human developer need a shared, explicit, and robust system for managing not just the *context* of a task, but also the *process* by which the task is executed, the *status* of all tasks project-wide, and the *meta-knowledge* gained during development. This system must enforce best practices, provide a macro-level project view, and facilitate AI learning.
+**1.1. The Challenge of Human-AI Collaboration**
 
-* 2. Decision
-We have decided to adopt and evolve a lightweight, file-system-based **"Work Context Protocol" (WCP)**. This protocol formalizes the way we define, load, and manage the context and lifecycle of any given task, effectively creating a project intelligence operating system.
+The integration of Large Language Models (LLMs) into complex software development workflows presents a paradigm shift. However, the effectiveness of this collaboration is fundamentally constrained by the ephemeral, stateless nature of conversational interfaces. This leads to several critical challenges:
 
-The WCP V4.0 consists of the following core components:
+- **Context Decay**: The LLM's limited context window and attention drift require constant re-explanation of task requirements, architectural constraints, and historical decisions.
+- **Process Ambiguity**: Best-practice development lifecycles (e.g., documentation-first, test-driven development) are difficult to enforce, leading to inconsistent and ad-hoc execution.
+- **Knowledge Silos**: Valuable project-specific knowledge, user preferences, and the rationale behind key decisions are often lost in conversational history, creating a barrier to long-term efficiency and onboarding.
+- **Lack of Auditability**: There is no persistent, verifiable record of the decision-making process, the steps taken, or the state of work at any given point in time.
 
-1.  **The `.wcp/` Directory**: A hidden, top-level directory serving as the "workbench" for all tasks.
-2.  **The Task Index (`.wcp/_index.org`)**: A master dashboard providing a high-level, queryable overview of all tasks, categorized by status. This file is automatically maintained by the AI.
-3.  **The Task File (`.org`)**: The SSoT for a task, featuring a phase-based plan with granular subtask tables and progress logs.
-4.  **Task Templates (`.wcp/templates/`)**: A directory of phase-structured templates to bootstrap new tasks with best-practice workflows.
-5.  **The Project Intelligence File (`PROJECT_INTELLIGENCE.org`)**: A living document for capturing learned best practices, user preferences, and key project decisions, enabling the AI to improve over time.
+**1.2. The Goal**
 
-* 3. Considered Options
+We need a systematic, reliable, and low-overhead framework that solves these challenges. The goal is to create a **holistic project intelligence operating system** that manages not only the immediate context of a task, but also the project's foundational knowledge, its development processes, and its overall status, while enabling the AI to learn and adapt over time.
 
-**Option 1: Status Quo (Implicit Context via Chat History)**
-- *Description*: Continue relying on the conversational history to manage context.
-- *Pros*: No setup required.
-- *Cons*: Highly inefficient, unreliable, not scalable, prone to attention drift, and lacks traceability.
+* 2. Decision: The Work Context Protocol (WCP) V5.0
 
-**Option 2: Heavyweight Tooling (Custom VS Code Extension)**
-- *Description*: Build a dedicated VS Code extension to manage context, with custom commands and UI elements.
-- *Pros*: Potentially seamless UI integration within VS Code.
-- *Cons*: High development and maintenance cost, lacks portability (tied to a specific editor), and is overly complex for the problem at hand.
+We have decided to design, implement, and adopt the **Work Context Protocol (WCP) V5.0**. WCP is a file-system-based framework that treats the AI as a deterministic state machine whose entire state is externalized into a version-controlled directory named `.wcp/`.
 
-**Option 3: Work Context Protocol (The Chosen Option)**
-- *Description*: A lightweight protocol based on files and directories, managed via the CLI and editor.
-- *Pros*:
-  - *Zero-dependency*: Works with any editor and standard CLI tools (`git`).
-  - *Portable and Universal*: The principles are applicable to any project or LLM.
-  - *Version Controllable*: The entire context and workflow are stored in version-controlled text files.
-  - *Self-Documenting*: The `work/` directory becomes a rich, traceable log of the project's history.
-  - *Explicit and Reliable*: Provides a clear, unambiguous way to direct the AI's focus.
-- *Cons*: Requires discipline from both the human and AI to adhere to the protocol.
+The architecture of WCP V5.0 is founded on a crucial **separation of concerns** between stable, long-term knowledge and dynamic, in-flight task data.
 
-* 4. Rationale
-The WCP V4.0 architecture was chosen as the culmination of our iterative design process. It evolves beyond simple context and process management to become a holistic project intelligence system. Key advantages include:
-- **Macro-to-Micro Visibility**: The combination of the `_index.org` dashboard and granular task files provides seamless navigation from a high-level project overview to the finest details of implementation.
-- **Embedded Process & Auditability**: The phase-based, log-structured task files create a self-documenting and auditable trail of all work, enforcing best practices naturally.
-- **AI Self-Improvement**: The `PROJECT_INTELLIGENCE.org` file provides a mechanism for the AI to persist and build upon learned knowledge, creating a positive feedback loop of increasing efficiency and personalization.
-- **Architectural Cleanliness**: Moving the entire protocol into a hidden `.wcp/` directory cleanly separates the project's meta-work from its source code.
+**2.1. The Knowledge Base: The AI's Long-Term Memory**
 
-* 5. Consequences
+This system serves as the AI's bootloader, providing the foundational knowledge required to understand the project at the start of any session.
 
-**Positive**:
-- Collaboration efficiency will be dramatically improved.
-- The AI's focus will be precise and reliable for each task, reducing errors.
-- The development process becomes self-documenting; the `work/` directory serves as a detailed project log.
-- Onboarding new contributors (human or AI) to a specific task becomes trivial: they just need to read the task file.
+- **Component: Reference-Based Knowledge Summaries (`.wcp/knowledge_base/`)**
+  - A collection of `.org` files, each summarizing a core aspect of the project (e.g., Project Brief, System Architecture, Technical Context).
+  - **Crucially, these files do not contain exhaustive documentation.** Instead, they provide high-level summaries and contain explicit `[[file:]]` links to the detailed, authoritative, human-maintained documents within the main `/docs` directory.
+  - This design adheres to the DRY (Don't Repeat Yourself) principle, ensuring the `/docs` folder remains the single source of truth.
 
-**Negative**:
-- It introduces a new process that requires discipline to follow.
-- It adds a new top-level directory (`work/`) to the project structure.
+- **Component: AI Learning Journal (`.wcp/PROJECT_INTELLIGENCE.org`)**
+  - A living document where the AI is required to record learned user preferences, project-specific patterns, and the rationale for nuanced decisions. The AI must proactively suggest additions to this file to persist its learning.
 
-**Impact**:
-- A new `work/` directory with a `templates/` subdirectory will be created.
-- The `GEMINI.md` file will be updated to formally define this protocol.
-- All new significant tasks (features, bug fixes) will be initiated and managed via this protocol.
+**2.2. The Task Management System: The AI's Working Memory**
+
+This system governs the lifecycle and execution of all development tasks.
+
+- **Component: The Master Task Index (`.wcp/_index.org`)**
+  - A project-wide dashboard that provides a high-level, queryable overview of all tasks, categorized by status (e.g., In Progress, Pending, Completed).
+  - The AI is responsible for automatically keeping this index up-to-date as task statuses change.
+
+- **Component: The Task File (`.wcp/<type>/*.org`)**
+  - The Single Source of Truth for an individual task. Its key feature is a **phase-based plan** (e.g., `* Phase 1: Design`), which dictates the AI's focus and enforces a specific workflow.
+  - Each task file contains granular tracking mechanisms, including `** Subtasks` tables and a `** Progress Log` for detailed, auditable record-keeping.
+
+- **Component: Task Templates (`.wcp/templates/`)**
+  - A set of pre-defined, phase-structured `.org` files that are used to bootstrap new tasks, ensuring that best-practice workflows are followed consistently for different task types (e.g., `feat`, `fix`).
+
+* 3. Rationale for the Decision
+
+The WCP V5.0 architecture was chosen because it provides a comprehensive solution that is both powerful and architecturally sound.
+
+- **Solves the Core Problems**: It directly addresses context decay (via the Knowledge Base), process ambiguity (via phase-based templates), knowledge silos (via the Project Intelligence file), and lack of auditability (via granular progress logs).
+- **Architecturally Sound**: The reference-based Knowledge Base is a key innovation. It allows the AI to bootstrap its context efficiently without violating the DRY principle or creating conflicting sources of truth. The separation of the Knowledge Base from the Task Management system is a clean, robust design.
+- **Enforces Best Practices**: The phase-based execution model is not merely a suggestion; it is embedded in the AI's core logic. This enforces discipline, such as requiring a failing test before a fix, or requiring documentation before implementation, in a natural, non-intrusive way.
+- **Creates a Virtuous Cycle**: The `PROJECT_INTELLINTELLIGENCE.org` file creates a feedback loop where the AI's effectiveness increases over time. The system doesn't just perform tasks; it learns from them.
+- **Preserves Human Authority**: While highly automated, the protocol is designed to keep the human developer in full control. The `/docs` directory remains the human-curated source of truth, and all significant AI actions (like suggesting context changes or intelligence entries) require user approval.
+
+* 4. Consequences
+
+**4.1. Positive**
+- **Increased Efficiency & Reliability**: The AI's performance will be significantly more consistent and reliable, as its context is explicitly defined and loaded.
+- **Process Standardization**: All tasks will follow a consistent, best-practice lifecycle, improving code quality and predictability.
+- **Enhanced Auditability & Onboarding**: The detailed task files and the `_index.org` dashboard create a rich, self-documenting history of the project, simplifying reviews and making it easier for new contributors to get up to speed.
+- **AI Growth**: The system is designed for the AI to become a more valuable partner over time.
+
+**4.2. Negative & Risks**
+- **Discipline Requirement**: The protocol's effectiveness is tightly coupled to the discipline of its users (both human and AI) in maintaining the file structures.
+- **Initial Setup & Learning Curve**: There is an upfront cost in setting up the `.wcp/` directory and learning the protocol's conventions.
+- **Tooling Dependency**: The system relies on the AI's ability to correctly and consistently parse the `.org` file format. Any deviation in the AI's parsing logic could disrupt the workflow.

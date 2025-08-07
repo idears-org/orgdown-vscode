@@ -1,0 +1,11 @@
+#+TITLE: Technical Context Summary
+
+* High-Level Overview
+The project is a TypeScript-based monorepo managed with pnpm workspaces. It utilizes esbuild for fast bundling and Vitest for testing. The grammar is generated from a YAML template and compiled into a TextMate language file.
+
+* Authoritative Documents
+For a complete understanding of the technical stack, build process, and dependencies, you MUST refer to the following authoritative documents:
+
+- **Root `package.json`**: [[file:../../package.json]]
+- **TypeScript Configuration**: [[file:../../tsconfig.base.json]]
+- **Grammar Generation Workflow**: [[file:../../docs/4_architecture_decisions/004-automated-grammar-generation-and-testing.org]]

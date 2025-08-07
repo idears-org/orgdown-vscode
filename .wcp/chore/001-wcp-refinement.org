@@ -1,20 +1,28 @@
-#+TITLE: Chore 001: WCP V4.0 Evolution
+#+TITLE: Chore 001: WCP V5.0 Evolution
 #+properties:
 :ID:       001
 :TYPE:     chore
 :BRANCH:   chore/001-wcp-refinement
-:DESC:     WCP V4.0 Evolution
+:DESC:     WCP V5.0 Evolution
+:STATUS:   Completed
 :AI_INHERIT_GLOBAL_CONTEXT: nil
 :END:
 
 * Goal
-Evolve the Work Context Protocol to V4.0, transforming it into a project intelligence operating system by incorporating a master task index, granular task tracking, and a mechanism for capturing meta-knowledge.
+Evolve the Work Context Protocol to V5.0, establishing a complete project intelligence operating system by separating foundational knowledge from task management and implementing a reference-based knowledge base.
 
 * Plan
 - [X] Redesign WCP to include a master index, granular tracking, and a project intelligence file.
-- [X] Rename the `work/` directory to `.wcp/` for better semantic clarity and to hide it by default.
+- [X] Rename the `work/` directory to `.wcp/`.
 - [X] Create the `.wcp/_index.org` master task dashboard.
-- [X] Create the `PROJECT_INTELLIGENCE.org` file for capturing meta-knowledge.
-- [X] Update `GEMINI.md` to the full WCP V4.0 specification.
-- [X] Upgrade task templates in `.wcp/templates/` to include structured subtasks and progress logs.
-- [ ] Update `docs/4_architecture_decisions/007-work-context-protocol.org` to reflect the final WCP V4.0 architecture.
+- [X] Create the `PROJECT_INTELLIGENCE.org` file and move it to `.wcp/`.
+- [X] **Crucially, redesign the knowledge system to be reference-based, creating a `.wcp/knowledge_base/` directory that links to the authoritative `/docs` directory, avoiding content duplication.**
+- [X] Update `GEMINI.md` to the full WCP V5.0 specification.
+- [X] Upgrade task templates in `.wcp/templates/`.
+- [X] Update `docs/4_architecture_decisions/007-work-context-protocol.org` to reflect the final WCP V5.0 architecture.
+
+* Progress Log
+** [2025-08-06]
+- Completed all planned steps for the evolution of WCP to V5.0.
+- The protocol is now fully documented and the required file structures are in place.
+- The task is now considered complete.
