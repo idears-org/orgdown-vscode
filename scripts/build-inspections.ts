@@ -2,7 +2,8 @@ import fs from 'fs-extra';
 import path from 'path';
 
 const fixturesDir = path.resolve(__dirname, '../test/fixtures');
-const inspectionsDir = path.resolve(__dirname, '../test/inspections');
+// Integration tests read from test/grammar-inspections
+const inspectionsDir = path.resolve(__dirname, '../test/grammar-inspections');
 
 async function buildInspections() {
   await fs.ensureDir(inspectionsDir);
@@ -11,7 +12,9 @@ async function buildInspections() {
   const fixtureFiles = await fs.readdir(fixturesDir);
 
   for (const fixtureFile of fixtureFiles) {
-    if (path.extname(fixtureFile) !== '.org') continue;
+    if (path.extname(fixtureFile) !== '.org') {
+      continue;
+    }
 
     const fixturePath = path.join(fixturesDir, fixtureFile);
     const inspectionPath = path.join(inspectionsDir, fixtureFile.replace('.org', '.inspection.org'));

@@ -1,7 +1,8 @@
 import path from 'path';
 import fs from 'fs-extra';
 import yaml from 'js-yaml';
-import * as regexModule from '@common/grammar/regex.js';
+import { glob } from 'glob';
+import * as regexModule from '../common/src/grammar/regex';
 
 interface OrgSrcLanguage {
   name: string;
@@ -118,18 +119,9 @@ function generateOrgSrcBlockDefinitions(): any[] {
   return patterns;
 }
 
-function generateOrgSrcBlockIncludes(): any[] {
-  // 生成所有 markup.fenced_code.block.org 的 include
-  return [
-    ...LANGUAGES.map(() => ({ include: '#markup.fenced_code.block.org' })),
-    { include: '#markup.fenced_code.block.org.fallback' }
-  ];
-}
+// Note: includes are not required since each src block is a standalone pattern
 
 async function buildGrammar() {
-  // Import regex patterns from the central source
-  const regexModule = await import('../src/grammar/regex.js');
-
   // First, process the template file
   const templatePath = path.join(grammarSourceDir, 'org.tmLanguage.template.yaml');
   const outputPath = path.join(grammarSourceDir, 'org.tmLanguage.yaml');

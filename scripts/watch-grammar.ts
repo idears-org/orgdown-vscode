@@ -4,7 +4,7 @@ import { exec } from 'child_process';
 console.log('[watch] build started');
 const watcher = chokidar.watch([
   'syntaxes/org.tmLanguage.template.yaml',
-  'src/grammar/regex.ts'
+  'common/src/grammar/regex.ts'
 ], { ignoreInitial: true });
 
 watcher.on('all', () => {

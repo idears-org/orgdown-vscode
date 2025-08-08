@@ -90,13 +90,16 @@
     "vscode:prepublish": "pnpm run build",
     "build:grammar": "tsx scripts/build-grammar.ts",
     "build:inspections": "tsx scripts/build-inspections.ts",
-    "build:ext": "node esbuild.js",
-    "build": "pnpm run clean && pnpm run build:grammar && pnpm run build:ext",
+    "build:server": "pnpm -C server run compile",
+    "build:client": "node esbuild.js",
+    "build": "pnpm run clean && pnpm run build:grammar && pnpm run build:server && pnpm run build:client",
     "dev:ext": "node esbuild.js --watch",
     "dev:grammar": "tsx scripts/watch-grammar.ts",
-    "dev": "pnpm run dev:ext & pnpm run dev:grammar",
+    "dev:server": "pnpm -C server run watch",
+    "dev": "pnpm run dev:ext & pnpm run dev:grammar & pnpm run dev:server",
     "check-types": "tsc --noEmit",
-    "lint": "eslint .",
+    "lint": "eslint client/src server/src common/src scripts test/unit --ext .ts,.js,.mjs",
+    "pretest": "pnpm run build:grammar && pnpm run build:inspections",
     "test:unit": "vitest run",
     "test:integration": "vscode-test --testWorkspace test/integration",
     "test": "pnpm run test:unit && pnpm run test:integration"
@@ -121,7 +124,6 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
-    "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
   }
 }

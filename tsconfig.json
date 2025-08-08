@@ -1,10 +1,28 @@
 {
-  "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "target": "ES2022",
+    "module": "Node16",
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "Node16",
+    "baseUrl": ".",
+    "paths": {
+      "@common/*": ["common/src/*"]
+    },
     "composite": true,
-    "types": ["node"],
-    "rootDir": "."
+    "types": ["node", "vitest/globals"]
   },
-  "include": ["client/src", "server/src", "common/src"],
-  "references": [{ "path": "./tsconfig.scripts.json" }]
+  "include": [
+    "client/src",
+    "server/src",
+    "common/src",
+    "scripts",
+    "test/unit",
+    "vitest.config.ts"
+  ],
+  "exclude": ["node_modules", ".vscode-test", "out", "dist"]
 }

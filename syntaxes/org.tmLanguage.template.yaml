@@ -14,7 +14,7 @@ repository:
       # - { include: '#comments' }
       # - { include: '#keywords' }
       # - { include: '#org-special-blocks' }
-      # - { include: '#org-src-blocks' }
+      - { include: '#org-src-blocks' }
       # - { include: '#drawers' }
       # - { include: '#lists' }
       # - { include: '#horizontal-rules' }

@@ -1,14 +1,29 @@
+# Include built artifacts explicitly
+!client/dist/**
+!server/out/**
+!syntaxes/org.tmLanguage.json
+!syntaxes/org.configuration.json
+
+# Exclude dev and source files
 .vscode/**
+.github/**
+.husky/**
+test/**
+scripts/**
+docs/**
+**/*.tsbuildinfo
+tsconfig.tsbuildinfo
+eslint.config.mjs
+vitest.config.ts
+**/*.map
 .vscode-test/**
 out/**
 node_modules/**
-src/**
+client/src/**
+server/src/**
+common/src/**
 .gitignore
 .yarnrc
 esbuild.js
-vsc-extension-quickstart.md
 **/tsconfig.json
-**/eslint.config.mjs
-**/*.map
 **/*.ts
-**/.vscode-test.*

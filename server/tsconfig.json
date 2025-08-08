@@ -12,7 +12,11 @@
     "declarationMap": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@common/*": ["../common/src/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", ".vscode-test"]
