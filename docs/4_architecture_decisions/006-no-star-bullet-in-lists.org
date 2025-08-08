@@ -1,6 +1,6 @@
-#+TITLE: 005-no-star-bullet-in-lists.org
+#+TITLE: [ADR-006] - No '*' Bullet in Lists
 #+DATE: 2025-08-05
-#+ADR_NUMBER: 005
+#+ADR_NUMBER: 006
 #+STATUS: Accepted
 #+DECISION_MAKER: Human Developer
 

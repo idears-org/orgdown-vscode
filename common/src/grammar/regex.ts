@@ -49,7 +49,7 @@ export const drawerEndRegex = '^\\s*:END:\\s*$';
 /**
  * Lists - ordered, unordered, description
  */
-export const unorderedListRegex = '^(\\s*)([-+*])\\s+(?:\\[( |X|-)\\])?';
+export const unorderedListRegex = '^(\\s*)([-+])\\s+(?:\\[( |X|-)\\])?';
 export const orderedListRegex = '^(\\s*)(\\d+[.)])\\s+(?:\\[( |X|-)\\])?';
 export const descriptionListRegex = '^(\\s*).+?\\s*::\\s*';
 

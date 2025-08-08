@@ -9,7 +9,7 @@ Our development process is built on two foundational principles:
 - **Test-Driven Development (TDD)**: We write tests first. This ensures every feature is verifiable and prevents regressions.
 - **Single Source of Truth (SSoT)**: Each piece of logic or data (regular expressions, grammar structure, test cases) is defined in exactly one place, eliminating duplication and inconsistency.
 
-For a deep dive into the architectural decisions behind this workflow, please see [[./adr/005-unified-grammar-and-test-workflow.org][ADR-005: Unified, Multi-Layered Grammar and Testing Workflow]].
+For a deep dive into the architectural decisions behind this workflow, please see [[../4_architecture_decisions/005-unified-grammar-and-test-workflow.org][ADR-005: Unified, Multi-Layered Grammar and Testing Workflow]].
 
 ** 2. Quick Start: Fixing a Highlighting Bug
 
@@ -160,7 +160,7 @@ This document describes the recommended workflow for developing new features for
 ** Steps for Adding a New Feature
 
 1. *Create a Feature Document*:
-   - Before writing any code, create a new Org Mode file in the ~docs/features/~ directory (e.g., ~docs/features/my-new-feature.org~).
+  - Before writing any code, create a new Org Mode file in the ~docs/3_reference/feature_specs/~ directory (e.g., ~docs/3_reference/feature_specs/my-new-feature.org~).
    - In this document, describe the feature from a user's perspective, outline the technical approach, and define the acceptance criteria.
    - This ensures that we (and our AI collaborator) have a clear plan.
 
