@@ -41,30 +41,57 @@ function compileFixture(content: string, originalFilename: string): string {
   compiledLines.push(`#+DESCRIPTION: ${fileTitle}`);
   compiledLines.push('');
 
-  let inSrcBlock = false;
+
+  let isOrgBlock = false;
   let srcContent: string[] = [];
   let testName: string | null = null;
   let testDescription: string | null = null;
 
-  for (const line of lines) {
-    if (line.startsWith('#+NAME:')) {
-      testName = line.replace('#+NAME: ', '').trim();
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const lower = line.trim().toLowerCase();
+
+    if (lower.startsWith('#+name:')) {
+      testName = line.replace(/^\s*#\+name:/i, '').trim();
       continue;
     }
 
-    if (line.startsWith('#+DESCRIPTION:')) {
-      testDescription = line.replace('#+DESCRIPTION: ', '').trim();
+    if (lower.startsWith('#+description:')) {
+      testDescription = line.replace(/^\s*#\+description:/i, '').trim();
       continue;
     }
 
-    if (line.startsWith('#+BEGIN_SRC')) {
-      inSrcBlock = true;
+    // Only process begin_src org (ignore case)
+
+    const beginSrcMatch = line.trim().match(/^#\+begin_src\s+(\w+)/i);
+    if (beginSrcMatch) {
+      const lang = beginSrcMatch[1].toLowerCase();
+      if (lang === 'org') {
+        isOrgBlock = true;
+      } else {
+        isOrgBlock = false;
+      }
       continue;
     }
 
-    if (line.startsWith('#+END_SRC')) {
-      inSrcBlock = false;
-      if (testName) {
+    if (lower.startsWith('#+end_src')) {
+      isOrgBlock = false;
+      continue;
+    }
+
+    // Check for #+RESULTS: and see if the next non-empty, non-table line is 'no-match'
+    if (lower.startsWith('#+results') && testName) {
+      // Look ahead for 'no-match' (skip empty and table lines)
+      let j = i + 1;
+      let foundNoMatch = false;
+      while (j < lines.length) {
+        const nextLine = lines[j].trim();
+        if (nextLine === '') { j++; continue; }
+        if (nextLine.startsWith('|')) { j++; continue; }
+        if (nextLine.toLowerCase() === 'no-match') { foundNoMatch = true; break; }
+        break;
+      }
+      if (!foundNoMatch) {
         const parentLevel = currentHeadlineLevel + 1;
         compiledLines.push(`${'*'.repeat(parentLevel)} Test: ${testName}`);
         if (testDescription) {
@@ -80,13 +107,17 @@ function compileFixture(content: string, originalFilename: string): string {
       continue;
     }
 
-    if (inSrcBlock) {
+    if (isOrgBlock) {
       srcContent.push(line);
     } else if (line.match(/^(\*{1,6}) /)) {
       const match = line.match(/^(\*{1,6}) /)!;
       currentHeadlineLevel = match[1].length;
       compiledLines.push(`${'*'.repeat(currentHeadlineLevel + 1)}${line.substring(currentHeadlineLevel)}`);
-    } else if (!line.startsWith('#+RESULTS') && !line.startsWith('|') && !line.startsWith('#+PROPERTY')) {
+    } else if (!lower.startsWith('#+results') &&
+               !line.startsWith('|') &&
+               !lower.startsWith('#+property') &&
+               lower !== 'no-match'
+              ) {
       compiledLines.push(line);
     }
   }
