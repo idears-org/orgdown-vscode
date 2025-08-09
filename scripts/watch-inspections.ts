@@ -3,11 +3,12 @@ import { exec } from 'child_process';
 
 console.log('[watch] build started');
 const watcher = chokidar.watch([
-  'test/fixtures/*.org',
+  'test/fixtures/',
   'scripts/build-inspections.ts',
 ], { ignoreInitial: true });
 
-watcher.on('all', () => {
+watcher.on('all', (event, path) => {
+  console.log(`[watch] ${event}: ${path}`);
   exec('pnpm run build:inspections', (err, stdout, stderr) => {
     if (err) {
       console.error(stderr);

@@ -77,20 +77,32 @@ function parseFixtures(content: string): TestCase[] {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
-    if (line.startsWith('#+NAME:')) {
-      currentTestCase.name = line.replace('#+NAME:', '').trim();
+    // Ignore case for #+NAME:
+    if (line.trim().toLowerCase().startsWith('#+name:')) {
+      resetTestCase();
+      currentTestCase.name = line.replace(/^\s*#\+name:/i, '').trim();
       continue;
     }
 
-    if (line.startsWith('#+BEGIN_SRC')) {
-      currentTestCase.inSrcBlock = true;
-      currentTestCase.srcContent = [];
+    // Only process begin_src org (ignore case)
+    const beginSrcMatch = line.trim().match(/^#\+begin_src\s+(\w+)/i);
+    if (beginSrcMatch) {
+      const lang = beginSrcMatch[1].toLowerCase();
+      if (lang === 'org') {
+        currentTestCase.inSrcBlock = true;
+        currentTestCase.srcContent = [];
+      } else {
+        currentTestCase.inSrcBlock = false;
+      }
       continue;
     }
 
-    if (line.startsWith('#+END_SRC')) {
-      currentTestCase.inSrcBlock = false;
-      currentTestCase.input = currentTestCase.srcContent.join('\n');
+    // Ignore case for #+END_SRC
+    if (line.trim().toLowerCase().startsWith('#+end_src')) {
+      if (currentTestCase.inSrcBlock) {
+        currentTestCase.inSrcBlock = false;
+        currentTestCase.input = currentTestCase.srcContent.join('\n');
+      }
       continue;
     }
 
@@ -99,8 +111,9 @@ function parseFixtures(content: string): TestCase[] {
       continue;
     }
 
-    if (line.startsWith('#+RESULTS:') && currentTestCase.name && currentTestCase.input !== null) {
-      const regexName = line.replace('#+RESULTS:', '').trim();
+    // Ignore case for #+RESULTS:
+    if (line.trim().toLowerCase().startsWith('#+results:') && currentTestCase.name && currentTestCase.input !== null) {
+      const regexName = line.replace(/^\s*#\+results:/i, '').trim();
       const { shouldMatch, expectedCaptures } = parseExpectedResults(lines, i + 1);
 
       tests.push({
@@ -110,8 +123,6 @@ function parseFixtures(content: string): TestCase[] {
         shouldMatch,
         expectedCaptures: shouldMatch && expectedCaptures.length > 0 ? expectedCaptures : undefined,
       });
-
-      resetTestCase();
     }
   }
 
