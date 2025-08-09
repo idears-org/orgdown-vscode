@@ -1,8 +1,7 @@
 #+TITLE: Test Suite for Headlines
 #+PROPERTY: SNAPSHOT_ID F01-headlines_org
 
-#+BEGIN_COMMENT :description TextMate Scope Annotation (This block will effect the automated test for tm language grammar regex)
-Capture Groups:
+#+BEGIN_COMMENT :description Expected Capture Groups:
 1. stars -> punctuation.definition.heading.org
 2. todo -> keyword.other.todo.org
 3. priority block -> constant.other.priority.org

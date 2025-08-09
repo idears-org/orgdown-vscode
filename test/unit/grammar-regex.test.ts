@@ -1,4 +1,4 @@
-import { describe, it, beforeAll } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import fs from 'fs-extra';
 import path from 'path';
 import * as regexes from '@common/grammar/regex';
@@ -6,41 +6,37 @@ import * as regexes from '@common/grammar/regex';
 const fixturesDir = path.resolve(__dirname, '../fixtures');
 
 describe('Grammar Regex Unit Tests', () => {
-  let expect: Chai.ExpectStatic;
-
-  beforeAll(async () => {
-    const chai = await import('chai');
-    expect = chai.expect;
-  });
-
   const fixtureFiles = fs.readdirSync(fixturesDir).filter(f => f.endsWith('.org'));
 
   for (const file of fixtureFiles) {
-    const content = fs.readFileSync(path.join(fixturesDir, file), 'utf8');
-    const testCases = parseFixtures(content);
+    describe(`Testing ${file}`, () => {
+      const content = fs.readFileSync(path.join(fixturesDir, file), 'utf8');
+      const testCases = parseFixtures(content);
 
-    for (const testCase of testCases) {
-      it(`${file} - ${testCase.name} with ${testCase.regex}`, () => {
-        const regex = (regexes as any)[testCase.regex];
-        expect(regex, `Regex '${testCase.regex}' not found in regex.ts`).to.exist;
+      for (const testCase of testCases) {
+        it(`${testCase.name} should ${testCase.shouldMatch ? 'match' : 'not match'} with ${testCase.regex}`, () => {
+          // Validate regex exists and create RegExp instance
+          const regexPattern = (regexes as any)[testCase.regex];
+          expect(regexPattern, `Regex '${testCase.regex}' not found in regex.ts`).toBeDefined();
+          expect(regexPattern, `'${testCase.regex}' is not a string`).toBeTypeOf('string');
 
-        const match = testCase.input.match(regex);
+          const regex = new RegExp(regexPattern);
 
-        if (testCase.shouldMatch) {
-          expect(match, `Expected a match for input: "${testCase.input}"`).to.not.be.null;
-          if (testCase.expectedCaptures) {
-            const actualCaptures = match!.slice(1);
-            for (const expected of testCase.expectedCaptures) {
-                const actual = actualCaptures[expected.index - 1];
-                const expectedValue = expected.value === 'undefined' ? undefined : expected.value;
-                expect(actual).to.deep.equal(expectedValue, `Group ${expected.index} did not match`);
+          // Test the match
+          const match = testCase.input.match(regex);
+
+          if (testCase.shouldMatch) {
+            expect(match, `Expected a match for input: "${testCase.input}"`).not.toBeNull();
+
+            if (testCase.expectedCaptures) {
+              validateCaptureGroups(match!, testCase.expectedCaptures);
             }
+          } else {
+            expect(match, `Expected no match for input: "${testCase.input}"`).toBeNull();
           }
-        } else {
-          expect(match, `Expected no match for input: "${testCase.input}"`).to.be.null;
-        }
-      });
-    }
+        });
+      }
+    });
   }
 });
 
@@ -52,74 +48,102 @@ interface TestCase {
   expectedCaptures?: { index: number; value: string | undefined }[];
 }
 
+function validateCaptureGroups(match: RegExpMatchArray, expectedCaptures: { index: number; value: string | undefined }[]) {
+  for (const expected of expectedCaptures) {
+    const actual = match[expected.index];
+    const expectedValue = expected.value === 'undefined' ? undefined : expected.value;
+    expect(actual, `Group ${expected.index} expected "${expectedValue}" but got "${actual}"`).toEqual(expectedValue);
+  }
+}
+
 function parseFixtures(content: string): TestCase[] {
   const tests: TestCase[] = [];
   const lines = content.split('\n');
 
-  let currentName: string | null = null;
-  let currentInput: string | null = null;
-  let inSrcBlock = false;
-  let srcContent: string[] = [];
+  let currentTestCase = {
+    name: null as string | null,
+    input: null as string | null,
+    inSrcBlock: false,
+    srcContent: [] as string[]
+  };
+
+  const resetTestCase = () => {
+    currentTestCase.name = null;
+    currentTestCase.input = null;
+    currentTestCase.inSrcBlock = false;
+    currentTestCase.srcContent = [];
+  };
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
     if (line.startsWith('#+NAME:')) {
-      currentName = line.replace('#+NAME:', '').trim();
+      currentTestCase.name = line.replace('#+NAME:', '').trim();
       continue;
     }
 
     if (line.startsWith('#+BEGIN_SRC')) {
-      inSrcBlock = true;
-      srcContent = [];
+      currentTestCase.inSrcBlock = true;
+      currentTestCase.srcContent = [];
       continue;
     }
 
     if (line.startsWith('#+END_SRC')) {
-      inSrcBlock = false;
-      currentInput = srcContent.join('\n');
+      currentTestCase.inSrcBlock = false;
+      currentTestCase.input = currentTestCase.srcContent.join('\n');
       continue;
     }
 
-    if (inSrcBlock) {
-      srcContent.push(line);
+    if (currentTestCase.inSrcBlock) {
+      currentTestCase.srcContent.push(line);
       continue;
     }
 
-    if (line.startsWith('#+RESULTS:')) {
-      if (currentName && currentInput !== null) {
-        const regex = line.replace('#+RESULTS:', '').trim();
-        let shouldMatch = true;
-        const expectedCaptures: { index: number; value: string | undefined }[] = [];
+    if (line.startsWith('#+RESULTS:') && currentTestCase.name && currentTestCase.input !== null) {
+      const regexName = line.replace('#+RESULTS:', '').trim();
+      const { shouldMatch, expectedCaptures } = parseExpectedResults(lines, i + 1);
 
-        let j = i + 1;
-        while (j < lines.length && !lines[j].startsWith('#+NAME:') && !lines[j].startsWith('#+BEGIN_SRC') && !lines[j].startsWith('#+RESULTS:')) {
-          const resultsLine = lines[j].trim();
-          if (resultsLine === 'no-match') {
-            shouldMatch = false;
-            break;
-          }
-          if (resultsLine.startsWith('|')) {
-            const parts = resultsLine.split('|').map(s => s.trim()).filter(Boolean);
-            if (parts.length === 2 && parts[0] !== 'Group #') {
-              const index = parseInt(parts[0], 10);
-              const value = parts[1];
-              expectedCaptures.push({ index, value });
-            }
-          }
-          j++;
-        }
+      tests.push({
+        name: currentTestCase.name,
+        input: currentTestCase.input,
+        regex: regexName,
+        shouldMatch,
+        expectedCaptures: shouldMatch && expectedCaptures.length > 0 ? expectedCaptures : undefined,
+      });
 
-        tests.push({
-          name: currentName,
-          input: currentInput,
-          regex,
-          shouldMatch,
-          expectedCaptures: shouldMatch && expectedCaptures.length > 0 ? expectedCaptures : undefined,
-        });
-      }
+      resetTestCase();
     }
   }
 
   return tests;
+}
+
+function parseExpectedResults(lines: string[], startIndex: number) {
+  let shouldMatch = true;
+  const expectedCaptures: { index: number; value: string | undefined }[] = [];
+
+  for (let j = startIndex; j < lines.length; j++) {
+    const line = lines[j].trim();
+
+    // Stop parsing when we hit the next test case structure
+    if (line.startsWith('#+NAME:') || line.startsWith('#+BEGIN_SRC') || line.startsWith('#+RESULTS:')) {
+      break;
+    }
+
+    if (line === 'no-match') {
+      shouldMatch = false;
+      break;
+    }
+
+    if (line.startsWith('|') && line.includes('|')) {
+      const parts = line.split('|').map(s => s.trim()).filter(Boolean);
+      if (parts.length >= 2 && parts[0] !== 'Group #' && !isNaN(parseInt(parts[0], 10))) {
+        const index = parseInt(parts[0], 10);
+        const value = parts[1];
+        expectedCaptures.push({ index, value });
+      }
+    }
+  }
+
+  return { shouldMatch, expectedCaptures };
 }

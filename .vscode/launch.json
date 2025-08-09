@@ -11,7 +11,8 @@
 			"request": "launch",
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}",
-				"${workspaceFolder}/test/fixtures"
+				"${workspaceFolder}/test/fixtures",
+				"${workspaceFolder}/test/inspections"
 			],
 			"outFiles": [
 				"${workspaceFolder}/client/dist/**/*.js"
