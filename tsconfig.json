@@ -14,7 +14,7 @@
       "@common/*": ["common/src/*"]
     },
     "composite": true,
-    "types": ["node", "vitest/globals"]
+    "types": ["node", "vitest/globals", "mocha"]
   },
   "include": [
     "client/src",
@@ -22,6 +22,7 @@
     "common/src",
     "scripts",
     "test/unit",
+    "test/integrations",
     "vitest.config.ts"
   ],
   "exclude": ["node_modules", ".vscode-test", "out", "dist"]
