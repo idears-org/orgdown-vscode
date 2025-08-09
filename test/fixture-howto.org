@@ -1,0 +1,110 @@
+#+TITLE: Test Fixture Format Guide
+
+* 1. Introduction
+
+This directory contains the test fixtures for Orgdown's grammar unit tests. These files serve as the **Single Source of Truth (SSoT)** for defining the expected behavior of our regular expressions.
+
+The test runner in `test/unit/grammar-regex.test.ts` automatically discovers and executes these `.org` files.
+
+* 2. Fixture Structure
+
+Each fixture file is composed of one or more test cases. Each test case MUST follow this structure:
+
+#+NAME: A clear and descriptive name for the test case
+#+BEGIN_SRC org
+The Org Mode text to be tested against a regex.
+#+END_SRC
+
+#+RESULTS: regexName
+... expected results ...
+#+END_SRC
+
+* 3. Core Components
+
+*** 3.1. Test Case Name (`#+NAME`)
+
+- **Purpose**: Uniquely identifies the test case. The name will be used in the test runner's output.
+- **Format**: `#+NAME: <Your Descriptive Name>`
+
+*** 3.2. Test Input (`#+BEGIN_SRC`)
+
+- **Purpose**: Contains the raw text input for the test. The input can span multiple lines.
+- **Format**: The text must be enclosed in a standard Org Mode source block.
+
+  #+BEGIN_SRC org
+  This is the first line of input.
+  This is the second line, which is also part of the input.
+  #+END_SRC
+
+*** 3.3. Expected Results (`#+RESULTS`)
+
+- **Purpose**: Defines the assertion to be made for the test case.
+- **Format**: `#+RESULTS: <regexName>`
+  - `<regexName>` MUST be the exact name of a regex constant exported from `common/src/grammar/regex.ts`.
+
+* 4. Assertion Types
+
+There are two types of assertions you can make.
+
+*** 4.1. Asserting a Match
+
+To assert that the input *should* match the regex, provide a table of expected capture group values.
+
+- The table MUST have two columns: `Group #` and `Expected Value`.
+
+- **Important**: There is a critical difference between omitting a group from the table and explicitly setting its value to `undefined`.
+  - **Omitting a group**: If a group number is not present in the table, the test runner **will not check it**. This means you don't care about its result.
+  - **Value as `undefined`**: If a group's expected value is the literal string `undefined`, the test runner will **assert that the group was not captured** (i.e., its result is `undefined`). This is essential for testing optional capture groups.
+
+#+BEGIN_SRC org
+#+NAME: Example of a matching test
+#+BEGIN_SRC org
+* TODO [#A] A task
+#+END_SRC
+#+RESULTS: headlineLevel1Regex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | *              |
+| 2       | TODO           |
+| 3       | [#A]           |
+| 4       | A              |
+| 5       | A task         |
+| 7       | undefined      |
+# In this example, we assert that group 7 (tags) MUST be undefined.
+# We don't care about group 6 (progress), so it's omitted from the table.
+#+END_SRC
+
+*** 4.2. Asserting No Match
+
+To assert that the input *should not* match the regex, use the keyword `no-match`.
+
+#+BEGIN_SRC org
+#+NAME: Example of a non-matching test
+#+BEGIN_SRC org
+This is not a headline.
+#+END_SRC
+#+RESULTS: headlineLevel1Regex
+no-match
+#+END_SRC
+
+* 5. Advanced: One-to-Many Testing
+
+The test runner supports testing a single input (`SRC` block) against multiple regular expressions. To do this, simply place multiple `#+RESULTS` blocks one after another.
+
+#+BEGIN_SRC org
+#+NAME: Testing one input against two regexes
+#+BEGIN_SRC org
+* A headline
+#+END_SRC
+
+#+RESULTS: headlineLevel1Regex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | *              |
+| 5       | A headline     |
+
+#+RESULTS: headlineDetectRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | * A headline   |
+#+END_SRC
