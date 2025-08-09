@@ -3,6 +3,7 @@
 // All regex patterns used in the TextMate grammar are defined here as the single source of truth
 
 /**
+ * ************************************************* BEGIN HEADLINES ***************************************************
  * Headlines - matches org-mode headlines with various elements
  * Capture groups:
  * 1. stars (*, **, ***, etc.)
@@ -13,56 +14,33 @@
  * 6. progress/cookie ([1/3], [50%], etc.)
  * 7. tags (:tag1:tag2:)
  */
-export const headlineDetectRegex = '^(\\*+\\s+.*)';
+// Atomic regex fragments for Org headlines
+export const starsFragment = '(\\*+)\\s+'; // 1. stars (any level)
+export const starsLevel1Fragment = '(\\*)\\s+'; // 1. stars (level 1)
+export const starsLevel2Fragment = '(\\*{2})\\s+'; // 1. stars (level 2)
+export const starsLevel3Fragment = '(\\*{3})\\s+'; // 1. stars (level 3)
+export const starsLevel4Fragment = '(\\*{4})\\s+'; // 1. stars (level 4)
+export const starsLevel5Fragment = '(\\*{5})\\s+'; // 1. stars (level 5)
+export const starsLevel6Fragment = '(\\*{6,})\\s+'; // 1. stars (level 6+)
+export const todoFragment = '(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?'; // 2. todo keyword
+export const priorityFragment = '(?:(\\[#([A-Z0-9])\\])\\s*)?'; // 3. priority block, 4. letter
+export const headlineTextFragment = '(.*?)'; // 5. headline text (non-greedy, can be empty)
+export const cookieFragment = '(?:\\s+(\\[[0-9/%]+\\]))?'; // 6. progress/cookie
+export const tagsFragment = '(?:\\s*(:[^ \\t:][^ \\t]*:))?'; // 7. tags (allowing special chars)
+
+// Compose full headline regex for each level
+export const headlineDetectRegex = `^(\\*+\\s+.*)`;
 // Match a single-star Org headline with all possible elements
-export const headlineLevel1Regex =
-  '^(\\*)\\s+' +                                // 1. Capture stars (headline level), require at least one space after
-  '(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?' + // 2. Optionally capture a TODO keyword, followed by space
-  '(?:(\\[#([A-Z0-9])\\])\\s*)?' +              // 3. Optionally capture a priority block [#A], 4. and its letter
-  '(.*?)' +                                     // 5. Capture headline text (can be empty, non-greedy)
-  '(?:\\s+(\\[[0-9/%]+\\]))?' +                 // 6. Optionally capture progress/cookie like [1/3] or [50%]
-  '(?:\\s*(:[^ \\t:][^ \\t]*:))?' +             // 7. Optionally capture tags (allowing special characters), leading spaces allowed
-  '\\s*$';                                      // Match trailing spaces and end of line
-export const headlineLevel2Regex =
-  '^(\\*{2})\\s+' +                             // 1. Capture stars (headline level), require at least one space after
-  '(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?' + // 2. Optionally capture a TODO keyword, followed by space
-  '(?:(\\[#([A-Z0-9])\\])\\s*)?' +              // 3. Optionally capture a priority block [#A], 4. and its letter
-  '(.*?)' +                                     // 5. Capture headline text (can be empty, non-greedy)
-  '(?:\\s+(\\[[0-9/%]+\\]))?' +                 // 6. Optionally capture progress/cookie like [1/3] or [50%]
-  '(?:\\s*(:[^ \\t:][^ \\t]*:))?' +             // 7. Optionally capture tags (allowing special characters), leading spaces allowed
-  '\\s*$';                                      // Match trailing spaces and end of line
-export const headlineLevel3Regex =
-  '^(\\*{3})\\s+' +                             // 1. Capture stars (headline level), require at least one space after
-  '(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?' + // 2. Optionally capture a TODO keyword, followed by space
-  '(?:(\\[#([A-Z0-9])\\])\\s*)?' +              // 3. Optionally capture a priority block [#A], 4. and its letter
-  '(.*?)' +                                     // 5. Capture headline text (can be empty, non-greedy)
-  '(?:\\s+(\\[[0-9/%]+\\]))?' +                 // 6. Optionally capture progress/cookie like [1/3] or [50%]
-  '(?:\\s*(:[^ \\t:][^ \\t]*:))?' +             // 7. Optionally capture tags (allowing special characters), leading spaces allowed
-  '\\s*$';                                      // Match trailing spaces and end of line
-export const headlineLevel4Regex =
-  '^(\\*{4})\\s+' +                             // 1. Capture stars (headline level), require at least one space after
-  '(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?' + // 2. Optionally capture a TODO keyword, followed by space
-  '(?:(\\[#([A-Z0-9])\\])\\s*)?' +              // 3. Optionally capture a priority block [#A], 4. and its letter
-  '(.*?)' +                                     // 5. Capture headline text (can be empty, non-greedy)
-  '(?:\\s+(\\[[0-9/%]+\\]))?' +                 // 6. Optionally capture progress/cookie like [1/3] or [50%]
-  '(?:\\s*(:[^ \\t:][^ \\t]*:))?' +             // 7. Optionally capture tags (allowing special characters), leading spaces allowed
-  '\\s*$';                                      // Match trailing spaces and end of line
-export const headlineLevel5Regex =
-  '^(\\*{5})\\s+' +                             // 1. Capture stars (headline level), require at least one space after
-  '(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?' + // 2. Optionally capture a TODO keyword, followed by space
-  '(?:(\\[#([A-Z0-9])\\])\\s*)?' +              // 3. Optionally capture a priority block [#A], 4. and its letter
-  '(.*?)' +                                     // 5. Capture headline text (can be empty, non-greedy)
-  '(?:\\s+(\\[[0-9/%]+\\]))?' +                 // 6. Optionally capture progress/cookie like [1/3] or [50%]
-  '(?:\\s*(:[^ \\t:][^ \\t]*:))?' +             // 7. Optionally capture tags (allowing special characters), leading spaces allowed
-  '\\s*$';                                      // Match trailing spaces and end of line
-export const headlineLevel6Regex =
-  '^(\\*{6,})\\s+' +                             // 1. Capture stars (headline level), require at least one space after
-  '(?:(TODO|DONE|WAITING|NEXT|COMMENT)\\s+)?' + // 2. Optionally capture a TODO keyword, followed by space
-  '(?:(\\[#([A-Z0-9])\\])\\s*)?' +              // 3. Optionally capture a priority block [#A], 4. and its letter
-  '(.*?)' +                                     // 5. Capture headline text (can be empty, non-greedy)
-  '(?:\\s+(\\[[0-9/%]+\\]))?' +                 // 6. Optionally capture progress/cookie like [1/3] or [50%]
-  '(?:\\s*(:[^ \\t:][^ \\t]*:))?' +             // 7. Optionally capture tags (allowing special characters), leading spaces allowed
-  '\\s*$';                                      // Match trailing spaces and end of line
+export const headlineLevel1Regex = `^${starsLevel1Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
+export const headlineLevel2Regex = `^${starsLevel2Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
+export const headlineLevel3Regex = `^${starsLevel3Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
+export const headlineLevel4Regex = `^${starsLevel4Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
+export const headlineLevel5Regex = `^${starsLevel5Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
+export const headlineLevel6Regex = `^${starsLevel6Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
+
+/*
+ * *************************************************** END HEADLINES ***************************************************
+*/
 
 /**
  * Keywords - matches org-mode keywords like #+TITLE: value
