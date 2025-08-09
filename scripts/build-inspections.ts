@@ -2,8 +2,8 @@ import fs from 'fs-extra';
 import path from 'path';
 
 const fixturesDir = path.resolve(__dirname, '../test/fixtures');
-// Integration tests read from test/grammar-inspections
-const inspectionsDir = path.resolve(__dirname, '../test/grammar-inspections');
+// Integration tests read from test/inspections
+const inspectionsDir = path.resolve(__dirname, '../test/inspections');
 
 async function buildInspections() {
   await fs.ensureDir(inspectionsDir);

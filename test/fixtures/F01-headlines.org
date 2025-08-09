@@ -1,6 +1,17 @@
 #+TITLE: Test Suite for Headlines
 #+PROPERTY: SNAPSHOT_ID F01-headlines_org
 
+#+BEGIN_COMMENT :description TextMate Scope Annotation (This block will effect the automated test for tm language grammar regex)
+Capture Groups:
+1. stars -> punctuation.definition.heading.org
+2. todo -> keyword.other.todo.org
+3. priority block -> constant.other.priority.org
+4. priority letter -> constant.other.priority.value.org
+5. headline text -> entity.name.section.org
+6. progress/cookie -> constant.other.progress.org
+7. tags -> entity.name.tag.org
+#+END_COMMENT
+
 * Normal Cases
 
 #+NAME: Simple headline

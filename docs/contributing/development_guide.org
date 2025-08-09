@@ -9,7 +9,7 @@ Our development process is built on two foundational principles:
 - **Test-Driven Development (TDD)**: We write tests first. This ensures every feature is verifiable and prevents regressions.
 - **Single Source of Truth (SSoT)**: Each piece of logic or data (regular expressions, grammar structure, test cases) is defined in exactly one place, eliminating duplication and inconsistency.
 
-For a deep dive into the architectural decisions behind this workflow, please see [[../4_architecture_decisions/005-unified-grammar-and-test-workflow.org][ADR-005: Unified, Multi-Layered Grammar and Testing Workflow]].
+For a deep dive into the architectural decisions behind this workflow, please see [[../architecture_decisions/005-unified-grammar-and-test-workflow.org][ADR-005: Unified, Multi-Layered Grammar and Testing Workflow]].
 
 ** 2. Quick Start: Fixing a Highlighting Bug
 

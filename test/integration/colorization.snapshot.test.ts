@@ -58,7 +58,7 @@ function assertUnchangedTokens(testFixurePath: any, done: any) {
 suite('colorization', () => {
     console.log('Colorization test suite started');
     // Always resolve fixtures from the project root, not the compiled output
-    const extensionColorizeFixturePath = join(process.cwd(), 'test', 'grammar-inspections');
+    const extensionColorizeFixturePath = join(process.cwd(), 'test', 'inspections');
 
     // Automatically open an org file to ensure the extension is activated
     setup(async () => {

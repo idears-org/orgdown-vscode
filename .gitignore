@@ -7,4 +7,4 @@ node_modules
 .vscode-test/
 *.vsix
 **/*.tsbuildinfo
-test/inspections/
+test/inspections/*.inspection.org

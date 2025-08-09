@@ -3,7 +3,12 @@ import path from 'path';
 
 export default defineConfig({
   test: {
-    include: ['test/unit/**/*.test.ts'],
+    include: [
+      'test/unit/**/*.test.ts',
+    ],
+    forceRerunTriggers: [
+      path.resolve(__dirname, 'test/fixtures/**/*.org'),
+    ],
     alias: {
       '@common': path.resolve(__dirname, './common/src'),
     },

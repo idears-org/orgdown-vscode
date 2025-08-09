@@ -11,13 +11,12 @@
 			"request": "launch",
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}",
-				"${workspaceFolder}/samples/sample.org",
-				"${workspaceFolder}/test/colorize-fixtures"
+				"${workspaceFolder}/test/fixtures"
 			],
 			"outFiles": [
 				"${workspaceFolder}/client/dist/**/*.js"
 			],
-			"preLaunchTask": "${defaultBuildTask}"
+			"preLaunchTask": "watch:all"
 		}
 	]
 }

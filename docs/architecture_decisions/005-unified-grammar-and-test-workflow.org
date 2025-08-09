@@ -40,6 +40,67 @@ No single testing method can provide both speed and high-fidelity validation. Th
 
 Crucially, we decided that **scope testing belongs at L3, not L1**. Forcing L1 unit tests to parse the YAML grammar file would violate the SSoT principle, slow down the fast loop, and make test failures ambiguous. L3 snapshot testing is the correct and most precise tool for validating the final, integrated scope mappings.
 
+#+begin_src mermaid
+
+flowchart TD
+    subgraph Fixtures & Inputs
+        F1[test/fixtures/*.org]
+        G1[syntaxes/org.tmLanguage.template.yaml]
+        R1[common/src/grammar/regex.ts]
+    end
+
+    subgraph Build Scripts
+        BG[scripts/build-grammar.ts]
+        BI[scripts/build-inspections.ts]
+    end
+
+    subgraph Outputs
+        CG[syntaxes/org.configuration.json]
+        INSP[test/inspection/*.org]
+    end
+
+    subgraph Testing
+        VITEST[vitest L1 Unit]
+        VSCOPE[VS Code Scope Inspector L2 Manual]
+        SNAP[L3 Snapshot Test]
+    end
+
+    %% Fixture flow
+    F1 --> BG
+    F1 --> BI
+    F1 --> VITEST
+
+    %% Grammar/Regex flow
+    R1 --> BG
+    R1 --> VITEST
+
+    %% Grammar template flow
+    G1 --> BG
+
+    %% Build outputs
+    BG --> CG
+    BI --> INSP
+
+    %% L1 Unit
+    VITEST -.->|verify regex.ts| F1
+
+    %% L2 Manual
+    CG --> VSCOPE
+    INSP --> VSCOPE
+
+    %% L3 Snapshot
+    CG --> SNAP
+    INSP --> SNAP
+
+    classDef input fill:#e0f7fa,stroke:#333,stroke-width:1px;
+    classDef output fill:#fff9c4,stroke:#333,stroke-width:1px;
+    classDef test fill:#ffe0b2,stroke:#333,stroke-width:1px;
+    class F1,G1,R1 input;
+    class CG,INSP output;
+    class VITEST,VSCOPE,SNAP test;
+
+#+end_src
+
 ** 3. The Decision Outcome: The V7 Fixture Format
 
 Based on these principles, we designed a highly-structured, extensible, and self-documenting fixture format using native Org Mode features. This format is the cornerstone of our entire workflow.

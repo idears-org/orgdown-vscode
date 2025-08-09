@@ -2,37 +2,71 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build",
-      "type": "npm",
-      "script": "build",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": ["$esbuild"],
-      "detail": "Clean, generate grammar, and build the extension."
-    },
-    {
-      "label": "dev",
-      "type": "npm",
-      "script": "dev",
-      "problemMatcher": ["$esbuild"],
+      "label": "watch:server",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "watch:server"],
       "isBackground": true,
-      "detail": "Watch for changes and rebuild the extension and grammar."
+      "group": "build",
+      "problemMatcher": "$tsc-watch",
+      "presentation": { "group": "watch", "reveal": "never" }
     },
     {
-      "label": "test:unit",
-      "type": "npm",
-      "script": "test:unit",
-      "group": "test",
-      "detail": "Run unit tests with Vitest."
+      "label": "watch:client",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "watch:client"],
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": "$esbuild-watch",
+      "presentation": { "group": "watch", "reveal": "never" }
     },
     {
-      "label": "lint",
-      "type": "npm",
-      "script": "lint",
-      "problemMatcher": ["$eslint-compact"],
-      "detail": "Run ESLint checks."
+      "label": "watch:grammar",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "watch:grammar"],
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": "$esbuild-watch",
+      "presentation": { "group": "watch", "reveal": "never" }
+    },
+    {
+      "label": "watch:inspections",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "watch:inspections"],
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": "$esbuild-watch",
+      "presentation": { "group": "watch", "reveal": "never" }
+    },
+    {
+      "label": "watch:test:unit",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "watch:test:unit"],
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": {
+        "owner": "vitest",
+        "pattern": { "regexp": "." },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^ RERUN",
+          "endsPattern": "PASS  Waiting for file changes\\.\\.\\."
+        }
+      },
+      "presentation": { "group": "watch", "reveal": "always" }
+    },
+    {
+      "label": "watch:all",
+      "dependsOn": ["watch:server", "watch:client", "watch:grammar", "watch:inspections", "watch:test:unit"],
+      "dependsOrder": "parallel",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always" },
+      "group": { "kind": "build", "isDefault": true },
+      "detail": "Run all watch tasks in parallel for live development."
     }
   ]
 }

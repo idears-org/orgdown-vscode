@@ -23,7 +23,7 @@
     "scripts",
     "test/unit",
     "test/integrations",
-    "vitest.config.ts"
+    "vitest.config.mts"
   ],
   "exclude": ["node_modules", ".vscode-test", "out", "dist"]
 }

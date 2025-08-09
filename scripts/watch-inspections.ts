@@ -3,13 +3,12 @@ import { exec } from 'child_process';
 
 console.log('[watch] build started');
 const watcher = chokidar.watch([
-  'syntaxes/org.tmLanguage.template.yaml',
-  'scripts/build-grammar.ts',
-  'common/src/grammar/regex.ts'
+  'test/fixtures/*.org',
+  'scripts/build-inspections.ts',
 ], { ignoreInitial: true });
 
 watcher.on('all', () => {
-  exec('pnpm run build:grammar', (err, stdout, stderr) => {
+  exec('pnpm run build:inspections', (err, stdout, stderr) => {
     if (err) {
       console.error(stderr);
     } else {
