@@ -48,34 +48,34 @@ repository:
   # First layer: headlineDetectRegex matches any headline line and captures the whole line.
   # Second layer: In the first capture group, patterns match specific headline levels (1-6) and extract semantic parts using heading-captures.
   headings:
-    match: "{{headlineDetectRegex}}"
+    match: "{{regexs.headlineDetectRegex}}"
     name: '{{scopes.HEADING_BLOCK}}'
     captures:
       '1':
         patterns:
           # Each pattern below matches a specific Org headline level and applies semantic captures.
           - name: '{{scopes.HEADING_LEVEL_1}}'
-            match: "{{headlineLevel1Regex}}"
+            match: "{{regexs.headlineLevel1Regex}}"
             captures:
               <<: *heading-captures
           - name: '{{scopes.HEADING_LEVEL_2}}'
-            match: "{{headlineLevel2Regex}}"
+            match: "{{regexs.headlineLevel2Regex}}"
             captures:
               <<: *heading-captures
           - name: '{{scopes.HEADING_LEVEL_3}}'
-            match: "{{headlineLevel3Regex}}"
+            match: "{{regexs.headlineLevel3Regex}}"
             captures:
               <<: *heading-captures
           - name: '{{scopes.HEADING_LEVEL_4}}'
-            match: "{{headlineLevel4Regex}}"
+            match: "{{regexs.headlineLevel4Regex}}"
             captures:
               <<: *heading-captures
           - name: '{{scopes.HEADING_LEVEL_5}}'
-            match: "{{headlineLevel5Regex}}"
+            match: "{{regexs.headlineLevel5Regex}}"
             captures:
               <<: *heading-captures
           - name: '{{scopes.HEADING_LEVEL_6}}'
-            match: "{{headlineLevel6Regex}}"
+            match: "{{regexs.headlineLevel6Regex}}"
             captures:
               <<: *heading-captures
   #endregion HEADLINES
@@ -83,14 +83,14 @@ repository:
   #region LISTS
   # The '::' separator within a list item
   list-description-separator:
-    match: "{{descriptionSeparatorRegex}}"
+    match: "{{regexs.descriptionSeparatorRegex}}"
     captures:
       1: { name: '{{scopes.DESCRIPTION_TERM}}' }
       2: { name: '{{scopes.DESCRIPTION_SEPARATOR}}' }
 
   # The [@NN] counter within an ordered list item
   list-counter:
-    match: "{{listCounterRegex}}"
+    match: "{{regexs.listCounterRegex}}"
     name: '{{scopes.LIST_COUNTER}}'
     captures:
       1: { name: '{{scopes.LIST_COUNTER_VALUE}}' }
@@ -99,7 +99,7 @@ repository:
     patterns:
       # Unordered lists (which can contain description lists)
       - name: '{{scopes.LIST_UNORDERED_TEXT}}'
-        begin: "{{unorderedListRegex}}"
+        begin: "{{regexs.unorderedListRegex}}"
         end: "(?=$)"
         beginCaptures:
           1: { name: '{{scopes.LIST_WHITESPACE}}' }
@@ -110,7 +110,7 @@ repository:
           - { include: '#inline-markup' }
       # Ordered lists
       - name: '{{scopes.LIST_ORDERED_TEXT}}'
-        begin: "{{orderedListRegex}}"
+        begin: "{{regexs.orderedListRegex}}"
         end: "(?=$)"
         beginCaptures:
           1: { name: '{{scopes.LIST_WHITESPACE}}' }
@@ -140,29 +140,29 @@ repository:
     patterns:
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "{{quoteBlockBeginRegex}}"
-        end: "{{quoteBlockEndRegex}}"
+        begin: "{{regexs.quoteBlockBeginRegex}}"
+        end: "{{regexs.quoteBlockEndRegex}}"
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "{{exampleBlockBeginRegex}}"
-        end: "{{exampleBlockEndRegex}}"
+        begin: "{{regexs.exampleBlockBeginRegex}}"
+        end: "{{regexs.exampleBlockEndRegex}}"
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "{{verseBlockBeginRegex}}"
-        end: "{{verseBlockEndRegex}}"
+        begin: "{{regexs.verseBlockBeginRegex}}"
+        end: "{{regexs.verseBlockEndRegex}}"
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "{{centerBlockBeginRegex}}"
-        end: "{{centerBlockEndRegex}}"
+        begin: "{{regexs.centerBlockBeginRegex}}"
+        end: "{{regexs.centerBlockEndRegex}}"
       - <<: *org-block-base
         name: markup.raw.block.org
-        begin: "{{commentBlockBeginRegex}}"
-        end: "{{commentBlockEndRegex}}"
+        begin: "{{regexs.commentBlockBeginRegex}}"
+        end: "{{regexs.commentBlockEndRegex}}"
 
   keywords:
     patterns:
       - name: '{{scopes.KEYWORD_META}}'
-        match: "{{keywordRegex}}"
+        match: "{{regexs.keywordRegex}}"
         captures:
           1: { name: '{{scopes.KEYWORD_MARKER}}' }
           2: { name: '{{scopes.KEYWORD_NAME}}' }
@@ -170,8 +170,8 @@ repository:
 
   drawers:
     name: meta.drawer.org
-    begin: "{{drawerBeginRegex}}"
-    end: "{{drawerEndRegex}}"
+    begin: "{{regexs.drawerBeginRegex}}"
+    end: "{{regexs.drawerEndRegex}}"
     beginCaptures:
       0: { name: punctuation.definition.drawer.begin.org }
       1: { name: entity.name.function.drawer.org }
@@ -180,22 +180,22 @@ repository:
 
   tables:
     name: markup.table.org
-    match: "{{tableRegex}}"
+    match: "{{regexs.tableRegex}}"
 
   horizontal-rules:
     name: markup.other.horizontal-rule.org
-    match: "{{horizontalRuleRegex}}"
+    match: "{{regexs.horizontalRuleRegex}}"
 
   footnotes:
     patterns:
       - name: meta.footnote.definition.org
-        match: "{{footnoteDefinitionRegex}}"
+        match: "{{regexs.footnoteDefinitionRegex}}"
       - name: meta.footnote.reference.org
-        match: "{{footnoteReferenceRegex}}"
+        match: "{{regexs.footnoteReferenceRegex}}"
 
   paragraph:
-    begin: "{{paragraphBeginRegex}}"
-    end: "{{paragraphEndRegex}}"
+    begin: "{{regexs.paragraphBeginRegex}}"
+    end: "{{regexs.paragraphEndRegex}}"
     patterns:
       - include: "#inline-markup"
 
@@ -216,7 +216,7 @@ repository:
 
   links:
     name: meta.link.org
-    match: "{{linkRegex}}"
+    match: "{{regexs.linkRegex}}"
     captures:
       1: { name: punctuation.definition.link.begin.org }
       2: { name: '{{scopes.LINK}}' }
@@ -225,44 +225,44 @@ repository:
 
   timestamps-active:
     name: constant.other.timestamp.active.org
-    match: "{{timestampActiveRegex}}"
+    match: "{{regexs.timestampActiveRegex}}"
 
   timestamps-inactive:
     name: comment.timestamp.inactive.org
-    match: "{{timestampInactiveRegex}}"
+    match: "{{regexs.timestampInactiveRegex}}"
 
   latex:
     name: markup.math.org
-    match: "{{latexRegex}}"
+    match: "{{regexs.latexRegex}}"
 
   bold:
     name: '{{scopes.BOLD}}'
-    match: "{{boldRegex}}"
+    match: "{{regexs.boldRegex}}"
 
   italic:
     name: '{{scopes.ITALIC}}'
-    match: "{{italicRegex}}"
+    match: "{{regexs.italicRegex}}"
 
   underline:
     name: '{{scopes.UNDERLINE}}'
-    match: "{{underlineRegex}}"
+    match: "{{regexs.underlineRegex}}"
 
   strikethrough:
     name: '{{scopes.STRIKETHROUGH}}'
-    match: "{{strikethroughRegex}}"
+    match: "{{regexs.strikethroughRegex}}"
 
   code:
     name: '{{scopes.CODE}}'
-    match: "{{codeRegex}}"
+    match: "{{regexs.codeRegex}}"
 
   verbatim:
     name: '{{scopes.VERBATIM}}'
-    match: "{{verbatimRegex}}"
+    match: "{{regexs.verbatimRegex}}"
 
   entities:
     name: constant.character.entity.org
-    match: "{{entitiesRegex}}"
+    match: "{{regexs.entitiesRegex}}"
 
   sub-super-scripts:
     name: markup.other.sub-super-script.org
-    match: "{{subSuperScriptRegex}}"
+    match: "{{regexs.subSuperScriptRegex}}"

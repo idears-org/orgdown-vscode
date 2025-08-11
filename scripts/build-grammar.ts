@@ -134,7 +134,7 @@ async function buildGrammar() {
     // Replace all regex placeholders with actual patterns
     for (const [key, value] of Object.entries(regexModule)) {
       if (typeof value === 'string') {
-        const placeholder = `{{${key}}}`;
+        const placeholder = `{{regexs.${key}}}`;
         // Escape backslashes for YAML string literals
         const escapedValue = value.replace(/\\/g, '\\\\');
         templateContent = templateContent.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), escapedValue);
