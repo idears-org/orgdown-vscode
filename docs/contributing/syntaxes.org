@@ -1,0 +1,70 @@
+#+TITLE: Orgdown Syntax Development Guide
+
+This document describes the full workflow for adding or modifying syntax features in Orgdown.
+
+* 1. The SSoT Blueprints
+
+Our syntax highlighting is driven by a "Single Source of Truth" (SSoT) model. Before making changes, familiarize yourself with these key files:
+
+- **Logic**: `common/src/grammar/regex.ts` - Contains all regular expressions.
+- **Scopes**: `common/src/scoping.ts` - Contains all TextMate scope name definitions.
+- **Structure**: `syntaxes/org.tmLanguage.template.yaml` - Maps regex and scopes together using placeholders.
+- **Tests**: `test/fixtures/` - Contains all test cases. The format is defined in the [[../test/fixture-howto.org][Fixture How-To Guide]].
+
+* 2. The Full Workflow: Adding a New Feature
+
+Let's walk through adding a new syntax feature.
+
+**Step 0: Design the Scopes**
+Before writing code, design a clear TextMate scope naming scheme. Add your new scope constants to `common/src/scoping.ts`, following the conventions outlined in the [[../reference/scope-naming-conventions.org][Scope Naming Conventions]].
+
+**Step 1: Define the Blueprints**
+1.  **Define Logic**: In `common/src/grammar/regex.ts`, add your new, named, exported regular expression.
+2.  **Define Structure**: In `syntaxes/org.tmLanguage.template.yaml`, add a rule that uses your placeholders, e.g., `match: "{{regexs.yourNewRegex}}"` and `name: "{{scopes.YOUR_NEW_SCOPE}}"`.
+3.  **Define Tests**: In `test/fixtures/`, create or modify a fixture file. Add test cases for all scenarios according to the [[../test/fixture-howto.org][Fixture How-To Guide]].
+
+**Step 2: Test-Driven Development (L1)**
+Run `pnpm test:unit`. Adjust your regex in `regex.ts` until all tests pass.
+
+**Step 3: Build and Verify (L2 & L3)**
+1.  Run `pnpm build`. This will run all build scripts, including `build:grammar` and `build:theme`.
+2.  Launch the debugger. Activate the "Orgdown Debug Theme".
+3.  Open an `.org` file and manually verify that your new syntax is highlighted with the correct color. Use "Developer: Inspect Editor Tokens and Scopes" to be certain.
+4.  Run `pnpm test:integration -u` to update the final snapshot if needed.
+
+**Step 4: Commit Your Work**
+- **DO commit**: `common/src/**/*.ts`, `syntaxes/org.tmLanguage.template.yaml`, `test/fixtures/*.org`, `test/integration/__snapshots__/*.snap`.
+- **DO NOT commit**: `syntaxes/org.tmLanguage.json`, `themes/orgdown-debug-theme.json`.
+
+* 3. Core Concepts & Conventions
+
+This section defines key conventions for our syntax development.
+
+*** 3.1. File Naming Conventions
+To ensure consistency and predictability across the project, all files MUST adhere to the following naming conventions:
+- **Source Code (`.ts`)**: Use `kebab-case`.
+  - Example: `headline-parser.ts`
+- **Test Files (`.test.ts`)**: Use the name of the source file, suffixed with `.test`.
+  - Example: `headline-parser.test.ts`
+- **Documentation (`.org`)**:
+  - **ADRs**: Use the format `[NNN]-short-title-in-kebab-case.org`.
+  - **Feature Specs**: Use the format `[NNN]-feature-name-in-kebab-case.org`.
+  - **General Docs**: Use `kebab-case`.
+- **Configuration Files**: Adhere to established community standards.
+  - Example: `package.json`, `tsconfig.json`
+
+*** 3.2. Syntax Unit (`<syntax>`) Registry
+A `<syntax>` is a conventional name for a distinct, testable unit of Org Mode grammar.
+- *Principles*: Must have semantic cohesion, relate to a specific implementation in the grammar, and be testable at an appropriate granularity.
+- *Registry*: (This list should be expanded as new syntaxes are added)
+  - `headline`: Represents a headline.
+  - `list-item`: Represents any type of list item.
+  - `src-block`: Represents a `#+BEGIN_SRC` ... `#+END_SRC` block.
+
+*** 3.3. Test Type (`<type>`) Registry
+A `<type>` corresponds to a specific testing capability of our framework.
+- *Principles*: Must correspond to a user-facing feature and have a unique, machine-parsable result structure.
+- *Registry*: (This list will expand)
+  - `regex`: Tests regex capture groups.
+  - `folding`: (Future) Tests code folding ranges.
+  - `symbols`: (Future) Tests the document symbol tree.

@@ -4,7 +4,7 @@
 
 This document serves as the official checklist and roadmap for tracking which Org Mode features are covered by our new, standardized testing framework. Its goal is to provide a clear overview of project status and to guide new contributions.
 
-For the complete technical workflow on how to add a new feature or test case, please see the [[../development-guide.org][Development Guide]].
+For the complete technical workflow on how to add a new feature or test case, please see the [[./readme.org][Contribution Guide]].
 
 ** 2. How to Contribute
 
@@ -17,16 +17,15 @@ For the complete technical workflow on how to add a new feature or test case, pl
 
 *** Core Structure [Priority: High]
 - [X] **Headlines**: Levels, TODOs, priorities, tags, commented headlines.
-  _fixture: ~test/fixtures/F01-headlines.org~, ~test/fixtures/F01-headline-edge-cases.org~
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F01-headlines.org~
   _syntax: `headline`_
-- [X] **Lists**: Unordered, ordered, description lists.
-  _fixture: ~test/fixtures/F02-1-plain-lists.org~, ~test/fixtures/F02-2-description-lists.org~
+- [X] **Lists & Checkboxes**: Unordered, ordered, description lists, and checkboxes.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F02-lists.org~
   _syntax: `list-item`_
-- [ ] **Checkboxes**: List items with checkbox markers `[ ]`, `[X]`, `[-]`.
-  _fixture: ~test/fixtures/F02-list-edge-cases.org~
-  _syntax: `checkbox-item`_
 - [ ] **Horizontal Rules**: Standard `-----`.
-  _fixture: ~test/fixtures/F26-horizontal-rules.org~
+  _fixture: ~test/colorize-fixtures/F26-horizontal-rules.org~
   _syntax: `horizontal-rule`_
 
 *** Block-Level Elements [Priority: High]

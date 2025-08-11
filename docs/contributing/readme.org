@@ -1,0 +1,36 @@
+#+TITLE: Contributing to Orgdown
+
+* Orgdown VS Code Extension Development Guide
+
+Welcome, contributor! This guide provides practical instructions for contributing to Orgdown.
+
+* 1. Core Philosophy
+
+Our development process is built on two foundational principles:
+
+- **Test-Driven Development (TDD)**: We write tests first. This ensures every feature is verifiable and prevents regressions.
+- **Single Source of Truth (SSoT)**: Each piece of logic or data is defined in exactly one place. For details on our syntax development workflow, see [[./syntaxes.org][Syntax Development Guide]].
+
+For a deep dive into the architectural decisions, please see [[../architecture_decisions/005-unified-grammar-and-test-workflow.org][ADR-005]].
+
+* 2. Quick Start: Fixing a Highlighting Bug
+
+This is the most common contribution. Here’s your fast track:
+
+1.  **Find the Fixture**: Go to `test/fixtures/`. Find the `.org` file for the buggy feature.
+2.  **Create a Failing Test**: Add a new test case that reproduces the bug. For the exact format, see the [[../test/fixture-howto.org][Fixture How-To Guide]].
+3.  **Run the Test**: Run `pnpm test:unit`. Watch it fail.
+4.  **Fix the Code**:
+    - If it's a regex logic issue, fix the corresponding regex in `common/src/grammar/regex.ts`.
+    - If it's a scope naming issue, fix the scope name in `common/src/scoping.ts`.
+5.  **Verify the Fix**: Re-run `pnpm test:unit`. It should now pass.
+6.  **Update Snapshots**: Run `pnpm test:integration -u` to update the visual snapshot.
+7.  **Commit**: Commit your changes.
+
+* 3. Useful Commands
+
+- `pnpm dev`: Watches source files and rebuilds them automatically.
+- `pnpm lint`: Checks for code style issues.
+- `pnpm check-types`: Checks for TypeScript type errors.
+- `pnpm test`: Runs the full test suite (unit and integration).
+- `pnpm build`: Runs all build scripts.
