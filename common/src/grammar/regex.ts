@@ -2,8 +2,8 @@
 // Centralized Org Mode regex definitions for grammar, tests, and codegen
 // All regex patterns used in the TextMate grammar are defined here as the single source of truth
 
+// #region HEADLINES
 /**
- * ************************************************* BEGIN HEADLINES ***************************************************
  * Headlines - matches org-mode headlines with various elements
  * Capture groups:
  * 1. stars (*, **, ***, etc.)
@@ -37,10 +37,19 @@ export const headlineLevel3Regex = `^${starsLevel3Fragment}${todoFragment}${prio
 export const headlineLevel4Regex = `^${starsLevel4Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
 export const headlineLevel5Regex = `^${starsLevel5Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
 export const headlineLevel6Regex = `^${starsLevel6Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
+// #endregion HEADLINES
 
-/*
- * *************************************************** END HEADLINES ***************************************************
-*/
+// #region LISTS
+/**
+ * Lists - ordered, unordered, description
+ */
+export const unorderedListRegex = '^(\\s*)([-+])\\s+(?:\\[( |X|-)\\])?';
+export const orderedListRegex = '^(\\s*)(\\d+[.)])\\s+(?:\\[( |X|-)\\])?';
+// This regex is used inside an unordered list to find the description separator.
+export const descriptionSeparatorRegex = '(.*?)\\s*(::)\\s*';
+// This regex is used inside an ordered list to find a counter.
+export const listCounterRegex = '\\[@(\\d+)\\]';
+// #endregion LISTS
 
 /**
  * Keywords - matches org-mode keywords like #+TITLE: value
@@ -66,13 +75,6 @@ export const commentBlockEndRegex = '(?i)^#\\+END_COMMENT';
  */
 export const drawerBeginRegex = '^\\s*:(PROPERTIES|LOGBOOK):\\s*$';
 export const drawerEndRegex = '^\\s*:END:\\s*$';
-
-/**
- * Lists - ordered, unordered, description
- */
-export const unorderedListRegex = '^(\\s*)([-+])\\s+(?:\\[( |X|-)\\])?';
-export const orderedListRegex = '^(\\s*)(\\d+[.)])\\s+(?:\\[( |X|-)\\])?';
-export const descriptionListRegex = '^(\\s*).+?\\s*::\\s*';
 
 /**
  * Tables

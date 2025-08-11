@@ -1,0 +1,237 @@
+#+TITLE: Test Suite for Lists
+
+
+#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+
+* === Block Scopes ===
+The following scopes are applied to the entire list item's text content.
+- Unordered List Item: markup.list.unnumbered.org
+- Ordered List Item:   markup.list.numbered.org
+- Counter Marker:      constant.numeric.list-counter.org
+
+* === Capture Group Scopes ===
+The following scopes are applied to the specific parts of the list marker.
+
+* unorderedListRegex & orderedListRegex
+1. indentation -> string.other.whitespace.leading.org
+2. bullet -> punctuation.definition.list.begin.org
+3. checkbox -> constant.language.checkbox.org
+
+* descriptionSeparatorRegex (used inside unordered list)
+1. term -> entity.name.tag.description.term.org
+2. separator -> punctuation.separator.key-value.org
+
+* listCounterRegex (used inside ordered list)
+1. number -> constant.numeric.value.org
+
+#+END_COMMENT
+
+* Unordered Lists
+
+#+NAME: Unordered list (-)
+#+BEGIN_SRC org
+- A simple list item
+#+END_SRC
+#+RESULTS: unorderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | -              |
+
+#+NAME: Unordered list (+)
+#+BEGIN_SRC org
++ Another list item
+#+END_SRC
+#+RESULTS: unorderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | +              |
+
+#+NAME: Unordered list checkbox [ ]
+#+BEGIN_SRC org
+- [ ] An unchecked task
+#+END_SRC
+#+RESULTS: unorderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | -              |
+| 3       | <sp:1>         |
+
+#+NAME: Unordered list checkbox [X]
+#+BEGIN_SRC org
++ [X] A checked task
+#+END_SRC
+#+RESULTS: unorderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | +              |
+| 3       | X              |
+
+#+NAME: Unordered list checkbox [-]
+#+BEGIN_SRC org
+- [-] An intermediate task
+#+END_SRC
+#+RESULTS: unorderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | -              |
+| 3       | -              |
+
+* Ordered Lists
+
+#+NAME: Ordered list (.)
+#+BEGIN_SRC org
+1. First item
+#+END_SRC
+#+RESULTS: orderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | 1.             |
+
+#+NAME: Ordered list ()
+#+BEGIN_SRC org
+2) Second item
+#+END_SRC
+#+RESULTS: orderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | 2)             |
+
+#+NAME: Ordered list with counter
+#+BEGIN_SRC org
+3. [@5] Starts at 5
+#+END_SRC
+#+RESULTS: orderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | 3.             |
+#+RESULTS: listCounterRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | 5              |
+
+* Description Lists
+
+#+NAME: Description list item
+#+BEGIN_SRC org
+- Term :: Description
+#+END_SRC
+#+RESULTS: unorderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | -              |
+#+RESULTS: descriptionSeparatorRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | - Term         |
+| 2       | ::             |
+
+#+NAME: Description list with markup in term
+#+BEGIN_SRC org
+- *Term* :: Description
+#+END_SRC
+#+RESULTS: unorderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | -              |
+#+RESULTS: descriptionSeparatorRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | - *Term*       |
+| 2       | ::             |
+
+#+NAME: Description list with no term
+#+BEGIN_SRC org
+- :: Description
+#+END_SRC
+#+RESULTS: unorderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | -              |
+#+RESULTS: descriptionSeparatorRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | -              |
+| 2       | ::             |
+
+#+NAME: List item as description term
+#+BEGIN_SRC org
+- - Another list :: as a term
+#+END_SRC
+#+RESULTS: unorderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | -              |
+#+RESULTS: descriptionSeparatorRegex
+| Group # | Expected Value   |
+|---------+------------------|
+| 1       | - - Another list |
+| 2       | ::               |
+
+* Indentation & Nesting
+
+#+NAME: Space-indented list
+#+BEGIN_SRC org
+  - Indented
+#+END_SRC
+#+RESULTS: unorderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | <sp:2>         |
+| 2       | -              |
+
+#+NAME: Tab-indented list
+#+BEGIN_SRC org
+	- Tab-indented
+#+END_SRC
+#+RESULTS: unorderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | <tab>          |
+| 2       | -              |
+
+#+NAME: Nested mixed list
+#+BEGIN_SRC org
+1. Parent
+  - Child
+#+END_SRC
+#+RESULTS: orderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | 1.             |
+
+* Non-Matching Cases
+
+#+NAME: Not a list - star bullet
+#+BEGIN_SRC org
+* Not a list item
+#+END_SRC
+#+RESULTS: unorderedListRegex
+no-match
+
+#+NAME: Not a list - no space after bullet
+#+BEGIN_SRC org
+-Not a list
+#+END_SRC
+#+RESULTS: unorderedListRegex
+no-match
+
+#+NAME: Not a list - full-width dash
+#+BEGIN_SRC org
+－ Not a list
+#+END_SRC
+#+RESULTS: unorderedListRegex
+no-match
+
+#+NAME: Not a list - horizontal rule
+#+BEGIN_SRC org
+---
+#+END_SRC
+#+RESULTS: unorderedListRegex
+no-match
+
+#+NAME: Not a list - checkbox no space
+#+BEGIN_SRC org
+-[] No space
+#+END_SRC
+#+RESULTS: unorderedListRegex
+no-match

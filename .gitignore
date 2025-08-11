@@ -8,3 +8,5 @@ node_modules
 *.vsix
 **/*.tsbuildinfo
 test/inspections/*.inspection.org
+
+.DS_Store

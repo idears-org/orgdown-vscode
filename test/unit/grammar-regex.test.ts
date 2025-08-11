@@ -48,11 +48,29 @@ interface TestCase {
   expectedCaptures?: { index: number; value: string | undefined }[];
 }
 
+function parseWhitespaceSyntax(value: string): string {
+  if (value === '<tab>') {
+    return '\t';
+  }
+  const spaceMatch = value.match(/^<sp:(\d+)>$/);
+  if (spaceMatch) {
+    return ' '.repeat(parseInt(spaceMatch[1], 10));
+  }
+  return value;
+}
+
 function validateCaptureGroups(match: RegExpMatchArray, expectedCaptures: { index: number; value: string | undefined }[]) {
   for (const expected of expectedCaptures) {
     const actual = match[expected.index];
-    const expectedValue = expected.value === 'undefined' ? undefined : expected.value;
-    expect(actual, `Group ${expected.index} expected "${expectedValue}" but got "${actual}"`).toEqual(expectedValue);
+    let expectedValue: string | undefined = expected.value;
+
+    if (expectedValue === 'undefined') {
+      expectedValue = undefined;
+    } else if (typeof expectedValue === 'string') {
+      expectedValue = parseWhitespaceSyntax(expectedValue);
+    }
+
+    expect(actual, `Group ${expected.index} expected "${expected.value}" but got "${actual}"`).toEqual(expectedValue);
   }
 }
 
@@ -147,11 +165,14 @@ function parseExpectedResults(lines: string[], startIndex: number) {
     }
 
     if (line.startsWith('|') && line.includes('|')) {
-      const parts = line.split('|').map(s => s.trim()).filter(Boolean);
-      if (parts.length >= 2 && parts[0] !== 'Group #' && !isNaN(parseInt(parts[0], 10))) {
-        const index = parseInt(parts[0], 10);
-        const value = parts[1];
-        expectedCaptures.push({ index, value });
+      const parts = line.split('|');
+      if (parts.length >= 3) { // A valid row | col1 | col2 | splits into 4 parts
+          const groupNumStr = parts[1].trim();
+          if (groupNumStr !== 'Group #' && !isNaN(parseInt(groupNumStr, 10))) {
+              const index = parseInt(groupNumStr, 10);
+              const value = parts[2].trim(); // Value is at index 2
+              expectedCaptures.push({ index, value });
+          }
       }
     }
   }

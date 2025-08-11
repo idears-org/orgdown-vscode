@@ -1,7 +1,15 @@
 #+TITLE: Test Suite for Headlines
-#+PROPERTY: SNAPSHOT_ID F01-headlines_org
 
-#+BEGIN_COMMENT :description Expected Capture Groups:
+
+#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+
+* === Block Scopes ===
+# The following scopes are applied to the entire headline.
+- markup.heading.org
+- heading.1.org, heading.2.org, etc.
+
+* === Capture Group Scopes ===
+# The following scopes are applied to the specific parts of the headline.
 1. stars -> punctuation.definition.heading.org
 2. todo -> keyword.other.todo.org
 3. priority block -> constant.other.priority.org

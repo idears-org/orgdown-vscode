@@ -10,6 +10,7 @@ The test runner in `test/unit/grammar-regex.test.ts` automatically discovers and
 
 Each fixture file is composed of one or more test cases. Each test case MUST follow this structure:
 
+#+BEGIN_SRC org
 #+NAME: A clear and descriptive name for the test case
 #+BEGIN_SRC org
 The Org Mode text to be tested against a regex.
@@ -87,7 +88,56 @@ This is not a headline.
 no-match
 #+END_SRC
 
-* 5. Advanced: One-to-Many Testing
+* 5. Scope Documentation for Theming
+
+To make fixtures a complete reference for theme developers, it's crucial to document the expected TextMate scopes.
+
+- **Convention**: At the top of each fixture file, include a `#+BEGIN_COMMENT` block.
+- **Content**: This block should clearly list the block-level scopes and the scopes corresponding to each capture group for the relevant regular expressions.
+
+**Example**:
+#+BEGIN_SRC org
+#+TITLE: Test Suite for Lists
+
+#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+
+* === Block Scopes ===
+The following scopes are applied to the entire list item's text content.
+- Unordered List Item: markup.list.unnumbered.org
+- Ordered List Item:   markup.list.numbered.org
+
+* === Capture Group Scopes ===
+The following scopes are applied to the specific parts of the list marker.
+
+* unorderedListRegex
+1. indentation -> string.other.whitespace.leading.org
+2. bullet -> punctuation.definition.list.begin.org
+#+END_COMMENT
+#+END_SRC
+
+* 6. Special Syntaxes in Results
+
+To handle whitespace and other special characters cleanly in the results table, we use a special syntax. The test runner will parse these strings and convert them to their literal values before making an assertion.
+
+- `<sp:N>`: Represents N space characters.
+  - Example: `<sp:1>` becomes `" "`.
+  - Example: `<sp:4>` becomes `"    "`.
+- `<tab>`: Represents a literal tab character (`\t`).
+
+**Example**:
+#+BEGIN_SRC org
+#+NAME: Space-indented list with checkbox
+#+BEGIN_SRC org
+  - [ ] A task
+#+END_SRC
+#+RESULTS: unorderedListRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | <sp:2>         |
+| 3       | <sp:1>         |
+#+END_SRC
+
+* 7. Advanced: One-to-Many Testing
 
 The test runner supports testing a single input (`SRC` block) against multiple regular expressions. To do this, simply place multiple `#+RESULTS` blocks one after another.
 

@@ -11,18 +11,18 @@ repository:
   block:
     patterns:
       - { include: '#headings' }
+      - { include: '#lists' }
       # - { include: '#comments' }
       # - { include: '#keywords' }
       # - { include: '#org-special-blocks' }
       - { include: '#org-src-blocks' }
       # - { include: '#drawers' }
-      # - { include: '#lists' }
       # - { include: '#horizontal-rules' }
       # - { include: '#tables' }
       # - { include: '#footnotes' }
       # - { include: '#paragraph' }
 
-  # --------------------------- Begin Headlines --------------------------------
+  #region HEADLINES
   # Anchor: Common capture groups for Org headlines.
   # Each group corresponds to a semantic part of a headline line.
   # 1: Leading stars (headline level)
@@ -78,8 +78,48 @@ repository:
             match: "{{headlineLevel6Regex}}"
             captures:
               <<: *heading-captures
-  # --------------------------- End Headlines ----------------------------------
+  #endregion HEADLINES
 
+  #region LISTS
+  # New rule for the '::' separator within a list item
+  list-description-separator:
+    match: "{{descriptionSeparatorRegex}}"
+    captures:
+      1: { name: entity.name.tag.description.term.org } # The term
+      2: { name: punctuation.separator.key-value.org }    # The '::' separator
+
+  # New rule for the [@NN] counter within an ordered list item
+  list-counter:
+    match: "{{listCounterRegex}}"
+    name: constant.numeric.list-counter.org # The whole [@NN] construct
+    captures:
+      1: { name: constant.numeric.value.org } # The number NN
+
+  lists:
+    patterns:
+      # Unordered lists (which can contain description lists)
+      - name: markup.list.unnumbered.org
+        begin: "{{unorderedListRegex}}"
+        end: "(?=$)"
+        beginCaptures:
+          1: { name: string.other.whitespace.leading.org }
+          2: { name: punctuation.definition.list.begin.org }
+          3: { name: constant.language.checkbox.org }
+        patterns:
+          - { include: '#list-description-separator' } # Include the separator rule
+          - { include: '#inline-markup' }
+      # Ordered lists
+      - name: markup.list.numbered.org
+        begin: "{{orderedListRegex}}"
+        end: "(?=$)"
+        beginCaptures:
+          1: { name: string.other.whitespace.leading.org }
+          2: { name: punctuation.definition.list.begin.org }
+          3: { name: constant.language.checkbox.org }
+        patterns:
+          - { include: '#list-counter' } # Include the counter rule
+          - { include: '#inline-markup' }
+  #endregion LISTS
 
   # org-block-base structure definition (YAML anchor, content reuse only)
   org-block-base: &org-block-base
@@ -137,21 +177,6 @@ repository:
       1: { name: entity.name.function.drawer.org }
     endCaptures:
       0: { name: punctuation.definition.drawer.end.org }
-
-  lists:
-    patterns:
-      - name: markup.list.unnumbered.org
-        match: "{{unorderedListRegex}}"
-        captures:
-          1: { name: string.other.whitespace.leading }
-          2: { name: punctuation.definition.list.begin.org }
-      - name: markup.list.numbered.org
-        match: "{{orderedListRegex}}"
-        captures:
-          1: { name: string.other.whitespace.leading }
-          2: { name: punctuation.definition.list.begin.org }
-      - name: markup.list.unnumbered.org
-        match: "{{descriptionListRegex}}"
 
   tables:
     name: markup.table.org
