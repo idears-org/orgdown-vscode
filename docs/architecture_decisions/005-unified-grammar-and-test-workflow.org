@@ -23,7 +23,8 @@ To solve these problems, we established two foundational principles that govern 
 We enforce a strict separation of concerns by ensuring every piece of our grammar engine is defined in exactly one place.
 
 - **The Logic (`common/src/grammar/regex.ts`)**: This file is the SSoT for *what* we capture. It contains all named regular expressions. Its sole responsibility is to extract substrings from text.
-- **The Structure (`syntaxes/org.tmLanguage.template.yaml`)**: This file is the SSoT for *how* we name the captured data. Its sole responsibility is to map capture groups from the regexes to semantic TextMate scope names.
+- **The Scopes (`common/src/scoping.ts`)**: This file is the SSoT for *what* our captured data is named. It contains all named TextMate scopes.
+- **The Structure (`syntaxes/org.tmLanguage.template.yaml`)**: This file is the SSoT for *how* we map Logic and Scopes together.
 - **The Test Cases (`test/fixtures/`)**: These files are the SSoT for *what* we test. They contain the input text and the expected outcomes for all test types.
 
 This separation means we can modify one aspect (e.g., a regex pattern) without breaking the others, and it allows us to test each component independently.
@@ -47,16 +48,19 @@ flowchart TD
         F1[test/fixtures/*.org]
         G1[syntaxes/org.tmLanguage.template.yaml]
         R1[common/src/grammar/regex.ts]
+        S1[common/src/scoping.ts]
     end
 
     subgraph Build Scripts
         BG[scripts/build-grammar.ts]
         BI[scripts/build-inspections.ts]
+        BT[scripts/build-theme.ts]
     end
 
     subgraph Outputs
         CG[syntaxes/org.configuration.json]
         INSP[test/inspection/*.org]
+        DT["themes/orgdown-debug-theme.json (Debug Only)"]
     end
 
     subgraph Testing
@@ -70,9 +74,11 @@ flowchart TD
     F1 --> BI
     F1 --> VITEST
 
-    %% Grammar/Regex flow
+    %% Grammar/Regex/Scope flow
     R1 --> BG
     R1 --> VITEST
+    S1 --> BG
+    S1 --> BT
 
     %% Grammar template flow
     G1 --> BG
@@ -80,6 +86,7 @@ flowchart TD
     %% Build outputs
     BG --> CG
     BI --> INSP
+    BT --> DT
 
     %% L1 Unit
     VITEST -.->|verify regex.ts| F1
@@ -87,6 +94,7 @@ flowchart TD
     %% L2 Manual
     CG --> VSCOPE
     INSP --> VSCOPE
+    DT --> VSCOPE
 
     %% L3 Snapshot
     CG --> SNAP
@@ -95,24 +103,17 @@ flowchart TD
     classDef input fill:#e0f7fa,stroke:#333,stroke-width:1px;
     classDef output fill:#fff9c4,stroke:#333,stroke-width:1px;
     classDef test fill:#ffe0b2,stroke:#333,stroke-width:1px;
-    class F1,G1,R1 input;
-    class CG,INSP output;
+    class F1,G1,R1,S1 input;
+    class CG,INSP,DT output;
     class VITEST,VSCOPE,SNAP test;
 
 #+end_src
 
-** 3. The Decision Outcome: The V7 Fixture Format
+** 3. The Decision Outcome: A Native Org Mode Fixture Format
 
-Based on these principles, we designed a highly-structured, extensible, and self-documenting fixture format using native Org Mode features. This format is the cornerstone of our entire workflow.
+Based on these principles, we designed a highly-structured and self-documenting fixture format that leverages native Org Mode constructs like headlines for test cases, source blocks for input, and results blocks for expectations.
 
-- **Atomic Unit**: Each test case is an atomic unit, defined by a top-level headline (`* Test Case: ...`). This provides unambiguous grouping of all related information.
-- **Structured Metadata**: A `:PROPERTIES:` drawer holds all test configuration:
-  - `:SYNTAX:`: Declares the syntax rule(s) being tested (e.g., `headline`, `planning-line`).
-  - `<SYNTAX_NAME>_REGEX`: Namespaced property to define the regex to use for a specific syntax.
-  - `<SYNTAX_NAME>_SCOPE_*`: Namespaced properties to document the expected scopes for manual L2 verification.
-- **Extensible Results**: A unified `#+RESULTS: <type> [<syntax_name>]` block structure allows for multiple types of test results within a single test case, ensuring the framework is future-proof.
-
-This format is defined in full detail in the [[../development-guide.org][Development Guide]].
+This format is the cornerstone of our entire workflow. The complete and authoritative guide to its syntax, conventions, and advanced features is maintained in the single source of truth for fixtures: [[../test/fixture-howto.org][The Fixture How-To Guide]].
 
 ** 4. Consequences
 

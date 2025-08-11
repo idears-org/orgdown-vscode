@@ -1,0 +1,8 @@
+* Orgdown-VSCode Documentation
+
+This directory contains all documentation for the Orgdown VS Code extension.
+
+- *user_guide/*: Documentation for end-users.
+- *contributing/*: Guides for developers and contributors.
+- *reference/*: Technical specifications and implementation details.
+- *architecture_decisions/*: Architecture Decision Records (ADRs).

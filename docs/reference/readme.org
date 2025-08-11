@@ -1,0 +1,8 @@
+* Reference
+
+This section contains technical reference material, specifications, and implementation plans.
+
+- [[./architecture.org][Architecture]]: A high-level overview of the project's architecture.
+- [[./scope-naming-conventions.org][Scope Naming Conventions]]: The official TextMate scope naming conventions, used as a reference for all scoping decisions.
+- [[./feature_specs/][Feature Specs]]: Detailed specifications for individual features.
+- [[./implementation-plans/][Implementation Plans]]: Checklists and notes for implementing complex features or workflows.

@@ -1,3 +1,3 @@
-# Architecture Decision Records (ADRs)
+* Architecture Decision Records (ADRs)
 
 This section contains the Architecture Decision Records (ADRs) for the Orgdown project. Each ADR documents a significant architectural decision, including the context, decision, and consequences.

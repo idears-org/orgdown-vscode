@@ -5,157 +5,54 @@
 
 * Status: Completed
 
-This document tracks the implementation of the automated TextMate grammar generation, scope checking, and snapshot-based regression testing workflow, as decided in [[../adr/004-orgdown-grammar-build-and-scope-check-workflow.org][ADR-004]].
+This document summarizes the implementation of the automated TextMate grammar and testing workflow, as decided in [[../architecture_decisions/005-unified-grammar-and-test-workflow.org][ADR-005]].
 
-* Task Checklist
+* Final Architecture Summary
 
+The implemented workflow is a sophisticated, multi-layered system built on the "Single Source of Truth" (SSoT) principle.
 
-** Phase 1: Setup and Build Process (In Progress)
-   - [X] Create this implementation plan.
-   - [X] Install required npm development dependencies.
-     - [X] `js-yaml` & `@types/js-yaml`
-     - [X] `glob` & `@types/glob`
-     - [X] `fs-extra` & `@types/fs-extra`
-     - [X] `vscode-tmgrammar-test`
-   - [X] Create the build script `scripts/build-grammar.ts`.
-   - [X] Convert the existing `syntaxes/org.tmLanguage.json` to `syntaxes/org.tmLanguage.yaml`.
-   - [X] Integrate the build script into `package.json` as `pnpm run build:grammar`.
-   - [ ] Create a watch script `watch:grammar` in `package.json`. (Optional, not critical for current workflow)
+**1. Core SSoT Files**
+- *Logic*: `common/src/grammar/regex.ts` defines all regular expressions.
+- *Scopes*: `common/src/scoping.ts` defines all TextMate scope names.
+- *Structure*: `syntaxes/org.tmLanguage.template.yaml` maps logic and scopes together using placeholders (`{{regexs.*}}` and `{{scopes.*}}`).
+- *Tests*: `test/fixtures/*.org` define all test cases. The official format is documented in `test/fixture-howto.org`.
 
-** Phase 2: Scope Checking & Regression Testing
-   - [X] Create the test directory structure: `test/colorize-fixtures/` and `test/colorize-results/`.
-   - [X] Create initial grammar test file: `test/colorization.test.ts` (integration test, requires VS Code API).
-   - [X] Create sample org files for testing (Atom Cases):
-     - [X] headlines.org
-     - [X] lists.org
-     - [X] drawers.org
-     - [X] blocks.org
-     - [X] src-blocks.org
-     - [X] inline-markup.org
-     - [X] tables.org
-     - [X] timestamps.org
-     - [X] links.org
-     - [X] macros.org
-     - [X] babel.org
-     - [X] horizontal-rules.org
-     - [X] include.org
-     - [X] comment-subtree.org
-     - [X] dynamic-blocks.org
-   - [X] Supplement edge case and advanced feature files:
-     - [X] property-value-types.org
-     - [X] checkbox-list-edge-cases.org
-     - [X] priority-todo-tags-edge-cases.org
-     - [X] inline-markup-nesting.org
-     - [X] table-formula-edge-cases.org
-     - [X] timestamp-edge-cases.org
-     - [X] link-abbreviation.org
-     - [X] footnote-edge-cases.org
-     - [X] macro-expansion-edge-cases.org
-     - [X] dynamic-block-variants.org
-     - [X] archive-subtree.org
-     - [X] special-block-types.org
-     - [X] planning-line.org
-     - [X] property-inheritance.org
-     - [X] complex-noweb-reference.org
-   - [X] Implement snapshot-based grammar test logic in `colorization.test.ts`.
-   - [X] Add a `test:grammar:snapshots` script to `package.json`.
+**2. Build Process**
+- A unified `pnpm run build` command orchestrates all necessary builds.
+- `scripts/build-grammar.ts`: Reads the `.yaml` template and the `regex.ts` and `scoping.ts` modules, then substitutes all placeholders to generate the final `org.tmLanguage.json` grammar.
+- `scripts/build-theme.ts`: Reads `scoping.ts` and a base theme to generate a semantic, high-contrast debug theme at `themes/orgdown-debug-theme.json`.
 
-** Phase 3: Finalization
-   - [X] Run the full build, scope check, and snapshot test cycle to ensure everything works.
-   - [X] Update project documentation to reflect the new grammar development workflow.
-   - [X] Mark this implementation plan as "Completed".
+**3. Multi-Layered Testing**
+- *L1 Unit Tests*: `vitest` (`pnpm test:unit`) runs against the `test/fixtures/` directory to provide rapid, sub-second feedback on regex logic.
+- *L2 Manual Verification*: Developers use the generated debug theme and VS Code's scope inspector to visually confirm highlighting.
+- *L3 Snapshot Tests*: `pnpm test:integration` runs snapshot tests to prevent regressions in the final, rendered output.
 
-* Documentation Update
-
-
-
-**Current Automated Grammar Workflow**
-
-- **Grammar Source**: Edit `syntaxes/org.tmLanguage.yaml` (YAML format, easy to maintain and comment).
-- **Build**: Run `pnpm run build:grammar` to automatically generate `org.tmLanguage.json`.
-- **Scope Check & Snapshot Regression Tests**: Run `pnpm test` to execute all unit tests (including scope naming checks) and perform syntax highlighting snapshot tests for all org files in `test/colorize-fixtures/`, comparing results with snapshots in `test/colorize-results/`. Any regression will fail automatically. The previous `pnpm run test:grammar:scope-naming` and `pnpm run test:grammar:snapshots` scripts have been merged into the main test workflow.
-- **Test Script Separation**:
-  - Unit tests (e.g., scope naming checks) use `mocha` + `ts-node`, configured in `.mocharc.unit.json`, script: `pnpm run test:unit`.
-  - Integration tests (e.g., `colorization.test.ts`, depends on VS Code API) use `vscode-test` or Mocha Explorer's launcherScript, script: `pnpm run test:integration`.
-- **Test Explorer Integration**: VS Code Test Explorer discovers and runs integration tests via launcherScript, and finds unit tests via native mocha.
-- **Directory Structure**: See below "Expected Directory Structure".
-
-
-* Progress Summary
-
-This workflow strictly follows the best practices of vscode-markdown-tm-grammar, achieving automated grammar generation, scope checking, and snapshot-based regression testing.
-
-2025-08-01: The automated grammar generation, scope checking, and snapshot regression testing workflow is fully established. All colorization tests and snapshots pass.
-
-2025-08-02: According to the actual development process, test scripts have been separated, mocha configuration files are split for unit/integration, and Test Explorer integration is optimized.
-
-Next steps: Improve documentation, integrate CI, and continue to add edge case test files.
-
-* Design
-
-This section outlines the technical design for the automated grammar workflow.
-
-**1. Grammar Source: YAML**
-   - *File*: `syntaxes/org.tmLanguage.yaml`
-   - *Format*: YAML is chosen for readability, comments, and maintainability.
-   - *Role*: Single source of truth for Orgdown syntax grammar.
-
-**2. Build Script: TypeScript**
-   - *File*: `scripts/build-grammar.ts`
-   - *Dependencies*: `js-yaml`, `glob`, `fs-extra`
-   - *Process*: Scans `syntaxes/` for `*.tmLanguage.yaml`, converts to JSON, writes to `*.tmLanguage.json`.
-
-
-**3. Scope Naming Check**
-   - *File*: `scripts/test-scope-naming.ts`
-   - *Process*: Checks all scope names and includes to ensure theme compatibility.
-   - *Script*: This is now part of the main test workflow (`pnpm test`).
-
-
-**4. Snapshot-Based Regression Testing**
-   - *Test Runner*: `vscode-tmgrammar-test` (TypeScript wrapper, requires VS Code environment)
-   - *Test Directory*: `test/colorize-fixtures/` (input), `test/colorize-results/` (snapshots)
-   - *Test Script*: `test/colorization.test.ts` (integration test, depends on VS Code API)
-   - *Script*: This is now part of the main test workflow (`pnpm test`) or `pnpm run test:integration`.
-   - *Process*: Performs syntax highlighting for all fixture org files, compares results with snapshots, and automatically fails on regression.
-
-**5. Integration**
-   - *package.json*: 脚本分离，`test:unit` 用 mocha + ts-node + .mocharc.unit.json，`test:integration` 用 vscode-test 或 launcherScript。
-   - *.gitignore*: Ignore generated `syntaxes/*.tmLanguage.json` and test results.
-
-**6. Expected Directory Structure**
+**4. Directory Structure**
 
 #+BEGIN_SRC
 orgdown-vscode/
+├── common/src/
+│   ├── grammar/regex.ts      # SSoT for Regex Logic
+│   └── scoping.ts            # SSoT for Scope Names
 ├── docs/
-│   └── implementation-plans/
-│       └── 001-automated-grammar-workflow.org
+│   ├── contributing/
+│   │   ├── readme.org        # High-level guide
+│   │   └── syntaxes.org      # Detailed syntax workflow
+│   └── test/fixture-howto.org # SSoT for Test Format
 ├── scripts/
 │   ├── build-grammar.ts
+│   └── build-theme.ts
 ├── syntaxes/
-│   ├── org.tmLanguage.yaml         # Source file (edit this)
-│   └── org.tmLanguage.json         # Build artifact (auto-generated)
+│   ├── org.tmLanguage.template.yaml # SSoT for Structure
+│   └── org.tmLanguage.json         # Build artifact
 ├── test/
-│   ├── integration
-│   │   └── colorization.test.ts
-│   ├── unit
-│   │   └── grammar-scope-naming.test.ts
-│   ├── colorize-fixtures/
-│   │   ├── headlines.org
-│   │   ├── ....org
-│   │   └── complex-noweb-reference.org
-│   └── colorize-results/
-│       ├── headlines_org.json
-│       ├── ....json
-│       └── complex-noweb-reference_org.json
+│   ├── fixtures/
+│   │   ├── F01-headlines.org # New, unified fixtures
+│   │   └── ...
+│   ├── integration/
+│   │   └── colorization.snapshot.test.ts
+│   └── unit/
+│       └── grammar-regex.test.ts
+└── themes/
+    └── orgdown-debug-theme.json    # Build artifact
 #+END_SRC
-
-
-**7. Workflow Alignment with vscode-markdown-tm-grammar**
-- Grammar source: `syntaxes/org.tmLanguage.yaml`
-- Build artifact: `syntaxes/org.tmLanguage.json`
-- Test fixtures: `test/colorize-fixtures/` (input .org files)
-- Test snapshots: `test/colorize-results/` (output .json files)
-- Test runner: TypeScript, placed in `test/` (e.g., `test/colorization.test.ts`)
-- Test workflow: Strictly replicates the fixture + snapshot + diff pattern of vscode-markdown-tm-grammar
-- Syntax highlighting tests are separated from integration tests to ensure full regression coverage for all highlighting scenarios.
