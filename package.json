@@ -83,6 +83,13 @@
           "source.objc": "objective-c"
         }
       }
+    ],
+    "themes": [
+      {
+        "label": "Orgdown Debug Theme",
+        "uiTheme": "vs-dark",
+        "path": "./themes/orgdown-debug-theme.json"
+      }
     ]
   },
   "scripts": {
@@ -91,6 +98,7 @@
 
     "build:grammar": "tsx scripts/build-grammar.ts",
     "build:inspections": "tsx scripts/build-inspections.ts",
+    "build:theme": "tsx scripts/build-theme.ts",
     "build:server": "pnpm -C server run compile",
     "build:client": "node esbuild.js",
     "build": "pnpm run clean && pnpm run build:grammar && pnpm run build:server && pnpm run build:client",

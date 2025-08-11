@@ -13,7 +13,7 @@ repository:
       - { include: '#headings' }
       - { include: '#lists' }
       # - { include: '#comments' }
-      # - { include: '#keywords' }
+      - { include: '#keywords' }
       # - { include: '#org-special-blocks' }
       - { include: '#org-src-blocks' }
       # - { include: '#drawers' }
@@ -32,92 +32,92 @@ repository:
   # 5: Headline title (supports inline markup)
   # 6: Progress indicator (e.g. [50%])
   # 7: Tags (e.g. :tag1:tag2:)
-  heading-captures: &heading-captures # See above for group meaning
-    1: { name: punctuation.definition.heading.org }
-    2: { name: keyword.other.todo.org }
-    3: { name: constant.other.priority.org }
-    4: { name: constant.other.priority.value.org }
+  heading-captures: &heading-captures
+    1: { name: '{{scopes.HEADING_PUNCTUATION}}' }
+    2: { name: '{{scopes.TODO_KEYWORD}}' }
+    3: { name: '{{scopes.PRIORITY_COOKIE}}' }
+    4: { name: '{{scopes.PRIORITY_VALUE}}' }
     5:
-      name: entity.name.section.org
+      name: '{{scopes.HEADING_TITLE}}'
       patterns:
         - include: "#inline-markup"
-    6: { name: constant.other.progress.org }
-    7: { name: entity.name.tag.org }
+    6: { name: '{{scopes.PROGRESS_COOKIE}}' }
+    7: { name: '{{scopes.TAG}}' }
 
   # Headings: Two-layer Org headline parsing.
   # First layer: headlineDetectRegex matches any headline line and captures the whole line.
   # Second layer: In the first capture group, patterns match specific headline levels (1-6) and extract semantic parts using heading-captures.
   headings:
     match: "{{headlineDetectRegex}}"
-    name: markup.heading.org
+    name: '{{scopes.HEADING_BLOCK}}'
     captures:
       '1':
         patterns:
           # Each pattern below matches a specific Org headline level and applies semantic captures.
-          - name: heading.1.org
+          - name: '{{scopes.HEADING_LEVEL_1}}'
             match: "{{headlineLevel1Regex}}"
             captures:
               <<: *heading-captures
-          - name: heading.2.org
+          - name: '{{scopes.HEADING_LEVEL_2}}'
             match: "{{headlineLevel2Regex}}"
             captures:
               <<: *heading-captures
-          - name: heading.3.org
+          - name: '{{scopes.HEADING_LEVEL_3}}'
             match: "{{headlineLevel3Regex}}"
             captures:
               <<: *heading-captures
-          - name: heading.4.org
+          - name: '{{scopes.HEADING_LEVEL_4}}'
             match: "{{headlineLevel4Regex}}"
             captures:
               <<: *heading-captures
-          - name: heading.5.org
+          - name: '{{scopes.HEADING_LEVEL_5}}'
             match: "{{headlineLevel5Regex}}"
             captures:
               <<: *heading-captures
-          - name: heading.6.org
+          - name: '{{scopes.HEADING_LEVEL_6}}'
             match: "{{headlineLevel6Regex}}"
             captures:
               <<: *heading-captures
   #endregion HEADLINES
 
   #region LISTS
-  # New rule for the '::' separator within a list item
+  # The '::' separator within a list item
   list-description-separator:
     match: "{{descriptionSeparatorRegex}}"
     captures:
-      1: { name: entity.name.tag.description.term.org } # The term
-      2: { name: punctuation.separator.key-value.org }    # The '::' separator
+      1: { name: '{{scopes.DESCRIPTION_TERM}}' }
+      2: { name: '{{scopes.DESCRIPTION_SEPARATOR}}' }
 
-  # New rule for the [@NN] counter within an ordered list item
+  # The [@NN] counter within an ordered list item
   list-counter:
     match: "{{listCounterRegex}}"
-    name: constant.numeric.list-counter.org # The whole [@NN] construct
+    name: '{{scopes.LIST_COUNTER}}'
     captures:
-      1: { name: constant.numeric.value.org } # The number NN
+      1: { name: '{{scopes.LIST_COUNTER_VALUE}}' }
 
   lists:
     patterns:
       # Unordered lists (which can contain description lists)
-      - name: markup.list.unnumbered.org
+      - name: '{{scopes.LIST_UNORDERED_TEXT}}'
         begin: "{{unorderedListRegex}}"
         end: "(?=$)"
         beginCaptures:
-          1: { name: string.other.whitespace.leading.org }
-          2: { name: punctuation.definition.list.begin.org }
-          3: { name: constant.language.checkbox.org }
+          1: { name: '{{scopes.LIST_WHITESPACE}}' }
+          2: { name: '{{scopes.LIST_BULLET}}' }
+          3: { name: '{{scopes.CHECKBOX}}' }
         patterns:
-          - { include: '#list-description-separator' } # Include the separator rule
+          - { include: '#list-description-separator' }
           - { include: '#inline-markup' }
       # Ordered lists
-      - name: markup.list.numbered.org
+      - name: '{{scopes.LIST_ORDERED_TEXT}}'
         begin: "{{orderedListRegex}}"
         end: "(?=$)"
         beginCaptures:
-          1: { name: string.other.whitespace.leading.org }
-          2: { name: punctuation.definition.list.begin.org }
-          3: { name: constant.language.checkbox.org }
+          1: { name: '{{scopes.LIST_WHITESPACE}}' }
+          2: { name: '{{scopes.LIST_BULLET}}' }
+          3: { name: '{{scopes.CHECKBOX}}' }
         patterns:
-          - { include: '#list-counter' } # Include the counter rule
+          - { include: '#list-counter' }
           - { include: '#inline-markup' }
   #endregion LISTS
 
@@ -161,12 +161,12 @@ repository:
 
   keywords:
     patterns:
-      - name: meta.keyword.option.org
+      - name: '{{scopes.KEYWORD_META}}'
         match: "{{keywordRegex}}"
         captures:
-          1: { name: keyword.other.org }
-          2: { name: entity.name.function.option.org }
-          3: { name: string.unquoted.value.org }
+          1: { name: '{{scopes.KEYWORD_MARKER}}' }
+          2: { name: '{{scopes.KEYWORD_NAME}}' }
+          3: { name: '{{scopes.KEYWORD_VALUE}}' }
 
   drawers:
     name: meta.drawer.org
@@ -219,7 +219,7 @@ repository:
     match: "{{linkRegex}}"
     captures:
       1: { name: punctuation.definition.link.begin.org }
-      2: { name: markup.underline.link.org }
+      2: { name: '{{scopes.LINK}}' }
       3: { name: string.other.link.description.org }
       4: { name: punctuation.definition.link.end.org }
 
@@ -236,27 +236,27 @@ repository:
     match: "{{latexRegex}}"
 
   bold:
-    name: markup.bold.org
+    name: '{{scopes.BOLD}}'
     match: "{{boldRegex}}"
 
   italic:
-    name: markup.italic.org
+    name: '{{scopes.ITALIC}}'
     match: "{{italicRegex}}"
 
   underline:
-    name: markup.underline.org
+    name: '{{scopes.UNDERLINE}}'
     match: "{{underlineRegex}}"
 
   strikethrough:
-    name: markup.strikethrough.org
+    name: '{{scopes.STRIKETHROUGH}}'
     match: "{{strikethroughRegex}}"
 
   code:
-    name: markup.inline.raw.org
+    name: '{{scopes.CODE}}'
     match: "{{codeRegex}}"
 
   verbatim:
-    name: markup.inline.raw.org
+    name: '{{scopes.VERBATIM}}'
     match: "{{verbatimRegex}}"
 
   entities:

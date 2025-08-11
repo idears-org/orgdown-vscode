@@ -3,6 +3,7 @@ import fs from 'fs-extra';
 import yaml from 'js-yaml';
 import { glob } from 'glob';
 import * as regexModule from '../common/src/grammar/regex';
+import * as scopeModule from '../common/src/scoping';
 
 interface OrgSrcLanguage {
   name: string;
@@ -137,6 +138,15 @@ async function buildGrammar() {
         // Escape backslashes for YAML string literals
         const escapedValue = value.replace(/\\/g, '\\\\');
         templateContent = templateContent.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), escapedValue);
+      }
+    }
+
+    // Replace all scope placeholders with actual patterns
+    for (const [key, value] of Object.entries(scopeModule)) {
+      if (typeof value === 'string') {
+        const placeholder = `{{scopes.${key}}}`;
+        // No escaping needed for scopes
+        templateContent = templateContent.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), value);
       }
     }
 
