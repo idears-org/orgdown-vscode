@@ -12,6 +12,10 @@ export interface FixtureTestCase {
   results: FixtureTestResult[];
 }
 
+function processExpectedValue(value: string): string {
+  return value.replace(/<sp:(\d+)>/g, (_, count) => ' '.repeat(parseInt(count, 10))).replace(/<tab>/g, '\t');
+}
+
 function parseExpectedBlock(lines: string[], startIndex: number): { results: FixtureTestResult[]; endIndex: number } {
   const allResults: FixtureTestResult[] = [];
   let currentIndex = startIndex;
@@ -43,7 +47,7 @@ function parseExpectedBlock(lines: string[], startIndex: number): { results: Fix
         if (parts.length >= 3) {
           const groupNumStr = parts[1];
           if (groupNumStr !== 'Group #' && !isNaN(parseInt(groupNumStr, 10))) {
-            return { index: parseInt(groupNumStr, 10), value: parts[2] };
+            return { index: parseInt(groupNumStr, 10), value: processExpectedValue(parts[2]) };
           }
         }
         return null;

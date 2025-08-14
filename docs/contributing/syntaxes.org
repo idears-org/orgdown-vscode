@@ -9,7 +9,7 @@ Our syntax highlighting is driven by a "Single Source of Truth" (SSoT) model. Be
 - **Logic**: `common/src/grammar/regex.ts` - Contains all regular expressions.
 - **Scopes**: `common/src/scoping.ts` - Contains all TextMate scope name definitions.
 - **Structure**: `syntaxes/org.tmLanguage.template.yaml` - Maps regex and scopes together using placeholders.
-- **Tests**: `test/fixtures/` - Contains all test cases. The format is defined in the [[../test/fixture-howto.org][Fixture How-To Guide]].
+- **Tests**: `test/fixtures/` - Contains all test cases. The format is defined in the [[../../test/fixture-howto.org][Fixture How-To Guide]].
 
 * 2. The Full Workflow: Adding a New Feature
 
@@ -21,7 +21,7 @@ Before writing code, design a clear TextMate scope naming scheme. Add your new s
 **Step 1: Define the Blueprints**
 1.  **Define Logic**: In `common/src/grammar/regex.ts`, add your new, named, exported regular expression.
 2.  **Define Structure**: In `syntaxes/org.tmLanguage.template.yaml`, add a rule that uses your placeholders, e.g., `match: "{{regexs.yourNewRegex}}"` and `name: "{{scopes.YOUR_NEW_SCOPE}}"`.
-3.  **Define Tests**: In `test/fixtures/`, create or modify a fixture file. Add test cases for all scenarios according to the [[../test/fixture-howto.org][Fixture How-To Guide]].
+3.  **Define Tests**: In `test/fixtures/`, create or modify a fixture file. Add test cases for all scenarios according to the [[../../test/fixture-howto.org][Fixture How-To Guide]].
 
 **Step 2: Test-Driven Development (L1)**
 Run `pnpm test:unit`. Adjust your regex in `regex.ts` until all tests pass.

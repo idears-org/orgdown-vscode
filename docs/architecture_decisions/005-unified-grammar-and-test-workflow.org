@@ -113,7 +113,7 @@ flowchart TD
 
 Based on these principles, we designed a highly-structured and self-documenting fixture format that leverages native Org Mode constructs like headlines for test cases, source blocks for input, and results blocks for expectations.
 
-This format is the cornerstone of our entire workflow. The complete and authoritative guide to its syntax, conventions, and advanced features is maintained in the single source of truth for fixtures: [[../test/fixture-howto.org][The Fixture How-To Guide]].
+This format is the cornerstone of our entire workflow. The complete and authoritative guide to its syntax, conventions, and advanced features is maintained in the single source of truth for fixtures: [[../../test/fixture-howto.org][The Fixture How-To Guide]].
 
 ** 4. Consequences
 

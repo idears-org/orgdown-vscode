@@ -96,24 +96,29 @@ To make fixtures a complete reference for theme developers, it's crucial to docu
 - **Convention**: At the top of each fixture file, include a `#+BEGIN_COMMENT` block.
 - **Content**: This block should clearly list the block-level scopes and the scopes corresponding to each capture group for the relevant regular expressions.
 
-**Example**:
+**Example from `F01-headlines.org`**:
 #+BEGIN_SRC org
-#+TITLE: Test Suite for Lists
+#+TITLE: Test Suite for Headlines
 
 #+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
 
 * === Block Scopes ===
-The following scopes are applied to the entire list item's text content.
-- Unordered List Item: markup.list.unnumbered.org
-- Ordered List Item:   markup.list.numbered.org
+# The following scopes are applied to the entire headline.
+- markup.heading.org
+- heading.1.org, heading.2.org, etc.
 
 * === Capture Group Scopes ===
-The following scopes are applied to the specific parts of the list marker.
-
-* unorderedListRegex
-1. indentation -> string.other.whitespace.leading.org
-2. bullet -> punctuation.definition.list.begin.org
+# The following scopes are applied to the specific parts of the headline.
+1. stars -> punctuation.definition.heading.org
+2. todo -> keyword.other.todo.org
+3. priority block -> constant.other.priority.org
+4. priority letter -> constant.other.priority.value.org
+5. headline text -> entity.name.section.org
+6. progress/cookie -> constant.other.progress.org
+7. tags -> entity.name.tag.org
 #+END_COMMENT
+
+... rest of the fixture ...
 #+END_SRC
 
 * 6. Special Syntaxes in Results

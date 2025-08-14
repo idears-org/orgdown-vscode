@@ -34,9 +34,14 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F04-standard-blocks.org~
   _syntax: `standard-block`_
-- [ ] **Source Code Blocks**: `#+BEGIN_SRC` ... `#+END_SRC` with language identifiers.
-  _fixture: ~test/fixtures/F08-src-blocks.org~
+- [X] **Source Code Blocks**: `#+BEGIN_SRC` ... `#+END_SRC` with language identifiers.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F05-src-blocks.org~
   _syntax: `src-block`_
+- [X] **Customized Blocks**: Generic `#+BEGIN_...` / `#+END_...` blocks.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F06-customized-blocks.org~
+  _syntax: `customized-block`_
 - [ ] **Dynamic Blocks**: `#+BEGIN:` ... `#+END:`.
   _fixture: ~test/fixtures/F22-dynamic-blocks.org~, ~test/fixtures/F23-dynamic-block-variants.org~
   _syntax: `dynamic-block`_

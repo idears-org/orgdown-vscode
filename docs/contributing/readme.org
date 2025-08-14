@@ -18,7 +18,7 @@ For a deep dive into the architectural decisions, please see [[../architecture_d
 This is the most common contribution. Here’s your fast track:
 
 1.  **Find the Fixture**: Go to `test/fixtures/`. Find the `.org` file for the buggy feature.
-2.  **Create a Failing Test**: Add a new test case that reproduces the bug. For the exact format, see the [[../test/fixture-howto.org][Fixture How-To Guide]].
+2.  **Create a Failing Test**: Add a new test case that reproduces the bug. For the exact format, see the [[../../test/fixture-howto.org][Fixture How-To Guide]].
 3.  **Run the Test**: Run `pnpm test:unit`. Watch it fail.
 4.  **Fix the Code**:
     - If it's a regex logic issue, fix the corresponding regex in `common/src/grammar/regex.ts`.

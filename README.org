@@ -13,6 +13,10 @@
 #+HTML:   <a href="https://marketplace.visualstudio.com/items?itemName=orgdown.orgdown-vscode"><img src="https://vsmarketplacebadge.apphb.com/version/orgdown.orgdown-vscode.svg" alt="Marketplace Version"></a>
 #+HTML: </p>
 
+#+HTML: <p align="center">
+#+HTML:   <img src="https://raw.githubusercontent.com/idears-org/orgdown-vscode/master/docs/user-guide/screen-snapshot.png" alt="Orgdown Logo" width="150">
+#+HTML: </p>
+
 -----
 
 ** About The Project

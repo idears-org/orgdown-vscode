@@ -46,17 +46,6 @@ describe('Grammar Regex Unit Tests', () => {
   }
 });
 
-function parseWhitespaceSyntax(value: string): string {
-  if (value === '<tab>') {
-    return '\t';
-  }
-  const spaceMatch = value.match(/^<sp:(\d+)>$/);
-  if (spaceMatch) {
-    return ' '.repeat(parseInt(spaceMatch[1], 10));
-  }
-  return value;
-}
-
 function validateCaptureGroups(match: RegExpMatchArray, expectedCaptures: { index: number; value: string | undefined }[]) {
   for (const expected of expectedCaptures) {
     const actual = match[expected.index];
@@ -66,8 +55,6 @@ function validateCaptureGroups(match: RegExpMatchArray, expectedCaptures: { inde
 
     if (expectedRaw === 'undefined') {
       expectedProcessed = undefined;
-    } else if (typeof expectedRaw === 'string') {
-      expectedProcessed = parseWhitespaceSyntax(expectedRaw);
     }
 
     if (actual !== expectedProcessed) {

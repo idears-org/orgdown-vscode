@@ -1,0 +1,93 @@
+#+TITLE: Comprehensive Test Suite for Customized Blocks
+
+#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+
+* === Block Scopes ===
+# The following scopes are applied to the entire customized block.
+- meta.block.org
+- markup.raw.block.org
+
+* === Capture Group Scopes ===
+# The following scopes are applied to the specific parts of the block.
+
+* customizedBlockBeginRegex
+1. beginKeyword -> keyword.block.begin.org
+2. blockType -> entity.name.function.org
+
+* customizedBlockEndRegex
+1. endKeyword -> keyword.block.end.org
+2. blockType -> entity.name.function.org
+#+END_COMMENT
+
+* 1. Integration Test Cases
+
+This section is the primary source for the snapshot test. It covers various
+customized block types.
+
+** 1.1. Standard Customized Blocks
+
+#+BEGIN_MY-CUSTOM-BLOCK
+This is a custom block.
+It can contain any content.
+#+END_MY-CUSTOM-BLOCK
+
+#+BEGIN_ANOTHER-BLOCK
+Even with different naming conventions.
+#+END_ANOTHER-BLOCK
+
+** 1.2. Edge Cases
+
+#+BEGIN_EMPTY
+#+END_EMPTY
+
+#+BEGIN_WITH-SPACES
+  Some content with leading spaces.
+#+END_WITH-SPACES
+
+* 2. Unit Test Cases
+
+This section contains isolated unit tests for the customized block regexes.
+
+#+NAME: Unit Test: Basic customized block (no args)
+#+BEGIN_FIXTURE
+#+BEGIN_MY-BLOCK
+#+END_FIXTURE
+#+EXPECTED: customizedBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | MY-BLOCK       |
+| 3       |                |
+
+#+NAME: Unit Test: Case-insensitivity (no args)
+#+BEGIN_FIXTURE
+#+bEgIn_mY-bLoCk
+#+END_FIXTURE
+#+EXPECTED: customizedBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | mY-bLoCk       |
+| 3       |                |
+
+#+NAME: Unit Test: Customized block with arguments
+#+BEGIN_FIXTURE
+#+BEGIN_ARGS my-arg
+#+END_FIXTURE
+#+EXPECTED: customizedBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | ARGS           |
+| 3       | <sp:1>my-arg   |
+
+#+NAME: Unit Test: Customized block end
+# The customizedBlockEndRegex cannot be unit tested here because it uses a
+# backreference (\2) to a capture group from the begin regex, which is not
+# supported by the JavaScript-based test runner. Its functionality is verified
+# through snapshot testing.
+#+BEGIN_FIXTURE
+#+END_MY-BLOCK
+#+END_FIXTURE
+#+EXPECTED: customizedBlockEndRegex
+no-match
