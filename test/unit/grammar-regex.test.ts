@@ -20,7 +20,13 @@ describe('Grammar Regex Unit Tests', () => {
           expect(regexPattern, `Regex '${testCase.regex}' not found in regex.ts`).toBeDefined();
           expect(regexPattern, `'${testCase.regex}' is not a string`).toBeTypeOf('string');
 
-          const regex = new RegExp(regexPattern);
+          let pattern = regexPattern;
+          let flags = '';
+          if (pattern.startsWith('(?i)')) {
+            flags = 'i';
+            pattern = pattern.substring(4);
+          }
+          const regex = new RegExp(pattern, flags);
 
           // Test the match
           const match = testCase.input.match(regex);

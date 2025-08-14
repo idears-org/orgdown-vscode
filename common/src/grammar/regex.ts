@@ -58,6 +58,21 @@ export const listCounterRegex = '\\[@(\\d+)\\]';
 export const horizontalRuleRegex = '^(\\s*)(-{5,})\\s*$';
 // #endregion HORIZONTAL_RULES
 
+// #region BLOCKS
+/**
+ * Standard Blocks - Verbatim (no inline markup)
+ */
+export const standardBlockVerbatimBeginRegex = '(?i)^(\\s*)#\\+BEGIN_(COMMENT|EXAMPLE)\\s*$';
+export const standardBlockVerbatimEndRegex = '(?i)^(\\s*)#\\+END_\\2\\s*$';
+
+/**
+ * Standard Blocks - Markup (allows inline markup)
+ */
+export const standardBlockMarkupBeginRegex = '(?i)^(\\s*)#\\+BEGIN_(QUOTE|CENTER|VERSE)\\s*$';
+export const standardBlockMarkupEndRegex = '(?i)^(\\s*)#\\+END_\\2\\s*$';
+
+// #endregion BLOCKS
+
 /**
  * Keywords - matches org-mode keywords like #+TITLE: value
  */

@@ -30,8 +30,9 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _syntax: `horizontal-rule`_
 
 *** Block-Level Elements [Priority: High]
-- [ ] **Standard Blocks**: EXAMPLE, QUOTE, VERSE, CENTER, COMMENT.
-  _fixture: ~test/fixtures/F07-blocks.org~, ~test/fixtures/F09-special-block-types.org~
+- [X] **Standard Blocks**: EXAMPLE, QUOTE, VERSE, CENTER, COMMENT.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F04-standard-blocks.org~
   _syntax: `standard-block`_
 - [ ] **Source Code Blocks**: `#+BEGIN_SRC` ... `#+END_SRC` with language identifiers.
   _fixture: ~test/fixtures/F08-src-blocks.org~

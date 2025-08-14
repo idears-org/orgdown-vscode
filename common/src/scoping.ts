@@ -76,6 +76,27 @@ export const HORIZONTAL_RULE = 'meta.separator.org';
 
 
 // =================================================================
+// Blocks
+// =================================================================
+
+/** A meta scope for any block, for uniform styling. */
+export const BLOCK_META = 'meta.block.org';
+
+// =================================================================
+// Standard Blocks
+// =================================================================
+
+/** A standard block, e.g., `#+BEGIN_QUOTE`...`#+END_QUOTE`. */
+export const BLOCK_STANDARD = 'markup.raw.block.org';
+
+/** The begin/end keyword of a block, e.g., `#+BEGIN_QUOTE`. */
+export const BLOCK_KEYWORD = 'punctuation.definition.raw.org';
+
+/** The name of a block, e.g., `QUOTE`. */
+export const BLOCK_NAME = 'entity.name.function.org-block.org';
+
+
+// =================================================================
 // Keywords
 // =================================================================
 

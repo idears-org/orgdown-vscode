@@ -1,0 +1,149 @@
+#+TITLE: Comprehensive Test Suite for Standard Blocks
+
+* 1. Integration Test Cases
+
+This section is the primary source for the snapshot test. It should contain
+various valid and edge-case examples of QUOTE, EXAMPLE, VERSE, CENTER, and
+COMMENT blocks.
+
+** 1.1. Basic Functionality
+
+#+BEGIN_QUOTE
+This is a simple quote block.
+It can span multiple lines.
+#+END_QUOTE
+
+#+BEGIN_EXAMPLE
+This is an example block.
+It preserves whitespace literally.
+  Indentation is respected.
+#+END_EXAMPLE
+
+#+BEGIN_VERSE
+  A block for verse,
+  where lines can be terse.
+#+END_VERSE
+
+#+BEGIN_CENTER
+This text should be centered.
+As should this.
+#+END_CENTER
+
+#+BEGIN_COMMENT
+This is a comment block.
+Its content should not be exported.
+#+END_COMMENT
+
+** 1.2. Case Insensitivity
+
+#+begin_quote
+Lowercase begin.
+#+end_quote
+
+#+BEGIN_EXAMPLE
+Mixed case end.
+#+EnD_ExAmPlE
+
+** 1.3. Indentation
+
+  #+BEGIN_VERSE
+  This whole block is indented.
+  The content is also indented.
+  #+END_VERSE
+
+** 1.4. Content-Specific Parsing
+
+*** 1.4.1. Markup-Enabled Blocks (QUOTE, VERSE, CENTER)
+
+#+BEGIN_QUOTE
+This quote should have *bold* and /italic/ text.
+#+END_QUOTE
+
+#+BEGIN_VERSE
+This verse also supports ~code~ and +strikethrough+.
+#+END_VERSE
+
+*** 1.4.2. Verbatim Blocks (COMMENT, EXAMPLE)
+
+#+BEGIN_EXAMPLE
+This example should NOT have *bold* or /italic/ text.
+It is all literal.
+A line starting with * should be literal text, not a headline.
+#+END_EXAMPLE
+
+#+BEGIN_COMMENT
+Similarly, this comment block should not process ~code~ or _underline_.
+#+END_COMMENT
+
+** 1.5. Nesting
+
+- A list item.
+  - A nested list item.
+    #+BEGIN_CENTER
+    A centered block, nested deep in a list.
+    #+END_CENTER
+
+** 1.6. Error Handling & Robustness
+
+*** 1.6.1. Mismatched End Marker
+
+#+BEGIN_QUOTE
+This block starts with QUOTE...
+#+END_EXAMPLE
+...but ends with EXAMPLE. The END line should not be recognized as closing this block, so the QUOTE block scope should continue.
+
+This text should still be inside the QUOTE block.
+
+* 2. Unit Test Cases
+
+This section contains isolated unit tests for the begin regexes. The end regexes
+cannot be unit-tested here due to their use of backreferences.
+
+#+NAME: Unit Test: Markup Begin (QUOTE)
+#+BEGIN_SRC org
+#+BEGIN_QUOTE
+#+END_SRC
+#+RESULTS: standardBlockMarkupBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | QUOTE          |
+
+#+NAME: Unit Test: Markup Begin (VERSE, indented, case-insensitive)
+#+BEGIN_SRC org
+  #+begin_verse
+#+END_SRC
+#+RESULTS: standardBlockMarkupBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | <sp:2>         |
+| 2       | verse          |
+
+#+NAME: Unit Test: Verbatim Begin (EXAMPLE)
+#+BEGIN_SRC org
+#+BEGIN_EXAMPLE
+#+END_SRC
+#+RESULTS: standardBlockVerbatimBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | EXAMPLE        |
+
+#+NAME: Unit Test: Verbatim Begin (COMMENT, case-insensitive)
+#+BEGIN_SRC org
+#+begin_comment
+#+END_SRC
+#+RESULTS: standardBlockVerbatimBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | comment        |
+
+#+NAME: Unit Test: Non-match (SRC should not match standard block regex)
+#+BEGIN_SRC org
+#+BEGIN_SRC
+#+END_SRC
+#+RESULTS: standardBlockMarkupBeginRegex
+no-match
+#+RESULTS: standardBlockVerbatimBeginRegex
+no-match
