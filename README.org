@@ -14,7 +14,7 @@
 #+HTML: </p>
 
 #+HTML: <p align="center">
-#+HTML:   <img src="https://raw.githubusercontent.com/idears-org/orgdown-vscode/master/docs/user-guide/screen-snapshot.png" alt="Orgdown Logo" width="150">
+#+HTML:   <img src="https://raw.githubusercontent.com/idears-org/orgdown-vscode/master/docs/user_guide/screen-shot.png" alt="Orgdown Screen Shot">
 #+HTML: </p>
 
 -----
