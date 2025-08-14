@@ -1,0 +1,77 @@
+#+TITLE: Test Suite for Horizontal Rules
+
+#+BEGIN_COMMENT :description Expected Scopes:
+
+* === Block Scopes ===
+The following scope is applied to the entire horizontal rule line.
+- Horizontal Rule: meta.separator.org
+
+#+END_COMMENT
+
+#+NAME: Basic horizontal rule
+#+BEGIN_SRC org
+-----
+#+END_SRC
+
+#+RESULTS: horizontalRuleRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | -----          |
+
+#+NAME: Horizontal rule with leading spaces
+#+BEGIN_SRC org
+  -----
+#+END_SRC
+
+#+RESULTS: horizontalRuleRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | <sp:2>         |
+| 2       | -----          |
+
+#+NAME: Longer horizontal rule
+#+BEGIN_SRC org
+----------
+#+END_SRC
+
+#+RESULTS: horizontalRuleRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | ----------     |
+
+#+NAME: Rule must have at least 5 hyphens
+#+BEGIN_SRC org
+----
+#+END_SRC
+
+#+RESULTS: horizontalRuleRegex
+no-match
+
+#+NAME: Rule with trailing whitespace is a valid rule
+#+BEGIN_SRC org
+-----  
+#+END_SRC
+
+#+RESULTS: horizontalRuleRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | -----          |
+
+#+NAME: Rule with text after is not a rule
+#+BEGIN_SRC org
+----- a
+#+END_SRC
+
+#+RESULTS: horizontalRuleRegex
+no-match
+
+#+NAME: Rule with tags is not a rule
+#+BEGIN_SRC org
+----- :tag:
+#+END_SRC
+
+#+RESULTS: horizontalRuleRegex
+no-match

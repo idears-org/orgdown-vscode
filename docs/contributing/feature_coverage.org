@@ -24,8 +24,9 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F02-lists.org~
   _syntax: `list-item`_
-- [ ] **Horizontal Rules**: Standard `-----`.
-  _fixture: ~test/colorize-fixtures/F26-horizontal-rules.org~
+- [X] **Horizontal Rules**: Standard `-----`.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F03-horizontal-rules.org~
   _syntax: `horizontal-rule`_
 
 *** Block-Level Elements [Priority: High]

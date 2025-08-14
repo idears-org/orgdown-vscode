@@ -68,6 +68,14 @@ export const LIST_COUNTER_VALUE = 'constant.numeric.value.org';
 
 
 // =================================================================
+// Horizontal Rules
+// =================================================================
+
+/** A horizontal rule, e.g., `-----`. */
+export const HORIZONTAL_RULE = 'meta.separator.org';
+
+
+// =================================================================
 // Keywords
 // =================================================================
 
@@ -98,4 +106,3 @@ export const LINK = 'markup.underline.link.org';
 
 /** The leading whitespace for a list item. */
 export const LIST_WHITESPACE = 'string.other.whitespace.leading.org';
-

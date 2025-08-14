@@ -51,6 +51,13 @@ export const descriptionSeparatorRegex = '(.*?)\\s*(::)\\s*';
 export const listCounterRegex = '\\[@(\\d+)\\]';
 // #endregion LISTS
 
+// #region HORIZONTAL_RULES
+/**
+ * Horizontal rules
+ */
+export const horizontalRuleRegex = '^(\\s*)(-{5,})\\s*$';
+// #endregion HORIZONTAL_RULES
+
 /**
  * Keywords - matches org-mode keywords like #+TITLE: value
  */
@@ -80,11 +87,6 @@ export const drawerEndRegex = '^\\s*:END:\\s*$';
  * Tables
  */
 export const tableRegex = '^\\s*\\|.*\\|$';
-
-/**
- * Horizontal rules
- */
-export const horizontalRuleRegex = '^\\s*-{5,}\\s*$';
 
 /**
  * Footnotes

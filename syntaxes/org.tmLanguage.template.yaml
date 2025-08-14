@@ -12,12 +12,12 @@ repository:
     patterns:
       - { include: '#headings' }
       - { include: '#lists' }
+      - { include: '#horizontal-rules' }
       # - { include: '#comments' }
-      - { include: '#keywords' }
+      # - { include: '#keywords' }
       # - { include: '#org-special-blocks' }
-      - { include: '#org-src-blocks' }
+      # - { include: '#org-src-blocks' }
       # - { include: '#drawers' }
-      # - { include: '#horizontal-rules' }
       # - { include: '#tables' }
       # - { include: '#footnotes' }
       # - { include: '#paragraph' }
@@ -121,6 +121,12 @@ repository:
           - { include: '#inline-markup' }
   #endregion LISTS
 
+  #region HORIZONTAL_RULES
+  horizontal-rules:
+    name: '{{scopes.HORIZONTAL_RULE}}'
+    match: "{{regexs.horizontalRuleRegex}}"
+  #endregion HORIZONTAL_RULES
+
   # org-block-base structure definition (YAML anchor, content reuse only)
   org-block-base: &org-block-base
     beginCaptures: { "0": { name: punctuation.definition.raw.begin.org } }
@@ -181,10 +187,6 @@ repository:
   tables:
     name: markup.table.org
     match: "{{regexs.tableRegex}}"
-
-  horizontal-rules:
-    name: markup.other.horizontal-rule.org
-    match: "{{regexs.horizontalRuleRegex}}"
 
   footnotes:
     patterns:
