@@ -63,20 +63,20 @@ export const horizontalRuleRegex = '^(\\s*)(-{5,})\\s*$';
  * Standard Blocks - Verbatim (no inline markup)
  */
 export const standardBlockVerbatimBeginRegex = '(?i)^(\\s*)#\\+BEGIN_(COMMENT|EXAMPLE)\\s*$';
-export const standardBlockVerbatimEndRegex = '(?i)^(\\s*)#\\+END_\\2\\s*$';
+export const standardBlockVerbatimEndRegex = '(?i)^(\\s*)#\\+END_\\2\\s*$|(?=^\\*+\\s)';
 
 /**
  * Standard Blocks - Markup (allows inline markup)
  */
 export const standardBlockMarkupBeginRegex = '(?i)^(\\s*)#\\+BEGIN_(QUOTE|CENTER|VERSE)\\s*$';
-export const standardBlockMarkupEndRegex = '(?i)^(\\s*)#\\+END_\\2\\s*$';
+export const standardBlockMarkupEndRegex = '(?i)^(\\s*)#\\+END_\\2\\s*$|(?=^\\*+\\s)';
 
 /**
  * Source Code Blocks
  */
 export const srcBlockBeginRegex = '(?i)^(\\s*#\\+BEGIN_SRC)[ \\t]*(.*)$';
-export const srcBlockEndRegex = '(?i)^(\\s*#\\+END_SRC)\\s*$';
-export const srcBlockWhileRegex = '(?i)^(?!\\s*#\\+END_SRC)';
+export const srcBlockEndRegex = '(?i)^(\\s*#\\+END_SRC)\\s*$|(?=^\\*+\\s)';
+export const srcBlockWhileRegex = '(?i)^(?!\\s*#\\+END_SRC|(?=^\\*+\\s))';
 
 export const srcSwitchRegex = '(?i)([-+][a-zA-Z0-9]+(?:\\s+\\"[^\"]*\")?)';
 export const srcHeaderArgRegex = '(?i)(:[a-zA-Z-]+(?:\\s+[^\\s:]+)?)';
@@ -85,7 +85,7 @@ export const srcHeaderArgRegex = '(?i)(:[a-zA-Z-]+(?:\\s+[^\\s:]+)?)';
  * Customized Blocks
  */
 export const customizedBlockBeginRegex = '(?i)^(\\s*)#\\+BEGIN_([a-zA-Z0-9_-]+)(.*)$';
-export const customizedBlockEndRegex = '(?i)^(\\s*)#\\+END_\\2\\s*$';
+export const customizedBlockEndRegex = '(?i)^(\\s*)#\\+END_\\2\\s*$|(?=^\\*+\\s)';
 export const customizedBlockWhileRegex = '(?i)^(?!\\s*#\\+END_)';
 
 // #endregion BLOCKS

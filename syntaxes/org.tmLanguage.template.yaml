@@ -155,14 +155,14 @@ repository:
       # Verbatim blocks (COMMENT, EXAMPLE)
       - name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_STANDARD}}'
         begin: "{{regexs.standardBlockVerbatimBeginRegex}}"
-        end: "{{regexs.standardBlockVerbatimEndRegex}}$|(?=^\\*+\\s)"
+        end: "{{regexs.standardBlockVerbatimEndRegex}}"
         beginCaptures: { <<: *block-captures-base }
         endCaptures: { <<: *block-captures-base }
 
       # Markup-supporting blocks (QUOTE, CENTER, VERSE)
       - name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_STANDARD}}'
         begin: "{{regexs.standardBlockMarkupBeginRegex}}"
-        end: "{{regexs.standardBlockMarkupEndRegex}}$|(?=^\\*+\\s)"
+        end: "{{regexs.standardBlockMarkupEndRegex}}"
         beginCaptures: { <<: *block-captures-base }
         endCaptures: { <<: *block-captures-base }
         patterns:
