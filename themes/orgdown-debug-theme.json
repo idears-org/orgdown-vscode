@@ -435,6 +435,13 @@
       }
     },
     {
+  "scope": "meta.block.org",
+  "settings": {
+    "foreground": "#a094a2",
+    "fontStyle": "italic"
+  }
+},
+    {
       "name": "Markup Styling",
       "scope": [
         "markup.bold",

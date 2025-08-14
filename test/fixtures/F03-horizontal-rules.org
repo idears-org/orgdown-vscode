@@ -9,69 +9,62 @@ The following scope is applied to the entire horizontal rule line.
 #+END_COMMENT
 
 #+NAME: Basic horizontal rule
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 -----
-#+END_SRC
-
-#+RESULTS: horizontalRuleRegex
+#+END_FIXTURE
+#+EXPECTED: horizontalRuleRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
 | 2       | -----          |
 
 #+NAME: Horizontal rule with leading spaces
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
   -----
-#+END_SRC
-
-#+RESULTS: horizontalRuleRegex
+#+END_FIXTURE
+#+EXPECTED: horizontalRuleRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | <sp:2>         |
 | 2       | -----          |
 
 #+NAME: Longer horizontal rule
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 ----------
-#+END_SRC
-
-#+RESULTS: horizontalRuleRegex
+#+END_FIXTURE
+#+EXPECTED: horizontalRuleRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
 | 2       | ----------     |
 
 #+NAME: Rule must have at least 5 hyphens
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 ----
-#+END_SRC
-
-#+RESULTS: horizontalRuleRegex
+#+END_FIXTURE
+#+EXPECTED: horizontalRuleRegex
 no-match
 
 #+NAME: Rule with trailing whitespace is a valid rule
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 -----  
-#+END_SRC
-
-#+RESULTS: horizontalRuleRegex
+#+END_FIXTURE
+#+EXPECTED: horizontalRuleRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
 | 2       | -----          |
 
 #+NAME: Rule with text after is not a rule
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 ----- a
-#+END_SRC
-
-#+RESULTS: horizontalRuleRegex
+#+END_FIXTURE
+#+EXPECTED: horizontalRuleRegex
 no-match
 
 #+NAME: Rule with tags is not a rule
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 ----- :tag:
-#+END_SRC
-
-#+RESULTS: horizontalRuleRegex
+#+END_FIXTURE
+#+EXPECTED: horizontalRuleRegex
 no-match

@@ -97,6 +97,26 @@ export const BLOCK_NAME = 'entity.name.function.org-block.org';
 
 
 // =================================================================
+// Source Blocks
+// =================================================================
+
+/** A source code block, e.g., `#+BEGIN_SRC python`...`#+END_SRC`. */
+export const BLOCK_SRC = 'markup.fenced_code.block.org';
+
+/** The language identifier in a source block, e.g., `python`. */
+export const BLOCK_LANGUAGE = 'entity.name.type.language.org';
+
+/** A switch in a source block, e.g., `-n` or `+n`. */
+export const BLOCK_SWITCH = 'storage.modifier.switch.org';
+
+/** The key of a header argument, e.g., `:results`. */
+export const BLOCK_HEADER_KEY = 'keyword.other.property.key.org';
+
+/** The value of a header argument, e.g., `output`. */
+export const BLOCK_HEADER_VALUE = 'string.unquoted.property.value.org';
+
+
+// =================================================================
 // Keywords
 // =================================================================
 

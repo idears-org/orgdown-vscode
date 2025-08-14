@@ -100,50 +100,50 @@ This section contains isolated unit tests for the begin regexes. The end regexes
 cannot be unit-tested here due to their use of backreferences.
 
 #+NAME: Unit Test: Markup Begin (QUOTE)
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 #+BEGIN_QUOTE
-#+END_SRC
-#+RESULTS: standardBlockMarkupBeginRegex
+#+END_FIXTURE
+#+EXPECTED: standardBlockMarkupBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
 | 2       | QUOTE          |
 
 #+NAME: Unit Test: Markup Begin (VERSE, indented, case-insensitive)
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
   #+begin_verse
-#+END_SRC
-#+RESULTS: standardBlockMarkupBeginRegex
+#+END_FIXTURE
+#+EXPECTED: standardBlockMarkupBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | <sp:2>         |
 | 2       | verse          |
 
 #+NAME: Unit Test: Verbatim Begin (EXAMPLE)
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 #+BEGIN_EXAMPLE
-#+END_SRC
-#+RESULTS: standardBlockVerbatimBeginRegex
+#+END_FIXTURE
+#+EXPECTED: standardBlockVerbatimBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
 | 2       | EXAMPLE        |
 
 #+NAME: Unit Test: Verbatim Begin (COMMENT, case-insensitive)
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 #+begin_comment
-#+END_SRC
-#+RESULTS: standardBlockVerbatimBeginRegex
+#+END_FIXTURE
+#+EXPECTED: standardBlockVerbatimBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
 | 2       | comment        |
 
 #+NAME: Unit Test: Non-match (SRC should not match standard block regex)
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 #+BEGIN_SRC
-#+END_SRC
-#+RESULTS: standardBlockMarkupBeginRegex
+#+END_FIXTURE
+#+EXPECTED: standardBlockMarkupBeginRegex
 no-match
-#+RESULTS: standardBlockVerbatimBeginRegex
+#+EXPECTED: standardBlockVerbatimBeginRegex
 no-match

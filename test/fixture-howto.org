@@ -12,11 +12,11 @@ Each fixture file is composed of one or more test cases. Each test case MUST fol
 
 #+BEGIN_SRC org
 #+NAME: A clear and descriptive name for the test case
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 The Org Mode text to be tested against a regex.
-#+END_SRC
+#+END_FIXTURE
 
-#+RESULTS: regexName
+#+EXPECTED: regexName
 ... expected results ...
 #+END_SRC
 
@@ -27,20 +27,20 @@ The Org Mode text to be tested against a regex.
 - **Purpose**: Uniquely identifies the test case. The name will be used in the test runner's output.
 - **Format**: `#+NAME: <Your Descriptive Name>`
 
-*** 3.2. Test Input (`#+BEGIN_SRC`)
+*** 3.2. Test Input (`#+BEGIN_FIXTURE`)
 
 - **Purpose**: Contains the raw text input for the test. The input can span multiple lines.
-- **Format**: The text must be enclosed in a standard Org Mode source block.
+- **Format**: The text must be enclosed in a `#+BEGIN_FIXTURE` / `#+END_FIXTURE` block. This custom block is used to avoid conflicts with standard Org Mode syntax.
 
-  #+BEGIN_SRC org
+  #+BEGIN_FIXTURE
   This is the first line of input.
   This is the second line, which is also part of the input.
-  #+END_SRC
+  #+END_FIXTURE
 
-*** 3.3. Expected Results (`#+RESULTS`)
+*** 3.3. Expected Results (`#+EXPECTED`)
 
 - **Purpose**: Defines the assertion to be made for the test case.
-- **Format**: `#+RESULTS: <regexName>`
+- **Format**: `#+EXPECTED: <regexName>`
   - `<regexName>` MUST be the exact name of a regex constant exported from `common/src/grammar/regex.ts`.
 
 * 4. Assertion Types
@@ -56,13 +56,14 @@ To assert that the input *should* match the regex, provide a table of expected c
 - **Important**: There is a critical difference between omitting a group from the table and explicitly setting its value to `undefined`.
   - **Omitting a group**: If a group number is not present in the table, the test runner **will not check it**. This means you don't care about its result.
   - **Value as `undefined`**: If a group's expected value is the literal string `undefined`, the test runner will **assert that the group was not captured** (i.e., its result is `undefined`). This is essential for testing optional capture groups.
+  - **Value as empty**: To assert that a group captured an empty string, leave the `Expected Value` cell blank (e.g., `| 1 | |`).
 
 #+BEGIN_SRC org
 #+NAME: Example of a matching test
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 * TODO [#A] A task
-#+END_SRC
-#+RESULTS: headlineLevel1Regex
+#+END_FIXTURE
+#+EXPECTED: headlineLevel1Regex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | *              |
@@ -81,10 +82,10 @@ To assert that the input *should not* match the regex, use the keyword `no-match
 
 #+BEGIN_SRC org
 #+NAME: Example of a non-matching test
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 This is not a headline.
-#+END_SRC
-#+RESULTS: headlineLevel1Regex
+#+END_FIXTURE
+#+EXPECTED: headlineLevel1Regex
 no-match
 #+END_SRC
 
@@ -127,10 +128,10 @@ To handle whitespace and other special characters cleanly in the results table, 
 **Example**:
 #+BEGIN_SRC org
 #+NAME: Space-indented list with checkbox
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
   - [ ] A task
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | <sp:2>         |
@@ -139,21 +140,21 @@ To handle whitespace and other special characters cleanly in the results table, 
 
 * 7. Advanced: One-to-Many Testing
 
-The test runner supports testing a single input (`SRC` block) against multiple regular expressions. To do this, simply place multiple `#+RESULTS` blocks one after another.
+The test runner supports testing a single input against multiple regular expressions. To do this, simply place multiple `#+EXPECTED` blocks one after another.
 
 #+BEGIN_SRC org
 #+NAME: Testing one input against two regexes
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 * A headline
-#+END_SRC
+#+END_FIXTURE
 
-#+RESULTS: headlineLevel1Regex
+#+EXPECTED: headlineLevel1Regex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | *              |
 | 5       | A headline     |
 
-#+RESULTS: headlineDetectRegex
+#+EXPECTED: headlineDetectRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | * A headline   |

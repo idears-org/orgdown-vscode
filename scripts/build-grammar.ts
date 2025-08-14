@@ -1,7 +1,6 @@
 import path from 'path';
 import fs from 'fs-extra';
 import yaml from 'js-yaml';
-import { glob } from 'glob';
 import * as regexModule from '../common/src/grammar/regex';
 import * as scopeModule from '../common/src/scoping';
 
@@ -84,98 +83,111 @@ const grammarSourceDir = path.join(repoRoot, 'syntaxes');
 const grammarDestDir = path.join(repoRoot, 'syntaxes');
 
 function generateOrgSrcBlockDefinitions(): any[] {
-  // 为每种语言生成独立 pattern，pattern 名称可用于 include
   const patterns = LANGUAGES.map(lang => {
-    // patterns: 只嵌入主 scope（如 source.python），如有多个 scope，全部 include
     const includes = Array.isArray(lang.source)
       ? lang.source.map(scope => ({ include: scope }))
       : [{ include: lang.source }];
-    // contentName: 既用于 VS Code 语法嵌入，也便于 extension 识别
+
     let contentName = lang.language ? `meta.embedded.block.${lang.language}` : `meta.embedded.block.${lang.name}`;
     if (lang.additionalContentName && lang.additionalContentName.length > 0) {
       contentName += ` ${lang.additionalContentName.join(' ')}`;
     }
+
+    // This rule is highly specific to one language. It matches the language identifier
+    // and then includes the correct grammar.
     return {
-      name: 'markup.fenced_code.block.org',
-      begin: '(?i)^\\s*#\\+BEGIN_SRC[ \t]+(' + lang.identifiers.join('|') + ')(?: .*)?$',
-      end: '(?i)^\\s*#\\+END_SRC',
-      beginCaptures: { '0': { name: 'punctuation.definition.raw.begin.org' } },
-      endCaptures: { '0': { name: 'punctuation.definition.raw.end.org' } },
-      contentName,
-      patterns: includes,
-      // scopeName: 直接嵌入目标语言 scope，便于 VS Code 识别
-      // VS Code 只会用 contentName 作为嵌入区块 scope，patterns.include 决定嵌入语法
+      name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_SRC}}',
+      begin: '(?i)^(\\s*#\\+BEGIN_SRC[ \\t]+(' + lang.identifiers.join('|') + '))([ \\t].*)?$',
+      end: '{{regexs.srcBlockEndRegex}}',
+      beginCaptures: {
+        '1': { name: '{{scopes.BLOCK_KEYWORD}}' },
+        '2': { name: '{{scopes.BLOCK_LANGUAGE}}' },
+        '3': {
+          patterns: [
+            { include: '#src-block-switch' },
+            { include: '#src-block-header' }
+          ]
+        }
+      },
+      endCaptures: { '0': { name: '{{scopes.BLOCK_KEYWORD}}' } },
+      patterns: [{
+        begin: '(^|\\G)',
+        while: '{{regexs.srcBlockWhileRegex}}',
+        contentName,
+        patterns: includes,
+      }],
     };
   });
-  // fallback
+
+  // Fallback for unknown languages. It's a separate rule.
   patterns.push({
-    name: 'markup.fenced_code.block.org.fallback',
-    begin: '(?i)^\\s*#\\+BEGIN_SRC[ \t]+[^\s]+(?: .*)?$',
-    end: '(?i)^\\s*#\\+END_SRC',
-    beginCaptures: { '0': { name: 'punctuation.definition.raw.begin.org' } },
-    endCaptures: { '0': { name: 'punctuation.definition.raw.end.org' } },
-    contentName: 'meta.embedded.block.fallback',
-    patterns: [ { include: '#inline-markup' } ],
+    name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_SRC}}',
+    begin: '(?i)^(\\s*#\\+BEGIN_SRC[ \\t]+([^ \\t]+))([ \\t].*)?$',
+    end: '{{regexs.srcBlockEndRegex}}',
+    beginCaptures: {
+      '1': { name: '{{scopes.BLOCK_KEYWORD}}' },
+      '2': { name: '{{scopes.BLOCK_LANGUAGE}}' },
+      '3': {
+        patterns: [
+          { include: '#src-block-switch' },
+          { include: '#src-block-header' }
+        ]
+      }
+    },
+    endCaptures: { '0': { name: '{{scopes.BLOCK_KEYWORD}}' } },
+    patterns: [{
+      begin: '(^|\\G)',
+      while: '{{regexs.srcBlockWhileRegex}}',
+      contentName: 'meta.embedded.block.fallback',
+      patterns: [],
+    }],
   });
+
   return patterns;
 }
 
 // Note: includes are not required since each src block is a standalone pattern
 
 async function buildGrammar() {
-  // First, process the template file
   const templatePath = path.join(grammarSourceDir, 'org.tmLanguage.template.yaml');
-  const outputPath = path.join(grammarSourceDir, 'org.tmLanguage.yaml');
+  const destPath = path.join(grammarDestDir, 'org.tmLanguage.json');
 
-  if (await fs.pathExists(templatePath)) {
-    console.log('Processing template file...');
-    let templateContent = await fs.readFile(templatePath, 'utf8');
+  console.log(`Building ${path.basename(destPath)} from ${path.basename(templatePath)}`);
 
-    // Replace all regex placeholders with actual patterns
-    for (const [key, value] of Object.entries(regexModule)) {
-      if (typeof value === 'string') {
-        const placeholder = `{{regexs.${key}}}`;
-        // Escape backslashes for YAML string literals
-        const escapedValue = value.replace(/\\/g, '\\\\');
-        templateContent = templateContent.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), escapedValue);
-      }
-    }
+  // Load the YAML template file
+  const grammarYaml = await fs.readFile(templatePath, 'utf8');
+  const grammar = yaml.load(grammarYaml) as any;
 
-    // Replace all scope placeholders with actual patterns
-    for (const [key, value] of Object.entries(scopeModule)) {
-      if (typeof value === 'string') {
-        const placeholder = `{{scopes.${key}}}`;
-        // No escaping needed for scopes
-        templateContent = templateContent.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), value);
-      }
-    }
-
-    // Write the processed template as the intermediate YAML
-    await fs.writeFile(outputPath, templateContent);
-    console.log('Template processed successfully');
+  // Inject the generated SRC block definitions
+  if (grammar.repository && grammar.repository['org-src-blocks']) {
+    grammar.repository['org-src-blocks'].patterns = generateOrgSrcBlockDefinitions();
   }
 
-  // Then process all YAML files (including the generated one)
-  const yamlFiles = await glob('*.tmLanguage.yaml', { cwd: grammarSourceDir });
-  for (const yamlFile of yamlFiles) {
-    const sourcePath = path.join(grammarSourceDir, yamlFile);
-    const destPath = path.join(grammarDestDir, yamlFile.replace(/\.yaml$/, '.json'));
-    console.log(`Building ${path.basename(destPath)} from ${path.basename(sourcePath)}`);
-    const grammarYaml = (await fs.readFile(sourcePath)).toString('utf8');
-    let grammar = yaml.load(grammarYaml) as any;
+  // Convert the entire grammar object to a string, with placeholders
+  let grammarWithPlaceholders = JSON.stringify(grammar, null, 2);
 
-    // Replace org-src-blocks placeholder (definitions and includes)
-    if (grammar.repository && grammar.repository['org-src-blocks']) {
-      grammar.repository['org-src-blocks'].patterns = [
-        ...generateOrgSrcBlockDefinitions(),
-        // Also insert includes to main patterns if needed
-      ];
+  // Replace all regex placeholders with actual patterns
+  for (const [key, value] of Object.entries(regexModule)) {
+    if (typeof value === 'string') {
+      const placeholder = `{{regexs.${key}}}`;
+      // In JSON, backslashes in the regex need to be double-escaped.
+      const escapedValue = value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+      grammarWithPlaceholders = grammarWithPlaceholders.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), escapedValue);
     }
-
-    // If include list is needed, it can be inserted into main patterns or other locations generateOrgSrcBlockIncludes()
-    const grammarJson = JSON.stringify(grammar, null, 2);
-    await fs.writeFile(destPath, grammarJson);
   }
+
+  // Replace all scope placeholders with actual patterns
+  for (const [key, value] of Object.entries(scopeModule)) {
+    if (typeof value === 'string') {
+      const placeholder = `{{scopes.${key}}}`;
+      // Scopes don't need escaping.
+      grammarWithPlaceholders = grammarWithPlaceholders.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), value);
+    }
+  }
+
+  // Write the final, fully-processed JSON file
+  await fs.writeFile(destPath, grammarWithPlaceholders);
+  console.log('Grammar built successfully');
 }
 
 buildGrammar().catch(err => {

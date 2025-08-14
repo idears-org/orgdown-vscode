@@ -29,48 +29,48 @@ The following scopes are applied to the specific parts of the list marker.
 * Unordered Lists
 
 #+NAME: Unordered list (-)
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 - A simple list item
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
 
 #+NAME: Unordered list (+)
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 + Another list item
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | +              |
 
 #+NAME: Unordered list checkbox [ ]
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 - [ ] An unchecked task
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
 | 3       | <sp:1>         |
 
 #+NAME: Unordered list checkbox [X]
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 + [X] A checked task
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | +              |
 | 3       | X              |
 
 #+NAME: Unordered list checkbox [-]
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 - [-] An intermediate task
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
@@ -79,32 +79,32 @@ The following scopes are applied to the specific parts of the list marker.
 * Ordered Lists
 
 #+NAME: Ordered list (.)
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 1. First item
-#+END_SRC
-#+RESULTS: orderedListRegex
+#+END_FIXTURE
+#+EXPECTED: orderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | 1.             |
 
 #+NAME: Ordered list ()
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 2) Second item
-#+END_SRC
-#+RESULTS: orderedListRegex
+#+END_FIXTURE
+#+EXPECTED: orderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | 2)             |
 
 #+NAME: Ordered list with counter
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 3. [@5] Starts at 5
-#+END_SRC
-#+RESULTS: orderedListRegex
+#+END_FIXTURE
+#+EXPECTED: orderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | 3.             |
-#+RESULTS: listCounterRegex
+#+EXPECTED: listCounterRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | 5              |
@@ -112,56 +112,56 @@ The following scopes are applied to the specific parts of the list marker.
 * Description Lists
 
 #+NAME: Description list item
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 - Term :: Description
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
-#+RESULTS: descriptionSeparatorRegex
+#+EXPECTED: descriptionSeparatorRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | - Term         |
 | 2       | ::             |
 
 #+NAME: Description list with markup in term
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 - *Term* :: Description
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
-#+RESULTS: descriptionSeparatorRegex
+#+EXPECTED: descriptionSeparatorRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | - *Term*       |
 | 2       | ::             |
 
 #+NAME: Description list with no term
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 - :: Description
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
-#+RESULTS: descriptionSeparatorRegex
+#+EXPECTED: descriptionSeparatorRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | -              |
 | 2       | ::             |
 
 #+NAME: List item as description term
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 - - Another list :: as a term
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
-#+RESULTS: descriptionSeparatorRegex
+#+EXPECTED: descriptionSeparatorRegex
 | Group # | Expected Value   |
 |---------+------------------|
 | 1       | - - Another list |
@@ -170,31 +170,31 @@ The following scopes are applied to the specific parts of the list marker.
 * Indentation & Nesting
 
 #+NAME: Space-indented list
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
   - Indented
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | <sp:2>         |
 | 2       | -              |
 
 #+NAME: Tab-indented list
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 	- Tab-indented
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | <tab>          |
 | 2       | -              |
 
 #+NAME: Nested mixed list
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 1. Parent
   - Child
-#+END_SRC
-#+RESULTS: orderedListRegex
+#+END_FIXTURE
+#+EXPECTED: orderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | 1.             |
@@ -202,36 +202,36 @@ The following scopes are applied to the specific parts of the list marker.
 * Non-Matching Cases
 
 #+NAME: Not a list - star bullet
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 * Not a list item
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 no-match
 
 #+NAME: Not a list - no space after bullet
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 -Not a list
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 no-match
 
 #+NAME: Not a list - full-width dash
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 － Not a list
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 no-match
 
 #+NAME: Not a list - horizontal rule
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 ---
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 no-match
 
 #+NAME: Not a list - checkbox no space
-#+BEGIN_SRC org
+#+BEGIN_FIXTURE
 -[] No space
-#+END_SRC
-#+RESULTS: unorderedListRegex
+#+END_FIXTURE
+#+EXPECTED: unorderedListRegex
 no-match

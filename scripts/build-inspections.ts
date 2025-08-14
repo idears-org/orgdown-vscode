@@ -2,7 +2,6 @@ import fs from 'fs-extra';
 import path from 'path';
 
 const fixturesDir = path.resolve(__dirname, '../test/fixtures');
-// Integration tests read from test/inspections
 const inspectionsDir = path.resolve(__dirname, '../test/inspections');
 
 async function buildInspections() {
@@ -27,122 +26,23 @@ async function buildInspections() {
 }
 
 function compileFixture(content: string, originalFilename: string): string {
-  const lines = content.split('\n');
-  let compiledLines: string[] = [];
-  let currentHeadlineLevel = 0;
-
-  const fileTitleMatch = content.match(/^#\+TITLE: (.+)$/m);
+  const fileTitleMatch = content.match(/^#\\+TITLE: (.+)$/m);
   const fileTitle = fileTitleMatch ? fileTitleMatch[1] : 'Untitled Test Suite';
 
-  compiledLines.push(`#+TITLE: Inspection for ${originalFilename} (Auto-Generated)`);
-  compiledLines.push(`# DO NOT EDIT. Run 'pnpm build:inspections' to regenerate.`);
-  compiledLines.push('');
-  compiledLines.push(`* Fixture: ${originalFilename}`);
-  compiledLines.push(`#+DESCRIPTION: ${fileTitle}`);
-  compiledLines.push('');
+  const header = [
+    `#+TITLE: Inspection for ${originalFilename} (Auto-Generated)`,
+    `# DO NOT EDIT. Run \\'pnpm build:inspections\\' to regenerate.`,
+    '',
+    `* Fixture: ${originalFilename}`,
+    `#+DESCRIPTION: ${fileTitle}`,
+    '',
+  ].join('\\n');
 
+  // 1. Clean Pass: Use a regex to find and remove all unit test blocks.
+  const unitTestRegex = /\\n\* 2. Unit Test Cases[\\s\\S]*/;
+  const integrationContent = content.replace(unitTestRegex, '');
 
-  let isOrgBlock = false;
-  let srcContent: string[] = [];
-  let testName: string | null = null;
-  let testDescription: string | null = null;
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const lower = line.trim().toLowerCase();
-
-    if (lower.startsWith('#+name:')) {
-      testName = line.replace(/^\s*#\+name:/i, '').trim();
-      continue;
-    }
-
-    if (lower.startsWith('#+description:')) {
-      testDescription = line.replace(/^\s*#\+description:/i, '').trim();
-      continue;
-    }
-
-    // Only process begin_src org (ignore case)
-
-    const beginSrcMatch = line.trim().match(/^#\+begin_src\s+(\w+)/i);
-    if (beginSrcMatch) {
-      const lang = beginSrcMatch[1].toLowerCase();
-      if (lang === 'org') {
-        isOrgBlock = true;
-      } else {
-        isOrgBlock = false;
-      }
-      continue;
-    }
-
-    if (lower.startsWith('#+end_src')) {
-      isOrgBlock = false;
-      continue;
-    }
-
-    // Check for #+RESULTS: and see if the next non-empty, non-table line is 'no-match'
-    if (lower.startsWith('#+results') && testName) {
-      // Look ahead for 'no-match' (skip empty and table lines)
-      let j = i + 1;
-      let foundNoMatch = false;
-      while (j < lines.length) {
-        const nextLine = lines[j].trim();
-        if (nextLine === '') { j++; continue; }
-        if (nextLine.startsWith('|')) { j++; continue; }
-        if (nextLine.toLowerCase() === 'no-match') { foundNoMatch = true; break; }
-        break;
-      }
-      if (!foundNoMatch) {
-        const parentLevel = currentHeadlineLevel + 1;
-        compiledLines.push(`${'*'.repeat(parentLevel)} Test: ${testName}`);
-        if (testDescription) {
-          compiledLines.push(`  #+DESCRIPTION: ${testDescription}`);
-        }
-        const transformedSrc = transformSrcContent(srcContent.join('\n'), parentLevel);
-        compiledLines.push(transformedSrc);
-        compiledLines.push('');
-      }
-      srcContent = [];
-      testName = null;
-      testDescription = null;
-      continue;
-    }
-
-    if (isOrgBlock) {
-      srcContent.push(line);
-    } else if (line.match(/^(\*{1,6}) /)) {
-      const match = line.match(/^(\*{1,6}) /)!;
-      currentHeadlineLevel = match[1].length;
-      compiledLines.push(`${'*'.repeat(currentHeadlineLevel + 1)}${line.substring(currentHeadlineLevel)}`);
-    } else if (!lower.startsWith('#+results') &&
-               !line.startsWith('|') &&
-               !lower.startsWith('#+property') &&
-               lower !== 'no-match'
-              ) {
-      compiledLines.push(line);
-    }
-  }
-
-  return compiledLines.join('\n');
-}
-
-function transformSrcContent(content: string, parentLevel: number): string {
-  const lines = content.split('\n');
-  const transformed: string[] = [];
-  let currentSublevel = 0;
-
-  for (const line of lines) {
-    const headlineMatch = line.match(/^(\*{1,6}) /);
-    if (headlineMatch) {
-      const level = headlineMatch[1].length;
-      currentSublevel = level;
-      const newLevel = parentLevel + level;
-      transformed.push(`${'*'.repeat(newLevel)}${line.substring(level)}`);
-    } else {
-      const indent = '  '.repeat(currentSublevel);
-      transformed.push(`${indent}${line}`);
-    }
-  }
-  return transformed.join('\n');
+  return header + '\\n' + integrationContent;
 }
 
 buildInspections().catch(console.error);

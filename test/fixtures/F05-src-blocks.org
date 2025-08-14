@@ -1,0 +1,297 @@
+#+TITLE: Comprehensive Test Suite for Source Blocks
+
+* 1. Integration Test Cases
+
+This section is the primary source for the snapshot test. It covers various
+language identifiers, switches, and header arguments.
+
+** 1.1. All Supported Language Blocks
+
+#+BEGIN_SRC css
+body { color: red; }
+#+END_SRC
+
+#+BEGIN_SRC html
+<div>Hello, HTML!</div>
+#+END_SRC
+
+#+BEGIN_SRC ini
+[section]
+key=value
+#+END_SRC
+
+#+BEGIN_SRC java
+public class Main { public static void main(String[] args) { System.out.println("Hello, Java!"); } }
+#+END_SRC
+
+#+BEGIN_SRC lua
+print("Hello, Lua!")
+#+END_SRC
+
+#+BEGIN_SRC makefile
+all:
+	@echo "Hello, Makefile!"
+#+END_SRC
+
+#+BEGIN_SRC perl
+print "Hello, Perl!\n";
+#+END_SRC
+
+#+BEGIN_SRC R
+print("Hello, R!")
+#+END_SRC
+
+#+BEGIN_SRC ruby
+puts "Hello, Ruby!"
+#+END_SRC
+
+#+BEGIN_SRC php
+<?php echo "Hello, PHP!"; ?>
+#+END_SRC
+
+#+BEGIN_SRC sql
+SELECT 'Hello, SQL!';
+#+END_SRC
+
+#+BEGIN_SRC vb
+Module Main
+  Sub Main()
+    Console.WriteLine("Hello, VB.NET!")
+  End Sub
+End Module
+#+END_SRC
+
+#+BEGIN_SRC xml
+<greeting>Hello, XML!</greeting>
+#+END_SRC
+
+#+BEGIN_SRC xsl
+<xsl:template match="/">
+  <xsl:value-of select="'Hello, XSLT!'"/>
+</xsl:template>
+#+END_SRC
+
+#+BEGIN_SRC yaml
+greeting: Hello, YAML!
+#+END_SRC
+
+#+BEGIN_SRC bat
+@echo off
+echo Hello, Batch!
+#+END_SRC
+
+#+BEGIN_SRC clojure
+(println "Hello, Clojure!")
+#+END_SRC
+
+#+BEGIN_SRC coffee
+console.log 'Hello, CoffeeScript!'
+#+END_SRC
+
+#+BEGIN_SRC c
+#include <stdio.h>
+int main() { printf("Hello, C!\n"); return 0; }
+#+END_SRC
+
+#+BEGIN_SRC cpp
+#include <iostream>
+int main() { std::cout << "Hello, C++!"; return 0; }
+#+END_SRC
+
+#+BEGIN_SRC diff
+---
+--- a.txt
++++ b.txt
+@@ -1 +1 @@
+-Hello, a!
++Hello, b!
+#+END_SRC
+
+#+BEGIN_SRC dockerfile
+FROM alpine
+CMD echo "Hello, Docker!"
+#+END_SRC
+
+#+BEGIN_SRC go
+package main
+import "fmt"
+func main() { fmt.Println("Hello, Go!") }
+#+END_SRC
+
+#+BEGIN_SRC groovy
+println "Hello, Groovy!"
+#+END_SRC
+
+#+BEGIN_SRC pug
+p Hello, Pug!
+#+END_SRC
+
+#+BEGIN_SRC js
+console.log('Hello, JavaScript!');
+#+END_SRC
+
+#+BEGIN_SRC json
+{ "greeting": "Hello, JSON!" }
+#+END_SRC
+
+#+BEGIN_SRC less
+@color: #ff0000; .greeting { color: @color; }
+#+END_SRC
+
+#+BEGIN_SRC objc
+#import <Foundation/Foundation.h>
+int main() { NSLog(@"Hello, Objective-C!"); return 0; }
+#+END_SRC
+
+#+BEGIN_SRC swift
+print("Hello, Swift!")
+#+END_SRC
+
+#+BEGIN_SRC scss
+$color: #ff0000; .greeting { color: $color; }
+#+END_SRC
+
+#+BEGIN_SRC perl6
+say 'Hello, Perl 6!';
+#+END_SRC
+
+#+BEGIN_SRC powershell
+Write-Host "Hello, PowerShell!"
+#+END_SRC
+
+#+BEGIN_SRC python
+print("Hello, Python!")
+#+END_SRC
+
+#+BEGIN_SRC julia
+println("Hello, Julia!")
+#+END_SRC
+
+#+BEGIN_SRC rust
+fn main() { println!("Hello, Rust!"); }
+#+END_SRC
+
+#+BEGIN_SRC scala
+object Main extends App { println("Hello, Scala!") }
+#+END_SRC
+
+#+BEGIN_SRC shell
+echo "Hello, Shell!"
+#+END_SRC
+
+#+BEGIN_SRC ts
+console.log('Hello, TypeScript!');
+#+END_SRC
+
+#+BEGIN_SRC tsx
+const greeting = <div>Hello, TSX!</div>;
+#+END_SRC
+
+#+BEGIN_SRC csharp
+System.Console.WriteLine("Hello, C#!");
+#+END_SRC
+
+#+BEGIN_SRC fsharp
+printfn "Hello, F#!"
+#+END_SRC
+
+#+BEGIN_SRC dart
+void main() { print('Hello, Dart!'); }
+#+END_SRC
+
+#+BEGIN_SRC handlebars
+<p>{{greeting}}</p>
+#+END_SRC
+
+#+BEGIN_SRC markdown
+# Hello, Markdown!
+#+END_SRC
+
+#+BEGIN_SRC log
+[INFO] Hello, Log!
+#+END_SRC
+
+#+BEGIN_SRC erlang
+-module(hello).
+-export([start/0]).
+start() -> io:format("Hello, Erlang!~n").
+#+END_SRC
+
+#+BEGIN_SRC elixir
+IO.puts "Hello, Elixir!"
+#+END_SRC
+
+#+BEGIN_SRC latex
+\documentclass{article}
+\begin{document}
+Hello, LaTeX!
+\end{document}
+#+END_SRC
+
+#+BEGIN_SRC bibtex
+@misc{hello, title="Hello, BibTeX!"}
+#+END_SRC
+
+#+BEGIN_SRC twig
+<p>{{ greeting }}</p>
+#+END_SRC
+
+** 1.2. Switches and Headers
+
+#+BEGIN_SRC ruby -n :tangle no :results value
+puts "A complex SRC block header"
+#+END_SRC
+
+** 1.3. Fallback and Edge Cases
+
+#+BEGIN_SRC unknown-language
+This language is not in our list, it should use the fallback.
+#+END_SRC
+
+#+BEGIN_SRC
+This block has no language identifier.
+#+END_SRC
+
+* 2. Unit Test Cases
+
+This section contains isolated unit tests for the src block begin regex.
+
+#+NAME: Unit Test: Basic SRC block
+#+BEGIN_FIXTURE
+#+BEGIN_SRC python
+#+END_FIXTURE
+#+EXPECTED: srcBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+BEGIN_SRC    |
+| 2       | python         |
+
+#+NAME: Unit Test: SRC block with switches and headers
+#+BEGIN_FIXTURE
+#+BEGIN_SRC ruby -n :tangle no :results value
+#+END_FIXTURE
+#+EXPECTED: srcBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+BEGIN_SRC    |
+| 2       | ruby -n :tangle no :results value |
+
+#+NAME: Unit Test: SRC block with no language
+#+BEGIN_FIXTURE
+#+BEGIN_SRC
+#+END_FIXTURE
+#+EXPECTED: srcBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+BEGIN_SRC    |
+| 2       |                |
+
+#+NAME: Unit Test: Case-insensitivity
+#+BEGIN_FIXTURE
+#+BeGiN_SrC pYtHoN
+#+END_FIXTURE
+#+EXPECTED: srcBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+BeGiN_SrC    |
+| 2       | pYtHoN         |
