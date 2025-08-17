@@ -26,7 +26,10 @@ repository:
     '1': { name: '{{scopes.LEADING_WHITESPACE}}' }
     '2': { name: '{{scopes.BLOCK_KEYWORD}}' }
     '3': { name: '{{scopes.BLOCK_NAME}}' }
-    '4': { name: '{{scopes.BLOCK_PARAMETERS}}' }
+    '4':
+      name: '{{scopes.BLOCK_PARAMETERS}}'
+      patterns:
+        - { include: '#block-parameter-pair' }
 
   end-captures: &end-captures
     '1': { name: '{{scopes.LEADING_WHITESPACE}}' }
@@ -144,6 +147,7 @@ repository:
     patterns:
       # Standard (Verbatim)
       - name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_STANDARD_META}}'
+        contentName: '{{scopes.BLOCK_CONTENT}} {{scopes.BLOCK_STANDARD_CONTENT}}'
         begin: "{{regexs.standardBlockVerbatimBeginRegex}}"
         end: "{{regexs.standardBlockVerbatimEndRegex}}"
         beginCaptures: { <<: *block-captures }
@@ -151,6 +155,7 @@ repository:
 
       # Standard (Markup)
       - name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_STANDARD_META}}'
+        contentName: '{{scopes.BLOCK_CONTENT}} {{scopes.BLOCK_STANDARD_CONTENT}}'
         begin: "{{regexs.standardBlockMarkupBeginRegex}}"
         end: "{{regexs.standardBlockMarkupEndRegex}}"
         beginCaptures: { <<: *block-captures }
@@ -160,6 +165,7 @@ repository:
 
       # Dynamic Blocks
       - name: '{{scopes.BLOCK_META}} {{scopes.DYNAMIC_BLOCK_META}}'
+        contentName: '{{scopes.BLOCK_CONTENT}} {{scopes.DYNAMIC_BLOCK_CONTENT}}'
         begin: "{{regexs.dynamicBlockBeginRegex}}"
         end: "{{regexs.dynamicBlockEndRegex}}"
         beginCaptures: { <<: *block-captures }
@@ -171,7 +177,8 @@ repository:
       - include: '#org-src-blocks'
 
       # Customized Blocks
-      - name: '{{scopes.BLOCK_META}}'
+      - name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_CUSTOMIZED_META}}'
+        contentName: '{{scopes.BLOCK_CONTENT}} {{scopes.BLOCK_CUSTOMIZED_CONTENT}}'
         begin: "{{regexs.customizedBlockBeginRegex}}"
         end: "{{regexs.customizedBlockEndRegex}}"
         beginCaptures: { <<: *block-captures }
@@ -190,10 +197,14 @@ repository:
       '1': { name: '{{scopes.BLOCK_SWITCH}}' }
 
   src-block-header:
-    match: '{{regexs.srcHeaderArgRegex}}'
+    patterns:
+      - { include: '#block-parameter-pair' }
+
+  block-parameter-pair:
+    match: '{{regexs.blockParameterRegex}}'
     captures:
-      '1': { name: '{{scopes.BLOCK_HEADER_KEY}}' }
-      '2': { name: '{{scopes.BLOCK_HEADER_VALUE}}' }
+      '1': { name: '{{scopes.BLOCK_PARAMETER_KEY}}' }
+      '2': { name: '{{scopes.BLOCK_PARAMETER_VALUE}}' }
   #endregion
 
   keywords:

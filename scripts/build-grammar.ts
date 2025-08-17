@@ -88,7 +88,13 @@ function generateOrgSrcBlockDefinitions(): any[] {
       ? lang.source.map(scope => ({ include: scope }))
       : [{ include: lang.source }];
 
-    let contentName = lang.language ? `meta.embedded.block.${lang.language}` : `meta.embedded.block.${lang.name}`;
+    // Start with our new generic scopes
+    let contentName = '{{scopes.BLOCK_CONTENT}} {{scopes.BLOCK_SRC_CONTENT}}';
+
+    // Add the language-specific meta scope
+    contentName += lang.language ? ` meta.embedded.block.${lang.language}` : ` meta.embedded.block.${lang.name}`;
+
+    // Add any additional scopes needed for injection
     if (lang.additionalContentName && lang.additionalContentName.length > 0) {
       contentName += ` ${lang.additionalContentName.join(' ')}`;
     }
@@ -147,7 +153,7 @@ function generateOrgSrcBlockDefinitions(): any[] {
     patterns: [{
       begin: '(^|\G)',
       while: '{{regexs.srcBlockWhileRegex}}',
-      contentName: 'meta.embedded.block.fallback',
+      contentName: '{{scopes.BLOCK_CONTENT}} {{scopes.BLOCK_SRC_CONTENT}} meta.embedded.block.fallback',
       patterns: [],
     }],
   });

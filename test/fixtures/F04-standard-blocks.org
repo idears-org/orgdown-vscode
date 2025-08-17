@@ -3,16 +3,22 @@
 #+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
 
 * === Block Scopes ===
-# The following scopes are applied to the entire standard block.
+# The following meta scopes are applied to the entire standard block.
 - meta.block.org
 - meta.block.standard.org
 
-* === Capture Group Scopes ===
-# The following scopes are applied to the specific parts of the block.
+# The following content scopes are applied to the content of the block.
+- markup.block.org
+- markup.block.standard.org
 
-* standardBlockMarkupBeginRegex, standardBlockVerbatimBeginRegex
+* === Capture Group Scopes (Begin Regex) ===
 1. indentation -> string.other.whitespace.leading.org
-2. blockType -> entity.name.function.org
+2. begin keyword -> keyword.control.block.org
+3. block name -> entity.name.function.block.org
+4. parameters -> variable.parameter.block.org
+   - :key -> variable.parameter.key.org
+   - value -> string.unquoted.parameter.value.org
+
 #+END_COMMENT
 
 * 1. Integration Test Cases

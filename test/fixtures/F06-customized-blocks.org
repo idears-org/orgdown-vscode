@@ -3,14 +3,18 @@
 #+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
 
 * === Block Scopes ===
-# The following scopes are applied to the entire customized block.
+# The following meta scopes are applied to the entire customized block.
 - meta.block.org
-- markup.raw.block.org
+- meta.block.customized.org
+
+# The following content scopes are applied to the content of the block.
+- markup.block.org
+- markup.block.customized.org
 
 * === Capture Group Scopes (customizedBlockBeginRegex) ===
 1. leading whitespace -> string.other.whitespace.leading.org
 2. begin keyword -> keyword.control.block.org
-3. block name -> entity.name.function.org-block.org
+3. block name -> entity.name.function.block.org
 4. parameters -> variable.parameter.block.org
 
 #+END_COMMENT

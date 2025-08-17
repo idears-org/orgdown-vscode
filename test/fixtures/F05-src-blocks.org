@@ -3,18 +3,37 @@
 #+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
 
 * === Block Scopes ===
-# The following scopes are applied to the entire SRC block.
+# The following meta scopes are applied to the entire SRC block.
 - meta.block.org
-- meta.block.source.org
+- meta.block.src.org
 
-* === Capture Group Scopes (srcBlockBeginRegex) ===
+# The following content scopes are applied to the content of the block.
+- markup.block.org
+- markup.block.src.org
+# And language-specific scopes (e.g. meta.embedded.block.python) are added by the build script.
+
+* === Capture Group Scopes (Language-Specific Begin Regex) ===
+# This is for a line like: #+BEGIN_SRC python -n :tangle no
 1. leading whitespace -> string.other.whitespace.leading.org
-2. begin keyword -> keyword.control.block.src.begin.org
+2. begin keyword -> keyword.control.block.org
+3. language -> entity.name.type.language.org
+4. parameters -> variable.parameter.block.org
+   - switch (-n) -> storage.modifier.switch.org
+   - :key (:tangle) -> variable.parameter.key.org
+   - value (no) -> string.unquoted.parameter.value.org
+
+* === Capture Group Scopes (Fallback Begin Regex) ===
+# This is for a line like: #+BEGIN_SRC -n :tangle no
+1. leading whitespace -> string.other.whitespace.leading.org
+2. begin keyword -> keyword.control.block.org
 3. language and parameters -> variable.parameter.block.org
+   - switch (-n) -> storage.modifier.switch.org
+   - :key (:tangle) -> variable.parameter.key.org
+   - value (no) -> string.unquoted.parameter.value.org
 
-* === Capture Group Scopes (srcBlockEndRegex) ===
+* === Capture Group Scopes (End Regex) ===
 1. leading whitespace -> string.other.whitespace.leading.org
-2. end keyword -> keyword.control.block.src.end.org
+2. end keyword -> keyword.control.block.org
 
 #+END_COMMENT
 
@@ -366,20 +385,22 @@ This is a block with no language.
 :results output
 #+END_FIXTURE
 
-#+EXPECTED: srcHeaderArgRegex
+#+EXPECTED: blockParameterRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | :results output|
+| 1       | :results       |
+| 2       | output         |
 
 #+NAME: Unit Test: SRC block switch with quoted argument mix with header argument
 #+BEGIN_FIXTURE
 -l "-a -b" :results value
 #+END_FIXTURE
 
-#+EXPECTED: srcHeaderArgRegex
+#+EXPECTED: blockParameterRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | :results value |
+| 1       | :results       |
+| 2       | value          |
 
 #+EXPECTED: srcSwitchRegex
 | Group # | Expected Value |
@@ -391,10 +412,11 @@ This is a block with no language.
 :results value -l "-a -b"
 #+END_FIXTURE
 
-#+EXPECTED: srcHeaderArgRegex
+#+EXPECTED: blockParameterRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | :results value |
+| 1       | :results       |
+| 2       | value          |
 
 #+EXPECTED: srcSwitchRegex
 | Group # | Expected Value |

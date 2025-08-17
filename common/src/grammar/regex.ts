@@ -60,6 +60,11 @@ export const horizontalRuleRegex = '^(\\s*)(-{5,})\\s*$';
 
 // #region BLOCKS
 /**
+ * Block parameters
+ */
+export const blockParameterRegex = '(:[a-zA-Z0-9_-]+)\\s+((?:\\"[^\\"]*\\"|\'[^\']*\'|[^\\s:]+))';
+
+/**
  * Standard Blocks - Verbatim (no inline markup)
  */
 export const standardBlockVerbatimBeginRegex = '(?i)^(\\s*)(#\\+BEGIN_)(COMMENT|EXAMPLE)(?: (.*))?$';
@@ -78,8 +83,7 @@ export const srcBlockBeginRegex = '(?i)^(\\s*)(#\\+BEGIN_SRC)[ \\t]*(.*)$';
 export const srcBlockEndRegex = '(?i)^(\\s*)(#\\+END_SRC)\\s*$|(?=^\\*+\\s)';
 export const srcBlockWhileRegex = '(?i)^(?!\\s*#\\+END_SRC|(?=^\\*+\\s))';
 
-export const srcSwitchRegex = '(?i)([-+][a-zA-Z0-9]+(?:\\s+\\"[^\"]*\")?)';
-export const srcHeaderArgRegex = '(?i)(:[a-zA-Z-]+(?:\\s+[^\\s:]+)?)';
+export const srcSwitchRegex = '(?i)([-+][a-zA-Z0-9]+(?:\\s+\\"[^\\"]*\\")?)';
 
 /**
  * Customized Blocks
@@ -99,20 +103,6 @@ export const dynamicBlockEndRegex = '(?i)^(\\s*)(#\\+END:)\\s*$';
  * Keywords - matches org-mode keywords like #+TITLE: value
  */
 export const keywordRegex = '^\\s*(#\\+([A-Z_]+):)\\s*(.*)';
-
-/**
- * Blocks - various org-mode block patterns
- */
-export const quoteBlockBeginRegex = '(?i)^#\\+BEGIN_QUOTE';
-export const quoteBlockEndRegex = '(?i)^#\\+END_QUOTE';
-export const exampleBlockBeginRegex = '(?i)^#\\+BEGIN_EXAMPLE';
-export const exampleBlockEndRegex = '(?i)^#\\+END_EXAMPLE';
-export const verseBlockBeginRegex = '(?i)^#\\+BEGIN_VERSE';
-export const verseBlockEndRegex = '(?i)^#\\+END_VERSE';
-export const centerBlockBeginRegex = '(?i)^#\\+BEGIN_CENTER';
-export const centerBlockEndRegex = '(?i)^#\\+END_CENTER';
-export const commentBlockBeginRegex = '(?i)^#\\+BEGIN_COMMENT';
-export const commentBlockEndRegex = '(?i)^#\\+END_COMMENT';
 
 /**
  * Drawers - PROPERTIES, LOGBOOK, etc.

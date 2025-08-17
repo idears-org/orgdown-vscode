@@ -90,6 +90,9 @@ export const LEADING_WHITESPACE = 'string.other.whitespace.leading.org';
 /** A meta scope for any block, for uniform styling. */
 export const BLOCK_META = 'meta.block.org';
 
+/** The content of a block. */
+export const BLOCK_CONTENT = 'markup.block.org';
+
 /** The keyword of a block, e.g., `#+BEGIN_SRC`, `#+END_QUOTE`. */
 export const BLOCK_KEYWORD = 'keyword.control.block.org';
 
@@ -99,6 +102,12 @@ export const BLOCK_NAME = 'entity.name.function.block.org';
 /** The parameters of a block. */
 export const BLOCK_PARAMETERS = 'variable.parameter.block.org';
 
+/** The key of a parameter, e.g., `:results`. */
+export const BLOCK_PARAMETER_KEY = 'keyword.other.property.key.org';
+
+/** The value of a parameter, e.g., `output`. */
+export const BLOCK_PARAMETER_VALUE = 'string.unquoted.property.value.org';
+
 
 // =================================================================
 // Standard Blocks (Specific)
@@ -106,6 +115,9 @@ export const BLOCK_PARAMETERS = 'variable.parameter.block.org';
 
 /** The meta scope for the entire standard block. */
 export const BLOCK_STANDARD_META = 'meta.block.standard.org';
+
+/** The content area of a standard block. */
+export const BLOCK_STANDARD_CONTENT = 'markup.block.standard.org';
 
 
 // =================================================================
@@ -115,17 +127,14 @@ export const BLOCK_STANDARD_META = 'meta.block.standard.org';
 /** The meta scope for the entire source block. */
 export const BLOCK_SRC_META = 'meta.block.src.org';
 
+/** The content area of a source block. */
+export const BLOCK_SRC_CONTENT = 'markup.block.src.org';
+
 /** The language identifier in a source block, e.g., `python`. */
 export const BLOCK_LANGUAGE = 'entity.name.type.language.org';
 
 /** A switch in a source block, e.g., `-n` or `+n`. */
 export const BLOCK_SWITCH = 'storage.modifier.switch.org';
-
-/** The key of a header argument, e.g., `:results`. */
-export const BLOCK_HEADER_KEY = 'keyword.other.property.key.org';
-
-/** The value of a header argument, e.g., `output`. */
-export const BLOCK_HEADER_VALUE = 'string.unquoted.property.value.org';
 
 // =================================================================
 // Dynamic Blocks (Specific)
@@ -133,6 +142,20 @@ export const BLOCK_HEADER_VALUE = 'string.unquoted.property.value.org';
 
 /** The meta scope for the entire dynamic block. */
 export const DYNAMIC_BLOCK_META = 'meta.block.dynamic.org';
+
+/** The content area of a dynamic block. */
+export const DYNAMIC_BLOCK_CONTENT = 'markup.block.dynamic.org';
+
+
+// =================================================================
+// Customized Blocks (Specific)
+// =================================================================
+
+/** The meta scope for the entire customized block. */
+export const BLOCK_CUSTOMIZED_META = 'meta.block.customized.org';
+
+/** The content area of a customized block. */
+export const BLOCK_CUSTOMIZED_CONTENT = 'markup.block.customized.org';
 
 
 // =================================================================
