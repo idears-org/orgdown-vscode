@@ -56,8 +56,9 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F09-drawers.org~
   _syntax: `drawer`_
-- [ ] **Planning Lines**: SCHEDULED, DEADLINE, CLOSED timestamps.
-  _fixture: ~test/fixtures/F11-planning-line.org~, ~test/fixtures/F12-scheduled.org~
+- [X] **Planning Lines**: SCHEDULED, DEADLINE, CLOSED timestamps.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F10-planning-lines.org~
   _syntax: `planning-line`_
 - [ ] **Timestamps**: Active, inactive, ranges, and repeaters.
   _fixture: ~test/fixtures/F13-timestamps.org~, ~test/fixtures/F14-timestamp-edge-cases.org~

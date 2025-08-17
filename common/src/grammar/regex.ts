@@ -30,6 +30,7 @@ export const tagsFragment = '(?:\\s*(:[^ \\t:][^ \\t]*:))?'; // 7. tags (allowin
 
 // Compose full headline regex for each level
 export const headlineDetectRegex = `^(\\*+\\s+.*)`;
+export const headlineDetectToEndBlockRegex = '(?=^\\*+\\s)';
 // Match a single-star Org headline with all possible elements
 export const headlineLevel1Regex = `^${starsLevel1Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
 export const headlineLevel2Regex = `^${starsLevel2Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
@@ -74,14 +75,14 @@ export const standardBlockVerbatimEndRegex = '(?i)^(\\s*)(#\\+END_)(\\3)\\s*$';
  * Standard Blocks - Markup (allows inline markup)
  */
 export const standardBlockMarkupBeginRegex = '(?i)^(\\s*)(#\\+BEGIN_)(QUOTE|CENTER|VERSE)(?: (.*))?$';
-export const standardBlockMarkupEndRegex = '(?i)^(\\s*)(#\\+END_)(\\3)\\s*$' + '|' + headlineDetectRegex;
+export const standardBlockMarkupEndRegex = '(?i)^(\\s*)(#\\+END_)(\\3)\\s*$' + '|' + headlineDetectToEndBlockRegex;
 
 /**
  * Source Code Blocks
  */
 export const srcBlockBeginRegex = '(?i)^(\\s*)(#\\+BEGIN_SRC)[ \\t]*(.*)$';
-export const srcBlockEndRegex = '(?i)^(\\s*)(#\\+END_SRC)\\s*$' + '|' + headlineDetectRegex;
-export const srcBlockWhileRegex = '(?i)^(?!\\s*#\\+END_SRC' + '|' + headlineDetectRegex;
+export const srcBlockEndRegex = '(?i)^(\\s*)(#\\+END_SRC)\\s*$' + '|' + headlineDetectToEndBlockRegex;
+export const srcBlockWhileRegex = '(?i)^(?!\\s*#\\+END_SRC' + '|' + headlineDetectToEndBlockRegex + ')';
 
 export const srcSwitchRegex = '(?:^|\\s)([-+][a-zA-Z0-9]+(?:\\s+\\"[^\\"]*\\")?)';
 
@@ -96,7 +97,7 @@ export const customizedBlockWhileRegex = '(?i)^(\\s*)(#\\+END_)(\\3)\\s*$';
  * Dynamic Blocks
  */
 export const dynamicBlockBeginRegex = '(?i)^(\\s*)(#\\+BEGIN:)\\s+([a-zA-Z0-9_-]+)(?: (.*))?$';
-export const dynamicBlockEndRegex = '(?i)^(\\s*)(#\\+END:)\\s*$' + '|' + headlineDetectRegex;
+export const dynamicBlockEndRegex = '(?i)^(\\s*)(#\\+END:)\\s*$' + '|' + headlineDetectToEndBlockRegex;
 // #endregion BLOCKS
 
 // #region KEYWORD
@@ -111,8 +112,16 @@ export const keywordRegex = '^\\s*(#\\+([^:]+):)\\s*(.*)\\s*$';
  * Drawers - PROPERTIES, LOGBOOK, etc.
  */
 export const drawerBeginRegex = '(?i)^\\s*:(?!END)([A-Z_]+):\\s*$';
-export const drawerEndRegex = '(?i)^\\s*:END:\\s*$' + '|' + headlineDetectRegex;
+export const drawerEndRegex = '(?i)^\\s*:END:\\s*$' + '|' + headlineDetectToEndBlockRegex;
 // #endregion DRAWERS
+
+// #region PLANNING_LINES
+/**
+ * Planning lines - SCHEDULED, DEADLINE, CLOSED
+ */
+export const planningLineRegex = '(?i)^\\s*(SCHEDULED|DEADLINE|CLOSED):\\s*(<[^>]+>--<[^>]+>|<[^>]+>|\\[[^\\]]+?\\]--\\[[^\\]]+?\\]|\\[[^\\]]+?\\])\\s*$';
+// #endregion PLANNING_LINES
+
 
 /**
  * Tables

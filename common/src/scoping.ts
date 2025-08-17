@@ -194,6 +194,19 @@ export const DRAWER_NAME = 'entity.name.function.drawer.org';
 /** The content of a drawer. */
 export const DRAWER_CONTENT = 'markup.block.drawer.content.org';
 
+// =================================================================
+// Planning Lines
+// =================================================================
+
+/** The meta scope for the entire planning line. */
+export const PLANNING_LINE_META = 'meta.line.planning.org';
+
+/** The keyword for a planning line. */
+export const PLANNING_KEYWORD = 'keyword.control.task-management.org';
+
+/** The timestamp for a planning line. */
+export const PLANNING_TIMESTAMP = 'constant.other.timestamp.org';
+
 
 // =================================================================
 // Inline Markup

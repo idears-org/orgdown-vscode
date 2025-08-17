@@ -17,6 +17,7 @@ repository:
       # - { include: '#comments' }
       - { include: '#keywords' }
       - { include: '#drawers' }
+      - { include: '#planning-lines' }
       # - { include: '#tables' }
       # - { include: '#footnotes' }
       # - { include: '#paragraph' }
@@ -205,6 +206,7 @@ repository:
     patterns: []
   #endregion
 
+  #region KEYWORDS
   keywords:
     patterns:
       - name: '{{scopes.KEYWORD}}'
@@ -216,7 +218,9 @@ repository:
             name: '{{scopes.KEYWORD_NAME}}'
           '3':
             name: '{{scopes.KEYWORD_VALUE}}'
+  #endregion
 
+  #region DRAWERS
   drawers:
     name: '{{scopes.BLOCK_META}} {{scopes.DRAWER_META}}'
     contentName: '{{scopes.BLOCK_CONTENT}} {{scopes.DRAWER_CONTENT}}'
@@ -230,6 +234,18 @@ repository:
     endCaptures:
       '0':
         name: '{{scopes.BLOCK_KEYWORD}} {{scopes.DRAWER_END_KEYWORD}}'
+  #endregion
+
+  #region PLANNING_LINES
+  planning-lines:
+    name: '{{scopes.PLANNING_LINE_META}}'
+    match: '{{regexs.planningLineRegex}}'
+    captures:
+      '1':
+        name: '{{scopes.PLANNING_KEYWORD}}'
+      '2':
+        name: '{{scopes.PLANNING_TIMESTAMP}}'
+  #endregion
 
   tables:
     name: markup.table.org
