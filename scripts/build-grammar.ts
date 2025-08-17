@@ -96,20 +96,21 @@ function generateOrgSrcBlockDefinitions(): any[] {
     // This rule is highly specific to one language. It matches the language identifier
     // and then includes the correct grammar.
     return {
-      name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_SRC}}',
-      begin: '(?i)^(\\s*#\\+BEGIN_SRC[ \\t]+(' + lang.identifiers.join('|') + '))([ \\t].*)?$',
+      name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_SRC_META}}',
+      begin: '(?i)^(\\s*)(#\\+BEGIN_SRC)[ \\t]+(' + lang.identifiers.join('|') + ')([ \\t].*)?$',
       end: '{{regexs.srcBlockEndRegex}}',
       beginCaptures: {
-        '1': { name: '{{scopes.BLOCK_KEYWORD}}' },
-        '2': { name: '{{scopes.BLOCK_LANGUAGE}}' },
-        '3': {
+        '1': { name: '{{scopes.LIST_WHITESPACE}}' },
+        '2': { name: '{{scopes.BLOCK_SRC_BEGIN_KEYWORD}}' },
+        '3': { name: '{{scopes.BLOCK_LANGUAGE}}' },
+        '4': {
           patterns: [
             { include: '#src-block-switch' },
             { include: '#src-block-header' }
           ]
         }
       },
-      endCaptures: { '0': { name: '{{scopes.BLOCK_KEYWORD}}' } },
+      endCaptures: { '0': { name: '{{scopes.BLOCK_SRC_END_KEYWORD}}' } },
       patterns: [{
         begin: '(^|\\G)',
         while: '{{regexs.srcBlockWhileRegex}}',
@@ -121,20 +122,20 @@ function generateOrgSrcBlockDefinitions(): any[] {
 
   // Fallback for unknown languages. It's a separate rule.
   patterns.push({
-    name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_SRC}}',
-    begin: '(?i)^(\\s*#\\+BEGIN_SRC[ \\t]+([^ \\t]+))([ \\t].*)?$',
+    name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_SRC_META}}',
+    begin: '{{regexs.srcBlockBeginRegex}}',
     end: '{{regexs.srcBlockEndRegex}}',
     beginCaptures: {
-      '1': { name: '{{scopes.BLOCK_KEYWORD}}' },
-      '2': { name: '{{scopes.BLOCK_LANGUAGE}}' },
-      '3': {
-        patterns: [
-          { include: '#src-block-switch' },
-          { include: '#src-block-header' }
-        ]
-      }
-    },
-    endCaptures: { '0': { name: '{{scopes.BLOCK_KEYWORD}}' } },
+        '1': { name: '{{scopes.LIST_WHITESPACE}}' },
+        '2': { name: '{{scopes.BLOCK_SRC_BEGIN_KEYWORD}}' },
+        '3': {
+          patterns: [
+            { include: '#src-block-switch' },
+            { include: '#src-block-header' }
+          ]
+        }
+    } as any,
+    endCaptures: { '0': { name: '{{scopes.BLOCK_SRC_END_KEYWORD}}' } },
     patterns: [{
       begin: '(^|\\G)',
       while: '{{regexs.srcBlockWhileRegex}}',

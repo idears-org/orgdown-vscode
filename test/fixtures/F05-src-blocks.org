@@ -7,13 +7,15 @@
 - meta.block.org
 - meta.block.source.org
 
-* === Capture Group Scopes ===
-# The following scopes are applied to the specific parts of the block.
-# srcBlockBeginRegex
-1. beginKeyword -> keyword.block.begin.org
-2. langAndArgs -> variable.language.org, string.unquoted.argument.org, keyword.other.switch.org
-# srcBlockEndRegex
-1. endKeyword -> keyword.block.end.org
+* === Capture Group Scopes (srcBlockBeginRegex) ===
+1. leading whitespace -> string.other.whitespace.leading.org
+2. begin keyword -> keyword.control.block.src.begin.org
+3. language and parameters -> variable.parameter.block.org
+
+* === Capture Group Scopes (srcBlockEndRegex) ===
+1. leading whitespace -> string.other.whitespace.leading.org
+2. end keyword -> keyword.control.block.src.end.org
+
 #+END_COMMENT
 
 * 1. Integration Test Cases
@@ -275,56 +277,75 @@ This section contains isolated unit tests for the src block begin regex.
 #+NAME: Unit Test: Basic SRC block
 #+BEGIN_FIXTURE
 #+BEGIN_SRC python
+print("Hello, World!")
+#+END_SRC
 #+END_FIXTURE
+
 #+EXPECTED: srcBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | #+BEGIN_SRC    |
-| 2       | python         |
+| 1       |                |
+| 2       | #+BEGIN_SRC    |
+| 3       | python         |
+
+#+EXPECTED: srcBlockEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | #+END_SRC      |
 
 #+NAME: Unit Test: SRC block with switches and headers
 #+BEGIN_FIXTURE
-#+BEGIN_SRC ruby -n :tangle no :results value
+#+BEGIN_SRC shell -n :results output
+ls -l
+#+END_SRC
 #+END_FIXTURE
+
 #+EXPECTED: srcBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | #+BEGIN_SRC    |
-| 2       | ruby -n :tangle no :results value |
+| 1       |                |
+| 2       | #+BEGIN_SRC    |
+| 3       | shell -n :results output |
 
 #+NAME: Unit Test: SRC block with no language
 #+BEGIN_FIXTURE
 #+BEGIN_SRC
+This is a block with no language.
+#+END_SRC
 #+END_FIXTURE
+
 #+EXPECTED: srcBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | #+BEGIN_SRC    |
-| 2       |                |
+| 1       |                |
+| 2       | #+BEGIN_SRC    |
+| 3       |                |
 
 #+NAME: Unit Test: Case-insensitivity
 #+BEGIN_FIXTURE
-#+BeGiN_SrC pYtHoN
+#+bEgIn_SrC pYtHoN
+#+EnD_sRc
 #+END_FIXTURE
+
 #+EXPECTED: srcBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | #+BeGiN_SrC    |
-| 2       | pYtHoN         |
+| 1       |                |
+| 2       | #+bEgIn_SrC    |
+| 3       | pYtHoN         |
 
-#+NAME: Unit Test: SRC block end
-#+BEGIN_FIXTURE
-#+END_SRC
-#+END_FIXTURE
 #+EXPECTED: srcBlockEndRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | #+END_SRC      |
+| 1       |                |
+| 2       | #+EnD_sRc      |
 
 #+NAME: Unit Test: SRC block simple switch
 #+BEGIN_FIXTURE
 -n
 #+END_FIXTURE
+
 #+EXPECTED: srcSwitchRegex
 | Group # | Expected Value |
 |---------+----------------|
@@ -332,44 +353,50 @@ This section contains isolated unit tests for the src block begin regex.
 
 #+NAME: Unit Test: SRC block switch with quoted argument
 #+BEGIN_FIXTURE
-+l "my lib"
+-l "-a -b"
 #+END_FIXTURE
+
 #+EXPECTED: srcSwitchRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | +l "my lib"    |
+| 1       | -l "-a -b"     |
 
 #+NAME: Unit Test: SRC block header argument
 #+BEGIN_FIXTURE
-:tangle no
+:results output
 #+END_FIXTURE
+
 #+EXPECTED: srcHeaderArgRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | :tangle no     |
+| 1       | :results output|
 
 #+NAME: Unit Test: SRC block switch with quoted argument mix with header argument
 #+BEGIN_FIXTURE
-:tangle no -l "my lib"
+-l "-a -b" :results value
 #+END_FIXTURE
+
 #+EXPECTED: srcHeaderArgRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | :tangle no     |
+| 1       | :results value |
+
 #+EXPECTED: srcSwitchRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | -l "my lib"    |
+| 1       | -l "-a -b"     |
 
 #+NAME: Unit Test: SRC block switch with quoted argument mix with header argument different order
 #+BEGIN_FIXTURE
-+l "my lib" :tangle no
+:results value -l "-a -b"
 #+END_FIXTURE
+
 #+EXPECTED: srcHeaderArgRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | :tangle no     |
+| 1       | :results value |
+
 #+EXPECTED: srcSwitchRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 1       | +l "my lib"    |
+| 1       | -l "-a -b"     |

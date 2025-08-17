@@ -1,0 +1,146 @@
+#+TITLE: Test Suite for Dynamic Blocks
+
+#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+
+* === Block Scopes ===
+# The following scopes are applied to the entire dynamic block.
+- meta.block.org
+- meta.block.dynamic.org
+
+* === Capture Group Scopes (dynamicBlockBeginRegex) ===
+# The following scopes are applied to the specific parts of the dynamic block's begin line.
+1. leading whitespace -> string.other.whitespace.leading.org
+2. begin keyword -> keyword.control.block.dynamic.begin.org
+3. block name -> entity.name.function.dynamic-block.org
+4. parameters -> variable.parameter.block.org
+
+* === Capture Group Scopes (dynamicBlockEndRegex) ===
+# The following scopes are applied to the specific parts of the dynamic block's end line.
+1. leading whitespace -> string.other.whitespace.leading.org
+2. end keyword -> keyword.control.block.dynamic.end.org
+
+#+END_COMMENT
+
+#+NAME: Simple clocktable block with content
+#+BEGIN_FIXTURE
+#+BEGIN: clocktable :maxlevel 2
+Some clocktable content here.
+And another line.
+#+END:
+#+END_FIXTURE
+
+#+EXPECTED: dynamicBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | #+BEGIN:       |
+| 3       | clocktable     |
+| 4       | <sp:1>:maxlevel 2   |
+
+#+EXPECTED: dynamicBlockEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | #+END:         |
+
+#+NAME: Agenda block with content and parameters
+#+BEGIN_FIXTURE
+#+BEGIN: agenda :files "agenda.org" :span 1w
+- TODO Task 1
+- DONE Task 2
+#+END:
+#+END_FIXTURE
+
+#+EXPECTED: dynamicBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | #+BEGIN:       |
+| 3       | agenda         |
+| 4       | <sp:1>:files "agenda.org" :span 1w |
+
+#+EXPECTED: dynamicBlockEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | #+END:         |
+
+#+NAME: Indented columnview block with content
+#+BEGIN_FIXTURE
+  #+BEGIN: columnview :maxlevel 3
+  * Task 1
+  * Task 2
+  #+END:
+#+END_FIXTURE
+
+#+EXPECTED: dynamicBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | <sp:2>         |
+| 2       | #+BEGIN:       |
+| 3       | columnview     |
+| 4       | <sp:1>:maxlevel 3   |
+
+#+EXPECTED: dynamicBlockEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | <sp:2>         |
+| 2       | #+END:         |
+
+#+NAME: Block with no parameters and no content
+#+BEGIN_FIXTURE
+#+BEGIN: custom
+#+END:
+#+END_FIXTURE
+
+#+EXPECTED: dynamicBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | #+BEGIN:       |
+| 3       | custom         |
+| 4       |                |
+
+#+EXPECTED: dynamicBlockEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | #+END:         |
+
+#+NAME: Case-insensitivity test
+#+BEGIN_FIXTURE
+#+bEgIn: ClOcKtAbLe
+#+eNd:
+#+END_FIXTURE
+
+#+EXPECTED: dynamicBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | #+bEgIn:       |
+| 3       | ClOcKtAbLe     |
+| 4       |                |
+
+#+EXPECTED: dynamicBlockEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | #+eNd:         |
+
+#+NAME: Malformed BEGIN line should not match
+#+BEGIN_FIXTURE
+#+BEGIN clocktable
+#+END:
+#+END_FIXTURE
+
+#+EXPECTED: dynamicBlockBeginRegex
+no-match
+
+#+NAME: Malformed END line should not match
+#+BEGIN_FIXTURE
+#+BEGIN: clocktable
+#+END
+#+END_FIXTURE
+
+#+EXPECTED: dynamicBlockEndRegex
+no-match

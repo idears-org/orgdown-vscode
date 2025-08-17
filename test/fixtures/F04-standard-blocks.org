@@ -117,48 +117,73 @@ cannot be unit-tested here due to their use of backreferences.
 #+NAME: Unit Test: Markup Begin (QUOTE)
 #+BEGIN_FIXTURE
 #+BEGIN_QUOTE
+#+END_QUOTE
 #+END_FIXTURE
+
 #+EXPECTED: standardBlockMarkupBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
-| 2       | QUOTE          |
+| 2       | #+BEGIN_       |
+| 3       | QUOTE          |
 
-#+NAME: Unit Test: Markup Begin (VERSE, indented, case-insensitive)
+#+NAME: Unit Test: Markup End (QUOTE)
 #+BEGIN_FIXTURE
-  #+begin_verse
+#+END_QUOTE
 #+END_FIXTURE
+
+#+NAME: Unit Test: Markup (VERSE, indented, case-insensitive)
+#+BEGIN_FIXTURE
+  #+bEgIn_VeRsE
+  #+eNd_VeRsE
+#+END_FIXTURE
+
 #+EXPECTED: standardBlockMarkupBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | <sp:2>         |
-| 2       | verse          |
+| 2       | #+bEgIn_       |
+| 3       | VeRsE          |
+
+#+NAME: Unit Test: Markup End (VERSE, indented, case-insensitive)
+#+BEGIN_FIXTURE
+  #+eNd_VeRsE
+#+END_FIXTURE
 
 #+NAME: Unit Test: Verbatim Begin (EXAMPLE)
 #+BEGIN_FIXTURE
 #+BEGIN_EXAMPLE
+#+END_EXAMPLE
 #+END_FIXTURE
+
 #+EXPECTED: standardBlockVerbatimBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
-| 2       | EXAMPLE        |
+| 2       | #+BEGIN_       |
+| 3       | EXAMPLE        |
 
 #+NAME: Unit Test: Verbatim Begin (COMMENT, case-insensitive)
 #+BEGIN_FIXTURE
 #+begin_comment
+#+end_comment
 #+END_FIXTURE
+
 #+EXPECTED: standardBlockVerbatimBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
-| 2       | comment        |
+| 2       | #+begin_       |
+| 3       | comment        |
 
 #+NAME: Unit Test: Non-match (SRC should not match standard block regex)
 #+BEGIN_FIXTURE
 #+BEGIN_SRC
+#+END_SRC
 #+END_FIXTURE
+
 #+EXPECTED: standardBlockMarkupBeginRegex
 no-match
+
 #+EXPECTED: standardBlockVerbatimBeginRegex
 no-match

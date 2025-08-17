@@ -3,6 +3,8 @@ import { exec } from 'child_process';
 
 console.log('[watch] build started');
 const watcher = chokidar.watch([
+  'common/src/grammar/regex.ts',
+  'common/src/scoping.ts',
   'test/fixtures/',
   'scripts/build-inspections.ts',
 ], { ignoreInitial: true });
