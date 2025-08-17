@@ -87,4 +87,4 @@ Content
 | 1       |                |
 | 2       | #+BEGIN_       |
 | 3       | MYBLOCK        |
-| 4       | <sp:1>:arg1 value1 :arg2 value2 |
+| 4       | :arg1 value1 :arg2 value2 |

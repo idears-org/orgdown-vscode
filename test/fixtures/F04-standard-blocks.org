@@ -126,15 +126,11 @@ cannot be unit-tested here due to their use of backreferences.
 | 1       |                |
 | 2       | #+BEGIN_       |
 | 3       | QUOTE          |
+| 4       |                |
 
-#+NAME: Unit Test: Markup End (QUOTE)
+#+NAME: Unit Test: Markup (VERSE, indented, case-insensitive, with params)
 #+BEGIN_FIXTURE
-#+END_QUOTE
-#+END_FIXTURE
-
-#+NAME: Unit Test: Markup (VERSE, indented, case-insensitive)
-#+BEGIN_FIXTURE
-  #+bEgIn_VeRsE
+  #+bEgIn_VeRsE with params
   #+eNd_VeRsE
 #+END_FIXTURE
 
@@ -144,11 +140,7 @@ cannot be unit-tested here due to their use of backreferences.
 | 1       | <sp:2>         |
 | 2       | #+bEgIn_       |
 | 3       | VeRsE          |
-
-#+NAME: Unit Test: Markup End (VERSE, indented, case-insensitive)
-#+BEGIN_FIXTURE
-  #+eNd_VeRsE
-#+END_FIXTURE
+| 4       | with params    |
 
 #+NAME: Unit Test: Verbatim Begin (EXAMPLE)
 #+BEGIN_FIXTURE
@@ -162,10 +154,11 @@ cannot be unit-tested here due to their use of backreferences.
 | 1       |                |
 | 2       | #+BEGIN_       |
 | 3       | EXAMPLE        |
+| 4       |                |
 
-#+NAME: Unit Test: Verbatim Begin (COMMENT, case-insensitive)
+#+NAME: Unit Test: Verbatim Begin (COMMENT, case-insensitive, with params)
 #+BEGIN_FIXTURE
-#+begin_comment
+#+begin_comment with params
 #+end_comment
 #+END_FIXTURE
 
@@ -175,6 +168,7 @@ cannot be unit-tested here due to their use of backreferences.
 | 1       |                |
 | 2       | #+begin_       |
 | 3       | comment        |
+| 4       | with params    |
 
 #+NAME: Unit Test: Non-match (SRC should not match standard block regex)
 #+BEGIN_FIXTURE

@@ -76,49 +76,44 @@ export const HORIZONTAL_RULE = 'meta.separator.org';
 
 
 // =================================================================
-// Blocks
+// Generic Scopes
+// =================================================================
+
+/** Leading whitespace for lists and blocks. */
+export const LEADING_WHITESPACE = 'string.other.whitespace.leading.org';
+
+
+// =================================================================
+// Blocks (Generic)
 // =================================================================
 
 /** A meta scope for any block, for uniform styling. */
 export const BLOCK_META = 'meta.block.org';
-/** The name of a block, e.g., `QUOTE`. */
-export const BLOCK_NAME = 'entity.name.function.org-block.org';
+
+/** The keyword of a block, e.g., `#+BEGIN_SRC`, `#+END_QUOTE`. */
+export const BLOCK_KEYWORD = 'keyword.control.block.org';
+
+/** The name of a block, e.g., `QUOTE`, `SRC`. */
+export const BLOCK_NAME = 'entity.name.function.block.org';
+
+/** The parameters of a block. */
+export const BLOCK_PARAMETERS = 'variable.parameter.block.org';
+
 
 // =================================================================
-// Standard Blocks
+// Standard Blocks (Specific)
 // =================================================================
 
 /** The meta scope for the entire standard block. */
 export const BLOCK_STANDARD_META = 'meta.block.standard.org';
 
-/** The content area of a standard block. */
-export const BLOCK_STANDARD_CONTENT = 'markup.block.standard.org';
-
-/** The begin keyword of a standard block, e.g., `#+BEGIN_QUOTE`. */
-export const BLOCK_STANDARD_BEGIN_KEYWORD = 'keyword.control.block.standard.begin.org';
-
-/** The end keyword of a standard block, e.g., `#+END_QUOTE`. */
-export const BLOCK_STANDARD_END_KEYWORD = 'keyword.control.block.standard.end.org';
-
-/** The name of a standard block, e.g., `QUOTE`. */
-export const BLOCK_STANDARD_NAME = 'entity.name.function.standard-block.org';
-
 
 // =================================================================
-// Source Blocks
+// Source Blocks (Specific)
 // =================================================================
 
 /** The meta scope for the entire source block. */
 export const BLOCK_SRC_META = 'meta.block.src.org';
-
-/** The code content itself in a source block. */
-export const BLOCK_SRC_CONTENT = 'markup.block.src.org';
-
-/** The begin keyword of a source block, e.g., `#+BEGIN_SRC`. */
-export const BLOCK_SRC_BEGIN_KEYWORD = 'keyword.control.block.src.begin.org';
-
-/** The end keyword of a source block, e.g., `#+END_SRC`. */
-export const BLOCK_SRC_END_KEYWORD = 'keyword.control.block.src.end.org';
 
 /** The language identifier in a source block, e.g., `python`. */
 export const BLOCK_LANGUAGE = 'entity.name.type.language.org';
@@ -133,23 +128,11 @@ export const BLOCK_HEADER_KEY = 'keyword.other.property.key.org';
 export const BLOCK_HEADER_VALUE = 'string.unquoted.property.value.org';
 
 // =================================================================
-// Dynamic Blocks
+// Dynamic Blocks (Specific)
 // =================================================================
 
 /** The meta scope for the entire dynamic block. */
 export const DYNAMIC_BLOCK_META = 'meta.block.dynamic.org';
-
-/** The begin keyword of a dynamic block, e.g., `#+BEGIN:`. */
-export const DYNAMIC_BLOCK_BEGIN_KEYWORD = 'keyword.control.block.dynamic.begin.org';
-
-/** The end keyword of a dynamic block, e.g., `#+END:`. */
-export const DYNAMIC_BLOCK_END_KEYWORD = 'keyword.control.block.dynamic.end.org';
-
-/** The name of a dynamic block, e.g., `clocktable`. */
-export const DYNAMIC_BLOCK_NAME = 'entity.name.function.dynamic-block.org';
-
-/** The parameters of a dynamic block. */
-export const DYNAMIC_BLOCK_PARAMETERS = 'variable.parameter.block.org';
 
 
 // =================================================================
@@ -180,6 +163,3 @@ export const STRIKETHROUGH = 'markup.strikethrough.org';
 export const CODE = 'markup.inline.raw.org';
 export const VERBATIM = 'markup.inline.raw.org';
 export const LINK = 'markup.underline.link.org';
-
-/** The leading whitespace for a list item. */
-export const LIST_WHITESPACE = 'string.other.whitespace.leading.org';

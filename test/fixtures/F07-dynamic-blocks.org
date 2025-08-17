@@ -35,7 +35,7 @@ And another line.
 | 1       |                |
 | 2       | #+BEGIN:       |
 | 3       | clocktable     |
-| 4       | <sp:1>:maxlevel 2   |
+| 4       | :maxlevel 2   |
 
 #+EXPECTED: dynamicBlockEndRegex
 | Group # | Expected Value |
@@ -57,7 +57,7 @@ And another line.
 | 1       |                |
 | 2       | #+BEGIN:       |
 | 3       | agenda         |
-| 4       | <sp:1>:files "agenda.org" :span 1w |
+| 4       | :files "agenda.org" :span 1w |
 
 #+EXPECTED: dynamicBlockEndRegex
 | Group # | Expected Value |
@@ -79,7 +79,7 @@ And another line.
 | 1       | <sp:2>         |
 | 2       | #+BEGIN:       |
 | 3       | columnview     |
-| 4       | <sp:1>:maxlevel 3   |
+| 4       | :maxlevel 3   |
 
 #+EXPECTED: dynamicBlockEndRegex
 | Group # | Expected Value |

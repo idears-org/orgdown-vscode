@@ -100,17 +100,21 @@ function generateOrgSrcBlockDefinitions(): any[] {
       begin: '(?i)^(\\s*)(#\\+BEGIN_SRC)[ \\t]+(' + lang.identifiers.join('|') + ')([ \\t].*)?$',
       end: '{{regexs.srcBlockEndRegex}}',
       beginCaptures: {
-        '1': { name: '{{scopes.LIST_WHITESPACE}}' },
-        '2': { name: '{{scopes.BLOCK_SRC_BEGIN_KEYWORD}}' },
+        '1': { name: '{{scopes.LEADING_WHITESPACE}}' },
+        '2': { name: '{{scopes.BLOCK_KEYWORD}}' },
         '3': { name: '{{scopes.BLOCK_LANGUAGE}}' },
         '4': {
+          name: '{{scopes.BLOCK_PARAMETERS}}',
           patterns: [
             { include: '#src-block-switch' },
             { include: '#src-block-header' }
           ]
         }
-      },
-      endCaptures: { '0': { name: '{{scopes.BLOCK_SRC_END_KEYWORD}}' } },
+      } as any,
+      endCaptures: {
+        '1': { name: '{{scopes.LEADING_WHITESPACE}}' },
+        '2': { name: '{{scopes.BLOCK_KEYWORD}}' }
+       },
       patterns: [{
         begin: '(^|\\G)',
         while: '{{regexs.srcBlockWhileRegex}}',
@@ -126,18 +130,22 @@ function generateOrgSrcBlockDefinitions(): any[] {
     begin: '{{regexs.srcBlockBeginRegex}}',
     end: '{{regexs.srcBlockEndRegex}}',
     beginCaptures: {
-        '1': { name: '{{scopes.LIST_WHITESPACE}}' },
-        '2': { name: '{{scopes.BLOCK_SRC_BEGIN_KEYWORD}}' },
+        '1': { name: '{{scopes.LEADING_WHITESPACE}}' },
+        '2': { name: '{{scopes.BLOCK_KEYWORD}}' },
         '3': {
+          name: '{{scopes.BLOCK_PARAMETERS}}',
           patterns: [
             { include: '#src-block-switch' },
             { include: '#src-block-header' }
           ]
         }
     } as any,
-    endCaptures: { '0': { name: '{{scopes.BLOCK_SRC_END_KEYWORD}}' } },
+    endCaptures: {
+      '1': { name: '{{scopes.LEADING_WHITESPACE}}' },
+      '2': { name: '{{scopes.BLOCK_KEYWORD}}' }
+    },
     patterns: [{
-      begin: '(^|\\G)',
+      begin: '(^|\G)',
       while: '{{regexs.srcBlockWhileRegex}}',
       contentName: 'meta.embedded.block.fallback',
       patterns: [],
