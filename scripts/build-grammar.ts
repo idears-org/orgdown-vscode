@@ -185,10 +185,12 @@ async function buildGrammar() {
 
   // Replace all regex placeholders with actual patterns
   for (const [key, value] of Object.entries(regexModule)) {
-    if (typeof value === 'string') {
+    // Handle both old string format and new RegexPattern format
+    const regexSource = typeof value === 'string' ? value : value?.source;
+    if (regexSource) {
       const placeholder = `{{regexs.${key}}}`;
       // In JSON, backslashes in the regex need to be double-escaped.
-      const escapedValue = value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+      const escapedValue = regexSource.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
       grammarWithPlaceholders = grammarWithPlaceholders.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), escapedValue);
     }
   }

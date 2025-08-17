@@ -26,9 +26,20 @@ describe('Grammar Regex Unit Tests', () => {
           it(`${testCase.name} should ${result.shouldMatch ? 'match' : 'not match'} with ${result.regex}`, () => {
             const regexPattern = (regexes as any)[result.regex];
             expect(regexPattern, `Regex '${result.regex}' not found in regex.ts`).toBeDefined();
-            expect(regexPattern, `'${result.regex}' is not a string`).toBeTypeOf('string');
 
-            const scanner = new OnigScanner([regexPattern]);
+            // Handle both string patterns (legacy) and RegexPattern objects (new)
+            let regexSource: string;
+            if (typeof regexPattern === 'string') {
+              regexSource = regexPattern;
+            } else if (regexPattern && typeof regexPattern === 'object' && 'source' in regexPattern) {
+              regexSource = regexPattern.source;
+            } else if (regexPattern && typeof regexPattern === 'object' && 'toString' in regexPattern) {
+              regexSource = regexPattern.toString();
+            } else {
+              throw new Error(`Unsupported regex pattern type for '${result.regex}': ${typeof regexPattern}`);
+            }
+
+            const scanner = new OnigScanner([regexSource]);
             const onigString = new OnigString(testCase.input);
             const match = scanner.findNextMatchSync(onigString, 0);
 

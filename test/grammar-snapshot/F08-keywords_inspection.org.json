@@ -2002,7 +2002,35 @@
 		}
 	},
 	{
-		"c": "Test: Seq_todo keyword",
+		"c": "Test: Seq",
+		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "_t",
+		"t": "text.org markup.heading.org heading.2.org entity.name.section.org markup.other.sub-super-script.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "odo keyword",
 		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
@@ -2702,7 +2730,35 @@
 		}
 	},
 	{
-		"c": "Test: Html_head keyword",
+		"c": "Test: Html",
+		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "_h",
+		"t": "text.org markup.heading.org heading.2.org entity.name.section.org markup.other.sub-super-script.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "ead keyword",
 		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
@@ -2814,7 +2870,35 @@
 		}
 	},
 	{
-		"c": "Test: Latex_header keyword",
+		"c": "Test: Latex",
+		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "_h",
+		"t": "text.org markup.heading.org heading.2.org entity.name.section.org markup.other.sub-super-script.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "eader keyword",
 		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
@@ -2926,7 +3010,35 @@
 		}
 	},
 	{
-		"c": "Test: Custom_key keyword",
+		"c": "Test: Custom",
+		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "_k",
+		"t": "text.org markup.heading.org heading.2.org entity.name.section.org markup.other.sub-super-script.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "ey keyword",
 		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
