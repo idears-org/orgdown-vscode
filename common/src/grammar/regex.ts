@@ -99,10 +99,12 @@ export const dynamicBlockBeginRegex = '(?i)^(\\s*)(#\\+BEGIN:)\\s+([a-zA-Z0-9_-]
 export const dynamicBlockEndRegex = '(?i)^(\\s*)(#\\+END:)\\s*$';
 // #endregion BLOCKS
 
+// #region KEYWORD
 /**
  * Keywords - matches org-mode keywords like #+TITLE: value
  */
-export const keywordRegex = '^\\s*(#\\+([A-Z_]+):)\\s*(.*)';
+export const keywordRegex = '^\\s*(#\\+([^:]+):)\\s*(.*)\\s*$';
+// #endregion KEYWORD
 
 /**
  * Drawers - PROPERTIES, LOGBOOK, etc.

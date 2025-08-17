@@ -45,7 +45,6 @@ const scopeToSettingsMap: Record<string, { foreground?: string; fontStyle?: stri
   [scopes.LIST_COUNTER]: { foreground: palette.const },
 
   // Keywords
-  [scopes.KEYWORD_MARKER]: { foreground: palette.meta },
   [scopes.KEYWORD_NAME]: { foreground: palette.meta, fontStyle: 'bold' },
   [scopes.KEYWORD_VALUE]: { foreground: palette.func },
 

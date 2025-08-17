@@ -15,27 +15,11 @@ repository:
       - { include: '#horizontal-rules' }
       - { include: '#blocks' }
       # - { include: '#comments' }
-      # - { include: '#keywords' }
+      - { include: '#keywords' }
       # - { include: '#drawers' }
       # - { include: '#tables' }
       # - { include: '#footnotes' }
       # - { include: '#paragraph' }
-
-  #region ANCHORS (Reusable Snippets)
-  block-captures: &block-captures
-    '1': { name: '{{scopes.LEADING_WHITESPACE}}' }
-    '2': { name: '{{scopes.BLOCK_KEYWORD}}' }
-    '3': { name: '{{scopes.BLOCK_NAME}}' }
-    '4':
-      name: '{{scopes.BLOCK_PARAMETERS}}'
-      patterns:
-        - { include: '#block-parameter-pair' }
-
-  end-captures: &end-captures
-    '1': { name: '{{scopes.LEADING_WHITESPACE}}' }
-    '2': { name: '{{scopes.BLOCK_KEYWORD}}' }
-    '3': { name: '{{scopes.BLOCK_NAME}}' }
-  #endregion
 
   #region HEADLINES
   # Anchor: Common capture groups for Org headlines.
@@ -143,6 +127,36 @@ repository:
   #endregion
 
   #region BLOCKS
+  block-captures: &block-captures
+    '1': { name: '{{scopes.LEADING_WHITESPACE}}' }
+    '2': { name: '{{scopes.BLOCK_KEYWORD}}' }
+    '3': { name: '{{scopes.BLOCK_NAME}}' }
+    '4':
+      name: '{{scopes.BLOCK_PARAMETERS}}'
+      patterns:
+        - { include: '#block-parameter-pair' }
+
+  end-captures: &end-captures
+    '1': { name: '{{scopes.LEADING_WHITESPACE}}' }
+    '2': { name: '{{scopes.BLOCK_KEYWORD}}' }
+    '3': { name: '{{scopes.BLOCK_NAME}}' }
+
+  # Reusable sub-patterns for SRC block headers
+  src-block-switch:
+    match: '{{regexs.srcSwitchRegex}}'
+    captures:
+      '1': { name: '{{scopes.BLOCK_SWITCH}}' }
+
+  src-block-header:
+    patterns:
+      - { include: '#block-parameter-pair' }
+
+  block-parameter-pair:
+    match: '{{regexs.blockParameterRegex}}'
+    captures:
+      '1': { name: '{{scopes.BLOCK_PARAMETER_KEY}}' }
+      '2': { name: '{{scopes.BLOCK_PARAMETER_VALUE}}' }
+
   blocks:
     patterns:
       # Standard (Verbatim)
@@ -189,32 +203,19 @@ repository:
   # org-src-blocks is populated by the build-grammar.ts script
   org-src-blocks:
     patterns: []
-
-  # Reusable sub-patterns for SRC block headers
-  src-block-switch:
-    match: '{{regexs.srcSwitchRegex}}'
-    captures:
-      '1': { name: '{{scopes.BLOCK_SWITCH}}' }
-
-  src-block-header:
-    patterns:
-      - { include: '#block-parameter-pair' }
-
-  block-parameter-pair:
-    match: '{{regexs.blockParameterRegex}}'
-    captures:
-      '1': { name: '{{scopes.BLOCK_PARAMETER_KEY}}' }
-      '2': { name: '{{scopes.BLOCK_PARAMETER_VALUE}}' }
   #endregion
 
   keywords:
     patterns:
-      - name: '{{scopes.KEYWORD_META}}'
-        match: "{{regexs.keywordRegex}}"
+      - name: '{{scopes.KEYWORD}}'
+        match: '{{regexs.keywordRegex}}'
         captures:
-          1: { name: '{{scopes.KEYWORD_MARKER}}' }
-          2: { name: '{{scopes.KEYWORD_NAME}}' }
-          3: { name: '{{scopes.KEYWORD_VALUE}}' }
+          '1':
+            name: '{{scopes.KEYWORD_KEY}}'
+          '2':
+            name: '{{scopes.KEYWORD_NAME}}'
+          '3':
+            name: '{{scopes.KEYWORD_VALUE}}'
 
   drawers:
     name: meta.drawer.org

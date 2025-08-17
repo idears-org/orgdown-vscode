@@ -13,7 +13,7 @@ export interface FixtureTestCase {
 }
 
 function processExpectedValue(value: string): string {
-  return value.replace(/<sp:(\d+)>/g, (_, count) => ' '.repeat(parseInt(count, 10))).replace(/<tab>/g, '\t');
+  return value.replace(/<sp:(\d+)>/g, (_, count) => ' '.repeat(parseInt(count, 10))).replace(/<tab>/g, '\t').replace(/<pipe>/g, '|');
 }
 
 function parseExpectedBlock(lines: string[], startIndex: number): { results: FixtureTestResult[]; endIndex: number } {

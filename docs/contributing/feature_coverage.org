@@ -48,8 +48,9 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _syntax: `dynamic-block`_
 
 *** Metadata and Planning [Priority: High]
-- [ ] **Keywords**: File-level keywords like `#+TITLE`, `#+AUTHOR`, `#+FILETAGS`.
-  _fixture: ~test/fixtures/F29-keywords.org~, ~test/fixtures/F27-tags.org~
+- [X] **Keywords**: File-level keywords like `#+TITLE`, `#+AUTHOR`, `#+FILETAGS`.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F08-keywords.org~
   _syntax: `keyword`_
 - [ ] **Drawers**: PROPERTIES, LOGBOOK, and custom drawers.
   _fixture: ~test/fixtures/F10-drawers.org~

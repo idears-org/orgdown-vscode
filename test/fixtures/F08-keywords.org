@@ -1,0 +1,298 @@
+#+TITLE: Test Suite for Keywords
+
+#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+
+* === Block Scopes ===
+# The following scopes are applied to the entire keyword line.
+- meta.keyword.org
+
+* === Capture Group Scopes ===
+# The following scopes are applied to the specific parts of the keyword.
+1. keyword -> keyword.other.org
+2. keyword name -> entity.name.function.org
+3. value -> string.unquoted.org
+#+END_COMMENT
+
+#+NAME: Simple keyword
+#+BEGIN_FIXTURE
+#+TITLE: My document
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+TITLE:       |
+| 2       | TITLE          |
+| 3       | My document    |
+
+#+NAME: Author keyword
+#+BEGIN_FIXTURE
+#+AUTHOR: Example Author
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+AUTHOR:      |
+| 2       | AUTHOR         |
+| 3       | Example Author |
+
+#+NAME: Options keyword
+#+BEGIN_FIXTURE
+#+OPTIONS: toc:nil
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+OPTIONS:     |
+| 2       | OPTIONS        |
+| 3       | toc:nil        |
+
+#+NAME: Setupfile keyword
+#+BEGIN_FIXTURE
+#+SETUPFILE: setup.org
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+SETUPFILE:   |
+| 2       | SETUPFILE      |
+| 3       | setup.org      |
+
+#+NAME: TODO keyword
+#+BEGIN_FIXTURE
+#+TODO: TODO | DONE
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+TODO:        |
+| 2       | TODO           |
+| 3       | TODO <pipe> DONE    |
+
+#+NAME: Date keyword
+#+BEGIN_FIXTURE
+#+DATE: 2025-08-02
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+DATE:        |
+| 2       | DATE           |
+| 3       | 2025-08-02     |
+
+#+NAME: Email keyword
+#+BEGIN_FIXTURE
+#+EMAIL: example@example.com
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+EMAIL:       |
+| 2       | EMAIL          |
+| 3       | example@example.com |
+
+#+NAME: Description keyword
+#+BEGIN_FIXTURE
+#+DESCRIPTION: This is a test document for Org keywords.
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+DESCRIPTION: |
+| 2       | DESCRIPTION    |
+| 3       | This is a test document for Org keywords. |
+
+#+NAME: Keywords keyword
+#+BEGIN_FIXTURE
+#+KEYWORDS: org, test, keyword, example
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+KEYWORDS:    |
+| 2       | KEYWORDS       |
+| 3       | org, test, keyword, example |
+
+#+NAME: Language keyword
+#+BEGIN_FIXTURE
+#+LANGUAGE: en
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+LANGUAGE:    |
+| 2       | LANGUAGE       |
+| 3       | en             |
+
+#+NAME: Property keyword
+#+BEGIN_FIXTURE
+#+PROPERTY: global-property value
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+PROPERTY:    |
+| 2       | PROPERTY       |
+| 3       | global-property value |
+
+#+NAME: Filetags keyword
+#+BEGIN_FIXTURE
+#+FILETAGS: project, orgdown
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+FILETAGS:    |
+| 2       | FILETAGS       |
+| 3       | project, orgdown |
+
+#+NAME: Startup keyword
+#+BEGIN_FIXTURE
+#+STARTUP: overview
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+STARTUP:     |
+| 2       | STARTUP        |
+| 3       | overview       |
+
+#+NAME: Seq_todo keyword
+#+BEGIN_FIXTURE
+#+SEQ_TODO: TODO | WAIT | DONE
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+SEQ_TODO:    |
+| 2       | SEQ_TODO       |
+| 3       | TODO <pipe> WAIT <pipe> DONE |
+
+#+NAME: Archive keyword
+#+BEGIN_FIXTURE
+#+ARCHIVE: %s_archive::* Archived Tasks
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+ARCHIVE:     |
+| 2       | ARCHIVE        |
+| 3       | %s_archive::* Archived Tasks |
+
+#+NAME: Category keyword
+#+BEGIN_FIXTURE
+#+CATEGORY: Test
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+CATEGORY:    |
+| 2       | CATEGORY       |
+| 3       | Test           |
+
+#+NAME: Priorities keyword
+#+BEGIN_FIXTURE
+#+PRIORITIES: A B C
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+PRIORITIES:  |
+| 2       | PRIORITIES     |
+| 3       | A B C          |
+
+#+NAME: Tags keyword
+#+BEGIN_FIXTURE
+#+TAGS: @work @home
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+TAGS:        |
+| 2       | TAGS           |
+| 3       | @work @home    |
+
+#+NAME: Export_file_name keyword
+#+BEGIN_FIXTURE
+#+EXPORT_FILE_NAME: export.html
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+EXPORT_FILE_NAME: |
+| 2       | EXPORT_FILE_NAME |
+| 3       | export.html    |
+
+#+NAME: Html_head keyword
+#+BEGIN_FIXTURE
+#+HTML_HEAD: <style>body{font-size:14px;}</style>
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+HTML_HEAD:   |
+| 2       | HTML_HEAD      |
+| 3       | <style>body{font-size:14px;}</style> |
+
+#+NAME: Latex_header keyword
+#+BEGIN_FIXTURE
+#+LATEX_HEADER: \usepackage{amsmath}
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+LATEX_HEADER: |
+| 2       | LATEX_HEADER   |
+| 3       | \usepackage{amsmath} |
+
+#+NAME: Custom_key keyword
+#+BEGIN_FIXTURE
+#+CUSTOM_KEY: custom value
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+CUSTOM_KEY:  |
+| 2       | CUSTOM_KEY     |
+| 3       | custom value   |
+
+#+NAME: Invalid keyword without colon
+#+BEGIN_FIXTURE
+#+INVALIDKEY This line is missing a colon
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+no-match
+
+#+NAME: Overwritten title
+#+BEGIN_FIXTURE
+#+TITLE: Overwritten Title
+#+END_FIXTURE
+
+#+EXPECTED: keywordRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+TITLE:       |
+| 2       | TITLE          |
+| 3       | Overwritten Title |

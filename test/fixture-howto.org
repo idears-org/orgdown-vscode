@@ -100,7 +100,7 @@ To make fixtures a complete reference for theme developers, it's crucial to docu
 #+BEGIN_SRC org
 #+TITLE: Test Suite for Headlines
 
-#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
 
 * === Block Scopes ===
 # The following scopes are applied to the entire headline.

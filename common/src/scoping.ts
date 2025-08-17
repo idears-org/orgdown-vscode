@@ -163,16 +163,16 @@ export const BLOCK_CUSTOMIZED_CONTENT = 'markup.block.customized.org';
 // =================================================================
 
 /** The entire keyword line, e.g., `#+TITLE: My Title`. */
-export const KEYWORD_META = 'meta.keyword.option.org';
+export const KEYWORD = 'meta.keyword.org';
 
-/** The keyword marker itself, e.g., `#+TITLE:`. */
-export const KEYWORD_MARKER = 'keyword.other.org';
+/** The keyword key, e.g., `#+TITLE:`. */
+export const KEYWORD_KEY = 'keyword.other.org';
 
 /** The name of the keyword, e.g., `TITLE`. */
-export const KEYWORD_NAME = 'support.constant.keyword.org';
+export const KEYWORD_NAME = 'entity.name.function.org';
 
 /** The value of the keyword, e.g., `My Title`. */
-export const KEYWORD_VALUE = 'string.unquoted.value.org';
+export const KEYWORD_VALUE = 'string.unquoted.org';
 
 
 // =================================================================
