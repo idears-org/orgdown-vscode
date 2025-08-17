@@ -251,12 +251,15 @@ repository:
 
   #region TIMESTAMPS
   timestamps:
-    match: '{{regexs.timestampRegex}}'
-    captures:
-      '1':
-        name: '{{scopes.TIMESTAMP_ACTIVE}}'
-      '2':
-        name: '{{scopes.TIMESTAMP_INACTIVE}}'
+    patterns:
+      - name: '{{scopes.TIMESTAMP_ACTIVE_RANGE}}'
+        match: '{{regexs.timestampActiveRangeRegex}}'
+      - name: '{{scopes.TIMESTAMP_INACTIVE_RANGE}}'
+        match: '{{scopes.TIMESTAMP_INACTIVE_RANGE}}'
+      - name: '{{scopes.TIMESTAMP_ACTIVE}}'
+        match: '{{regexs.timestampActiveRegex}}'
+      - name: '{{scopes.TIMESTAMP_INACTIVE}}'
+        match: '{{regexs.timestampInactiveRegex}}'
   #endregion
 
   tables:

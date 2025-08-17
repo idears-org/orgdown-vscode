@@ -216,7 +216,13 @@ export const PLANNING_TIMESTAMP = 'constant.other.timestamp.planning.org';
 export const TIMESTAMP_ACTIVE = 'constant.other.timestamp.active.org';
 
 /** An inactive timestamp, e.g., `[2025-08-01 Fri]`. */
-export const TIMESTAMP_INACTIVE = 'comment.timestamp.inactive.org';
+export const TIMESTAMP_INACTIVE = 'constant.other.timestamp.inactive.org';
+
+/** An active timestamp range, e.g., `<2025-08-01>--<2025-08-02>`. */
+export const TIMESTAMP_ACTIVE_RANGE = 'constant.other.timestamp.active.range.org';
+
+/** An inactive timestamp range, e.g., `[2025-08-01]--[2025-08-02]`. */
+export const TIMESTAMP_INACTIVE_RANGE = 'constant.other.timestamp.inactive.range.org';
 
 
 // =================================================================

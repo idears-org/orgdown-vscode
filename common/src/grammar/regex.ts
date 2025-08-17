@@ -30,7 +30,7 @@ export const tagsFragment = '(?:\\s*(:[^ \\t:][^ \\t]*:))?'; // 7. tags (allowin
 
 // Compose full headline regex for each level
 export const headlineDetectRegex = `^(\\*+\\s+.*)`;
-export const headlineDetectToEndBlockRegex = '(?=^\\*+\\s)';
+export const headlineDetectToCloseBlockRegex = '(?=^\\*+\\s)';
 // Match a single-star Org headline with all possible elements
 export const headlineLevel1Regex = `^${starsLevel1Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
 export const headlineLevel2Regex = `^${starsLevel2Fragment}${todoFragment}${priorityFragment}${headlineTextFragment}${cookieFragment}${tagsFragment}\\s*$`;
@@ -75,14 +75,14 @@ export const standardBlockVerbatimEndRegex = '(?i)^(\\s*)(#\\+END_)(\\3)\\s*$';
  * Standard Blocks - Markup (allows inline markup)
  */
 export const standardBlockMarkupBeginRegex = '(?i)^(\\s*)(#\\+BEGIN_)(QUOTE|CENTER|VERSE)(?: (.*))?$';
-export const standardBlockMarkupEndRegex = '(?i)^(\\s*)(#\\+END_)(\\3)\\s*$' + '|' + headlineDetectToEndBlockRegex;
+export const standardBlockMarkupEndRegex = '(?i)^(\\s*)(#\\+END_)(\\3)\\s*$' + '|' + headlineDetectToCloseBlockRegex;
 
 /**
  * Source Code Blocks
  */
 export const srcBlockBeginRegex = '(?i)^(\\s*)(#\\+BEGIN_SRC)[ \\t]*(.*)$';
-export const srcBlockEndRegex = '(?i)^(\\s*)(#\\+END_SRC)\\s*$' + '|' + headlineDetectToEndBlockRegex;
-export const srcBlockWhileRegex = '(?i)^(?!\\s*#\\+END_SRC' + '|' + headlineDetectToEndBlockRegex + ')';
+export const srcBlockEndRegex = '(?i)^(\\s*)(#\\+END_SRC)\\s*$' + '|' + headlineDetectToCloseBlockRegex;
+export const srcBlockWhileRegex = '(?i)^(?!\\s*#\\+END_SRC' + '|' + headlineDetectToCloseBlockRegex + ')';
 
 export const srcSwitchRegex = '(?:^|\\s)([-+][a-zA-Z0-9]+(?:\\s+\\"[^\\"]*\\")?)';
 
@@ -97,7 +97,7 @@ export const customizedBlockWhileRegex = '(?i)^(\\s*)(#\\+END_)(\\3)\\s*$';
  * Dynamic Blocks
  */
 export const dynamicBlockBeginRegex = '(?i)^(\\s*)(#\\+BEGIN:)\\s+([a-zA-Z0-9_-]+)(?: (.*))?$';
-export const dynamicBlockEndRegex = '(?i)^(\\s*)(#\\+END:)\\s*$' + '|' + headlineDetectToEndBlockRegex;
+export const dynamicBlockEndRegex = '(?i)^(\\s*)(#\\+END:)\\s*$' + '|' + headlineDetectToCloseBlockRegex;
 // #endregion BLOCKS
 
 // #region KEYWORD
@@ -112,7 +112,7 @@ export const keywordRegex = '^\\s*(#\\+([^:]+):)\\s*(.*)\\s*$';
  * Drawers - PROPERTIES, LOGBOOK, etc.
  */
 export const drawerBeginRegex = '(?i)^\\s*:(?!END)([A-Z_]+):\\s*$';
-export const drawerEndRegex = '(?i)^\\s*:END:\\s*$' + '|' + headlineDetectToEndBlockRegex;
+export const drawerEndRegex = '(?i)^\\s*:END:\\s*$' + '|' + headlineDetectToCloseBlockRegex;
 // #endregion DRAWERS
 
 // #region PLANNING_LINES
@@ -124,10 +124,21 @@ export const planningLineRegex = '(?i)^\\s*(SCHEDULED|DEADLINE|CLOSED):\\s*(<[^>
 
 
 // #region TIMESTAMPS
-/**
- * Timestamps
- */
-export const timestampRegex = '(<\\d{4}-\\d{2}-\\d{2}[^>]*>)|(\\[\\d{4}-\\d{2}-\\d{2}[^\\]]*\\])';
+// =================================================================
+// Timestamps
+// =================================================================
+
+// Matches a single active timestamp. The negative lookbehind ensures it's not the end of a range.
+export const timestampActiveRegex = '<\\d{4}-\\d{2}-\\d{2}[^>]*?(?<!-->)>';
+
+// Matches a single inactive timestamp. The negative lookbehind ensures it's not the end of a range.
+export const timestampInactiveRegex = '\\[\\d{4}-\\d{2}-\\d{2}[^\\]]*?(?<!--)\\]';
+
+// Matches a full active timestamp range.
+export const timestampActiveRangeRegex = '<\\d{4}-\\d{2}-\\d{2}[^>]*>--<\\d{4}-\\d{2}-\\d{2}[^>]*>';
+
+// Matches a full inactive timestamp range.
+export const timestampInactiveRangeRegex = '\\[\\d{4}-\\d{2}-\\d{2}[^\\]]*\\]--\\[\\d{4}-\\d{2}-\\d{2}[^\\]]*\\]';
 // #endregion
 
 /**

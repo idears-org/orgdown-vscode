@@ -37,7 +37,7 @@ DEADLINE: <2025-08-05 Tue>
 #+NAME: Simple CLOSED planning line
 #+BEGIN_FIXTURE
 CLOSED: [2025-08-03 Sun 12:00]
-#+END_FIXTURE>
+#+END_FIXTURE
 
 #+EXPECTED: planningLineRegex
 | Group # | Expected Value |
@@ -48,7 +48,7 @@ CLOSED: [2025-08-03 Sun 12:00]
 #+NAME: Planning line with repeater
 #+BEGIN_FIXTURE
 SCHEDULED: <2025-08-07 Thu +1w>
-#+END_FIXTURE>
+#+END_FIXTURE
 
 #+EXPECTED: planningLineRegex
 | Group # | Expected Value |
@@ -59,7 +59,7 @@ SCHEDULED: <2025-08-07 Thu +1w>
 #+NAME: Planning line with range
 #+BEGIN_FIXTURE
 SCHEDULED: <2025-08-11 Mon>--<2025-08-13 Wed>
-#+END_FIXTURE>
+#+END_FIXTURE
 
 #+EXPECTED: planningLineRegex
 | Group # | Expected Value |
@@ -70,7 +70,7 @@ SCHEDULED: <2025-08-11 Mon>--<2025-08-13 Wed>
 #+NAME: Planning line with inactive timestamp
 #+BEGIN_FIXTURE
 SCHEDULED: [2025-08-07 Thu]
-#+END_FIXTURE>
+#+END_FIXTURE
 
 #+EXPECTED: planningLineRegex
 | Group # | Expected Value |
@@ -81,7 +81,7 @@ SCHEDULED: [2025-08-07 Thu]
 #+NAME: Planning line with different case
 #+BEGIN_FIXTURE
 scheduled: <2025-08-19 Tue>
-#+END_FIXTURE>
+#+END_FIXTURE
 
 #+EXPECTED: planningLineRegex
 | Group # | Expected Value |
@@ -92,7 +92,7 @@ scheduled: <2025-08-19 Tue>
 #+NAME: Planning line with multiple spaces
 #+BEGIN_FIXTURE
 SCHEDULED:   <2025-08-18 Mon>
-#+END_FIXTURE>
+#+END_FIXTURE
 
 #+EXPECTED: planningLineRegex
 | Group # | Expected Value |
@@ -103,7 +103,7 @@ SCHEDULED:   <2025-08-18 Mon>
 #+NAME: Planning line with no space after colon
 #+BEGIN_FIXTURE
 SCHEDULED:<2025-08-17 Sun>
-#+END_FIXTURE>
+#+END_FIXTURE
 
 #+EXPECTED: planningLineRegex
 | Group # | Expected Value |
@@ -114,7 +114,7 @@ SCHEDULED:<2025-08-17 Sun>
 #+NAME: Planning line with text after
 #+BEGIN_FIXTURE
 SCHEDULED: <2025-08-15 Fri> some text
-#+END_FIXTURE>
+#+END_FIXTURE
 
 #+EXPECTED: planningLineRegex
 no-match
@@ -122,7 +122,7 @@ no-match
 #+NAME: Planning line with text before
 #+BEGIN_FIXTURE
 some text SCHEDULED: <2025-08-16 Sat>
-#+END_FIXTURE>
+#+END_FIXTURE
 
 #+EXPECTED: planningLineRegex
 no-match
@@ -130,7 +130,7 @@ no-match
 #+NAME: Planning line with no timestamp
 #+BEGIN_FIXTURE
 SCHEDULED:
-#+END_FIXTURE>
+#+END_FIXTURE
 
 #+EXPECTED: planningLineRegex
 no-match
@@ -138,7 +138,7 @@ no-match
 #+NAME: Planning line with invalid timestamp
 #+BEGIN_FIXTURE
 SCHEDULED: <2025-08-14>
-#+END_FIXTURE>
+#+END_FIXTURE
 
 #+EXPECTED: planningLineRegex
 | Group # | Expected Value |
@@ -149,7 +149,7 @@ SCHEDULED: <2025-08-14>
 #+NAME: Planning line with multiple timestamps
 #+BEGIN_FIXTURE
 SCHEDULED: <2025-08-24 Sun> <2025-08-25 Mon>
-#+END_FIXTURE>
+#+END_FIXTURE
 
 #+EXPECTED: planningLineRegex
 no-match

@@ -6,6 +6,8 @@
 # The following scopes are applied to timestamps.
 - constant.other.timestamp.active.org
 - constant.other.timestamp.inactive.org
+- constant.other.timestamp.active.range.org
+- constant.other.timestamp.inactive.range.org
 
 * === Capture Group Scopes ===
 # The following scopes are applied to the specific parts of the timestamp.
@@ -17,31 +19,27 @@
 <2025-08-01 Fri>
 #+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri> |
-| 1       | <2025-08-01 Fri> |
-| 2       |                |
 
 #+NAME: Inactive timestamp
 #+BEGIN_FIXTURE
 [2025-08-01 Fri]
 #+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampInactiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | [2025-08-01 Fri] |
-| 1       |                |
-| 2       | [2025-08-01 Fri] |
 
 #+NAME: Active timestamp with time
 #+BEGIN_FIXTURE
 <2025-08-01 Fri 10:00>
-#+END_FIXTURE>
+#+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri 10:00> |
@@ -49,9 +47,9 @@
 #+NAME: Active timestamp with time range
 #+BEGIN_FIXTURE
 <2025-08-01 Fri 10:00-12:00>
-#+END_FIXTURE>
+#+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri 10:00-12:00> |
@@ -59,19 +57,29 @@
 #+NAME: Active timestamp with date range
 #+BEGIN_FIXTURE
 <2025-08-01 Fri>--<2025-08-05 Tue>
-#+END_FIXTURE>
+#+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampActiveRangeRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 0       | <2025-08-01 Fri> |
+| 0       | <2025-08-01 Fri>--<2025-08-05 Tue> |
+
+#+NAME: Inactive timestamp with date range
+#+BEGIN_FIXTURE
+[2025-08-01 Fri]--[2025-08-05 Tue]
+#+END_FIXTURE
+
+#+EXPECTED: timestampInactiveRangeRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | [2025-08-01 Fri]--[2025-08-05 Tue] |
 
 #+NAME: Active timestamp with repeater
 #+BEGIN_FIXTURE
 <2025-08-01 Fri +1w>
-#+END_FIXTURE>
+#+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri +1w> |
@@ -79,9 +87,9 @@
 #+NAME: Active timestamp with advanced repeater
 #+BEGIN_FIXTURE
 <2025-08-01 Fri +2d/3w>
-#+END_FIXTURE>
+#+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri +2d/3w> |
@@ -89,54 +97,53 @@
 #+NAME: Active timestamp with warning period
 #+BEGIN_FIXTURE
 <2025-08-01 Fri -5d>
-#+END_FIXTURE>
+#+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri -5d> |
 
-
 #+NAME: Incomplete timestamp 1
 #+BEGIN_FIXTURE
 <2025-08-01
-#+END_FIXTURE>
+#+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampActiveRegex
 no-match
 
 #+NAME: Incomplete timestamp 2
 #+BEGIN_FIXTURE
 <2025-08-01 Fri 10:00-
-#+END_FIXTURE>
+#+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampActiveRegex
 no-match
 
 #+NAME: Incomplete timestamp 3
 #+BEGIN_FIXTURE
 [2025-08-01 Fri
-#+END_FIXTURE>
+#+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampInactiveRegex
 no-match
 
-#+NAME: Invalid timestamp with no space
+#+NAME: Timestamp with no space after
 #+BEGIN_FIXTURE
 <2025-08-23 Sat>No space after
-#+END_FIXTURE>
+#+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-23 Sat> |
 
-#+NAME: Invalid timestamp with special symbols
+#+NAME: Timestamp with special symbols after
 #+BEGIN_FIXTURE
 <2025-08-18 Mon> #!@# [2025-08-19 Tue]
-#+END_FIXTURE>
+#+END_FIXTURE
 
-#+EXPECTED: timestampRegex
+#+EXPECTED: timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-18 Mon> |

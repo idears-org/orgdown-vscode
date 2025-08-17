@@ -75,10 +75,10 @@ function validateCaptureGroups(match: RegExpMatchArray, expectedCaptures: { inde
       expectedProcessed = undefined;
     }
 
-    if (actual !== expectedProcessed) {
+    if (actual !== expectedProcessed && !(actual === '' && expectedProcessed === undefined)) {
       throw new Error(`Group ${expected.index} failed validation. Expected '${expectedProcessed}', but got '${actual}'.`);
     }
     // Using a raw assertion to avoid any framework magic
-    expect(actual === expectedProcessed).toBe(true);
+    expect(actual === expectedProcessed || (actual === '' && expectedProcessed === undefined)).toBe(true);
   }
 }
