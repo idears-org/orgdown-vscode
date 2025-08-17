@@ -255,7 +255,7 @@ repository:
       - name: '{{scopes.TIMESTAMP_ACTIVE_RANGE}}'
         match: '{{regexs.timestampActiveRangeRegex}}'
       - name: '{{scopes.TIMESTAMP_INACTIVE_RANGE}}'
-        match: '{{scopes.TIMESTAMP_INACTIVE_RANGE}}'
+        match: '{{regexs.timestampInactiveRangeRegex}}'
       - name: '{{scopes.TIMESTAMP_ACTIVE}}'
         match: '{{regexs.timestampActiveRegex}}'
       - name: '{{scopes.TIMESTAMP_INACTIVE}}'
