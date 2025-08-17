@@ -1,6 +1,6 @@
 #+TITLE: Comprehensive Test Suite for Source Blocks
 
-#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
 
 * === Block Scopes ===
 # The following meta scopes are applied to the entire SRC block.
@@ -291,6 +291,13 @@ This language is not in our list, it should use the fallback.
 
 #+BEGIN_SRC
 This block has no language identifier.
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+#+BEGIN_EXAMPLE
+Nested example block inside SRC
+#+END_EXAMPLE
+(message "Nested block")
 #+END_SRC
 
 * 2. Unit Test Cases

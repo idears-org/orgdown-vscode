@@ -1,6 +1,6 @@
 #+TITLE: Comprehensive Test Suite for Standard Blocks
 
-#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
 
 * === Block Scopes ===
 # The following meta scopes are applied to the entire standard block.

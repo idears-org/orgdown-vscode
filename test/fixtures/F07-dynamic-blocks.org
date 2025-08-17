@@ -1,6 +1,6 @@
 #+TITLE: Test Suite for Dynamic Blocks
 
-#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
 
 * === Block Scopes ===
 # The following meta scopes are applied to the entire dynamic block.
@@ -161,3 +161,26 @@ no-match
 |---------+----------------|
 | 1       | :files         |
 | 2       | "agenda.org"   |
+
+#+NAME: Malformed END line with extra text should not match
+#+BEGIN_FIXTURE
+#+BEGIN: clocktable
+#+END: extra
+#+END_FIXTURE
+
+#+EXPECTED: dynamicBlockEndRegex
+no-match
+
+#+NAME: Parameter with no value
+#+BEGIN_FIXTURE
+#+BEGIN: agenda :files
+#+END:
+#+END_FIXTURE
+
+#+EXPECTED: dynamicBlockBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       |                |
+| 2       | #+BEGIN:       |
+| 3       | agenda         |
+| 4       | :files         |

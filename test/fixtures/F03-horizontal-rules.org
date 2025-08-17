@@ -1,6 +1,6 @@
 #+TITLE: Test Suite for Horizontal Rules
 
-#+BEGIN_COMMENT :description Expected Scopes:
+#+BEGIN_COMMENT :description "Expected Scopes"
 
 * === Block Scopes ===
 The following scope is applied to the entire horizontal rule line.
@@ -47,7 +47,7 @@ no-match
 
 #+NAME: Rule with trailing whitespace is a valid rule
 #+BEGIN_FIXTURE
------  
+-----
 #+END_FIXTURE
 #+EXPECTED: horizontalRuleRegex
 | Group # | Expected Value |

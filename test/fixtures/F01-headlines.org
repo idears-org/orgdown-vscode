@@ -1,7 +1,7 @@
 #+TITLE: Test Suite for Headlines
 
 
-#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
 
 * === Block Scopes ===
 # The following scopes are applied to the entire headline.
