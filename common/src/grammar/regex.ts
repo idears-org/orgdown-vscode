@@ -152,14 +152,6 @@ export const drawerBeginRegex = createRegexPattern(/^\s*:(?!END)([A-Z_]+):\s*$/i
 export const drawerEndRegex = createRegexPattern(new RegExp(`^\\s*:END:\\s*$|${(headlineDetectToCloseBlockRegex as any).regex.source}`, 'i'));
 // #endregion DRAWERS
 
-// #region PLANNING_LINES
-/**
- * Planning lines - SCHEDULED, DEADLINE, CLOSED
- */
-export const planningLineRegex = createRegexPattern(/^\s*(SCHEDULED|DEADLINE|CLOSED):\s*(<[^>]+>--<[^>]+>|<[^>]+>|\[[^\]]+?\]--\[[^\]]+?\]|\[[^\]]+?\])\s*$/i);
-// #endregion PLANNING_LINES
-
-
 // #region TIMESTAMPS
 // =================================================================
 // Timestamps
@@ -176,7 +168,18 @@ export const timestampActiveRangeRegex = createRegexPattern(/<\d{4}-\d{2}-\d{2}[
 
 // Matches a full inactive timestamp range.
 export const timestampInactiveRangeRegex = createRegexPattern(/\[\d{4}-\d{2}-\d{2}[^\]]*\]--\[\d{4}-\d{2}-\d{2}[^\]]*\]/);
-// #endregion
+// #endregion TIMESTAMPS
+
+// #region PLANNING_LINES
+/**
+ * Planning lines - SCHEDULED, DEADLINE, CLOSED
+ * Uses dedicated timestamp patterns for better accuracy
+ */
+export const planningLineRegex = createRegexPattern(new RegExp(
+  `^\\s*(SCHEDULED|DEADLINE|CLOSED):\\s*(${timestampActiveRangeRegex.source}|${timestampActiveRegex.source}|${timestampInactiveRangeRegex.source}|${timestampInactiveRegex.source})\\s*$`,
+  'i'
+));
+// #endregion PLANNING_LINES
 
 /**
  * Tables
