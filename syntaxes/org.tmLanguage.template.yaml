@@ -16,7 +16,7 @@ repository:
       - { include: '#blocks' }
       # - { include: '#comments' }
       - { include: '#keywords' }
-      # - { include: '#drawers' }
+      - { include: '#drawers' }
       # - { include: '#tables' }
       # - { include: '#footnotes' }
       # - { include: '#paragraph' }
@@ -218,14 +218,18 @@ repository:
             name: '{{scopes.KEYWORD_VALUE}}'
 
   drawers:
-    name: meta.drawer.org
-    begin: "{{regexs.drawerBeginRegex}}"
-    end: "{{regexs.drawerEndRegex}}"
+    name: '{{scopes.BLOCK_META}} {{scopes.DRAWER_META}}'
+    contentName: '{{scopes.BLOCK_CONTENT}} {{scopes.DRAWER_CONTENT}}'
+    begin: '{{regexs.drawerBeginRegex}}'
+    end: '{{regexs.drawerEndRegex}}'
     beginCaptures:
-      0: { name: punctuation.definition.drawer.begin.org }
-      1: { name: entity.name.function.drawer.org }
+      '0':
+        name: '{{scopes.BLOCK_KEYWORD}} {{scopes.DRAWER_BEGIN_KEYWORD}}'
+      '1':
+        name: '{{scopes.DRAWER_NAME}}'
     endCaptures:
-      0: { name: punctuation.definition.drawer.end.org }
+      '0':
+        name: '{{scopes.BLOCK_KEYWORD}} {{scopes.DRAWER_END_KEYWORD}}'
 
   tables:
     name: markup.table.org

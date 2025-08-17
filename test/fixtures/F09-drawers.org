@@ -1,0 +1,196 @@
+#+TITLE: Test Suite for Drawers
+
+#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+
+* === Block Scopes ===
+# The following scopes are applied to the entire drawer.
+- meta.block.org
+- meta.block.drawer.org
+
+* === Begin/End Scopes ===
+- keyword.control.block.org
+- keyword.control.block.drawer.begin.org
+- keyword.control.block.drawer.end.org
+
+* === Content Scopes ===
+# The following scopes are applied to the content of the drawer.
+- markup.block.org
+- markup.block.drawer.content.org
+
+* === Capture Group Scopes ===
+# The following scopes are applied to the specific parts of the drawer.
+1. drawer name -> entity.name.function.drawer.org
+#+END_COMMENT
+
+#+NAME: Standard PROPERTIES drawer
+#+BEGIN_FIXTURE
+:PROPERTIES:
+:ID:       123abc
+:Created:  [2025-08-02]
+:Custom:   value
+:END:
+#+END_FIXTURE
+
+#+EXPECTED: drawerBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | PROPERTIES     |
+
+#+EXPECTED: drawerEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | :END:          |
+
+#+NAME: LOGBOOK drawer
+#+BEGIN_FIXTURE
+:LOGBOOK:
+- State "TODO"       from ""        [2025-08-02 Sat 10:00]
+- State "DONE"       from "TODO"    [2025-08-02 Sat 12:00]
+:END:
+#+END_FIXTURE
+
+#+EXPECTED: drawerBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | LOGBOOK        |
+
+#+EXPECTED: drawerEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | :END:          |
+
+#+NAME: Custom drawer
+#+BEGIN_FIXTURE
+:CUSTOM:
+This is a custom drawer.
+:END:
+#+END_FIXTURE
+
+#+EXPECTED: drawerBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | CUSTOM         |
+
+#+EXPECTED: drawerEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | :END:          |
+
+#+NAME: Drawer with mixed case name
+#+BEGIN_FIXTURE
+:LogBook:
+Mixed case drawer name
+:END:
+#+END_FIXTURE
+
+#+EXPECTED: drawerBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | LogBook        |
+
+#+EXPECTED: drawerEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | :END:          |
+
+#+NAME: Drawer with whitespace and indentation
+#+BEGIN_FIXTURE
+    :INDENTED:
+    Indented drawer content
+    :END:
+#+END_FIXTURE
+
+#+EXPECTED: drawerBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | INDENTED       |
+
+#+EXPECTED: drawerEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | <sp:4>:END:          |
+
+#+NAME: Drawer with special characters and multiline content
+#+BEGIN_FIXTURE
+:DATA:
+Line 1
+Line 2: with :colon:
+Line 3
+:END:
+#+END_FIXTURE
+
+#+EXPECTED: drawerBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | DATA           |
+
+#+EXPECTED: drawerEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | :END:          |
+
+#+NAME: Drawer with empty content
+#+BEGIN_FIXTURE
+:EMPTY:
+:END:
+#+END_FIXTURE
+
+#+EXPECTED: drawerBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | EMPTY          |
+
+#+EXPECTED: drawerEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | :END:          |
+
+#+NAME: Drawer not closed
+#+BEGIN_FIXTURE
+:UNFINISHED:
+This drawer is not closed
+#+END_FIXTURE
+
+#+EXPECTED: drawerBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | UNFINISHED     |
+
+#+EXPECTED: drawerEndRegex
+no-match
+
+#+NAME: Drawer with block inside
+#+BEGIN_FIXTURE
+:PROPERTIES:
+#+BEGIN_SRC python
+print("Should not be here")
+#+END_SRC
+:END:
+#+END_FIXTURE
+
+#+EXPECTED: drawerBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | PROPERTIES     |
+
+#+EXPECTED: drawerEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | :END:          |
+
+#+NAME: Drawer with headline inside
+#+BEGIN_FIXTURE
+:LOGBOOK:
+* This headline should not be inside a drawer
+:END:
+#+END_FIXTURE
+
+#+EXPECTED: drawerBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | LOGBOOK        |
+
+#+EXPECTED: drawerEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | :END:          |

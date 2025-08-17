@@ -176,6 +176,26 @@ export const KEYWORD_VALUE = 'string.unquoted.org';
 
 
 // =================================================================
+// Drawers
+// =================================================================
+
+/** The meta scope for the entire drawer. */
+export const DRAWER_META = 'meta.block.drawer.org';
+
+/** The keyword for the beginning of a drawer. */
+export const DRAWER_BEGIN_KEYWORD = 'keyword.control.block.drawer.begin.org';
+
+/** The keyword for the end of a drawer. */
+export const DRAWER_END_KEYWORD = 'keyword.control.block.drawer.end.org';
+
+/** The name of a drawer. */
+export const DRAWER_NAME = 'entity.name.function.drawer.org';
+
+/** The content of a drawer. */
+export const DRAWER_CONTENT = 'markup.block.drawer.content.org';
+
+
+// =================================================================
 // Inline Markup
 // =================================================================
 

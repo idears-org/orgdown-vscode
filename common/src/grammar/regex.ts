@@ -106,11 +106,13 @@ export const dynamicBlockEndRegex = '(?i)^(\\s*)(#\\+END:)\\s*$';
 export const keywordRegex = '^\\s*(#\\+([^:]+):)\\s*(.*)\\s*$';
 // #endregion KEYWORD
 
+// #region DRAWERS
 /**
  * Drawers - PROPERTIES, LOGBOOK, etc.
  */
-export const drawerBeginRegex = '^\\s*:(PROPERTIES|LOGBOOK):\\s*$';
-export const drawerEndRegex = '^\\s*:END:\\s*$';
+export const drawerBeginRegex = '(?i)^\\s*:(?!END)([A-Z_]+):\\s*$';
+export const drawerEndRegex = '(?i)^\\s*:END:\\s*$';
+// #endregion DRAWERS
 
 /**
  * Tables
