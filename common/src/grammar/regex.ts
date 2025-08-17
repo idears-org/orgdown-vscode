@@ -74,14 +74,14 @@ export const standardBlockVerbatimEndRegex = '(?i)^(\\s*)(#\\+END_)(\\3)\\s*$';
  * Standard Blocks - Markup (allows inline markup)
  */
 export const standardBlockMarkupBeginRegex = '(?i)^(\\s*)(#\\+BEGIN_)(QUOTE|CENTER|VERSE)(?: (.*))?$';
-export const standardBlockMarkupEndRegex = '(?i)^(\\s*)(#\\+END_)(\\3)\\s*$|(?=^\\*+\\s)';
+export const standardBlockMarkupEndRegex = '(?i)^(\\s*)(#\\+END_)(\\3)\\s*$' + '|' + headlineDetectRegex;
 
 /**
  * Source Code Blocks
  */
 export const srcBlockBeginRegex = '(?i)^(\\s*)(#\\+BEGIN_SRC)[ \\t]*(.*)$';
-export const srcBlockEndRegex = '(?i)^(\\s*)(#\\+END_SRC)\\s*$|(?=^\\*+\\s)';
-export const srcBlockWhileRegex = '(?i)^(?!\\s*#\\+END_SRC|(?=^\\*+\\s))';
+export const srcBlockEndRegex = '(?i)^(\\s*)(#\\+END_SRC)\\s*$' + '|' + headlineDetectRegex;
+export const srcBlockWhileRegex = '(?i)^(?!\\s*#\\+END_SRC' + '|' + headlineDetectRegex;
 
 export const srcSwitchRegex = '(?:^|\\s)([-+][a-zA-Z0-9]+(?:\\s+\\"[^\\"]*\\")?)';
 
@@ -96,7 +96,7 @@ export const customizedBlockWhileRegex = '(?i)^(\\s*)(#\\+END_)(\\3)\\s*$';
  * Dynamic Blocks
  */
 export const dynamicBlockBeginRegex = '(?i)^(\\s*)(#\\+BEGIN:)\\s+([a-zA-Z0-9_-]+)(?: (.*))?$';
-export const dynamicBlockEndRegex = '(?i)^(\\s*)(#\\+END:)\\s*$';
+export const dynamicBlockEndRegex = '(?i)^(\\s*)(#\\+END:)\\s*$' + '|' + headlineDetectRegex;
 // #endregion BLOCKS
 
 // #region KEYWORD
@@ -111,7 +111,7 @@ export const keywordRegex = '^\\s*(#\\+([^:]+):)\\s*(.*)\\s*$';
  * Drawers - PROPERTIES, LOGBOOK, etc.
  */
 export const drawerBeginRegex = '(?i)^\\s*:(?!END)([A-Z_]+):\\s*$';
-export const drawerEndRegex = '(?i)^\\s*:END:\\s*$';
+export const drawerEndRegex = '(?i)^\\s*:END:\\s*$' + '|' + headlineDetectRegex;
 // #endregion DRAWERS
 
 /**

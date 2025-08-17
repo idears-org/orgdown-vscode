@@ -193,4 +193,4 @@ print("Should not be here")
 #+EXPECTED: drawerEndRegex
 | Group # | Expected Value |
 |---------+----------------|
-| 0       | :END:          |
+| 0       | * This headline should not be inside a drawer          |
