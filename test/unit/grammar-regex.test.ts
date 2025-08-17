@@ -1,12 +1,19 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import fs from 'fs-extra';
 import path from 'path';
 import * as regexes from '@common/grammar/regex';
 import { parseFixtureFile } from '@common/fixture-parser';
+import { OnigScanner, OnigString, loadWASM } from 'vscode-oniguruma';
 
 const fixturesDir = path.resolve(__dirname, '../fixtures');
 
 describe('Grammar Regex Unit Tests', () => {
+  beforeAll(async () => {
+    const wasmPath = path.resolve(__dirname, '../../node_modules/vscode-oniguruma/release/onig.wasm');
+    const wasmBin = await fs.readFile(wasmPath);
+    await loadWASM(wasmBin.buffer);
+  });
+
   const fixtureFiles = fs.readdirSync(fixturesDir).filter(f => f.endsWith('.org'));
 
   for (const file of fixtureFiles) {
@@ -21,23 +28,18 @@ describe('Grammar Regex Unit Tests', () => {
             expect(regexPattern, `Regex '${result.regex}' not found in regex.ts`).toBeDefined();
             expect(regexPattern, `'${result.regex}' is not a string`).toBeTypeOf('string');
 
-            let pattern = regexPattern;
-            let flags = '';
-            if (pattern.startsWith('(?i)')) {
-              flags = 'i';
-              pattern = pattern.substring(4);
-            }
-            const regex = new RegExp(pattern, flags);
-
-            const match = testCase.input.match(regex);
+            const scanner = new OnigScanner([regexPattern]);
+            const onigString = new OnigString(testCase.input);
+            const match = scanner.findNextMatchSync(onigString, 0);
 
             if (result.shouldMatch) {
-              expect(match, `Expected a match for input: \\"${testCase.input}\\"`).not.toBeNull();
+              expect(match, `Expected a match for input: "${testCase.input}"`).not.toBeNull();
               if (result.expectedCaptures) {
-                validateCaptureGroups(match!, result.expectedCaptures);
+                const adaptedMatch = adaptOnigurumaMatch(match!, onigString);
+                validateCaptureGroups(adaptedMatch, result.expectedCaptures);
               }
             } else {
-              expect(match, `Expected no match for input: \\"${testCase.input}\\"`).toBeNull();
+              expect(match, `Expected no match for input: "${testCase.input}"`).toBeNull();
             }
           });
         }
@@ -45,6 +47,22 @@ describe('Grammar Regex Unit Tests', () => {
     });
   }
 });
+
+function adaptOnigurumaMatch(match: any, onigString: OnigString): RegExpMatchArray {
+    const result: any = {
+        index: match.captureIndices[0].start,
+        input: onigString.content,
+    };
+    for (let i = 0; i < match.captureIndices.length; i++) {
+        const capture = match.captureIndices[i];
+        if (capture.start === -1 || capture.end === -1) {
+            result[i] = undefined;
+        } else {
+            result[i] = onigString.content.substring(capture.start, capture.end);
+        }
+    }
+    return result as RegExpMatchArray;
+}
 
 function validateCaptureGroups(match: RegExpMatchArray, expectedCaptures: { index: number; value: string | undefined }[]) {
   for (const expected of expectedCaptures) {
