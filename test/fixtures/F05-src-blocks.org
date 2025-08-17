@@ -279,6 +279,10 @@ Hello, LaTeX!
 puts "A complex SRC block header"
 #+END_SRC
 
+#+BEGIN_SRC python :tangle "my file.py"
+print("tangled to a file with spaces in name")
+#+END_SRC
+
 ** 1.3. Fallback and Edge Cases
 
 #+BEGIN_SRC unknown-language
@@ -422,3 +426,14 @@ This is a block with no language.
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | -l "-a -b"     |
+
+#+NAME: Unit Test: SRC block parameter with quoted value
+#+BEGIN_FIXTURE
+:tangle "my file.py"
+#+END_FIXTURE
+
+#+EXPECTED: blockParameterRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | :tangle        |
+| 2       | "my file.py"   |

@@ -35,6 +35,10 @@ It can contain any content.
 Even with different naming conventions.
 #+END_ANOTHER-BLOCK
 
+#+BEGIN_MY-BLOCK :description "This is a description"
+A block with a quoted parameter.
+#+END_MY-BLOCK
+
 ** 1.2. Edge Cases
 
 #+BEGIN_EMPTY
@@ -92,3 +96,14 @@ Content
 | 2       | #+BEGIN_       |
 | 3       | MYBLOCK        |
 | 4       | :arg1 value1 :arg2 value2 |
+
+#+NAME: Unit Test: Customized block parameter with quoted value
+#+BEGIN_FIXTURE
+:description "This is a description"
+#+END_FIXTURE
+
+#+EXPECTED: blockParameterRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | :description   |
+| 2       | "This is a description" |

@@ -150,3 +150,14 @@ no-match
 
 #+EXPECTED: dynamicBlockEndRegex
 no-match
+
+#+NAME: Unit Test: Dynamic block parameter with quoted value
+#+BEGIN_FIXTURE
+:files "agenda.org"
+#+END_FIXTURE
+
+#+EXPECTED: blockParameterRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | :files         |
+| 2       | "agenda.org"   |

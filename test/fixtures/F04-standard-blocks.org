@@ -55,7 +55,13 @@ This is a comment block.
 Its content should not be exported.
 #+END_COMMENT
 
-** 1.2. Case Insensitivity
+** 1.2. With Parameters
+
+#+BEGIN_QUOTE :author "John Doe"
+A quote with a quoted author.
+#+END_QUOTE
+
+** 1.3. Case Insensitivity
 
 #+begin_quote
 Lowercase begin.
@@ -65,16 +71,16 @@ Lowercase begin.
 Mixed case end.
 #+EnD_ExAmPlE
 
-** 1.3. Indentation
+** 1.4. Indentation
 
   #+BEGIN_VERSE
   This whole block is indented.
   The content is also indented.
   #+END_VERSE
 
-** 1.4. Content-Specific Parsing
+** 1.5. Content-Specific Parsing
 
-*** 1.4.1. Markup-Enabled Blocks (QUOTE, VERSE, CENTER)
+*** 1.5.1. Markup-Enabled Blocks (QUOTE, VERSE, CENTER)
 
 #+BEGIN_QUOTE
 This quote should have *bold* and /italic/ text.
@@ -84,7 +90,7 @@ This quote should have *bold* and /italic/ text.
 This verse also supports ~code~ and +strikethrough+.
 #+END_VERSE
 
-*** 1.4.2. Verbatim Blocks (COMMENT, EXAMPLE)
+*** 1.5.2. Verbatim Blocks (COMMENT, EXAMPLE)
 
 #+BEGIN_EXAMPLE
 This example should NOT have *bold* or /italic/ text.
@@ -96,7 +102,7 @@ A line starting with * should be literal text, not a headline.
 Similarly, this comment block should not process ~code~ or _underline_.
 #+END_COMMENT
 
-** 1.5. Nesting
+** 1.6. Nesting
 
 - A list item.
   - A nested list item.
@@ -104,9 +110,9 @@ Similarly, this comment block should not process ~code~ or _underline_.
     A centered block, nested deep in a list.
     #+END_CENTER
 
-** 1.6. Error Handling & Robustness
+** 1.7. Error Handling & Robustness
 
-*** 1.6.1. Mismatched End Marker
+*** 1.7.1. Mismatched End Marker
 
 #+BEGIN_QUOTE
 This block starts with QUOTE...
@@ -114,6 +120,12 @@ This block starts with QUOTE...
 ...but ends with EXAMPLE. The END line should not be recognized as closing this block, so the QUOTE block scope should continue.
 
 This text should still be inside the QUOTE block.
+
+*** 1.7.2. Implicit Closure
+
+#+BEGIN_QUOTE
+This quote is not properly closed.
+* This next headline should terminate the quote block.
 
 * 2. Unit Test Cases
 
@@ -187,3 +199,14 @@ no-match
 
 #+EXPECTED: standardBlockVerbatimBeginRegex
 no-match
+
+#+NAME: Unit Test: blockParameterRegex with quoted value
+#+BEGIN_FIXTURE
+:author "John Doe"
+#+END_FIXTURE
+
+#+EXPECTED: blockParameterRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | :author        |
+| 2       | "John Doe"     |

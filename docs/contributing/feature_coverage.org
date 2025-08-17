@@ -42,8 +42,9 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F06-customized-blocks.org~
   _syntax: `customized-block`_
-- [ ] **Dynamic Blocks**: `#+BEGIN:` ... `#+END:`.
-  _fixture: ~test/fixtures/F22-dynamic-blocks.org~, ~test/fixtures/F23-dynamic-block-variants.org~
+- [X] **Dynamic Blocks**: `#+BEGIN:` ... `#+END:`.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F07-dynamic-blocks.org~
   _syntax: `dynamic-block`_
 
 *** Metadata and Planning [Priority: High]
