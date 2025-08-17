@@ -16,11 +16,11 @@ Our primary objective is to **implement 80% or more of the features of Emacs' Or
 
 This project follows a strict, documentation-driven workflow. The AI must understand and adhere to the roles of the key documents.
 
-- **The "How" - `development-guide.org`**: This is the single source of truth for the development process. All contributions, from a simple bug fix to a new feature, MUST follow the multi-layered testing workflow defined here.
+- **The "How" - `docs/contributing/readme.org`**: This is the single source of truth for the development process. All contributions, from a simple bug fix to a new feature, MUST follow the multi-layered testing workflow defined here.
 
-- **The "Why" - Architecture Decision Records (ADRs)**: For any significant architectural decision, an ADR must be created in `docs/adr/`. Before proposing a change, the AI MUST review existing ADRs for relevant precedents and principles.
+- **The "Why" - Architecture Decision Records (ADRs)**: For any significant architectural decision, an ADR must be created in `docs/architecture_decisions/`. Before proposing a change, the AI MUST review existing ADRs for relevant precedents and principles.
 
-- **The "What" - Feature & Implementation Plans**: For any new feature, a planning or specification document should be created in `docs/features/` or `docs/implementation-plans/`. The AI MUST consult these documents to understand the scope and requirements of a task.
+- **The "What" - Feature & Implementation Plans**: For any new feature, a planning or specification document should be created in `docs/reference/feature_specs` or `docs/reference/implementation-plans/`. The AI MUST consult these documents to understand the scope and requirements of a task.
 
 ## 4. Coding & Project Standards
 
@@ -38,9 +38,9 @@ This project follows a strict, documentation-driven workflow. The AI must unders
 
 To gain a complete understanding of any task, the AI **MUST** begin by loading and synthesizing information from the following sources of truth:
 
-1. **The Development Guide (`development-guide.org`)**: To understand the required process.
-2. **Relevant ADRs (`docs/adr/*.org`)**: To understand the architectural principles that govern the task.
-3. **Relevant Plans (`docs/features/*.org`, `docs/implementation-plans/*.org`)**: To understand the specific goals and requirements of the feature.
+1. **The Development Guide (`docs/contributing/readme.org`)**: To understand the required process.
+2. **Relevant ADRs (`docs/architecture_decisions/*.org`)**: To understand the architectural principles that govern the task.
+3. **Relevant Plans (`docs/reference/feature_specs/*.org`, `docs/reference/implementation-plans/*.org`)**: To understand the specific goals and requirements of the feature.
 4. **The Core Logic (`common/src/grammar/regex.ts`)**: To understand the existing regular expression patterns.
-5. **The Core Structure (`syntaxes/org.tmLanguage.template.yaml`)**: To understand how logic is mapped to grammar scopes.
-6. **Existing Test Cases (`test/fixtures/*.org`)**: To find examples of how similar features are currently tested.
+6. **The Core Structure (`syntaxes/org.tmLanguage.template.yaml`, `common/src/scoping.ts`)**: To understand how logic is mapped to grammar scopes.
+7. **Existing Test Cases (`test/fixtures/*.org`)**: To find examples of how similar features are currently tested.
