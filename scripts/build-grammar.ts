@@ -75,6 +75,8 @@ const LANGUAGES: OrgSrcLanguage[] = [
     { name: 'latex', language: 'latex', identifiers: ['latex', 'tex'], source: 'text.tex.latex' },
     { name: 'bibtex', language: 'bibtex', identifiers: ['bibtex'], source: 'text.bibtex' },
     { name: 'twig', language: 'twig', identifiers: ['twig'], source: 'source.twig' },
+
+    { name: 'lisp', language: 'lisp', identifiers: ['emacs-lisp', 'elisp', 'lisp'], source: 'source.lisp' },
 ];
 
 const __dirname = path.dirname(__filename);
@@ -103,7 +105,7 @@ function generateOrgSrcBlockDefinitions(): any[] {
     // and then includes the correct grammar.
     return {
       name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_SRC_META}}',
-      begin: '(?i)^(\\s*)(#\\+BEGIN_SRC)[ \\t]+(' + lang.identifiers.join('|') + ')([ \\t].*)?$',
+      begin: '(?i)^(\\s*)(#\\+BEGIN_SRC)[ \\t]+(' + lang.identifiers.join('|') + ')\\b([ \\t].*)?$',
       end: '{{regexs.srcBlockEndRegex}}',
       beginCaptures: {
         '1': { name: '{{scopes.LEADING_WHITESPACE}}' },

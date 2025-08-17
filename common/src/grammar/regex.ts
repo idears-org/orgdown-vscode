@@ -83,7 +83,7 @@ export const srcBlockBeginRegex = '(?i)^(\\s*)(#\\+BEGIN_SRC)[ \\t]*(.*)$';
 export const srcBlockEndRegex = '(?i)^(\\s*)(#\\+END_SRC)\\s*$|(?=^\\*+\\s)';
 export const srcBlockWhileRegex = '(?i)^(?!\\s*#\\+END_SRC|(?=^\\*+\\s))';
 
-export const srcSwitchRegex = '(?i)([-+][a-zA-Z0-9]+(?:\\s+\\"[^\\"]*\\")?)';
+export const srcSwitchRegex = '(?:^|\\s)([-+][a-zA-Z0-9]+(?:\\s+\\"[^\\"]*\\")?)';
 
 /**
  * Customized Blocks
