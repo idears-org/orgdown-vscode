@@ -205,7 +205,18 @@ export const PLANNING_LINE_META = 'meta.line.planning.org';
 export const PLANNING_KEYWORD = 'keyword.control.task-management.org';
 
 /** The timestamp for a planning line. */
-export const PLANNING_TIMESTAMP = 'constant.other.timestamp.org';
+export const PLANNING_TIMESTAMP = 'constant.other.timestamp.planning.org';
+
+
+// =================================================================
+// Timestamps
+// =================================================================
+
+/** An active timestamp, e.g., `<2025-08-01 Fri>`. */
+export const TIMESTAMP_ACTIVE = 'constant.other.timestamp.active.org';
+
+/** An inactive timestamp, e.g., `[2025-08-01 Fri]`. */
+export const TIMESTAMP_INACTIVE = 'comment.timestamp.inactive.org';
 
 
 // =================================================================

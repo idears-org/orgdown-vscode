@@ -5,10 +5,10 @@ import path from 'path';
 describe('Grammar Scope Naming', () => {
   const grammarPath = path.join(__dirname, '../../syntaxes/org.tmLanguage.json');
   const allowedPrefixes = [
-    'markup.', 'meta.', 'source.', 'comment.', 'string.', 'constant.', 'entity.', 'punctuation.'
+    'markup.', 'meta.', 'source.', 'comment.', 'string.', 'constant.', 'entity.', 'punctuation.', 'keyword.'
   ];
   const allowedIncludes = [
-    'source.', 'text.', 'meta.', 'markup.', 'comment.', 'string.', 'constant.', 'entity.', 'punctuation.'
+    'source.', 'text.', 'meta.', 'markup.', 'comment.', 'string.', 'constant.', 'entity.', 'punctuation.', 'keyword.'
   ];
 
   function isAllowedScope(scope: string) {
@@ -56,6 +56,9 @@ describe('Grammar Scope Naming', () => {
     }
     const grammar = JSON.parse(fs.readFileSync(grammarPath, 'utf8'));
     const problems = checkGrammarScopes(grammar);
+    if (problems.length > 0) {
+      throw new Error(`Found ${problems.length} scope naming problems:\\n${problems.join('\\n')}`);
+    }
     expect(problems.length).toBe(0);
   });
 });

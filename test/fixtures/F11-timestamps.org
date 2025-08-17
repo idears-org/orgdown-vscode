@@ -1,0 +1,142 @@
+#+TITLE: Test Suite for Timestamps
+
+#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
+
+* === Scopes ===
+# The following scopes are applied to timestamps.
+- constant.other.timestamp.active.org
+- constant.other.timestamp.inactive.org
+
+* === Capture Group Scopes ===
+# The following scopes are applied to the specific parts of the timestamp.
+# TBD
+#+END_COMMENT
+
+#+NAME: Active timestamp
+#+BEGIN_FIXTURE
+<2025-08-01 Fri>
+#+END_FIXTURE
+
+#+EXPECTED: timestampRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | <2025-08-01 Fri> |
+| 1       | <2025-08-01 Fri> |
+| 2       |                |
+
+#+NAME: Inactive timestamp
+#+BEGIN_FIXTURE
+[2025-08-01 Fri]
+#+END_FIXTURE
+
+#+EXPECTED: timestampRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | [2025-08-01 Fri] |
+| 1       |                |
+| 2       | [2025-08-01 Fri] |
+
+#+NAME: Active timestamp with time
+#+BEGIN_FIXTURE
+<2025-08-01 Fri 10:00>
+#+END_FIXTURE>
+
+#+EXPECTED: timestampRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | <2025-08-01 Fri 10:00> |
+
+#+NAME: Active timestamp with time range
+#+BEGIN_FIXTURE
+<2025-08-01 Fri 10:00-12:00>
+#+END_FIXTURE>
+
+#+EXPECTED: timestampRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | <2025-08-01 Fri 10:00-12:00> |
+
+#+NAME: Active timestamp with date range
+#+BEGIN_FIXTURE
+<2025-08-01 Fri>--<2025-08-05 Tue>
+#+END_FIXTURE>
+
+#+EXPECTED: timestampRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | <2025-08-01 Fri> |
+
+#+NAME: Active timestamp with repeater
+#+BEGIN_FIXTURE
+<2025-08-01 Fri +1w>
+#+END_FIXTURE>
+
+#+EXPECTED: timestampRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | <2025-08-01 Fri +1w> |
+
+#+NAME: Active timestamp with advanced repeater
+#+BEGIN_FIXTURE
+<2025-08-01 Fri +2d/3w>
+#+END_FIXTURE>
+
+#+EXPECTED: timestampRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | <2025-08-01 Fri +2d/3w> |
+
+#+NAME: Active timestamp with warning period
+#+BEGIN_FIXTURE
+<2025-08-01 Fri -5d>
+#+END_FIXTURE>
+
+#+EXPECTED: timestampRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | <2025-08-01 Fri -5d> |
+
+
+#+NAME: Incomplete timestamp 1
+#+BEGIN_FIXTURE
+<2025-08-01
+#+END_FIXTURE>
+
+#+EXPECTED: timestampRegex
+no-match
+
+#+NAME: Incomplete timestamp 2
+#+BEGIN_FIXTURE
+<2025-08-01 Fri 10:00-
+#+END_FIXTURE>
+
+#+EXPECTED: timestampRegex
+no-match
+
+#+NAME: Incomplete timestamp 3
+#+BEGIN_FIXTURE
+[2025-08-01 Fri
+#+END_FIXTURE>
+
+#+EXPECTED: timestampRegex
+no-match
+
+#+NAME: Invalid timestamp with no space
+#+BEGIN_FIXTURE
+<2025-08-23 Sat>No space after
+#+END_FIXTURE>
+
+#+EXPECTED: timestampRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | <2025-08-23 Sat> |
+
+#+NAME: Invalid timestamp with special symbols
+#+BEGIN_FIXTURE
+<2025-08-18 Mon> #!@# [2025-08-19 Tue]
+#+END_FIXTURE>
+
+#+EXPECTED: timestampRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | <2025-08-18 Mon> |

@@ -60,8 +60,9 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F10-planning-lines.org~
   _syntax: `planning-line`_
-- [ ] **Timestamps**: Active, inactive, ranges, and repeaters.
-  _fixture: ~test/fixtures/F13-timestamps.org~, ~test/fixtures/F14-timestamp-edge-cases.org~
+- [X] **Timestamps**: Active, inactive, ranges, and repeaters.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F11-timestamps.org~
   _syntax: `timestamp`_
 - [ ] **Properties**: Property inheritance and value types.
   _fixture: ~test/fixtures/F24-property-inheritance.org~, ~test/fixtures/F25-property-value-types.org~

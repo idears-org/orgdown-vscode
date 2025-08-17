@@ -123,6 +123,13 @@ export const planningLineRegex = '(?i)^\\s*(SCHEDULED|DEADLINE|CLOSED):\\s*(<[^>
 // #endregion PLANNING_LINES
 
 
+// #region TIMESTAMPS
+/**
+ * Timestamps
+ */
+export const timestampRegex = '(<\\d{4}-\\d{2}-\\d{2}[^>]*>)|(\\[\\d{4}-\\d{2}-\\d{2}[^\\]]*\\])';
+// #endregion
+
 /**
  * Tables
  */
@@ -145,11 +152,6 @@ export const paragraphEndRegex = '^\\s*$';
  */
 export const linkRegex = '(\\[\\[)([^]]+?)(?:(?:\\]\\[)([^]]+?))?()';
 
-/**
- * Timestamps
- */
-export const timestampActiveRegex = '<[0-9]{4}-[0-9]{2}-[0-9]{2}.*?>';
-export const timestampInactiveRegex = '\\[[0-9]{4}-[0-9]{2}-[0-9]{2}.*?\\]';
 
 /**
  * Inline markup
