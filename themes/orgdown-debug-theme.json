@@ -68,39 +68,39 @@
   },
   "tokenColors": [
     {
-      "scope": "heading.1.org",
+      "scope": "markup.heading.1.org",
       "settings": {
         "foreground": "#4f97d7",
         "fontStyle": "bold"
       }
     },
     {
-      "scope": "heading.2.org",
+      "scope": "markup.heading.2.org",
       "settings": {
         "foreground": "#2d9574",
         "fontStyle": "bold"
       }
     },
     {
-      "scope": "heading.3.org",
+      "scope": "markup.heading.3.org",
       "settings": {
         "foreground": "#67b11d"
       }
     },
     {
-      "scope": "heading.4.org",
+      "scope": "markup.heading.4.org",
       "settings": {
         "foreground": "#b1951d"
       }
     },
     {
-      "scope": "heading.5.org",
+      "scope": "markup.heading.5.org",
       "settings": {
         "foreground": "#4f97d7"
       }
     },
     {
-      "scope": "heading.6.org",
+      "scope": "markup.heading.6.org",
       "settings": {
         "foreground": "#2d9574"
       }
@@ -173,20 +173,14 @@
       }
     },
     {
-      "scope": "keyword.other.org",
-      "settings": {
-        "foreground": "#9f8766"
-      }
-    },
-    {
-      "scope": "support.constant.keyword.org",
+      "scope": "entity.name.function.org",
       "settings": {
         "foreground": "#9f8766",
         "fontStyle": "bold"
       }
     },
     {
-      "scope": "string.unquoted.value.org",
+      "scope": "string.unquoted.org",
       "settings": {
         "foreground": "#bc6ec5"
       }
@@ -218,7 +212,7 @@
     {
       "scope": "markup.inline.raw.org",
       "settings": {
-        "foreground": "#a45bad"
+        "foreground": "#28def0"
       }
     },
     {
@@ -434,13 +428,6 @@
         "foreground": "#22aa44"
       }
     },
-    {
-  "scope": "meta.block.org",
-  "settings": {
-    "foreground": "#a094a2",
-    "fontStyle": "italic"
-  }
-},
     {
       "name": "Markup Styling",
       "scope": [
