@@ -9,12 +9,12 @@
 export const HEADING_BLOCK = 'markup.heading.org';
 
 /** The headline level, e.g., heading.1.org */
-export const HEADING_LEVEL_1 = 'heading.1.org';
-export const HEADING_LEVEL_2 = 'heading.2.org';
-export const HEADING_LEVEL_3 = 'heading.3.org';
-export const HEADING_LEVEL_4 = 'heading.4.org';
-export const HEADING_LEVEL_5 = 'heading.5.org';
-export const HEADING_LEVEL_6 = 'heading.6.org';
+export const HEADING_LEVEL_1 = 'markup.heading.1.org';
+export const HEADING_LEVEL_2 = 'markup.heading.2.org';
+export const HEADING_LEVEL_3 = 'markup.heading.3.org';
+export const HEADING_LEVEL_4 = 'markup.heading.4.org';
+export const HEADING_LEVEL_5 = 'markup.heading.5.org';
+export const HEADING_LEVEL_6 = 'markup.heading.6.org';
 
 /** The leading stars, e.g., `*` or `**`. */
 export const HEADING_PUNCTUATION = 'punctuation.definition.heading.org';

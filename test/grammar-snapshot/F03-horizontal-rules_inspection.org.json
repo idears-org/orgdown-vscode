@@ -85,7 +85,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org markup.heading.org heading.1.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -99,7 +99,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.1.org",
+		"t": "text.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -113,7 +113,7 @@
 	},
 	{
 		"c": "Fixture: F03-horizontal-rules.org",
-		"t": "text.org markup.heading.org heading.1.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -421,7 +421,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -435,7 +435,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -449,7 +449,7 @@
 	},
 	{
 		"c": "Test: Basic horizontal rule",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -477,7 +477,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -491,7 +491,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -505,7 +505,7 @@
 	},
 	{
 		"c": "Test: Horizontal rule with leading spaces",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -533,7 +533,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -547,7 +547,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -561,7 +561,7 @@
 	},
 	{
 		"c": "Test: Longer horizontal rule",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -589,7 +589,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -603,7 +603,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -617,7 +617,7 @@
 	},
 	{
 		"c": "Test: Rule with trailing whitespace is a valid rule",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",

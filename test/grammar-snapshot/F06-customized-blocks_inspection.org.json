@@ -85,7 +85,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org markup.heading.org heading.1.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -99,7 +99,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.1.org",
+		"t": "text.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -113,7 +113,7 @@
 	},
 	{
 		"c": "Fixture: F06-customized-blocks.org",
-		"t": "text.org markup.heading.org heading.1.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -547,7 +547,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -561,7 +561,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -575,7 +575,7 @@
 	},
 	{
 		"c": "1. Integration Test Cases",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -617,7 +617,7 @@
 	},
 	{
 		"c": "***",
-		"t": "text.org markup.heading.org heading.3.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.3.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -631,7 +631,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.3.org",
+		"t": "text.org markup.heading.org markup.heading.3.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -645,7 +645,7 @@
 	},
 	{
 		"c": "1.1. Standard Customized Blocks",
-		"t": "text.org markup.heading.org heading.3.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.3.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -939,7 +939,7 @@
 	},
 	{
 		"c": "***",
-		"t": "text.org markup.heading.org heading.3.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.3.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -953,7 +953,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.3.org",
+		"t": "text.org markup.heading.org markup.heading.3.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -967,7 +967,7 @@
 	},
 	{
 		"c": "1.2. Edge Cases",
-		"t": "text.org markup.heading.org heading.3.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.3.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1107,7 +1107,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1121,7 +1121,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1135,7 +1135,7 @@
 	},
 	{
 		"c": "2. Unit Test Cases",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1163,7 +1163,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1177,7 +1177,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1191,7 +1191,7 @@
 	},
 	{
 		"c": "Test: Unit Test: Basic customized block (no args)",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1275,7 +1275,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1289,7 +1289,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1303,7 +1303,7 @@
 	},
 	{
 		"c": "Test: Unit Test: Case-insensitivity (no args)",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1387,7 +1387,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1401,7 +1401,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1415,7 +1415,7 @@
 	},
 	{
 		"c": "Test: Unit Test: Customized block with arguments",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1611,7 +1611,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1625,7 +1625,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1639,7 +1639,7 @@
 	},
 	{
 		"c": "Test: Unit Test: Customized block parameter with quoted value",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",

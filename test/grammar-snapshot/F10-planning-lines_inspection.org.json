@@ -85,7 +85,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org markup.heading.org heading.1.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -99,7 +99,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.1.org",
+		"t": "text.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -113,7 +113,7 @@
 	},
 	{
 		"c": "Fixture: F10-planning-lines.org",
-		"t": "text.org markup.heading.org heading.1.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -491,7 +491,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -505,7 +505,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -519,7 +519,7 @@
 	},
 	{
 		"c": "Test: Simple SCHEDULED planning line",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -575,7 +575,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -589,7 +589,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -603,7 +603,7 @@
 	},
 	{
 		"c": "Test: Simple DEADLINE planning line",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -659,7 +659,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -673,7 +673,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -687,7 +687,7 @@
 	},
 	{
 		"c": "Test: Simple CLOSED planning line",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -743,7 +743,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -757,7 +757,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -771,7 +771,7 @@
 	},
 	{
 		"c": "Test: Planning line with repeater",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -827,7 +827,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -841,7 +841,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -855,7 +855,7 @@
 	},
 	{
 		"c": "Test: Planning line with range",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -911,7 +911,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -925,7 +925,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -939,7 +939,7 @@
 	},
 	{
 		"c": "Test: Planning line with inactive timestamp",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -995,7 +995,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1009,7 +1009,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1023,7 +1023,7 @@
 	},
 	{
 		"c": "Test: Planning line with different case",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1079,7 +1079,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1093,7 +1093,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1107,7 +1107,7 @@
 	},
 	{
 		"c": "Test: Planning line with multiple spaces",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1163,7 +1163,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1177,7 +1177,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1191,7 +1191,7 @@
 	},
 	{
 		"c": "Test: Planning line with no space after colon",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1247,7 +1247,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org markup.heading.org heading.2.org punctuation.definition.heading.org",
+		"t": "text.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1261,7 +1261,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org markup.heading.org heading.2.org",
+		"t": "text.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1275,7 +1275,7 @@
 	},
 	{
 		"c": "Test: Planning line with invalid timestamp",
-		"t": "text.org markup.heading.org heading.2.org entity.name.section.org",
+		"t": "text.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
