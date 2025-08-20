@@ -16,6 +16,7 @@ repository:
       - { include: '#blocks' }
       # - { include: '#comments' }
       - { include: '#keywords' }
+      - { include: '#property_drawers' }
       - { include: '#drawers' }
       - { include: '#planning-lines' }
       # - { include: '#tables' }
@@ -221,10 +222,31 @@ repository:
   #endregion
 
   #region DRAWERS
+  #region PROPERTIES DRAWER
+  property_drawers:
+    name: '{{scopes.PROPERTY_DRAWER_META}}'
+    begin: '{{regexs.propertyDrawerBeginRegex}}'
+    end: '{{regexs.drawerEndRegex}}'
+    beginCaptures:
+      '0': { name: '{{scopes.PROPERTY_DRAWER_BEGIN_KEYWORD}}' }
+    endCaptures:
+      '0': { name: '{{scopes.PROPERTY_DRAWER_END_KEYWORD}}' }
+    patterns:
+      - include: '#property_line'
+
+  property_line:
+    match: '{{regexs.propertyRegex}}'
+    name: '{{scopes.PROPERTY_META}}'
+    captures:
+      '1': { name: '{{scopes.PROPERTY_KEY}}' }
+      '2': { name: '{{scopes.PROPERTY_VALUE}}' }
+  #endregion
+
+  #region GENERIC DRAWER
   drawers:
     name: '{{scopes.BLOCK_META}} {{scopes.DRAWER_META}}'
     contentName: '{{scopes.BLOCK_CONTENT}} {{scopes.DRAWER_CONTENT}}'
-    begin: '{{regexs.drawerBeginRegex}}'
+    begin: '{{regexs.genericDrawerBeginRegex}}'
     end: '{{regexs.drawerEndRegex}}'
     beginCaptures:
       '0':
@@ -234,6 +256,7 @@ repository:
     endCaptures:
       '0':
         name: '{{scopes.BLOCK_KEYWORD}} {{scopes.DRAWER_END_KEYWORD}}'
+  #endregion
   #endregion
 
   #region PLANNING_LINES

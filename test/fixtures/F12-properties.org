@@ -1,0 +1,136 @@
+#+TITLE: Test Suite for Properties
+#+AUTHOR: Orgdown Team
+
+#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
+
+* === Block Scopes ===
+# The following scopes are applied to the entire properties drawer.
+- meta.property-drawer.org
+
+* === Line Scopes ===
+# The following scopes are applied to specific lines within the drawer.
+- :PROPERTIES: -> punctuation.definition.property-drawer.begin.org
+- :END: -> punctuation.definition.property-drawer.end.org
+- :Key: Value -> meta.property.org
+
+* === Token Scopes ===
+# The following scopes are applied to specific tokens within a property line.
+- :Key: -> entity.name.property.org
+- Value -> variable.other.property.value.org
+
+* === Regex Capture Groups (propertyRegex) ===
+1. Key -> The property key (e.g., "Effort")
+2. Value -> The property value (e.g., "1:00")
+
+#+END_COMMENT
+
+#+NAME: A full, multi-line properties drawer
+#+BEGIN_FIXTURE
+:PROPERTIES:
+:Owner: Alice
+:effort-estimate: 1:00
+:CREATED+: [2025-08-02]
+:Empty:
+:END:
+#+END_FIXTURE
+
+#+EXPECTED: propertyDrawerBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | :PROPERTIES:   |
+
+#+EXPECTED: drawerEndRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | :END:          |
+
+#+NAME: A property key and value
+#+BEGIN_FIXTURE
+:Owner: Alice
+#+END_FIXTURE
+#+EXPECTED: propertyRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | Owner          |
+| 2       | Alice          |
+
+#+NAME: A property with a numeric value
+#+BEGIN_FIXTURE
+:Number: 42
+#+END_FIXTURE
+#+EXPECTED: propertyRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | Number         |
+| 2       | 42             |
+
+#+NAME: A property with an empty value
+#+BEGIN_FIXTURE
+:Empty:
+#+END_FIXTURE
+#+EXPECTED: propertyRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | Empty          |
+| 2       | undefined      |
+
+#+NAME: A property with a value containing spaces
+#+BEGIN_FIXTURE
+:Description: This is a test.
+#+END_FIXTURE
+#+EXPECTED: propertyRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | Description    |
+| 2       | This is a test.|
+
+#+NAME: A property key with a hyphen
+#+BEGIN_FIXTURE
+:effort-estimate: 1:00
+#+END_FIXTURE
+#+EXPECTED: propertyRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | effort-estimate|
+| 2       | 1:00           |
+
+#+NAME: A property key with a plus sign
+#+BEGIN_FIXTURE
+:CREATED+: [2025-08-02]
+#+END_FIXTURE
+#+EXPECTED: propertyRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | CREATED+       |
+| 2       | [2025-08-02]   |
+
+#+NAME: A property value with leading and trailing spaces
+#+BEGIN_FIXTURE
+:Key:   value with spaces
+#+END_FIXTURE
+#+EXPECTED: propertyRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | Key            |
+| 2       |  value with spaces   |
+
+#+NAME: Malformed property key with space
+#+BEGIN_FIXTURE
+:Invalid Key: some value
+#+END_FIXTURE
+#+EXPECTED: propertyRegex
+no-match
+
+#+NAME: Malformed property line missing starting colon
+#+BEGIN_FIXTURE
+Owner: Alice
+#+END_FIXTURE
+#+EXPECTED: propertyRegex
+no-match
+
+#+NAME: Malformed property with no space after key
+#+BEGIN_FIXTURE
+:Key:value
+#+END_FIXTURE
+#+EXPECTED: propertyRegex
+no-match

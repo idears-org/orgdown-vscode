@@ -226,6 +226,31 @@ export const TIMESTAMP_INACTIVE_RANGE = 'constant.other.timestamp.inactive.range
 
 
 // =================================================================
+// Properties
+// =================================================================
+
+/** The meta scope for the entire properties drawer. */
+export const PROPERTY_DRAWER_META = 'meta.property-drawer.org';
+
+/** The keyword for the beginning of a properties drawer. */
+export const PROPERTY_DRAWER_BEGIN_KEYWORD =
+  'punctuation.definition.property-drawer.begin.org';
+
+/** The keyword for the end of a properties drawer. */
+export const PROPERTY_DRAWER_END_KEYWORD =
+  'punctuation.definition.property-drawer.end.org';
+
+/** The meta scope for a single property line. */
+export const PROPERTY_META = 'meta.property.org';
+
+/** The key of a property, e.g., `:Key:`. */
+export const PROPERTY_KEY = 'entity.name.property.org';
+
+/** The value of a property. */
+export const PROPERTY_VALUE = 'variable.other.property.value.org';
+
+
+// =================================================================
 // Inline Markup
 // =================================================================
 

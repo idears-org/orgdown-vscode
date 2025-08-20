@@ -52,8 +52,8 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F08-keywords.org~
   _syntax: `keyword`_
-- [X] **Drawers**: PROPERTIES, LOGBOOK, and custom drawers.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+- [X] **Drawers**: LOGBOOK and custom drawers. Generic fallback for all drawer types.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active. Logic updated to explicitly exclude PROPERTIES._
   _fixture: ~test/fixtures/F09-drawers.org~
   _syntax: `drawer`_
 - [X] **Planning Lines**: SCHEDULED, DEADLINE, CLOSED timestamps.
@@ -64,8 +64,9 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F11-timestamps.org~
   _syntax: `timestamp`_
-- [ ] **Properties**: Property inheritance and value types.
-  _fixture: ~test/fixtures/F24-property-inheritance.org~, ~test/fixtures/F25-property-value-types.org~
+- [X] **Properties**: The `:PROPERTIES:` drawer, a special case of the generic drawer.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F12-properties.org~
   _syntax: `property`_
 
 *** Inline Elements [Priority: Medium]

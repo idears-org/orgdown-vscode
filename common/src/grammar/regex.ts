@@ -144,13 +144,35 @@ export const dynamicBlockEndRegex = createRegexPattern(new RegExp(`^(\\s*)(#\\+E
 export const keywordRegex = createRegexPattern(/^\s*(#\+([^:]+):)\s*(.*)\s*$/);
 // #endregion KEYWORD
 
+
 // #region DRAWERS
 /**
- * Drawers - PROPERTIES, LOGBOOK, etc.
+ * Drawers - General purpose, excludes PROPERTIES
  */
-export const drawerBeginRegex = createRegexPattern(/^\s*:(?!END)([A-Z_]+):\s*$/i);
+export const genericDrawerBeginRegex = createRegexPattern(/^\s*:(?!END|PROPERTIES)([A-Z_]+):\s*$/i);
+
+// #region PROPERTIES
+/**
+ * Matches the beginning of a properties drawer.
+ */
+export const propertyDrawerBeginRegex = createRegexPattern(
+  /^\s*:PROPERTIES:\s*$/i
+);
+
+/**
+ * Matches a single property line.
+ * Capture groups:
+ * 1. Key (e.g., "Owner")
+ * 2. Value (e.g., "Alice")
+ */
+export const propertyRegex = createRegexPattern(
+  /^\s*:([a-zA-Z0-9_+-]+):(?:[ \t]+(.*))?[ \t]*$/
+);
+// #endregion PROPERTIES
+
 export const drawerEndRegex = createRegexPattern(new RegExp(`^\\s*:END:\\s*$|${(headlineDetectToCloseBlockRegex as any).regex.source}`, 'i'));
 // #endregion DRAWERS
+
 
 // #region TIMESTAMPS
 // =================================================================
