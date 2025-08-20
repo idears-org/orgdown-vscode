@@ -70,8 +70,9 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _syntax: `property`_
 
 *** Inline Elements [Priority: Medium]
-- [ ] **Links**: All link types (internal, external, file, etc.).
-  _fixture: ~test/fixtures/F15-links.org~, ~test/fixtures/F16-link-abbreviation.org~
+- [X] **Links**: All link types (internal, external, file, etc.).
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F13-links.org~
   _syntax: `link`_
 - [ ] **Inline Markup**: Bold, italic, underline, verbatim, code, strike-through.
   _fixture: ~test/fixtures/F18-inline-markup.org~, ~test/fixtures/F19-inline-markup-nesting.org~
@@ -82,7 +83,7 @@ For the complete technical workflow on how to add a new feature or test case, pl
 - [ ] **Macros**: Definition and usage.
   _fixture: ~test/fixtures/F20-macros.org~, ~test/fixtures/F21-macro-expansion-edge-cases.org~
   _syntax: `macro`_
-- [ ] **Inline LaTeX**: Math fragments like `\alpha`, `$ ... $`, etc.
+- [ ] **Inline LaTeX**: Math fragments like `\alpha`, `$ ... , etc.
   _fixture: ~test/fixtures/F32-inline-latex.org~
   _syntax: `inline-latex`_
 

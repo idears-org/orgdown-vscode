@@ -203,6 +203,42 @@ export const planningLineRegex = createRegexPattern(new RegExp(
 ));
 // #endregion PLANNING_LINES
 
+
+// #region LINKS
+/**
+ * Matches a standard Org Mode link, e.g., [[target][description]].
+ * This regex is designed to be used with nested patterns.
+ * Capture groups:
+ * 1. Begin punctuation `[[`
+ * 2. Link target
+ * 3. Separator `][` (optional)
+ * 4. Description (optional)
+ * 5. End punctuation `]]`
+ */
+export const linkRegex = createRegexPattern(
+  /(\[\[)(.*?)(?:(\]\[)(.*?))?(\]\])/
+);
+
+/**
+ * Matches the protocol part of a link target.
+ */
+export const linkProtocolRegex = createRegexPattern(
+  /\b([a-zA-Z0-9_+-]+):/
+);
+
+/**
+ * Matches a link abbreviation definition, e.g., #+LINK: key url.
+ * Capture groups:
+ * 1. Leading whitespace
+ * 2. The `#+LINK:` keyword
+ * 3. The abbreviation key (e.g., "gh")
+ * 4. The URL template (e.g., "https://github.com/%s")
+ */
+export const linkAbbreviationRegex = createRegexPattern(
+  /^(\s*)(#\+LINK:)\s+([a-zA-Z0-9_-]+)\s+(.*)$/i
+);
+// #endregion LINKS
+
 /**
  * Tables
  */
@@ -219,12 +255,6 @@ export const footnoteReferenceRegex = createRegexPattern(/\[fn:([^\]]+)\]/);
  */
 export const paragraphBeginRegex = createRegexPattern(/^(?=\S)/);
 export const paragraphEndRegex = createRegexPattern(/^\s*$/);
-
-/**
- * Links
- */
-export const linkRegex = createRegexPattern(/(\[\[)([^]]+?)(?:(?:\]\[)([^]]+?))?/);
-
 
 /**
  * Inline markup

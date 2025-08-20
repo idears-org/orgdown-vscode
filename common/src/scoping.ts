@@ -261,3 +261,38 @@ export const STRIKETHROUGH = 'markup.strikethrough.org';
 export const CODE = 'markup.inline.raw.org';
 export const VERBATIM = 'markup.inline.raw.org';
 export const LINK = 'markup.underline.link.org';
+
+// =================================================================
+// Links
+// =================================================================
+
+/** The entire link structure, e.g., [[...]]. */
+export const LINK_META = 'meta.link.org';
+
+/** The opening brackets of a link, e.g., `[[`. */
+export const LINK_BEGIN_PUNCTUATION = 'punctuation.definition.link.begin.org';
+
+/** The closing brackets of a link, e.g., `]]`. */
+export const LINK_END_PUNCTUATION = 'punctuation.definition.link.end.org';
+
+/** The separator between target and description, e.g., `][`. */
+export const LINK_SEPARATOR_PUNCTUATION = 'punctuation.separator.link.org';
+
+/** The description part of a link. */
+export const LINK_DESCRIPTION = 'string.other.link.description.org';
+
+/** The protocol of a link, e.g., `http:`, `file:`. */
+export const LINK_PROTOCOL = 'keyword.other.link.protocol.org';
+
+/** The meta scope for a link abbreviation line. */
+export const LINK_ABBREVIATION_META = 'meta.link.abbreviation.org';
+
+/** The `#+LINK:` keyword itself. */
+export const LINK_ABBREVIATION_KEYWORD = 'keyword.other.link.abbreviation.org';
+
+/** The abbreviation key, e.g., `gh`. */
+export const LINK_ABBREVIATION_KEY = 'variable.parameter.link.abbreviation.org';
+
+/** The URL template for an abbreviation. */
+export const LINK_ABBREVIATION_URL =
+  'string.unquoted.link.abbreviation.url.org';

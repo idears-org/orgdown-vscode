@@ -1,0 +1,115 @@
+#+TITLE: Test Suite for Links
+#+AUTHOR: Orgdown Team
+
+#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
+
+* === Block Scopes ===
+- meta.link.org: The entire link structure, e.g., [[...]].
+- meta.link.abbreviation.org: The entire #+LINK line.
+
+* === Punctuation Scopes ===
+- punctuation.definition.link.begin.org: For `[[`.
+- punctuation.definition.link.end.org: For `]]`.
+- punctuation.separator.link.org: For `][`.
+
+* === Content Scopes ===
+- markup.underline.link.org: For the URL/target part of the link.
+- string.other.link.description.org: For the descriptive text part of the link.
+- keyword.other.link.protocol.org: For protocols like `http:`, `file:`.
+
+* === Abbreviation Scopes ===
+- keyword.other.link.abbreviation.org: For the `#+LINK:` keyword.
+- variable.parameter.link.abbreviation.org: For the abbreviation key, e.g., `gh`.
+- string.unquoted.link.abbreviation.url.org: For the URL template.
+
+* === Regex Capture Groups (linkRegex) ===
+1. Begin punctuation `[[`
+2. Link target
+3. Separator `][` (optional)
+4. Description (optional)
+5. End punctuation `]]`
+
+* === Regex Capture Groups (linkAbbreviationRegex) ===
+1. Leading whitespace
+2. The `#+LINK:` keyword
+3. The abbreviation key (e.g., "gh")
+4. The URL template (e.g., "https://github.com/%s")
+
+#+END_COMMENT
+
+#+NAME: Standard external link with description
+#+BEGIN_FIXTURE
+[[https://orgmode.org/][The Org Mode Website]]
+#+END_FIXTURE
+#+EXPECTED: linkRegex
+| Group # | Expected Value |
+|---------+-------------------------|
+| 2       | https://orgmode.org/    |
+| 4       | The Org Mode Website    |
+
+#+NAME: External link without description
+#+BEGIN_FIXTURE
+[[https://orgmode.org/]]
+#+END_FIXTURE
+#+EXPECTED: linkRegex
+| Group # | Expected Value |
+|---------+-------------------------|
+| 2       | https://orgmode.org/    |
+| 4       | undefined               |
+
+#+NAME: Internal link to a headline
+#+BEGIN_FIXTURE
+[[*Some Headline]]
+#+END_FIXTURE
+#+EXPECTED: linkRegex
+| Group # | Expected Value |
+|---------+-------------------------|
+| 2       | *Some Headline          |
+| 4       | undefined               |
+
+#+NAME: File link with description
+#+BEGIN_FIXTURE
+[[file:~/docs/main.org][My Document]]
+#+END_FIXTURE
+#+EXPECTED: linkRegex
+| Group # | Expected Value |
+|---------+-------------------------|
+| 2       | file:~/docs/main.org   |
+| 4       | My Document             |
+
+#+NAME: Link abbreviation definition
+#+BEGIN_FIXTURE
+#+LINK: gh https://github.com/%s
+#+END_FIXTURE
+#+EXPECTED: linkAbbreviationRegex
+| Group # | Expected Value |
+|---------+-------------------------|
+| 3       | gh                      |
+| 4       | https://github.com/%s   |
+
+#+NAME: Link using an abbreviation
+#+BEGIN_FIXTURE
+[[gh:orgdown/orgdown-vscode]]
+#+END_FIXTURE
+#+EXPECTED: linkRegex
+| Group # | Expected Value |
+|---------+-------------------------|
+| 2       | gh:orgdown/orgdown-vscode |
+| 4       | undefined               |
+
+#+NAME: Malformed link with extra brackets
+#+BEGIN_FIXTURE
+[[https://a.com][b]]]
+#+END_FIXTURE
+#+EXPECTED: linkRegex
+| Group # | Expected Value |
+|---------+-------------------------|
+| 2       | https://a.com           |
+| 4       | b                       |
+
+#+NAME: Plain URL in text should not match bracketed link regex
+#+BEGIN_FIXTURE
+This is a URL https://google.com in text.
+#+END_FIXTURE
+#+EXPECTED: linkRegex
+no-match

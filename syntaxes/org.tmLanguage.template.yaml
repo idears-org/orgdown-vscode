@@ -15,6 +15,7 @@ repository:
       - { include: '#horizontal-rules' }
       - { include: '#blocks' }
       # - { include: '#comments' }
+      - { include: '#link-abbreviations' }
       - { include: '#keywords' }
       - { include: '#property_drawers' }
       - { include: '#drawers' }
@@ -285,6 +286,34 @@ repository:
         match: '{{regexs.timestampInactiveRegex}}'
   #endregion
 
+  #region LINKS
+  links:
+    match: '{{regexs.linkRegex}}'
+    name: '{{scopes.LINK_META}}'
+    captures:
+      '1': { name: '{{scopes.LINK_BEGIN_PUNCTUATION}}' }
+      '2':
+        name: '{{scopes.LINK}}'
+        patterns:
+          - include: '#link-protocol'
+      '3': { name: '{{scopes.LINK_SEPARATOR_PUNCTUATION}}' }
+      '4': { name: '{{scopes.LINK_DESCRIPTION}}' }
+      '5': { name: '{{scopes.LINK_END_PUNCTUATION}}' }
+
+  link-protocol:
+    match: '{{regexs.linkProtocolRegex}}'
+    captures:
+      '1': { name: '{{scopes.LINK_PROTOCOL}}' }
+
+  link-abbreviations:
+    match: '{{regexs.linkAbbreviationRegex}}'
+    name: '{{scopes.LINK_ABBREVIATION_META}}'
+    captures:
+      '2': { name: '{{scopes.LINK_ABBREVIATION_KEYWORD}}' }
+      '3': { name: '{{scopes.LINK_ABBREVIATION_KEY}}' }
+      '4': { name: '{{scopes.LINK_ABBREVIATION_URL}}' }
+  #endregion
+
   tables:
     name: markup.table.org
     match: "{{regexs.tableRegex}}"
@@ -315,15 +344,6 @@ repository:
       - include: "#verbatim"
       - include: "#entities"
       - include: "#sub-super-scripts"
-
-  links:
-    name: meta.link.org
-    match: "{{regexs.linkRegex}}"
-    captures:
-      1: { name: punctuation.definition.link.begin.org }
-      2: { name: '{{scopes.LINK}}' }
-      3: { name: string.other.link.description.org }
-      4: { name: punctuation.definition.link.end.org }
 
   latex:
     name: markup.math.org
