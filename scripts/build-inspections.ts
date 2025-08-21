@@ -35,10 +35,13 @@ function compileFixture(content: string, originalFilename: string): string {
   const fileTitle = fileTitleMatch ? fileTitleMatch[1] : 'Untitled Test Suite';
 
   compiledLines.push(`#+TITLE: Inspection for ${originalFilename} (Auto-Generated)`);
-  compiledLines.push(`# DO NOT EDIT. Run 'pnpm build:inspections' to regenerate.`);
   compiledLines.push('');
-  compiledLines.push(`* Fixture: ${originalFilename}`);
+  compiledLines.push(`#+FIXTURE: ${originalFilename}`);
   compiledLines.push(`#+DESCRIPTION: ${fileTitle}`);
+  compiledLines.push('');
+  compiledLines.push(`# DO NOT EDIT. Run 'pnpm build:inspections' to regenerate.`);
+  compiledLines.push(`# Content start after this line`);
+  compiledLines.push(`# --------------------------------------------------------`);
   compiledLines.push('');
 
 
@@ -50,6 +53,21 @@ function compileFixture(content: string, originalFilename: string): string {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const lower = line.trim().toLowerCase();
+    // When true, we're skipping lines that belong to an EXPECTED block
+    // (regex tables, scope assertions, notes). We resume on the next test marker
+    // or a non-assertion headline.
+    if ((compileFixture as any).skipExpected) {
+      const isNextTestMarker = lower.startsWith('#+name:') ||
+                               lower.startsWith('#+begin_fixture') ||
+                               lower.startsWith('#+expected:');
+      const isNonAssertionHeadline = /^\*+\s/.test(line) && !line.includes('=>');
+      if (isNextTestMarker || isNonAssertionHeadline) {
+        (compileFixture as any).skipExpected = false;
+        // fall through to process this line normally
+      } else {
+        continue;
+      }
+    }
 
     if (lower.startsWith('#+name:')) {
       testName = line.replace(/^\s*#\+name:/i, '').trim();
@@ -74,6 +92,7 @@ function compileFixture(content: string, originalFilename: string): string {
     }
 
     // Check for #+EXPECTED: and see if the next non-empty, non-table line is 'no-match'
+    // Emit a test section for both regex and scope tests; never include EXPECTED content itself.
     if (lower.startsWith('#+expected') && testName) {
       // Look ahead for 'no-match' (skip empty and table lines)
       let j = i + 1;
@@ -95,6 +114,8 @@ function compileFixture(content: string, originalFilename: string): string {
         compiledLines.push(transformedSrc);
         compiledLines.push('');
       }
+      // From here until the next test marker, skip EXPECTED block content lines
+      (compileFixture as any).skipExpected = true;
       srcContent = [];
       testName = null;
       testDescription = null;
@@ -116,7 +137,15 @@ function compileFixture(content: string, originalFilename: string): string {
     }
   }
 
-  return compiledLines.join('\n');
+  // Join and then collapse excessive blank lines introduced during transformation.
+  let compiled = compiledLines.join('\n');
+  // Replace 3+ consecutive newlines with exactly two (single blank line)
+  compiled = compiled.replace(/\n{3,}/g, '\n\n');
+  // Trim leading blank lines
+  compiled = compiled.replace(/^\s*\n+/, '');
+  // Ensure the file ends with a single newline
+  compiled = compiled.replace(/\n+\s*$/g, '\n');
+  return compiled;
 }
 
 function transformSrcContent(content: string, parentLevel: number): string {

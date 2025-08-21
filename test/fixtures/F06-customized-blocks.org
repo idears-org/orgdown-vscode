@@ -1,24 +1,5 @@
 #+TITLE: Comprehensive Test Suite for Customized Blocks
 
-#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
-
-* === Block Scopes ===
-# The following meta scopes are applied to the entire customized block.
-- meta.block.org
-- meta.block.customized.org
-
-# The following content scopes are applied to the content of the block.
-- markup.block.org
-- markup.block.customized.org
-
-* === Capture Group Scopes (customizedBlockBeginRegex) ===
-1. leading whitespace -> string.other.whitespace.leading.org
-2. begin keyword -> keyword.control.block.org
-3. block name -> entity.name.function.block.org
-4. parameters -> variable.parameter.block.org
-
-#+END_COMMENT
-
 * 1. Integration Test Cases
 
 This section is the primary source for the snapshot test. It covers various
@@ -59,7 +40,7 @@ Content
 #+END_MYBLOCK
 #+END_FIXTURE
 
-#+EXPECTED: customizedBlockBeginRegex
+#+EXPECTED: :type regex :name customizedBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -74,7 +55,7 @@ Content
 #+eNd_YoUrBlOcK
 #+END_FIXTURE
 
-#+EXPECTED: customizedBlockBeginRegex
+#+EXPECTED: :type regex :name customizedBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -89,7 +70,7 @@ Content
 #+END_MYBLOCK
 #+END_FIXTURE
 
-#+EXPECTED: customizedBlockBeginRegex
+#+EXPECTED: :type regex :name customizedBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -102,7 +83,7 @@ Content
 :description "This is a description"
 #+END_FIXTURE
 
-#+EXPECTED: blockParameterRegex
+#+EXPECTED: :type regex :name blockParameterRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | :description   |

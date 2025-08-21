@@ -95,24 +95,20 @@
   "scripts": {
     "clean": "rm -rf out dist client/dist server/dist tsconfig.tsbuildinfo",
     "vscode:prepublish": "pnpm run build",
-
     "build:grammar": "tsx scripts/build-grammar.ts",
     "build:inspections": "tsx scripts/build-inspections.ts",
     "build:theme": "tsx scripts/build-theme.ts",
     "build:server": "pnpm -C server run compile",
     "build:client": "node esbuild.js",
     "build": "pnpm run clean && pnpm run build:grammar && pnpm run build:server && pnpm run build:client",
-
     "watch:client": "node esbuild.js --watch",
     "watch:server": "tsc --noEmit --watch --project tsconfig.json",
     "watch:grammar": "pnpm exec tsx scripts/watch-grammar.ts",
     "watch:inspections": "pnpm exec tsx scripts/watch-inspections.ts",
     "watch:test:unit": "vitest watch",
     "watch": "pnpm run watch:client & pnpm run watch:server & pnpm run watch:grammar & pnpm run watch:inspections & pnpm run watch:test:unit",
-
     "check-types": "tsc --noEmit",
     "lint": "eslint client/src server/src common/src scripts test/unit test/integration --ext .ts,.js,.mjs",
-
     "pretest": "pnpm run build:grammar && pnpm run build:inspections",
     "test:unit": "vitest run",
     "test:integration": "vscode-test",
@@ -141,6 +137,7 @@
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4",
-    "vscode-oniguruma": "^2.0.1"
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.2.0"
   }
 }

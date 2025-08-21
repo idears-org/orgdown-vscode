@@ -1,24 +1,11 @@
 #+TITLE: Test Suite for Keywords
 
-#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
-
-* === Block Scopes ===
-# The following scopes are applied to the entire keyword line.
-- meta.keyword.org
-
-* === Capture Group Scopes ===
-# The following scopes are applied to the specific parts of the keyword.
-1. keyword -> keyword.other.org
-2. keyword name -> entity.name.function.org
-3. value -> string.unquoted.org
-#+END_COMMENT
-
 #+NAME: Simple keyword
 #+BEGIN_FIXTURE
 #+TITLE: My document
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+TITLE:       |
@@ -30,7 +17,7 @@
 #+AUTHOR: Example Author
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+AUTHOR:      |
@@ -42,7 +29,7 @@
 #+OPTIONS: toc:nil
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+OPTIONS:     |
@@ -54,7 +41,7 @@
 #+SETUPFILE: setup.org
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+SETUPFILE:   |
@@ -66,7 +53,7 @@
 #+TODO: TODO | DONE
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+TODO:        |
@@ -78,7 +65,7 @@
 #+DATE: 2025-08-02
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+DATE:        |
@@ -90,7 +77,7 @@
 #+EMAIL: example@example.com
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+EMAIL:       |
@@ -102,7 +89,7 @@
 #+DESCRIPTION: This is a test document for Org keywords.
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+DESCRIPTION: |
@@ -114,7 +101,7 @@
 #+KEYWORDS: org, test, keyword, example
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+KEYWORDS:    |
@@ -126,7 +113,7 @@
 #+LANGUAGE: en
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+LANGUAGE:    |
@@ -138,7 +125,7 @@
 #+PROPERTY: global-property value
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+PROPERTY:    |
@@ -150,7 +137,7 @@
 #+FILETAGS: project, orgdown
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+FILETAGS:    |
@@ -162,7 +149,7 @@
 #+STARTUP: overview
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+STARTUP:     |
@@ -174,7 +161,7 @@
 #+SEQ_TODO: TODO | WAIT | DONE
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+SEQ_TODO:    |
@@ -186,7 +173,7 @@
 #+ARCHIVE: %s_archive::* Archived Tasks
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+ARCHIVE:     |
@@ -198,7 +185,7 @@
 #+CATEGORY: Test
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+CATEGORY:    |
@@ -210,7 +197,7 @@
 #+PRIORITIES: A B C
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+PRIORITIES:  |
@@ -222,7 +209,7 @@
 #+TAGS: @work @home
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+TAGS:        |
@@ -234,7 +221,7 @@
 #+EXPORT_FILE_NAME: export.html
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+EXPORT_FILE_NAME: |
@@ -246,7 +233,7 @@
 #+HTML_HEAD: <style>body{font-size:14px;}</style>
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+HTML_HEAD:   |
@@ -258,7 +245,7 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+LATEX_HEADER: |
@@ -270,7 +257,7 @@
 #+CUSTOM_KEY: custom value
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+CUSTOM_KEY:  |
@@ -282,7 +269,7 @@
 #+INVALIDKEY This line is missing a colon
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 no-match
 
 #+NAME: Overwritten title
@@ -290,7 +277,7 @@ no-match
 #+TITLE: Overwritten Title
 #+END_FIXTURE
 
-#+EXPECTED: keywordRegex
+#+EXPECTED: :type regex :name genericKeywordRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | #+TITLE:       |

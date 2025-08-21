@@ -8,6 +8,7 @@ export default defineConfig({
     ],
     forceRerunTriggers: [
       path.resolve(__dirname, 'test/fixtures/**/*.org'),
+      path.resolve(__dirname, 'test/unit/**/*.test.ts'),
     ],
     alias: {
       '@common': path.resolve(__dirname, './common/src'),

@@ -1,26 +1,82 @@
 import { describe, it, expect } from 'vitest';
-import { parseFixtureFile } from '@common/fixture-parser';
+import { parseFixtureFile, RegexExpectation, ScopeExpectation } from '@common/fixture-parser';
 
 describe('Fixture Parser Unit Tests', () => {
-  it('should parse a simple test case with a single result', () => {
+  it('should parse a simple regex test case', () => {
     const content = `
-#+NAME: A simple test
+#+NAME: A simple regex test
 #+BEGIN_FIXTURE
 * A headline
 #+END_FIXTURE
-#+EXPECTED: headlineLevel1Regex
+#+EXPECTED: :type regex :name headlineLevel1Regex
 | Group # | Expected Value |
 |---------+----------------|
 | 5       | A headline     |
     `;
     const testCases = parseFixtureFile(content);
     expect(testCases).toHaveLength(1);
-    expect(testCases[0].name).toBe('A simple test');
-    expect(testCases[0].input).toBe('* A headline');
-    expect(testCases[0].results).toHaveLength(1);
-    expect(testCases[0].results[0].regex).toBe('headlineLevel1Regex');
-    expect(testCases[0].results[0].shouldMatch).toBe(true);
-    expect(testCases[0].results[0].expectedCaptures).toEqual([{ index: 5, value: 'A headline' }]);
+    const testCase = testCases[0];
+    expect(testCase.name).toBe('A simple regex test');
+    expect(testCase.input).toBe('* A headline');
+    expect(testCase.expectations).toHaveLength(1);
+
+    const expectation = testCase.expectations[0] as RegexExpectation;
+    expect(expectation.type).toBe('regex');
+    expect(expectation.name).toBe('headlineLevel1Regex');
+    expect(expectation.shouldMatch).toBe(true);
+    expect(expectation.captures).toEqual([{ index: 5, value: 'A headline' }]);
+  });
+
+    it('should parse a new scope test case', () => {
+    const content = `
+#+NAME: A simple scope test
+#+BEGIN_FIXTURE
+*bold*
+#+END_FIXTURE
+#+EXPECTED: :type scope
+bold => markup.bold.org
+* => punctuation
+    `;
+    const testCases = parseFixtureFile(content);
+    expect(testCases).toHaveLength(1);
+    const testCase = testCases[0];
+    expect(testCase.name).toBe('A simple scope test');
+    expect(testCase.input).toBe('*bold*');
+    expect(testCase.expectations).toHaveLength(1);
+
+    const expectation = testCase.expectations[0] as ScopeExpectation;
+    expect(expectation.type).toBe('scope');
+    expect(expectation.assertions).toEqual([
+      { text: 'bold', scopes: ['markup.bold.org'] },
+      { text: '*', scopes: ['punctuation'] },
+    ]);
+  });
+
+  it('should parse tree-like scope expectations using => lines', () => {
+    const content = `
+#+NAME: Tree scope test
+#+BEGIN_FIXTURE
+* TODO [#A] Sample :tag:
+#+END_FIXTURE
+#+EXPECTED: :type scope
+* => punctuation.definition.heading.org
+TODO => keyword.other.todo.org
+"[#A]" => constant.other.priority.org
+"A" => constant.other.priority.value.org
+" :tag:" => entity.name.tag.org
+    `;
+    const testCases = parseFixtureFile(content);
+    expect(testCases).toHaveLength(1);
+    const testCase = testCases[0];
+    const expectation = testCase.expectations[0] as ScopeExpectation;
+    expect(expectation.type).toBe('scope');
+    expect(expectation.assertions).toEqual([
+      { text: '*', scopes: ['punctuation.definition.heading.org'] },
+      { text: 'TODO', scopes: ['keyword.other.todo.org'] },
+      { text: '[#A]', scopes: ['constant.other.priority.org'] },
+      { text: 'A', scopes: ['constant.other.priority.value.org'] },
+      { text: ' :tag:', scopes: ['entity.name.tag.org'] },
+    ]);
   });
 
   it('should handle a test case with no-match', () => {
@@ -29,34 +85,40 @@ describe('Fixture Parser Unit Tests', () => {
 #+BEGIN_FIXTURE
 not a headline
 #+END_FIXTURE
-#+EXPECTED: headlineLevel1Regex
+#+EXPECTED: :type regex :name headlineLevel1Regex
 no-match
     `;
     const testCases = parseFixtureFile(content);
     expect(testCases).toHaveLength(1);
-    expect(testCases[0].results[0].shouldMatch).toBe(false);
-    expect(testCases[0].results[0].expectedCaptures).toBeUndefined();
+    const expectation = testCases[0].expectations[0] as RegexExpectation;
+    expect(expectation.shouldMatch).toBe(false);
+    expect(expectation.captures).toBeUndefined();
   });
 
-  it('should handle one-to-many results for a single input', () => {
+  it('should handle one input with multiple expectations (regex and scope)', () => {
     const content = `
-#+NAME: One input, two results
+#+NAME: One input, two expectations
 #+BEGIN_FIXTURE
 * A headline
 #+END_FIXTURE
-#+EXPECTED: headlineLevel1Regex
+#+EXPECTED: :type regex :name headlineLevel1Regex
 | 5 | A headline |
-#+EXPECTED: headlineDetectRegex
-| 1 | * A headline |
+#+EXPECTED: :type scope
+* => punctuation.definition.heading.org
     `;
     const testCases = parseFixtureFile(content);
-    expect(testCases).toHaveLength(2);
-    expect(testCases[0].name).toBe('One input, two results');
-    expect(testCases[1].name).toBe('One input, two results');
-    expect(testCases[0].input).toBe('* A headline');
-    expect(testCases[1].input).toBe('* A headline');
-    expect(testCases[0].results[0].regex).toBe('headlineLevel1Regex');
-    expect(testCases[1].results[0].regex).toBe('headlineDetectRegex');
+    expect(testCases).toHaveLength(1);
+    const testCase = testCases[0];
+    expect(testCase.name).toBe('One input, two expectations');
+    expect(testCase.expectations).toHaveLength(2);
+
+    const regexExpect = testCase.expectations[0] as RegexExpectation;
+    expect(regexExpect.type).toBe('regex');
+    expect(regexExpect.name).toBe('headlineLevel1Regex');
+
+  const scopeExpect = testCase.expectations[1] as ScopeExpectation;
+  expect(scopeExpect.type).toBe('scope');
+  expect(scopeExpect.assertions[0].scopes).toEqual(['punctuation.definition.heading.org']);
   });
 
   it('should correctly parse content that looks like a delimiter', () => {
@@ -67,7 +129,7 @@ no-match
 print("hello")
 #+END_SRC
 #+END_FIXTURE
-#+EXPECTED: someRegex
+#+EXPECTED: :type regex :name someRegex
 | 1 | some value |
     `;
     const testCases = parseFixtureFile(content);
@@ -83,7 +145,7 @@ Input text
 #+END_FIXTURE
 
 
-#+EXPECTED: someRegex
+#+EXPECTED: :type regex :name someRegex
 no-match
     `;
     const testCases = parseFixtureFile(content);

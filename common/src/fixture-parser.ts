@@ -1,88 +1,222 @@
-export interface FixtureTestResult {
-  regex: string;
+import * as scopeModule from './scoping';
+export type TestType = "regex" | "scope";
+
+export interface RegexExpectation {
+  type: "regex";
+  name: string;
   shouldMatch: boolean;
-  expectedCaptures?: { index: number; value: string }[];
+  captures?: { index: number; value: string }[];
 }
 
-// A FixtureTestCase represents one #+NAME block, which can contain multiple
-// #+EXPECTED blocks (one-to-many testing).
+export interface ScopeExpectation {
+  type: "scope";
+  assertions: { text: string; scopes: string[] }[];
+}
+
+export type Expectation = RegexExpectation | ScopeExpectation;
+
 export interface FixtureTestCase {
   name: string;
   input: string;
-  results: FixtureTestResult[];
+  expectations: Expectation[];
 }
 
 function processExpectedValue(value: string): string {
-  return value.replace(/<sp:(\d+)>/g, (_, count) => ' '.repeat(parseInt(count, 10))).replace(/<tab>/g, '\t').replace(/<pipe>/g, '|');
+  return value
+    .replace(/<sp:(\d+)>/g, (_, count) => " ".repeat(parseInt(count, 10)))
+    .replace(/<tab>/g, "\t")
+    .replace(/<pipe>/g, "|");
 }
 
-function parseExpectedBlock(lines: string[], startIndex: number): { results: FixtureTestResult[]; endIndex: number } {
-  const allResults: FixtureTestResult[] = [];
+function parseExpectedArgs(line: string): Map<string, string> {
+  const args = new Map<string, string>();
+  const regex = /:(\w+)\s+([^:]+)/g;
+  let match;
+  while ((match = regex.exec(line)) !== null) {
+    args.set(match[1].toLowerCase(), match[2].trim());
+  }
+  return args;
+}
+
+function parseExpectedBlock(
+  lines: string[],
+  startIndex: number
+): { expectations: Expectation[]; endIndex: number } {
+  const allExpectations: Expectation[] = [];
   let currentIndex = startIndex;
 
-  while (currentIndex < lines.length && lines[currentIndex].trim().toLowerCase().startsWith('#+expected:')) {
+  while (
+    currentIndex < lines.length &&
+    lines[currentIndex].trim().toLowerCase().startsWith("#+expected:")
+  ) {
     const expectedLine = lines[currentIndex];
-    const regexName = expectedLine.replace(/^\s*#\+expected:/i, '').trim();
-    const tableLines: string[] = [];
-    let shouldMatch = true;
+    const args = parseExpectedArgs(expectedLine);
+    const testType = args.get("type");
+
+    const blockContentLines: string[] = [];
     let blockEndIndex = currentIndex;
 
     for (let j = currentIndex + 1; j < lines.length; j++) {
-      const line = lines[j].trim();
-      if (line.startsWith('#+NAME:') || line.startsWith('#+BEGIN_FIXTURE') || line.startsWith('#+EXPECTED:')) {
+      const rawLine = lines[j];
+      const line = rawLine.trim();
+      // End the EXPECTED block on the next test/name marker, another EXPECTED,
+      // or a top-level headline (starts with one or more '*'). This prevents
+      // suggestion-style scope blocks followed immediately by a heading from
+      // being treated as invalid content.
+      if (
+        line.startsWith("#+NAME:") ||
+        line.startsWith("#+BEGIN_FIXTURE") ||
+        line.startsWith("#+EXPECTED:") ||
+        // Only treat a headline (e.g. "* Heading") as a terminator when it is
+        // not itself a scope assertion (which would include '=>'). This allows
+        // scope expectation lines that start with '*' (for headings) to be
+        // parsed correctly.
+        (/^\*+\s/.test(line) && !line.includes("=>"))
+      ) {
         blockEndIndex = j - 1;
         break;
       }
-      if (line.toLowerCase() === 'no-match') {
-        shouldMatch = false;
-      } else if (line.startsWith('|')) {
-        tableLines.push(line);
-      }
+      blockContentLines.push(rawLine); // Keep original indentation for table parsing
       blockEndIndex = j;
     }
 
-    const expectedCaptures = tableLines
-      .map(line => {
-        const parts = line.split('|').map(s => s.trim());
-        if (parts.length >= 3) {
-          const groupNumStr = parts[1];
-          if (groupNumStr !== 'Group #' && !isNaN(parseInt(groupNumStr, 10))) {
-            return { index: parseInt(groupNumStr, 10), value: processExpectedValue(parts[2]) };
-          }
-        }
-        return null;
-      })
-      .filter((item): item is { index: number; value: string } => item !== null);
+    if (testType === "regex") {
+      const regexName = args.get("name");
+      if (!regexName) {
+        throw new Error(
+          `Regex test case is missing a :name argument in line: ${expectedLine}`
+        );
+      }
 
-    allResults.push({
-      regex: regexName,
-      shouldMatch,
-      expectedCaptures: shouldMatch ? expectedCaptures : undefined,
-    });
+      let shouldMatch = true;
+      const tableLines: string[] = [];
+      for (const line of blockContentLines) {
+        if (line.trim().toLowerCase() === "no-match") {
+          shouldMatch = false;
+        } else if (line.trim().startsWith("|")) {
+          tableLines.push(line.trim());
+        }
+      }
+
+      const captures = tableLines
+        .map((line) => {
+          const parts = line.split("|").map((s) => s.trim());
+          if (parts.length >= 3) {
+            const groupNumStr = parts[1];
+            if (groupNumStr !== "Group #" && !groupNumStr.includes("---")) {
+              return {
+                index: parseInt(groupNumStr, 10),
+                value: processExpectedValue(parts[2]),
+              };
+            }
+          }
+          return null;
+        })
+        .filter(
+          (item): item is { index: number; value: string } => item !== null
+        );
+
+      allExpectations.push({
+        type: "regex",
+        name: regexName,
+        shouldMatch,
+        captures: shouldMatch ? captures : undefined,
+      });
+  } else if (testType === "scope") {
+      // Scope expectations use a multi-line tree-like format with 'text => scope' per line.
+      // Optional quotes around text are supported; optional leading '-' bullet and indentation are ignored.
+      // Example:
+      // - "[#A]" => constant.other.priority.org
+      //   - "A" => constant.other.priority.value.org
+
+  const assertions: { text: string; scopes: string[] }[] = [];
+      for (const raw of blockContentLines) {
+        const normalized = raw.replace(/\t/g, "    ");
+        let line = normalized;
+        if (line.trim() === "" || line.trim().startsWith("#")) {
+          continue;
+        }
+        // strip optional leading bullet and spaces
+        line = line.replace(/^\s*-\s*/, "");
+        if (!line.includes("=>")) {
+          continue;
+        }
+        const idx = line.indexOf("=>");
+        const left = line.slice(0, idx).trim();
+  let right = line.slice(idx + 2).trim();
+        if (!right) {
+          continue;
+        }
+
+        let text = left.trim();
+        if (
+          (text.startsWith('"') && text.endsWith('"')) ||
+          (text.startsWith("'") && text.endsWith("'"))
+        ) {
+          text = text.slice(1, -1);
+        }
+        text = processExpectedValue(text);
+        // Resolve {{scopes.NAME}} templates in the right-hand side to actual scope strings
+        right = right.replace(/\{\{\s*scopes\.([A-Za-z0-9_]+)\s*\}\}/g, (m, key) => {
+          const val = (scopeModule as any)[key];
+          return typeof val === 'string' ? val : m;
+        });
+
+        // parse scopes: comma-separated list
+        const scopes = right
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean);
+        assertions.push({ text, scopes });
+      }
+
+      // If there are no parsed assertions, only throw when the block contains
+      // meaningful (non-comment, non-blank) content. This lets fixtures include
+      // an empty scope block (or commented notes) which we use to trigger
+      // suggestion generation at test time.
+      const hasMeaningfulContent = blockContentLines.some((l) => {
+        const t = l.trim();
+        return t !== "" && !t.startsWith("#");
+      });
+
+      if (assertions.length === 0 && hasMeaningfulContent) {
+        throw new Error(
+          "Scope expectation block must contain lines in the format: text => scope"
+        );
+      }
+
+      allExpectations.push({ type: "scope", assertions });
+    }
 
     currentIndex = blockEndIndex + 1;
-    while (currentIndex < lines.length && lines[currentIndex].trim() === '') {
+    while (currentIndex < lines.length && lines[currentIndex].trim() === "") {
       currentIndex++;
     }
   }
 
-  return { results: allResults, endIndex: currentIndex - 1 };
+  return { expectations: allExpectations, endIndex: currentIndex - 1 };
 }
 
 export function parseFixtureFile(content: string): FixtureTestCase[] {
   const tests: FixtureTestCase[] = [];
-  const lines = content.split('\n');
+  const lines = content.split("\n");
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    if (!line.trim().toLowerCase().startsWith('#+name:')) {
+    if (!line.trim().toLowerCase().startsWith("#+name:")) {
       continue;
     }
 
-    const testName = line.replace(/^\s*#\+name:/i, '').trim();
+    const testName = line.replace(/^\s*#\+name:/i, "").trim();
     const containerStartLine = i + 1;
 
-    if (containerStartLine >= lines.length || !lines[containerStartLine].trim().toLowerCase().startsWith('#+begin_fixture')) {
+    if (
+      containerStartLine >= lines.length ||
+      !lines[containerStartLine]
+        .trim()
+        .toLowerCase()
+        .startsWith("#+begin_fixture")
+    ) {
       continue;
     }
 
@@ -90,7 +224,7 @@ export function parseFixtureFile(content: string): FixtureTestCase[] {
     let contentEndIndex = -1;
 
     for (let j = contentStartIndex; j < lines.length; j++) {
-      if (lines[j].trim().toLowerCase().startsWith('#+end_fixture')) {
+      if (lines[j].trim().toLowerCase().startsWith("#+end_fixture")) {
         contentEndIndex = j;
         break;
       }
@@ -100,24 +234,30 @@ export function parseFixtureFile(content: string): FixtureTestCase[] {
       continue; // Unmatched BEGIN_FIXTURE
     }
 
-    const input = lines.slice(contentStartIndex, contentEndIndex).join('\n');
+    const input = lines.slice(contentStartIndex, contentEndIndex).join("\n");
     i = contentEndIndex;
 
     let lookaheadIndex = i + 1;
-    while (lookaheadIndex < lines.length && lines[lookaheadIndex].trim() === '') {
+    while (
+      lookaheadIndex < lines.length &&
+      lines[lookaheadIndex].trim() === ""
+    ) {
       lookaheadIndex++;
     }
 
-    if (lookaheadIndex < lines.length && lines[lookaheadIndex].trim().toLowerCase().startsWith('#+expected:')) {
-      const { results, endIndex } = parseExpectedBlock(lines, lookaheadIndex);
-      // Create a test case for each result.
-      for (const result of results) {
-        tests.push({
-          name: testName,
-          input,
-          results: [result],
-        });
-      }
+    if (
+      lookaheadIndex < lines.length &&
+      lines[lookaheadIndex].trim().toLowerCase().startsWith("#+expected:")
+    ) {
+      const { expectations, endIndex } = parseExpectedBlock(
+        lines,
+        lookaheadIndex
+      );
+      tests.push({
+        name: testName,
+        input,
+        expectations,
+      });
       i = endIndex;
     }
   }

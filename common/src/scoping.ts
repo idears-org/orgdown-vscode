@@ -2,7 +2,34 @@
 // Single Source of Truth for TextMate Scopes
 
 // =================================================================
-// Headlines
+// 1. ABSTRACT STRUCTURAL SCOPES
+// =================================================================
+// These scopes are for defining the hierarchical structure of the
+// document and are not typically styled directly.
+
+/** The entire file header, from the beginning to the first heading. */
+export const META_HEADER = 'meta.file.header.org';
+
+/** The entire outline node, from a headline to the next. */
+export const META_NODE = 'meta.outline-node.org';
+
+/** Any single-line keyword-like directive. */
+export const META_DIRECTIVE = 'meta.directive.org';
+
+/** Any block-level element (begin-end, drawer, etc.). */
+export const META_BLOCK = 'meta.block.org';
+
+/** Any block defined by `#+BEGIN...` and `#+END...`. */
+export const META_BEGIN_END_BLOCK = 'meta.block.begin-end.org';
+
+/** Any drawer block defined by `:NAME:` and `:END:`. */
+export const META_DRAWER = 'meta.block.drawer.org';
+
+// =================================================================
+// 2. DETAILED IMPLEMENTATIONS
+// =================================================================
+
+// region Headlines
 // =================================================================
 
 /** The entire headline block, applied to the whole line. */
@@ -37,9 +64,9 @@ export const PROGRESS_COOKIE = 'constant.other.progress.org';
 /** A tag, e.g., `:work:`. */
 export const TAG = 'entity.name.tag.org';
 
+// endregion
 
-// =================================================================
-// Lists
+// region Lists
 // =================================================================
 
 /** An unordered list item's text content. */
@@ -66,29 +93,21 @@ export const LIST_COUNTER = 'constant.numeric.list-counter.org';
 /** The numeric value inside a counter, e.g., `5`. */
 export const LIST_COUNTER_VALUE = 'constant.numeric.value.org';
 
+// endregion
 
-// =================================================================
-// Horizontal Rules
+// region Horizontal Rules
 // =================================================================
 
 /** A horizontal rule, e.g., `-----`. */
 export const HORIZONTAL_RULE = 'meta.separator.org';
 
+// endregion
 
-// =================================================================
-// Generic Scopes
+// region Generic Block Parts
 // =================================================================
 
 /** Leading whitespace for lists and blocks. */
 export const LEADING_WHITESPACE = 'string.other.whitespace.leading.org';
-
-
-// =================================================================
-// Blocks (Generic)
-// =================================================================
-
-/** A meta scope for any block, for uniform styling. */
-export const BLOCK_META = 'meta.block.org';
 
 /** The content of a block. */
 export const BLOCK_CONTENT = 'markup.block.org';
@@ -108,24 +127,19 @@ export const BLOCK_PARAMETER_KEY = 'keyword.other.property.key.org';
 /** The value of a parameter, e.g., `output`. */
 export const BLOCK_PARAMETER_VALUE = 'string.unquoted.property.value.org';
 
+// endregion
 
-// =================================================================
-// Standard Blocks (Specific)
+// region Specific Blocks
 // =================================================================
 
 /** The meta scope for the entire standard block. */
-export const BLOCK_STANDARD_META = 'meta.block.standard.org';
+export const BLOCK_STANDARD_META = 'meta.block.begin-end.standard.org';
 
 /** The content area of a standard block. */
 export const BLOCK_STANDARD_CONTENT = 'markup.block.standard.org';
 
-
-// =================================================================
-// Source Blocks (Specific)
-// =================================================================
-
 /** The meta scope for the entire source block. */
-export const BLOCK_SRC_META = 'meta.block.src.org';
+export const BLOCK_SRC_META = 'meta.block.begin-end.src.org';
 
 /** The content area of a source block. */
 export const BLOCK_SRC_CONTENT = 'markup.block.src.org';
@@ -136,34 +150,25 @@ export const BLOCK_LANGUAGE = 'entity.name.type.language.org';
 /** A switch in a source block, e.g., `-n` or `+n`. */
 export const BLOCK_SWITCH = 'storage.modifier.switch.org';
 
-// =================================================================
-// Dynamic Blocks (Specific)
-// =================================================================
-
 /** The meta scope for the entire dynamic block. */
-export const DYNAMIC_BLOCK_META = 'meta.block.dynamic.org';
+export const DYNAMIC_BLOCK_META = 'meta.block.begin-end.dynamic.org';
 
 /** The content area of a dynamic block. */
 export const DYNAMIC_BLOCK_CONTENT = 'markup.block.dynamic.org';
 
-
-// =================================================================
-// Customized Blocks (Specific)
-// =================================================================
-
 /** The meta scope for the entire customized block. */
-export const BLOCK_CUSTOMIZED_META = 'meta.block.customized.org';
+export const BLOCK_CUSTOMIZED_META = 'meta.block.begin-end.customized.org';
 
 /** The content area of a customized block. */
 export const BLOCK_CUSTOMIZED_CONTENT = 'markup.block.customized.org';
 
+// endregion
 
-// =================================================================
-// Keywords
+// region Keyword-Like Lines
 // =================================================================
 
 /** The entire keyword line, e.g., `#+TITLE: My Title`. */
-export const KEYWORD = 'meta.keyword.org';
+export const KEYWORD = 'meta.directive.keyword.org';
 
 /** The keyword key, e.g., `#+TITLE:`. */
 export const KEYWORD_KEY = 'keyword.other.org';
@@ -174,13 +179,32 @@ export const KEYWORD_NAME = 'entity.name.function.org';
 /** The value of the keyword, e.g., `My Title`. */
 export const KEYWORD_VALUE = 'string.unquoted.org';
 
+/** The meta scope for a link abbreviation line. */
+export const LINK_ABBREVIATION_META = 'meta.directive.link-abbreviation.org';
 
-// =================================================================
-// Drawers
-// =================================================================
+/** The `#+LINK:` keyword itself. */
+export const LINK_ABBREVIATION_KEYWORD = 'keyword.other.link.abbreviation.org';
 
-/** The meta scope for the entire drawer. */
-export const DRAWER_META = 'meta.block.drawer.org';
+/** The abbreviation key, e.g., `gh`. */
+export const LINK_ABBREVIATION_KEY = 'variable.parameter.link.abbreviation.org';
+
+/** The URL template for an abbreviation. */
+export const LINK_ABBREVIATION_URL =
+  'string.unquoted.link.abbreviation.url.org';
+
+/** The meta scope for the entire planning line. */
+export const PLANNING_LINE_META = 'meta.directive.planning.org';
+
+/** The keyword for a planning line. */
+export const PLANNING_KEYWORD = 'keyword.control.task-management.org';
+
+/** The timestamp for a planning line. */
+export const PLANNING_TIMESTAMP = 'constant.other.timestamp.planning.org';
+
+// endregion
+
+// region Drawers
+// =================================================================
 
 /** The keyword for the beginning of a drawer. */
 export const DRAWER_BEGIN_KEYWORD = 'keyword.control.block.drawer.begin.org';
@@ -194,43 +218,8 @@ export const DRAWER_NAME = 'entity.name.function.drawer.org';
 /** The content of a drawer. */
 export const DRAWER_CONTENT = 'markup.block.drawer.content.org';
 
-// =================================================================
-// Planning Lines
-// =================================================================
-
-/** The meta scope for the entire planning line. */
-export const PLANNING_LINE_META = 'meta.line.planning.org';
-
-/** The keyword for a planning line. */
-export const PLANNING_KEYWORD = 'keyword.control.task-management.org';
-
-/** The timestamp for a planning line. */
-export const PLANNING_TIMESTAMP = 'constant.other.timestamp.planning.org';
-
-
-// =================================================================
-// Timestamps
-// =================================================================
-
-/** An active timestamp, e.g., `<2025-08-01 Fri>`. */
-export const TIMESTAMP_ACTIVE = 'constant.other.timestamp.active.org';
-
-/** An inactive timestamp, e.g., `[2025-08-01 Fri]`. */
-export const TIMESTAMP_INACTIVE = 'constant.other.timestamp.inactive.org';
-
-/** An active timestamp range, e.g., `<2025-08-01>--<2025-08-02>`. */
-export const TIMESTAMP_ACTIVE_RANGE = 'constant.other.timestamp.active.range.org';
-
-/** An inactive timestamp range, e.g., `[2025-08-01]--[2025-08-02]`. */
-export const TIMESTAMP_INACTIVE_RANGE = 'constant.other.timestamp.inactive.range.org';
-
-
-// =================================================================
-// Properties
-// =================================================================
-
 /** The meta scope for the entire properties drawer. */
-export const PROPERTY_DRAWER_META = 'meta.property-drawer.org';
+export const PROPERTY_DRAWER_META = 'meta.block.drawer.property.org';
 
 /** The keyword for the beginning of a properties drawer. */
 export const PROPERTY_DRAWER_BEGIN_KEYWORD =
@@ -249,9 +238,26 @@ export const PROPERTY_KEY = 'entity.name.property.org';
 /** The value of a property. */
 export const PROPERTY_VALUE = 'variable.other.property.value.org';
 
+// endregion
 
+// region Timestamps
 // =================================================================
-// Inline Markup
+
+/** An active timestamp, e.g., `<2025-08-01 Fri>`. */
+export const TIMESTAMP_ACTIVE = 'constant.other.timestamp.active.org';
+
+/** An inactive timestamp, e.g., `[2025-08-01 Fri]`. */
+export const TIMESTAMP_INACTIVE = 'constant.other.timestamp.inactive.org';
+
+/** An active timestamp range, e.g., `<2025-08-01>--<2025-08-02>`. */
+export const TIMESTAMP_ACTIVE_RANGE = 'constant.other.timestamp.active.range.org';
+
+/** An inactive timestamp range, e.g., `[2025-08-01]--[2025-08-02]`. */
+export const TIMESTAMP_INACTIVE_RANGE = 'constant.other.timestamp.inactive.range.org';
+
+// endregion
+
+// region Inline Markup
 // =================================================================
 
 export const BOLD = 'markup.bold.org';
@@ -261,10 +267,6 @@ export const STRIKETHROUGH = 'markup.strikethrough.org';
 export const CODE = 'markup.inline.raw.org';
 export const VERBATIM = 'markup.inline.raw.org';
 export const LINK = 'markup.underline.link.org';
-
-// =================================================================
-// Links
-// =================================================================
 
 /** The entire link structure, e.g., [[...]]. */
 export const LINK_META = 'meta.link.org';
@@ -284,15 +286,4 @@ export const LINK_DESCRIPTION = 'string.other.link.description.org';
 /** The protocol of a link, e.g., `http:`, `file:`. */
 export const LINK_PROTOCOL = 'keyword.other.link.protocol.org';
 
-/** The meta scope for a link abbreviation line. */
-export const LINK_ABBREVIATION_META = 'meta.link.abbreviation.org';
-
-/** The `#+LINK:` keyword itself. */
-export const LINK_ABBREVIATION_KEYWORD = 'keyword.other.link.abbreviation.org';
-
-/** The abbreviation key, e.g., `gh`. */
-export const LINK_ABBREVIATION_KEY = 'variable.parameter.link.abbreviation.org';
-
-/** The URL template for an abbreviation. */
-export const LINK_ABBREVIATION_URL =
-  'string.unquoted.link.abbreviation.url.org';
+// endregion

@@ -1,23 +1,11 @@
 #+TITLE: Test Suite for Planning Lines
 
-#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
-
-* === Line Scopes ===
-# The following scope is applied to the entire planning line.
-- meta.line.planning.org
-
-* === Capture Group Scopes ===
-# The following scopes are applied to the specific parts of the planning line.
-1. keyword -> keyword.control.task-management.org
-2. timestamp -> constant.other.timestamp.org
-#+END_COMMENT
-
 #+NAME: Simple SCHEDULED planning line
 #+BEGIN_FIXTURE
 SCHEDULED: <2025-08-01 Fri>
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | SCHEDULED      |
@@ -28,7 +16,7 @@ SCHEDULED: <2025-08-01 Fri>
 DEADLINE: <2025-08-05 Tue>
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | DEADLINE       |
@@ -39,7 +27,7 @@ DEADLINE: <2025-08-05 Tue>
 CLOSED: [2025-08-03 Sun 12:00]
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | CLOSED         |
@@ -50,7 +38,7 @@ CLOSED: [2025-08-03 Sun 12:00]
 SCHEDULED: <2025-08-07 Thu +1w>
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | SCHEDULED      |
@@ -61,7 +49,7 @@ SCHEDULED: <2025-08-07 Thu +1w>
 SCHEDULED: <2025-08-11 Mon>--<2025-08-13 Wed>
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | SCHEDULED      |
@@ -72,7 +60,7 @@ SCHEDULED: <2025-08-11 Mon>--<2025-08-13 Wed>
 SCHEDULED: [2025-08-07 Thu]
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | SCHEDULED      |
@@ -83,7 +71,7 @@ SCHEDULED: [2025-08-07 Thu]
 scheduled: <2025-08-19 Tue>
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | scheduled      |
@@ -94,7 +82,7 @@ scheduled: <2025-08-19 Tue>
 SCHEDULED:   <2025-08-18 Mon>
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | SCHEDULED      |
@@ -105,7 +93,7 @@ SCHEDULED:   <2025-08-18 Mon>
 SCHEDULED:<2025-08-17 Sun>
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | SCHEDULED      |
@@ -116,7 +104,7 @@ SCHEDULED:<2025-08-17 Sun>
 SCHEDULED: <2025-08-15 Fri> some text
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 no-match
 
 #+NAME: Planning line with text before
@@ -124,7 +112,7 @@ no-match
 some text SCHEDULED: <2025-08-16 Sat>
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 no-match
 
 #+NAME: Planning line with no timestamp
@@ -132,7 +120,7 @@ no-match
 SCHEDULED:
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 no-match
 
 #+NAME: Planning line with invalid timestamp
@@ -140,7 +128,7 @@ no-match
 SCHEDULED: <2025-08-14>
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | SCHEDULED      |
@@ -151,5 +139,5 @@ SCHEDULED: <2025-08-14>
 SCHEDULED: <2025-08-24 Sun> <2025-08-25 Mon>
 #+END_FIXTURE
 
-#+EXPECTED: planningLineRegex
+#+EXPECTED: :type regex :name planningLineRegex
 no-match

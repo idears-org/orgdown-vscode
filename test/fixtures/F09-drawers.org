@@ -1,27 +1,5 @@
 #+TITLE: Test Suite for Drawers
 
-#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
-
-* === Block Scopes ===
-# The following scopes are applied to the entire drawer.
-- meta.block.org
-- meta.block.drawer.org
-
-* === Begin/End Scopes ===
-- keyword.control.block.org
-- keyword.control.block.drawer.begin.org
-- keyword.control.block.drawer.end.org
-
-* === Content Scopes ===
-# The following scopes are applied to the content of the drawer.
-- markup.block.org
-- markup.block.drawer.content.org
-
-* === Capture Group Scopes ===
-# The following scopes are applied to the specific parts of the drawer.
-1. drawer name -> entity.name.function.drawer.org
-#+END_COMMENT
-
 #+NAME: Standard PROPERTIES drawer should not match generic drawer regex
 #+BEGIN_FIXTURE
 :PROPERTIES:
@@ -31,7 +9,7 @@
 :END:
 #+END_FIXTURE
 
-#+EXPECTED: genericDrawerBeginRegex
+#+EXPECTED: :type regex :name genericDrawerBeginRegex
 no-match
 
 #+NAME: LOGBOOK drawer
@@ -42,12 +20,12 @@ no-match
 :END:
 #+END_FIXTURE
 
-#+EXPECTED: genericDrawerBeginRegex
+#+EXPECTED: :type regex :name genericDrawerBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | LOGBOOK        |
 
-#+EXPECTED: drawerEndRegex
+#+EXPECTED: :type regex :name drawerEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | :END:          |
@@ -59,12 +37,12 @@ This is a custom drawer.
 :END:
 #+END_FIXTURE
 
-#+EXPECTED: genericDrawerBeginRegex
+#+EXPECTED: :type regex :name genericDrawerBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | CUSTOM         |
 
-#+EXPECTED: drawerEndRegex
+#+EXPECTED: :type regex :name drawerEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | :END:          |
@@ -76,12 +54,12 @@ Mixed case drawer name
 :END:
 #+END_FIXTURE
 
-#+EXPECTED: genericDrawerBeginRegex
+#+EXPECTED: :type regex :name genericDrawerBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | LogBook        |
 
-#+EXPECTED: drawerEndRegex
+#+EXPECTED: :type regex :name drawerEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | :END:          |
@@ -93,12 +71,12 @@ Mixed case drawer name
     :END:
 #+END_FIXTURE
 
-#+EXPECTED: genericDrawerBeginRegex
+#+EXPECTED: :type regex :name genericDrawerBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | INDENTED       |
 
-#+EXPECTED: drawerEndRegex
+#+EXPECTED: :type regex :name drawerEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <sp:4>:END:          |
@@ -112,12 +90,12 @@ Line 3
 :END:
 #+END_FIXTURE
 
-#+EXPECTED: genericDrawerBeginRegex
+#+EXPECTED: :type regex :name genericDrawerBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | DATA           |
 
-#+EXPECTED: drawerEndRegex
+#+EXPECTED: :type regex :name drawerEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | :END:          |
@@ -128,12 +106,12 @@ Line 3
 :END:
 #+END_FIXTURE
 
-#+EXPECTED: genericDrawerBeginRegex
+#+EXPECTED: :type regex :name genericDrawerBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | EMPTY          |
 
-#+EXPECTED: drawerEndRegex
+#+EXPECTED: :type regex :name drawerEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | :END:          |
@@ -144,12 +122,12 @@ Line 3
 This drawer is not closed
 #+END_FIXTURE
 
-#+EXPECTED: genericDrawerBeginRegex
+#+EXPECTED: :type regex :name genericDrawerBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | UNFINISHED     |
 
-#+EXPECTED: drawerEndRegex
+#+EXPECTED: :type regex :name drawerEndRegex
 no-match
 
 #+NAME: Drawer with block inside should not match generic
@@ -161,7 +139,7 @@ print("Should not be here")
 :END:
 #+END_FIXTURE
 
-#+EXPECTED: genericDrawerBeginRegex
+#+EXPECTED: :type regex :name genericDrawerBeginRegex
 no-match
 
 #+NAME: Drawer with headline inside
@@ -171,12 +149,12 @@ no-match
 :END:
 #+END_FIXTURE
 
-#+EXPECTED: genericDrawerBeginRegex
+#+EXPECTED: :type regex :name genericDrawerBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | LOGBOOK        |
 
-#+EXPECTED: drawerEndRegex
+#+EXPECTED: :type regex :name drawerEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       |                |

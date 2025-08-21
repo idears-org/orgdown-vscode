@@ -1,26 +1,5 @@
 #+TITLE: Comprehensive Test Suite for Standard Blocks
 
-#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
-
-* === Block Scopes ===
-# The following meta scopes are applied to the entire standard block.
-- meta.block.org
-- meta.block.standard.org
-
-# The following content scopes are applied to the content of the block.
-- markup.block.org
-- markup.block.standard.org
-
-* === Capture Group Scopes (Begin Regex) ===
-1. indentation -> string.other.whitespace.leading.org
-2. begin keyword -> keyword.control.block.org
-3. block name -> entity.name.function.block.org
-4. parameters -> variable.parameter.block.org
-   - :key -> variable.parameter.key.org
-   - value -> string.unquoted.parameter.value.org
-
-#+END_COMMENT
-
 * 1. Integration Test Cases
 
 This section is the primary source for the snapshot test. It should contain
@@ -138,7 +117,7 @@ cannot be unit-tested here due to their use of backreferences.
 #+END_QUOTE
 #+END_FIXTURE
 
-#+EXPECTED: standardBlockMarkupBeginRegex
+#+EXPECTED: :type regex :name standardBlockMarkupBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -152,7 +131,7 @@ cannot be unit-tested here due to their use of backreferences.
   #+eNd_VeRsE
 #+END_FIXTURE
 
-#+EXPECTED: standardBlockMarkupBeginRegex
+#+EXPECTED: :type regex :name standardBlockMarkupBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | <sp:2>         |
@@ -166,7 +145,7 @@ cannot be unit-tested here due to their use of backreferences.
 #+END_EXAMPLE
 #+END_FIXTURE
 
-#+EXPECTED: standardBlockVerbatimBeginRegex
+#+EXPECTED: :type regex :name standardBlockVerbatimBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -180,7 +159,7 @@ cannot be unit-tested here due to their use of backreferences.
 #+end_comment
 #+END_FIXTURE
 
-#+EXPECTED: standardBlockVerbatimBeginRegex
+#+EXPECTED: :type regex :name standardBlockVerbatimBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -194,10 +173,10 @@ cannot be unit-tested here due to their use of backreferences.
 #+END_SRC
 #+END_FIXTURE
 
-#+EXPECTED: standardBlockMarkupBeginRegex
+#+EXPECTED: :type regex :name standardBlockMarkupBeginRegex
 no-match
 
-#+EXPECTED: standardBlockVerbatimBeginRegex
+#+EXPECTED: :type regex :name standardBlockVerbatimBeginRegex
 no-match
 
 #+NAME: Unit Test: blockParameterRegex with quoted value
@@ -205,7 +184,7 @@ no-match
 :author "John Doe"
 #+END_FIXTURE
 
-#+EXPECTED: blockParameterRegex
+#+EXPECTED: :type regex :name blockParameterRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | :author        |

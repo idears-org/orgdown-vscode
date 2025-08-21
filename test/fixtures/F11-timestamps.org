@@ -1,25 +1,11 @@
 #+TITLE: Test Suite for Timestamps
 
-#+BEGIN_COMMENT :description Expected Scopes & Capture Groups:
-
-* === Scopes ===
-# The following scopes are applied to timestamps.
-- constant.other.timestamp.active.org
-- constant.other.timestamp.inactive.org
-- constant.other.timestamp.active.range.org
-- constant.other.timestamp.inactive.range.org
-
-* === Capture Group Scopes ===
-# The following scopes are applied to the specific parts of the timestamp.
-# TBD
-#+END_COMMENT
-
 #+NAME: Active timestamp
 #+BEGIN_FIXTURE
 <2025-08-01 Fri>
 #+END_FIXTURE
 
-#+EXPECTED: timestampActiveRegex
+#+EXPECTED: :type regex :name timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri> |
@@ -29,7 +15,7 @@
 [2025-08-01 Fri]
 #+END_FIXTURE
 
-#+EXPECTED: timestampInactiveRegex
+#+EXPECTED: :type regex :name timestampInactiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | [2025-08-01 Fri] |
@@ -39,7 +25,7 @@
 <2025-08-01 Fri 10:00>
 #+END_FIXTURE
 
-#+EXPECTED: timestampActiveRegex
+#+EXPECTED: :type regex :name timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri 10:00> |
@@ -49,7 +35,7 @@
 <2025-08-01 Fri 10:00-12:00>
 #+END_FIXTURE
 
-#+EXPECTED: timestampActiveRegex
+#+EXPECTED: :type regex :name timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri 10:00-12:00> |
@@ -59,7 +45,7 @@
 <2025-08-01 Fri>--<2025-08-05 Tue>
 #+END_FIXTURE
 
-#+EXPECTED: timestampActiveRangeRegex
+#+EXPECTED: :type regex :name timestampActiveRangeRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri>--<2025-08-05 Tue> |
@@ -69,7 +55,7 @@
 [2025-08-01 Fri]--[2025-08-05 Tue]
 #+END_FIXTURE
 
-#+EXPECTED: timestampInactiveRangeRegex
+#+EXPECTED: :type regex :name timestampInactiveRangeRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | [2025-08-01 Fri]--[2025-08-05 Tue] |
@@ -79,7 +65,7 @@
 <2025-08-01 Fri +1w>
 #+END_FIXTURE
 
-#+EXPECTED: timestampActiveRegex
+#+EXPECTED: :type regex :name timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri +1w> |
@@ -89,7 +75,7 @@
 <2025-08-01 Fri +2d/3w>
 #+END_FIXTURE
 
-#+EXPECTED: timestampActiveRegex
+#+EXPECTED: :type regex :name timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri +2d/3w> |
@@ -99,7 +85,7 @@
 <2025-08-01 Fri -5d>
 #+END_FIXTURE
 
-#+EXPECTED: timestampActiveRegex
+#+EXPECTED: :type regex :name timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-01 Fri -5d> |
@@ -109,7 +95,7 @@
 <2025-08-01
 #+END_FIXTURE
 
-#+EXPECTED: timestampActiveRegex
+#+EXPECTED: :type regex :name timestampActiveRegex
 no-match
 
 #+NAME: Incomplete timestamp 2
@@ -117,7 +103,7 @@ no-match
 <2025-08-01 Fri 10:00-
 #+END_FIXTURE
 
-#+EXPECTED: timestampActiveRegex
+#+EXPECTED: :type regex :name timestampActiveRegex
 no-match
 
 #+NAME: Incomplete timestamp 3
@@ -125,7 +111,7 @@ no-match
 [2025-08-01 Fri
 #+END_FIXTURE
 
-#+EXPECTED: timestampInactiveRegex
+#+EXPECTED: :type regex :name timestampInactiveRegex
 no-match
 
 #+NAME: Timestamp with no space after
@@ -133,7 +119,7 @@ no-match
 <2025-08-23 Sat>No space after
 #+END_FIXTURE
 
-#+EXPECTED: timestampActiveRegex
+#+EXPECTED: :type regex :name timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-23 Sat> |
@@ -143,7 +129,7 @@ no-match
 <2025-08-18 Mon> #!@# [2025-08-19 Tue]
 #+END_FIXTURE
 
-#+EXPECTED: timestampActiveRegex
+#+EXPECTED: :type regex :name timestampActiveRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-18 Mon> |

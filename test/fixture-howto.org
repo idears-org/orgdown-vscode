@@ -2,9 +2,9 @@
 
 * 1. Introduction
 
-This directory contains the test fixtures for Orgdown's grammar unit tests. These files serve as the **Single Source of Truth (SSoT)** for defining the expected behavior of our regular expressions.
+This directory contains the test fixtures for Orgdown's grammar unit tests. These files serve as the **Single Source of Truth (SSoT)** for defining the expected behavior of our regular expressions and scoping.
 
-The test runner in `test/unit/grammar-regex.test.ts` automatically discovers and executes these `.org` files.
+The test runners in `test/unit/grammar-regex.test.ts` and `test/unit/grammar-scoping.test.ts` automatically discover and execute these `.org` files.
 
 * 2. Fixture Structure
 
@@ -16,8 +16,8 @@ Each fixture file is composed of one or more test cases. Each test case MUST fol
 The Org Mode text to be tested against a regex.
 #+END_FIXTURE
 
-#+EXPECTED: regexName
-... expected results ...
+#+EXPECTED: :type regex :name <regexName>
+... regex expected results ...
 #+END_SRC
 
 * 3. Core Components
@@ -39,15 +39,16 @@ The Org Mode text to be tested against a regex.
 
 *** 3.3. Expected Results (`#+EXPECTED`)
 
-- **Purpose**: Defines the assertion to be made for the test case.
-- **Format**: `#+EXPECTED: <regexName>`
-  - `<regexName>` MUST be the exact name of a regex constant exported from `common/src/grammar/regex.ts`.
+- **Purpose**: Defines the assertion(s) to be made for the test case.
+- **Formats**:
+  - Regex assertions: `#+EXPECTED: :type regex :name <regexName>` where `<regexName>` MUST be the exact name of a regex constant exported from `common/src/grammar/regex.ts`.
+  - Scope assertions: `#+EXPECTED: :type scope` followed by one or more arrow lines in the format `text => scope[, scope2, ...]` (see Section 5).
 
 * 4. Assertion Types
 
 There are two types of assertions you can make.
 
-*** 4.1. Asserting a Match
+*** 4.1. Asserting a Match (Regex)
 
 To assert that the input *should* match the regex, provide a table of expected capture group values.
 
@@ -63,7 +64,7 @@ To assert that the input *should* match the regex, provide a table of expected c
 #+BEGIN_FIXTURE
 * TODO [#A] A task
 #+END_FIXTURE
-#+EXPECTED: headlineLevel1Regex
+#+EXPECTED: :type regex :name headlineLevel1Regex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | *              |
@@ -76,7 +77,7 @@ To assert that the input *should* match the regex, provide a table of expected c
 # We don't care about group 6 (progress), so it's omitted from the table.
 #+END_SRC
 
-*** 4.2. Asserting No Match
+*** 4.2. Asserting No Match (Regex)
 
 To assert that the input *should not* match the regex, use the keyword `no-match`.
 
@@ -85,40 +86,56 @@ To assert that the input *should not* match the regex, use the keyword `no-match
 #+BEGIN_FIXTURE
 This is not a headline.
 #+END_FIXTURE
-#+EXPECTED: headlineLevel1Regex
+#+EXPECTED: :type regex :name headlineLevel1Regex
 no-match
 #+END_SRC
 
-* 5. Scope Documentation for Theming
+* 5. Scope Assertions for Theming & Scoping
 
-To make fixtures a complete reference for theme developers, it's crucial to document the expected TextMate scopes.
+To make fixtures a complete reference for theme developers, scope expectations are specified with an arrow-based, multi-line, human-friendly format.
 
-- **Convention**: At the top of each fixture file, include a `#+BEGIN_COMMENT` block.
-- **Content**: This block should clearly list the block-level scopes and the scopes corresponding to each capture group for the relevant regular expressions.
+- Use `#+EXPECTED: :type scope` followed by one or more lines in the form:
+  `text => scope[, scope2, ...]`
 
-**Example from `F01-headlines.org`**:
+- Left side `text` is matched to a single token's exact text. You can quote it with single or double quotes to include spaces or special characters.
+- Right side is one or more scope names, comma-separated.
+- Matching semantics:
+  - The token's scopes MUST include all scopes listed on the right (superset), but may include additional scopes. Scope order is ignored.
+  - One assertion consumes exactly one token (no multi-token concatenation).
+- Readability helpers (optional):
+  - You may indent lines or prefix with `- ` for visual grouping; they will be ignored by the parser.
+  - Special placeholders in `text` are supported and will be converted before matching:
+    - `<sp:N>` → N spaces
+    - `<tab>` → a tab character
+    - `<pipe>` → a literal `|`
+
+- Recommended placement:
+  - Put a self-explanatory “Show Case” test case near the top of the file, containing both a representative fixture and its scope assertions.
+  - Then follow with additional cases (regex or scope) as needed.
+
+**Example (from `F01-headlines.org`)**:
 #+BEGIN_SRC org
 #+TITLE: Test Suite for Headlines
 
-#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
-
-* === Block Scopes ===
-# The following scopes are applied to the entire headline.
-- markup.heading.org
-- heading.1.org, heading.2.org, etc.
-
-* === Capture Group Scopes ===
-# The following scopes are applied to the specific parts of the headline.
-1. stars -> punctuation.definition.heading.org
-2. todo -> keyword.other.todo.org
-3. priority block -> constant.other.priority.org
-4. priority letter -> constant.other.priority.value.org
-5. headline text -> entity.name.section.org
-6. progress/cookie -> constant.other.progress.org
-7. tags -> entity.name.tag.org
-#+END_COMMENT
-
-... rest of the fixture ...
+#+NAME: Complete headline with all elements
+#+BEGIN_FIXTURE
+* TODO [#A] Complete headline example [2/5] :work:project:
+#+END_FIXTURE
+#+EXPECTED: :type regex :name headlineLevel1Regex
+| Group # | Expected Value            |
+|---------+---------------------------|
+| 1       | *                         |
+| 2       | TODO                      |
+| 3       | [#A]                      |
+| 4       | A                         |
+| 5       | Complete headline example |
+| 6       | [2/5]                     |
+| 7       | :work:project:            |
+#+EXPECTED: :type scope
+"*" => markup.heading.org, markup.heading.1.org, punctuation.definition.heading.org
+"<sp:1>" => markup.heading.org, markup.heading.1.org
+"TODO" => markup.heading.org, markup.heading.1.org, keyword.other.todo.org
+... etc.
 #+END_SRC
 
 * 6. Special Syntaxes in Results
@@ -129,6 +146,7 @@ To handle whitespace and other special characters cleanly in the results table, 
   - Example: `<sp:1>` becomes `" "`.
   - Example: `<sp:4>` becomes `"    "`.
 - `<tab>`: Represents a literal tab character (`\t`).
+- `<pipe>`: Represents a literal vertical bar (`|`).
 
 **Example**:
 #+BEGIN_SRC org
@@ -153,13 +171,13 @@ The test runner supports testing a single input against multiple regular express
 * A headline
 #+END_FIXTURE
 
-#+EXPECTED: headlineLevel1Regex
+#+EXPECTED: :type regex :name headlineLevel1Regex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | *              |
 | 5       | A headline     |
 
-#+EXPECTED: headlineDetectRegex
+#+EXPECTED: :type regex :name headlineDetectRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | * A headline   |

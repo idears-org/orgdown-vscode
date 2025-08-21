@@ -104,7 +104,7 @@ function generateOrgSrcBlockDefinitions(): any[] {
     // This rule is highly specific to one language. It matches the language identifier
     // and then includes the correct grammar.
     return {
-      name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_SRC_META}}',
+      name: '{{scopes.META_BLOCK}} {{scopes.BLOCK_SRC_META}}',
       begin: '(?i)^(\\s*)(#\\+BEGIN_SRC)[ \\t]+(' + lang.identifiers.join('|') + ')\\b([ \\t].*)?$',
       end: '{{regexs.srcBlockEndRegex}}',
       beginCaptures: {
@@ -134,7 +134,7 @@ function generateOrgSrcBlockDefinitions(): any[] {
 
   // Fallback for unknown languages. It's a separate rule.
   patterns.push({
-    name: '{{scopes.BLOCK_META}} {{scopes.BLOCK_SRC_META}}',
+    name: '{{scopes.META_BLOCK}} {{scopes.BLOCK_SRC_META}}',
     begin: '{{regexs.srcBlockBeginRegex}}',
     end: '{{regexs.srcBlockEndRegex}}',
     beginCaptures: {

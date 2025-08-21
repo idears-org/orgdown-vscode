@@ -1,0 +1,113 @@
+#+TITLE: ADR-007: Hierarchical and Reusable Grammar Structure
+#+AUTHOR: Orgdown Team
+#+DATE: <2025-08-20 Wed>
+#+STATUS: Accepted
+
+* 1. Context
+
+The initial TextMate grammar for Orgdown was developed incrementally. This resulted in a flat structure where diverse elements (headings, lists, blocks, keywords) were treated as peers, failing to reflect the semantic and hierarchical nature of an Org Mode document.
+
+This made handling specialized cases difficult and made scope inheritance unclear, posing a significant maintainability challenge.
+
+* 2. Decision
+
+We will refactor the `tmlanguage` grammar to a hierarchical and reusable model that mirrors the logical structure of an Org Mode document. The core principles of this new architecture are:
+
+** 2.1. Architecture Diagram
+
+The following diagram illustrates the hierarchical structure of the grammar rules in the `repository`.
+
+#+BEGIN_SRC text
+#document-root
+|
+├── #file-header
+|   |
+│   └── #keyword-like-lines
+│       ├── #planning-lines
+│       ├── #link-abbreviations
+│       └── #keywords (generic)
+|
+└── #outline-node (repeats)
+    |
+    ├── #headline
+    |
+    └── #section-content
+        |
+        ├── #keyword-like-lines (reused)
+        |
+        ├── #blocks
+        |   ├── #begin-end-blocks
+        |   |   ├── #src-block
+        |   |   └── ...
+        |   ├── #drawer-blocks
+        |   |   ├── #property_drawer
+        |   |   └── #drawers (generic)
+        |   └── #horizontal-rules
+        |
+        ├── #lists
+        |
+        └── #paragraph
+            |
+            └── #inline-markup
+                ├── #links
+                └── ...
+#+END_SRC
+
+** 2.2. Logical Scope Hierarchy
+
+Our scope naming convention systematically leverages the new hierarchy to provide clear, inheritable scopes for theming, following TextMate best practices.
+
+- *Principle 1: `meta.*` for Containers*. `meta` scopes define logical areas and are not styled directly. They provide the inheritable foundation for child elements.
+- *Principle 2: `markup.*`, `keyword.*`, etc. for Tokens*. These scopes are for visible text and are styled directly.
+- *Principle 3: Multi-Scoping for Inheritance*. A rule is assigned a stack of scopes (e.g., `meta.block.org meta.begin-end-block.org`) to allow for layered styling.
+
+This results in the following logical scope hierarchy:
+
+#+BEGIN_SRC text
+(root)
+└── meta.outline-node.org
+    ├── markup.heading.org
+    └── (section-content)
+        ├── meta.directive.org
+        |   ├── meta.directive.planning.org
+        |   └── ...
+        ├── meta.block.org
+        |   ├── meta.begin-end-block.org
+        |   |   └── meta.begin-end-block.src.org
+        |   └── meta.drawer-block.org
+        |       └── meta.drawer-block.property.org
+        ├── markup.list.org
+        └── markup.paragraph.org
+#+END_SRC
+
+** 2.3. Implementation Principles
+
+- **Separation of Location and Form**: The architecture separates the syntactic location of an element (e.g., `#file-header`) from its syntactic form (e.g., `#keyword-like-lines`), allowing the latter to be reused.
+
+- **Consistent Specialization**: Specialized versions of a syntax are always matched *before* their generic counterparts (e.g., `#property_drawer` before `#drawers`).
+
+- **YAML Readability**: YAML anchors (`&`) and aliases (`*`) will be used extensively to keep the grammar file DRY and readable.
+
+** 2.4. Scope Application Example
+
+A `#+BEGIN_SRC` block will accumulate scopes from its parent rules:
+1. It is inside an `#outline-node`, so it inherits `meta.outline-node.org`.
+2. It is matched by `#blocks`, which gives it `meta.block.org`.
+3. It is matched by `#begin-end-blocks`, which gives it `meta.block.begin-end.org`.
+4. It is finally matched by `#src-block`, which gives it `meta.block.begin-end.src.org`.
+
+The final scope stack allows a theme to style all nodes, all blocks, all begin-end blocks, or only source blocks with increasing levels of specificity.
+
+* 3. Consequences
+
+** 3.1. Positive
+
+- **Semantic Clarity**: The grammar structure now accurately reflects the document structure.
+- **Maintainability & Reusability**: The new structure is easier to understand, debug, and extend.
+- **Powerful Theming**: The layered scopes provide maximum flexibility for theming.
+- **Consistency**: Provides a clear, consistent pattern for handling all syntax.
+
+** 3.2. Negative
+
+- **Refactoring Cost**: Requires a significant, one-time refactoring effort of all existing grammar rules.
+- **Increased Initial Complexity**: The new structure has more layers, but this is mitigated by the greatly improved clarity and this documentation.

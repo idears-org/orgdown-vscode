@@ -1,0 +1,59 @@
+#+TITLE: Top-level Structure Scope Tests
+
+#+NAME: Top-level structure - header and outline nodes
+#+BEGIN_FIXTURE
+#+TITLE: File Header Scope Tests
+
+This is the first line of the file header.
+This is the last line of the file header.
+
+* First headline
+Headline content line 1
+Headline content last line
+
+* Second headline
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"#+TITLE: File Header Scope Tests" => {{scopes.META_HEADER}}
+"This is the last line of the file header." => {{scopes.META_HEADER}}
+"* First headline" => {{scopes.META_NODE}}
+"Headline content line 1" => {{scopes.META_NODE}}
+"Headline content last line" => {{scopes.META_NODE}}
+"* Second headline" => {{scopes.META_NODE}}
+
+#+NAME: Top-level structure - headline-first (no header)
+#+BEGIN_FIXTURE
+* Headline starts immediately
+Content after headline
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"* Headline starts immediately" => {{scopes.META_NODE}}
+"Content after headline" => {{scopes.META_NODE}}
+
+#+NAME: Top-level structure - header tricky lines
+#+BEGIN_FIXTURE
+#+TITLE: Header With Tricky Lines
+*Not a headline
+  * Indented asterisk line
+-----
+* Real headline
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"#+TITLE: Header With Tricky Lines" => {{scopes.META_HEADER}}
+"*Not a headline" => {{scopes.META_HEADER}}
+"  * Indented asterisk line" => {{scopes.META_HEADER}}
+"-----" => {{scopes.META_HEADER}}
+"* Real headline" => {{scopes.META_NODE}}
+
+#+NAME: Top-level structure - empty section
+#+BEGIN_FIXTURE
+* Empty section
+* Next headline
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"* Empty section" => {{scopes.META_NODE}}
+"* Next headline" => {{scopes.META_NODE}}

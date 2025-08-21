@@ -1,32 +1,5 @@
 #+TITLE: Test Suite for Dynamic Blocks
 
-#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
-
-* === Block Scopes ===
-# The following meta scopes are applied to the entire dynamic block.
-- meta.block.org
-- meta.block.dynamic.org
-
-# The following content scopes are applied to the content of the block.
-- markup.block.org
-- markup.block.dynamic.org
-
-* === Capture Group Scopes (Begin Regex) ===
-# The following scopes are applied to the specific parts of the dynamic block's begin line.
-1. leading whitespace -> string.other.whitespace.leading.org
-2. begin keyword -> keyword.control.block.org
-3. block name -> entity.name.function.block.org
-4. parameters -> variable.parameter.block.org
-   - :key -> variable.parameter.key.org
-   - value -> string.unquoted.parameter.value.org
-
-* === Capture Group Scopes (End Regex) ===
-# The following scopes are applied to the specific parts of the dynamic block's end line.
-1. leading whitespace -> string.other.whitespace.leading.org
-2. end keyword -> keyword.control.block.org
-
-#+END_COMMENT
-
 #+NAME: Simple clocktable block with content
 #+BEGIN_FIXTURE
 #+BEGIN: clocktable :maxlevel 2
@@ -35,7 +8,7 @@ And another line.
 #+END:
 #+END_FIXTURE
 
-#+EXPECTED: dynamicBlockBeginRegex
+#+EXPECTED: :type regex :name dynamicBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -43,7 +16,7 @@ And another line.
 | 3       | clocktable     |
 | 4       | :maxlevel 2   |
 
-#+EXPECTED: dynamicBlockEndRegex
+#+EXPECTED: :type regex :name dynamicBlockEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -57,7 +30,7 @@ And another line.
 #+END:
 #+END_FIXTURE
 
-#+EXPECTED: dynamicBlockBeginRegex
+#+EXPECTED: :type regex :name dynamicBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -65,7 +38,7 @@ And another line.
 | 3       | agenda         |
 | 4       | :files "agenda.org" :span 1w |
 
-#+EXPECTED: dynamicBlockEndRegex
+#+EXPECTED: :type regex :name dynamicBlockEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -79,7 +52,7 @@ And another line.
   #+END:
 #+END_FIXTURE
 
-#+EXPECTED: dynamicBlockBeginRegex
+#+EXPECTED: :type regex :name dynamicBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | <sp:2>         |
@@ -87,7 +60,7 @@ And another line.
 | 3       | columnview     |
 | 4       | :maxlevel 3   |
 
-#+EXPECTED: dynamicBlockEndRegex
+#+EXPECTED: :type regex :name dynamicBlockEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | <sp:2>         |
@@ -99,7 +72,7 @@ And another line.
 #+END:
 #+END_FIXTURE
 
-#+EXPECTED: dynamicBlockBeginRegex
+#+EXPECTED: :type regex :name dynamicBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -107,7 +80,7 @@ And another line.
 | 3       | custom         |
 | 4       |                |
 
-#+EXPECTED: dynamicBlockEndRegex
+#+EXPECTED: :type regex :name dynamicBlockEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -119,7 +92,7 @@ And another line.
 #+eNd:
 #+END_FIXTURE
 
-#+EXPECTED: dynamicBlockBeginRegex
+#+EXPECTED: :type regex :name dynamicBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -127,7 +100,7 @@ And another line.
 | 3       | ClOcKtAbLe     |
 | 4       |                |
 
-#+EXPECTED: dynamicBlockEndRegex
+#+EXPECTED: :type regex :name dynamicBlockEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -139,7 +112,7 @@ And another line.
 #+END:
 #+END_FIXTURE
 
-#+EXPECTED: dynamicBlockBeginRegex
+#+EXPECTED: :type regex :name dynamicBlockBeginRegex
 no-match
 
 #+NAME: Malformed END line should not match
@@ -148,7 +121,7 @@ no-match
 #+END
 #+END_FIXTURE
 
-#+EXPECTED: dynamicBlockEndRegex
+#+EXPECTED: :type regex :name dynamicBlockEndRegex
 no-match
 
 #+NAME: Unit Test: Dynamic block parameter with quoted value
@@ -156,7 +129,7 @@ no-match
 :files "agenda.org"
 #+END_FIXTURE
 
-#+EXPECTED: blockParameterRegex
+#+EXPECTED: :type regex :name blockParameterRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | :files         |
@@ -168,7 +141,7 @@ no-match
 #+END: extra
 #+END_FIXTURE
 
-#+EXPECTED: dynamicBlockEndRegex
+#+EXPECTED: :type regex :name dynamicBlockEndRegex
 no-match
 
 #+NAME: Parameter with no value
@@ -177,7 +150,7 @@ no-match
 #+END:
 #+END_FIXTURE
 
-#+EXPECTED: dynamicBlockBeginRegex
+#+EXPECTED: :type regex :name dynamicBlockBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |

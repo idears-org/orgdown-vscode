@@ -1,18 +1,10 @@
 #+TITLE: Test Suite for Horizontal Rules
 
-#+BEGIN_COMMENT :description "Expected Scopes"
-
-* === Block Scopes ===
-The following scope is applied to the entire horizontal rule line.
-- Horizontal Rule: meta.separator.org
-
-#+END_COMMENT
-
 #+NAME: Basic horizontal rule
 #+BEGIN_FIXTURE
 -----
 #+END_FIXTURE
-#+EXPECTED: horizontalRuleRegex
+#+EXPECTED: :type regex :name horizontalRuleRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -22,7 +14,7 @@ The following scope is applied to the entire horizontal rule line.
 #+BEGIN_FIXTURE
   -----
 #+END_FIXTURE
-#+EXPECTED: horizontalRuleRegex
+#+EXPECTED: :type regex :name horizontalRuleRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | <sp:2>         |
@@ -32,7 +24,7 @@ The following scope is applied to the entire horizontal rule line.
 #+BEGIN_FIXTURE
 ----------
 #+END_FIXTURE
-#+EXPECTED: horizontalRuleRegex
+#+EXPECTED: :type regex :name horizontalRuleRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -42,14 +34,14 @@ The following scope is applied to the entire horizontal rule line.
 #+BEGIN_FIXTURE
 ----
 #+END_FIXTURE
-#+EXPECTED: horizontalRuleRegex
+#+EXPECTED: :type regex :name horizontalRuleRegex
 no-match
 
 #+NAME: Rule with trailing whitespace is a valid rule
 #+BEGIN_FIXTURE
 -----
 #+END_FIXTURE
-#+EXPECTED: horizontalRuleRegex
+#+EXPECTED: :type regex :name horizontalRuleRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       |                |
@@ -59,12 +51,12 @@ no-match
 #+BEGIN_FIXTURE
 ----- a
 #+END_FIXTURE
-#+EXPECTED: horizontalRuleRegex
+#+EXPECTED: :type regex :name horizontalRuleRegex
 no-match
 
 #+NAME: Rule with tags is not a rule
 #+BEGIN_FIXTURE
 ----- :tag:
 #+END_FIXTURE
-#+EXPECTED: horizontalRuleRegex
+#+EXPECTED: :type regex :name horizontalRuleRegex
 no-match

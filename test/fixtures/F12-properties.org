@@ -1,29 +1,6 @@
 #+TITLE: Test Suite for Properties
 #+AUTHOR: Orgdown Team
 
-#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
-
-* === Block Scopes ===
-# The following scopes are applied to the entire properties drawer.
-- meta.property-drawer.org
-
-* === Line Scopes ===
-# The following scopes are applied to specific lines within the drawer.
-- :PROPERTIES: -> punctuation.definition.property-drawer.begin.org
-- :END: -> punctuation.definition.property-drawer.end.org
-- :Key: Value -> meta.property.org
-
-* === Token Scopes ===
-# The following scopes are applied to specific tokens within a property line.
-- :Key: -> entity.name.property.org
-- Value -> variable.other.property.value.org
-
-* === Regex Capture Groups (propertyRegex) ===
-1. Key -> The property key (e.g., "Effort")
-2. Value -> The property value (e.g., "1:00")
-
-#+END_COMMENT
-
 #+NAME: A full, multi-line properties drawer
 #+BEGIN_FIXTURE
 :PROPERTIES:
@@ -34,12 +11,12 @@
 :END:
 #+END_FIXTURE
 
-#+EXPECTED: propertyDrawerBeginRegex
+#+EXPECTED: :type regex :name propertyDrawerBeginRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | :PROPERTIES:   |
 
-#+EXPECTED: drawerEndRegex
+#+EXPECTED: :type regex :name drawerEndRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | :END:          |
@@ -48,7 +25,7 @@
 #+BEGIN_FIXTURE
 :Owner: Alice
 #+END_FIXTURE
-#+EXPECTED: propertyRegex
+#+EXPECTED: :type regex :name propertyRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | Owner          |
@@ -58,7 +35,7 @@
 #+BEGIN_FIXTURE
 :Number: 42
 #+END_FIXTURE
-#+EXPECTED: propertyRegex
+#+EXPECTED: :type regex :name propertyRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | Number         |
@@ -68,7 +45,7 @@
 #+BEGIN_FIXTURE
 :Empty:
 #+END_FIXTURE
-#+EXPECTED: propertyRegex
+#+EXPECTED: :type regex :name propertyRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | Empty          |
@@ -78,7 +55,7 @@
 #+BEGIN_FIXTURE
 :Description: This is a test.
 #+END_FIXTURE
-#+EXPECTED: propertyRegex
+#+EXPECTED: :type regex :name propertyRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | Description    |
@@ -88,7 +65,7 @@
 #+BEGIN_FIXTURE
 :effort-estimate: 1:00
 #+END_FIXTURE
-#+EXPECTED: propertyRegex
+#+EXPECTED: :type regex :name propertyRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | effort-estimate|
@@ -98,7 +75,7 @@
 #+BEGIN_FIXTURE
 :CREATED+: [2025-08-02]
 #+END_FIXTURE
-#+EXPECTED: propertyRegex
+#+EXPECTED: :type regex :name propertyRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | CREATED+       |
@@ -108,7 +85,7 @@
 #+BEGIN_FIXTURE
 :Key:   value with spaces
 #+END_FIXTURE
-#+EXPECTED: propertyRegex
+#+EXPECTED: :type regex :name propertyRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | Key            |
@@ -118,19 +95,19 @@
 #+BEGIN_FIXTURE
 :Invalid Key: some value
 #+END_FIXTURE
-#+EXPECTED: propertyRegex
+#+EXPECTED: :type regex :name propertyRegex
 no-match
 
 #+NAME: Malformed property line missing starting colon
 #+BEGIN_FIXTURE
 Owner: Alice
 #+END_FIXTURE
-#+EXPECTED: propertyRegex
+#+EXPECTED: :type regex :name propertyRegex
 no-match
 
 #+NAME: Malformed property with no space after key
 #+BEGIN_FIXTURE
 :Key:value
 #+END_FIXTURE
-#+EXPECTED: propertyRegex
+#+EXPECTED: :type regex :name propertyRegex
 no-match

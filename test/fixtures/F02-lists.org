@@ -1,38 +1,12 @@
 #+TITLE: Test Suite for Lists
 
-
-#+BEGIN_COMMENT :description "Expected Scopes & Capture Groups"
-
-* === Block Scopes ===
-The following scopes are applied to the entire list item's text content.
-- Unordered List Item: markup.list.unnumbered.org
-- Ordered List Item:   markup.list.numbered.org
-- Counter Marker:      constant.numeric.list-counter.org
-
-* === Capture Group Scopes ===
-The following scopes are applied to the specific parts of the list marker.
-
-* unorderedListRegex & orderedListRegex
-1. indentation -> string.other.whitespace.leading.org
-2. bullet -> punctuation.definition.list.begin.org
-3. checkbox -> constant.language.checkbox.org
-
-* descriptionSeparatorRegex (used inside unordered list)
-1. term -> entity.name.tag.description.term.org
-2. separator -> punctuation.separator.key-value.org
-
-* listCounterRegex (used inside ordered list)
-1. number -> constant.numeric.value.org
-
-#+END_COMMENT
-
 * Unordered Lists
 
 #+NAME: Unordered list (-)
 #+BEGIN_FIXTURE
 - A simple list item
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
@@ -41,7 +15,7 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 + Another list item
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | +              |
@@ -50,7 +24,7 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 - [ ] An unchecked task
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
@@ -60,7 +34,7 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 + [X] A checked task
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | +              |
@@ -70,7 +44,7 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 - [-] An intermediate task
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
@@ -82,7 +56,7 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 1. First item
 #+END_FIXTURE
-#+EXPECTED: orderedListRegex
+#+EXPECTED: :type regex :name orderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | 1.             |
@@ -91,7 +65,7 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 2) Second item
 #+END_FIXTURE
-#+EXPECTED: orderedListRegex
+#+EXPECTED: :type regex :name orderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | 2)             |
@@ -100,11 +74,11 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 3. [@5] Starts at 5
 #+END_FIXTURE
-#+EXPECTED: orderedListRegex
+#+EXPECTED: :type regex :name orderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | 3.             |
-#+EXPECTED: listCounterRegex
+#+EXPECTED: :type regex :name listCounterRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | 5              |
@@ -115,11 +89,11 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 - Term :: Description
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
-#+EXPECTED: descriptionSeparatorRegex
+#+EXPECTED: :type regex :name descriptionSeparatorRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | - Term         |
@@ -129,11 +103,11 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 - *Term* :: Description
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
-#+EXPECTED: descriptionSeparatorRegex
+#+EXPECTED: :type regex :name descriptionSeparatorRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | - *Term*       |
@@ -143,11 +117,11 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 - :: Description
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
-#+EXPECTED: descriptionSeparatorRegex
+#+EXPECTED: :type regex :name descriptionSeparatorRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | -              |
@@ -157,11 +131,11 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 - - Another list :: as a term
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | -              |
-#+EXPECTED: descriptionSeparatorRegex
+#+EXPECTED: :type regex :name descriptionSeparatorRegex
 | Group # | Expected Value   |
 |---------+------------------|
 | 1       | - - Another list |
@@ -173,7 +147,7 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
   - Indented
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | <sp:2>         |
@@ -183,7 +157,7 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 	- Tab-indented
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | <tab>          |
@@ -194,7 +168,7 @@ The following scopes are applied to the specific parts of the list marker.
 1. Parent
   - Child
 #+END_FIXTURE
-#+EXPECTED: orderedListRegex
+#+EXPECTED: :type regex :name orderedListRegex
 | Group # | Expected Value |
 |---------+----------------|
 | 2       | 1.             |
@@ -205,33 +179,33 @@ The following scopes are applied to the specific parts of the list marker.
 #+BEGIN_FIXTURE
 * Not a list item
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 no-match
 
 #+NAME: Not a list - no space after bullet
 #+BEGIN_FIXTURE
 -Not a list
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 no-match
 
 #+NAME: Not a list - full-width dash
 #+BEGIN_FIXTURE
 － Not a list
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 no-match
 
 #+NAME: Not a list - horizontal rule
 #+BEGIN_FIXTURE
 ---
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 no-match
 
 #+NAME: Not a list - checkbox no space
 #+BEGIN_FIXTURE
 -[] No space
 #+END_FIXTURE
-#+EXPECTED: unorderedListRegex
+#+EXPECTED: :type regex :name unorderedListRegex
 no-match
