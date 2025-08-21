@@ -10,7 +10,7 @@ export interface RegexExpectation {
 
 export interface ScopeExpectation {
   type: "scope";
-  assertions: { text: string; scopes: string[] }[];
+  assertions: { text: string; mustContain: string[]; mustNotContain: string[] }[];
 }
 
 export type Expectation = RegexExpectation | ScopeExpectation;
@@ -123,13 +123,11 @@ function parseExpectedBlock(
         captures: shouldMatch ? captures : undefined,
       });
   } else if (testType === "scope") {
-      // Scope expectations use a multi-line tree-like format with 'text => scope' per line.
-      // Optional quotes around text are supported; optional leading '-' bullet and indentation are ignored.
-      // Example:
-      // - "[#A]" => constant.other.priority.org
-      //   - "A" => constant.other.priority.value.org
-
-  const assertions: { text: string; scopes: string[] }[] = [];
+      const assertions: {
+        text: string;
+        mustContain: string[];
+        mustNotContain: string[];
+      }[] = [];
       for (const raw of blockContentLines) {
         const normalized = raw.replace(/\t/g, "    ");
         let line = normalized;
@@ -144,14 +142,11 @@ function parseExpectedBlock(
         const idx = line.indexOf("=>");
         const left = line.slice(0, idx).trim();
   let right = line.slice(idx + 2).trim();
-        if (!right) {
-          continue;
-        }
 
         let text = left.trim();
         if (
           (text.startsWith('"') && text.endsWith('"')) ||
-          (text.startsWith("'") && text.endsWith("'"))
+          (text.startsWith("'" ) && text.endsWith("'"))
         ) {
           text = text.slice(1, -1);
         }
@@ -163,11 +158,24 @@ function parseExpectedBlock(
         });
 
         // parse scopes: comma-separated list
-        const scopes = right
+        const mustContain: string[] = [];
+        const mustNotContain: string[] = [];
+        const rawScopes = right
           .split(",")
           .map((s) => s.trim())
           .filter(Boolean);
-        assertions.push({ text, scopes });
+
+        for (const scope of rawScopes) {
+          if (scope.startsWith("!")) {
+            mustNotContain.push(scope.substring(1));
+          } else {
+            mustContain.push(scope);
+          }
+        }
+
+        if (mustContain.length > 0 || mustNotContain.length > 0) {
+          assertions.push({ text, mustContain, mustNotContain });
+        }
       }
 
       // If there are no parsed assertions, only throw when the block contains

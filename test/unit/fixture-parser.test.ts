@@ -47,8 +47,8 @@ bold => markup.bold.org
     const expectation = testCase.expectations[0] as ScopeExpectation;
     expect(expectation.type).toBe('scope');
     expect(expectation.assertions).toEqual([
-      { text: 'bold', scopes: ['markup.bold.org'] },
-      { text: '*', scopes: ['punctuation'] },
+      { text: 'bold', mustContain: ['markup.bold.org'], mustNotContain: [] },
+      { text: '*', mustContain: ['punctuation'], mustNotContain: [] },
     ]);
   });
 
@@ -71,11 +71,33 @@ TODO => keyword.other.todo.org
     const expectation = testCase.expectations[0] as ScopeExpectation;
     expect(expectation.type).toBe('scope');
     expect(expectation.assertions).toEqual([
-      { text: '*', scopes: ['punctuation.definition.heading.org'] },
-      { text: 'TODO', scopes: ['keyword.other.todo.org'] },
-      { text: '[#A]', scopes: ['constant.other.priority.org'] },
-      { text: 'A', scopes: ['constant.other.priority.value.org'] },
-      { text: ' :tag:', scopes: ['entity.name.tag.org'] },
+      { text: '*', mustContain: ['punctuation.definition.heading.org'], mustNotContain: [] },
+      { text: 'TODO', mustContain: ['keyword.other.todo.org'], mustNotContain: [] },
+      { text: '[#A]', mustContain: ['constant.other.priority.org'], mustNotContain: [] },
+      { text: 'A', mustContain: ['constant.other.priority.value.org'], mustNotContain: [] },
+      { text: ' :tag:', mustContain: ['entity.name.tag.org'], mustNotContain: [] },
+    ]);
+  });
+
+  it('should parse mixed positive and negative scope expectations', () => {
+    const content = `
+#+NAME: A mixed scope test
+#+BEGIN_FIXTURE
+some text
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"some text" => scope.one, !scope.two, scope.three, !scope.four
+    `;
+    const testCases = parseFixtureFile(content);
+    expect(testCases).toHaveLength(1);
+    const expectation = testCases[0].expectations[0] as ScopeExpectation;
+    expect(expectation.type).toBe('scope');
+    expect(expectation.assertions).toEqual([
+      {
+        text: 'some text',
+        mustContain: ['scope.one', 'scope.three'],
+        mustNotContain: ['scope.two', 'scope.four'],
+      },
     ]);
   });
 
@@ -118,7 +140,8 @@ no-match
 
   const scopeExpect = testCase.expectations[1] as ScopeExpectation;
   expect(scopeExpect.type).toBe('scope');
-  expect(scopeExpect.assertions[0].scopes).toEqual(['punctuation.definition.heading.org']);
+  expect(scopeExpect.assertions[0].mustContain).toEqual(['punctuation.definition.heading.org']);
+  expect(scopeExpect.assertions[0].mustNotContain).toEqual([]);
   });
 
   it('should correctly parse content that looks like a delimiter', () => {

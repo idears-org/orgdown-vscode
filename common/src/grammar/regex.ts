@@ -368,7 +368,7 @@ export const footnoteReferenceRegex = createRegexPattern(
  * Paragraphs
  */
 export const paragraphBeginRegex = createRegexPattern(
-  /^(?=\S)/
+  /^(?=\S)(?!\*+\s)/
 );
 export const paragraphEndRegex = createRegexPattern(
   new RegExp(
@@ -377,27 +377,48 @@ export const paragraphEndRegex = createRegexPattern(
   )
 );
 
-/**
- * Inline markup
- */
-export const boldRegex = createRegexPattern(
-  /(\*)[^\s*](.*?)[^\s*](\*)/
+export const boldBeginRegex = createRegexPattern(
+  /(?<=^|\s)(\*)(?=[^\s*])(?=.*?([^\s*])\*(?!\w))/
 );
-export const italicRegex = createRegexPattern(
-  /(\/)[^\s\/](.*?)[^\s\/](\/)/
+export const boldEndRegex = createRegexPattern(
+  /(?<=[^\s*])(\*)(?!\w)/
 );
-export const underlineRegex = createRegexPattern(
-  /(_)[^\s_](.*?)[^\s_](_)/
+
+export const italicBeginRegex = createRegexPattern(
+  /(?<=^|\s)(\/)(?=[^\s\/])(?=.*?([^\s\/])\/(?!\w))/
 );
-export const strikethroughRegex = createRegexPattern(
-  /(\+)[^\s+](.*?[^\s+])(\+)/
+export const italicEndRegex = createRegexPattern(
+  /(?<=[^\s\/])(\/)(?!\w)/
 );
-export const codeRegex = createRegexPattern(
-  /(~)[^\s~](.*?)[^\s~](~)/
+
+export const underlineBeginRegex = createRegexPattern(
+  /(?<=^|\s)(_)(?=[^\s_])(?=.*?([^\s_])_(?!\w))/
 );
-export const verbatimRegex = createRegexPattern(
-  /(=)[^\s=](.*?)[^\s=](=)/
+export const underlineEndRegex = createRegexPattern(
+  /(?<=[^\s_])(_)(?!\w)/
 );
+
+export const strikethroughBeginRegex = createRegexPattern(
+  /(?<=^|\s)(\+)(?=[^\s+])(?=.*?([^\s+])\+(?!\w))/
+);
+export const strikethroughEndRegex = createRegexPattern(
+  /(?<=[^\s+])(\+)(?!\w)/
+);
+
+export const codeBeginRegex = createRegexPattern(
+  /(?<=^|\s)(~)(?=[^\s~])(?=.*?([^\s~])~(?!\w))/
+);
+export const codeEndRegex = createRegexPattern(
+  /(?<=[^\s~])(~)(?!\w)/
+);
+
+export const verbatimBeginRegex = createRegexPattern(
+  /(?<=^|\s)(=)(?=[^\s=])(?=.*?([^\s=])=(?!\w))/
+);
+export const verbatimEndRegex = createRegexPattern(
+  /(?<=[^\s=])(=)(?!\w)/
+);
+
 
 /**
  * LaTeX

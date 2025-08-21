@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import fs from 'fs-extra';
 import path from 'path';
 import { parseFixtureFile, FixtureTestCase, ScopeExpectation } from '@common/fixture-parser';
-import { Registry, IGrammar, parseRawGrammar } from 'vscode-textmate';
+import { Registry, IGrammar, parseRawGrammar, IToken } from 'vscode-textmate';
 import { OnigScanner, OnigString, loadWASM } from 'vscode-oniguruma';
 
 const repoRoot = path.resolve(__dirname, '../..');
@@ -12,12 +12,10 @@ let grammar: IGrammar | null = null;
 
 describe('Grammar Scope Unit Tests', () => {
   beforeAll(async () => {
-    // Load oniguruma wasm (used by vscode-textmate)
     const wasmPath = path.resolve(repoRoot, 'node_modules/vscode-oniguruma/release/onig.wasm');
     const wasmBin = await fs.readFile(wasmPath);
     await loadWASM(wasmBin.buffer);
 
-    // Provide an onigLib implementation backed by vscode-oniguruma
     const onigLib = Promise.resolve({
       createOnigScanner: (patterns: string[]) => new OnigScanner(patterns),
       createOnigString: (s: string) => new OnigString(s),
@@ -46,14 +44,14 @@ describe('Grammar Scope Unit Tests', () => {
   for (const file of fixtureFiles) {
     const content = fs.readFileSync(path.join(fixturesDir, file), 'utf8');
     const testCases = parseFixtureFile(content);
-  const scopeTestCases = testCases.filter(tc => tc.expectations.some(e => e.type === 'scope'));
-  if (scopeTestCases.length === 0) { continue; }
+    const scopeTestCases = testCases.filter(tc => tc.expectations.some(e => e.type === 'scope'));
+    if (scopeTestCases.length === 0) { continue; }
     anyScopeTests = true;
     describe(`Testing Scopes in ${file}`, () => {
       for (const testCase of scopeTestCases) {
         const scopeExpectations = testCase.expectations.filter(e => e.type === 'scope') as ScopeExpectation[];
-        for (const expectation of scopeExpectations) {
-          runScopeTest(testCase, expectation, file);
+        for (let i = 0; i < scopeExpectations.length; i++) {
+          runScopeTest(testCase, scopeExpectations[i], file, i, scopeExpectations.length);
         }
       }
     });
@@ -66,59 +64,73 @@ describe('Grammar Scope Unit Tests', () => {
   }
 });
 
-function runScopeTest(testCase: FixtureTestCase, expectation: ScopeExpectation, fileName: string) {
-  it(`${testCase.name} should satisfy scope assertions from ${fileName}`, () => {
-    expect(expectation.assertions.length).toBeGreaterThanOrEqual(0);
-
-    // If grammar didn't load, mark test as effectively skipped (pass) and warn.
+function runScopeTest(testCase: FixtureTestCase, expectation: ScopeExpectation, fileName: string, index: number, total: number) {
+  const testTitle = total > 1 ? `${testCase.name} (Assertion ${index + 1})` : testCase.name;
+  it(`${testTitle} should satisfy scope assertions from ${fileName}`, () => {
     if (!grammar) {
       console.warn(`Skipping scope assertions for '${testCase.name}' because TextMate grammar could not be loaded.`);
       expect(true).toBe(true);
       return;
     }
 
-    // Tokenize the input line-by-line and build a map of text -> scopes found at that location
     const lines = testCase.input.split('\n');
-  const textScopesMap = new Map<string, Set<string>>();
-  const lineScopes: Array<Set<string>> = [];
-
+    const tokenizedLines: { tokens: IToken[], ruleStack: any }[] = [];
     let ruleStack: any = null;
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-      const lineTokens = grammar.tokenizeLine(line, ruleStack);
-      ruleStack = lineTokens.ruleStack;
-      const lineSet = new Set<string>();
-      for (const token of lineTokens.tokens) {
-        const tokenText = line.slice(token.startIndex, token.endIndex);
-        if (tokenText.length === 0) { continue; }
-        // collect all scopes for this token
-        const scopesForToken = token.scopes;
-        if (!textScopesMap.has(tokenText)) {
-          textScopesMap.set(tokenText, new Set());
-        }
-        const tokenSet = textScopesMap.get(tokenText)!;
-        for (const s of scopesForToken) {
-          tokenSet.add(s);
-          lineSet.add(s);
-        }
-      }
-      lineScopes.push(lineSet);
+    for (const line of lines) {
+      const result = grammar.tokenizeLine(line, ruleStack);
+      tokenizedLines.push(result);
+      ruleStack = result.ruleStack;
     }
 
-    // Validate each assertion: each expected scope must be present among the scopes for the matched text
     for (const assertion of expectation.assertions) {
-      let foundScopes = textScopesMap.get(assertion.text);
-      // Fallback: try line-level match by substring (useful for meta.* region checks)
+      let foundScopes: Set<string> | undefined;
+
+      // First, try to find an exact token match.
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const { tokens } = tokenizedLines[i];
+        for (const token of tokens) {
+          const tokenText = line.slice(token.startIndex, token.endIndex);
+          if (tokenText === assertion.text) {
+            foundScopes = new Set(token.scopes);
+            break;
+          }
+        }
+        if (foundScopes) break;
+      }
+
+      // Fallback for region-based assertions (e.g., checking a meta scope over a larger area)
       if (!foundScopes) {
-        const idx = lines.findIndex(l => l.includes(assertion.text));
-        if (idx !== -1) {
-          foundScopes = lineScopes[idx];
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          const startIndex = line.indexOf(assertion.text);
+          if (startIndex !== -1) {
+            const endIndex = startIndex + assertion.text.length;
+            const { tokens } = tokenizedLines[i];
+            const containedTokens = tokens.filter(t => t.startIndex >= startIndex && t.endIndex <= endIndex);
+
+            if (containedTokens.length > 0) {
+              // Find the intersection of scopes for all contained tokens
+              let commonScopes = new Set(containedTokens[0].scopes);
+              for (let j = 1; j < containedTokens.length; j++) {
+                const currentTokenScopes = new Set(containedTokens[j].scopes);
+                commonScopes = new Set([...commonScopes].filter(s => currentTokenScopes.has(s)));
+              }
+              foundScopes = commonScopes;
+            }
+            break;
+          }
         }
       }
 
-      expect(foundScopes, `No token matched text '${assertion.text}' in input for test '${testCase.name}'`).toBeDefined();
-      for (const expectedScope of assertion.scopes) {
+      expect(foundScopes, `No token or region could be found for assertion text '${assertion.text}' in test '${testCase.name}'`).toBeDefined();
+
+      for (const expectedScope of assertion.mustContain) {
         expect(foundScopes!.has(expectedScope), `Expected scope '${expectedScope}' for text '${assertion.text}' in test '${testCase.name}', but it was not found. Available: ${[...foundScopes!].join(', ')}`).toBe(true);
+      }
+
+      for (const forbiddenScope of assertion.mustNotContain) {
+        expect(foundScopes!.has(forbiddenScope), `Forbidden scope '${forbiddenScope}' for text '${assertion.text}' in test '${testCase.name}' was found. Available: ${[...foundScopes!].join(', ')}`).toBe(false);
       }
     }
   });

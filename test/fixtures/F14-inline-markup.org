@@ -1,0 +1,135 @@
+#+TITLE: Test Suite for Inline Markup
+#+AUTHOR: Orgdown Team
+
+# This fixture tests basic and nested inline markup using begin/end rules.
+
+* Bold
+
+#+NAME: Bold: Showcase
+#+BEGIN_FIXTURE
+This is *bold* text.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"*" => {{scopes.BOLD_PUNCTUATION}}
+"bold" => {{scopes.BOLD}}
+"*" => {{scopes.BOLD_PUNCTUATION}}
+#+EXPECTED: :type scope
+"*bold*" => !{{scopes.BOLD}}, {{scopes.META_INLINE_BOLD}}
+
+#+NAME: Bold: Single character
+#+BEGIN_FIXTURE
+a *b* c
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"*" => {{scopes.BOLD_PUNCTUATION}}
+"b" => {{scopes.BOLD}}
+"*" => {{scopes.BOLD_PUNCTUATION}}
+
+#+NAME: Bold: Nested Italic
+#+BEGIN_FIXTURE
+This is *bold and /italic/* text.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"*" => {{scopes.BOLD_PUNCTUATION}}
+"bold and " => {{scopes.BOLD}}
+"/" => {{scopes.BOLD}}, {{scopes.ITALIC_PUNCTUATION}}
+"italic" => {{scopes.BOLD}}, {{scopes.ITALIC}}
+"/" => {{scopes.BOLD}}, {{scopes.ITALIC_PUNCTUATION}}
+"*" => {{scopes.BOLD_PUNCTUATION}}
+
+#+NAME: Bold: Invalid no flanking space
+#+BEGIN_FIXTURE
+word*bold*word
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"word*bold*word" => !{{scopes.BOLD}}
+
+#+NAME: Bold: Invalid space after opening marker
+#+BEGIN_FIXTURE
+* bold*
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"* bold*" => !{{scopes.BOLD}}
+
+#+NAME: Bold: Invalid space before closing marker
+#+BEGIN_FIXTURE
+*bold *
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"*bold *" => !{{scopes.BOLD}}
+
+* Italic
+
+#+NAME: Italic: Showcase
+#+BEGIN_FIXTURE
+This is /italic/ text.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"/" => {{scopes.ITALIC_PUNCTUATION}}
+"italic" => {{scopes.ITALIC}}
+"/" => {{scopes.ITALIC_PUNCTUATION}}
+
+#+NAME: Italic: Nested Bold
+#+BEGIN_FIXTURE
+This is /italic and *bold*/ text.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"/" => {{scopes.ITALIC_PUNCTUATION}}
+"italic and " => {{scopes.ITALIC}}
+"*" => {{scopes.ITALIC}}, {{scopes.BOLD_PUNCTUATION}}
+"bold" => {{scopes.ITALIC}}, {{scopes.BOLD}}
+"*" => {{scopes.ITALIC}}, {{scopes.BOLD_PUNCTUATION}}
+"/" => {{scopes.ITALIC_PUNCTUATION}}
+
+* Underline
+
+#+NAME: Underline: Showcase
+#+BEGIN_FIXTURE
+This is _underline_ text.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"_" => {{scopes.UNDERLINE_PUNCTUATION}}
+"underline" => {{scopes.UNDERLINE}}
+"_" => {{scopes.UNDERLINE_PUNCTUATION}}
+
+* Strikethrough
+
+#+NAME: Strikethrough: Showcase
+#+BEGIN_FIXTURE
+This is +strikethrough+ text.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"+" => {{scopes.STRIKETHROUGH_PUNCTUATION}}
+"strikethrough" => {{scopes.STRIKETHROUGH}}
+"+" => {{scopes.STRIKETHROUGH_PUNCTUATION}}
+
+* Code
+
+#+NAME: Code: Showcase
+#+BEGIN_FIXTURE
+This is ~code~ text.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"~" => {{scopes.CODE_PUNCTUATION}}
+"code" => {{scopes.CODE}}
+"~" => {{scopes.CODE_PUNCTUATION}}
+
+#+NAME: Code: No nesting
+#+BEGIN_FIXTURE
+This is ~*not bold*~ text.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"~" => {{scopes.CODE_PUNCTUATION}}
+"*not bold*" => {{scopes.CODE}}
+"~" => {{scopes.CODE_PUNCTUATION}}
+
+* Verbatim
+
+#+NAME: Verbatim: Showcase
+#+BEGIN_FIXTURE
+This is =verbatim= text.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"=" => {{scopes.VERBATIM_PUNCTUATION}}
+"verbatim" => {{scopes.VERBATIM}}
+"=" => {{scopes.VERBATIM_PUNCTUATION}}

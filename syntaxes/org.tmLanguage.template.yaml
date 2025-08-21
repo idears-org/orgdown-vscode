@@ -3,7 +3,7 @@
 
 fileTypes: [org]
 name: Org Mode
-scopeName: text.org
+scopeName: '{{scopes.META_DOCUMENT}}'
 patterns:
   - include: '#document-root'
 
@@ -38,7 +38,7 @@ repository:
       - include: '#section-content'
 
   section-content:
-    name: 'meta.section.org'
+    name: '{{scopes.META_SECTION}}'
     begin: '(^|\G)'
     end: '{{regexs.headlineDetectToCloseBlockRegex}}|(?=^\Z)'
     patterns:
@@ -47,7 +47,7 @@ repository:
       - include: '#lists'
       - include: '#paragraph'
       - match: '^\s*$'
-        name: 'punctuation.whitespace.org'
+        name: '{{scopes.PUNCTUATION_WHITESPACE}}'
 
   # ===================================================================
   # 3. ABSTRACT COLLECTIONS
@@ -328,38 +328,78 @@ repository:
       '1': { name: '{{scopes.LINK_PROTOCOL}}' }
 
   latex:
-    name: 'markup.math.org'
+    name: '{{scopes.LATEX}}'
     match: "{{regexs.latexRegex}}"
 
   bold:
-    name: '{{scopes.BOLD}}'
-    match: "{{regexs.boldRegex}}"
+    name: '{{scopes.META_INLINE_BOLD}}'
+    contentName: '{{scopes.BOLD}}'
+    begin: '{{regexs.boldBeginRegex}}'
+    end: '{{regexs.boldEndRegex}}'
+    beginCaptures:
+      '1': { name: '{{scopes.BOLD_PUNCTUATION}}' }
+    endCaptures:
+      '1': { name: '{{scopes.BOLD_PUNCTUATION}}' }
+    patterns: *inline-markup-patterns
 
   italic:
-    name: '{{scopes.ITALIC}}'
-    match: "{{regexs.italicRegex}}"
+    name: '{{scopes.META_INLINE_ITALIC}}'
+    contentName: '{{scopes.ITALIC}}'
+    begin: '{{regexs.italicBeginRegex}}'
+    end: '{{regexs.italicEndRegex}}'
+    beginCaptures:
+      '1': { name: '{{scopes.ITALIC_PUNCTUATION}}' }
+    endCaptures:
+      '1': { name: '{{scopes.ITALIC_PUNCTUATION}}' }
+    patterns: *inline-markup-patterns
 
   underline:
-    name: '{{scopes.UNDERLINE}}'
-    match: "{{regexs.underlineRegex}}"
+    name: '{{scopes.META_INLINE_UNDERLINE}}'
+    contentName: '{{scopes.UNDERLINE}}'
+    begin: '{{regexs.underlineBeginRegex}}'
+    end: '{{regexs.underlineEndRegex}}'
+    beginCaptures:
+      '1': { name: '{{scopes.UNDERLINE_PUNCTUATION}}' }
+    endCaptures:
+      '1': { name: '{{scopes.UNDERLINE_PUNCTUATION}}' }
+    patterns: *inline-markup-patterns
 
   strikethrough:
-    name: '{{scopes.STRIKETHROUGH}}'
-    match: "{{regexs.strikethroughRegex}}"
+    name: '{{scopes.META_INLINE_STRIKETHROUGH}}'
+    contentName: '{{scopes.STRIKETHROUGH}}'
+    begin: '{{regexs.strikethroughBeginRegex}}'
+    end: '{{regexs.strikethroughEndRegex}}'
+    beginCaptures:
+      '1': { name: '{{scopes.STRIKETHROUGH_PUNCTUATION}}' }
+    endCaptures:
+      '1': { name: '{{scopes.STRIKETHROUGH_PUNCTUATION}}' }
+    patterns: *inline-markup-patterns
 
   code:
-    name: '{{scopes.CODE}}'
-    match: "{{regexs.codeRegex}}"
+    name: '{{scopes.META_INLINE_CODE}}'
+    contentName: '{{scopes.CODE}}'
+    begin: '{{regexs.codeBeginRegex}}'
+    end: '{{regexs.codeEndRegex}}'
+    beginCaptures:
+      '1': { name: '{{scopes.CODE_PUNCTUATION}}' }
+    endCaptures:
+      '1': { name: '{{scopes.CODE_PUNCTUATION}}' }
 
   verbatim:
-    name: '{{scopes.VERBATIM}}'
-    match: "{{regexs.verbatimRegex}}"
+    name: '{{scopes.META_INLINE_VERBATIM}}'
+    contentName: '{{scopes.VERBATIM}}'
+    begin: '{{regexs.verbatimBeginRegex}}'
+    end: '{{regexs.verbatimEndRegex}}'
+    beginCaptures:
+      '1': { name: '{{scopes.VERBATIM_PUNCTUATION}}' }
+    endCaptures:
+      '1': { name: '{{scopes.VERBATIM_PUNCTUATION}}' }
 
   entities:
-    name: 'constant.character.entity.org'
+    name: '{{scopes.ENTITY}}'
     match: "{{regexs.entitiesRegex}}"
 
   sub-super-scripts:
-    name: 'markup.other.sub-super-script.org'
+    name: '{{scopes.SUB_SUPER_SCRIPT}}'
     match: "{{regexs.subSuperScriptRegex}}"
   #endregion

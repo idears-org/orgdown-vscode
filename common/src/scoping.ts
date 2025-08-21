@@ -6,12 +6,16 @@
 // =================================================================
 // These scopes are for defining the hierarchical structure of the
 // document and are not typically styled directly.
+export const META_DOCUMENT = 'text.org';
 
 /** The entire file header, from the beginning to the first heading. */
 export const META_HEADER = 'meta.file.header.org';
 
 /** The entire outline node, from a headline to the next. */
 export const META_NODE = 'meta.outline-node.org';
+
+/** The content of a section, between headlines. */
+export const META_SECTION = 'meta.section.org';
 
 /** Any single-line keyword-like directive. */
 export const META_DIRECTIVE = 'meta.directive.org';
@@ -88,10 +92,10 @@ export const DESCRIPTION_TERM = 'entity.name.tag.description.term.org';
 export const DESCRIPTION_SEPARATOR = 'punctuation.separator.key-value.org';
 
 /** The counter in an ordered list, e.g., `[@5]`. */
-export const LIST_COUNTER = 'constant.numeric.list-counter.org';
+export const LIST_COUNTER = 'constant.numeric.list.counter.org';
 
 /** The numeric value inside a counter, e.g., `5`. */
-export const LIST_COUNTER_VALUE = 'constant.numeric.value.org';
+export const LIST_COUNTER_VALUE = 'constant.numeric.list.counter.value.org';
 
 // endregion
 
@@ -105,6 +109,9 @@ export const HORIZONTAL_RULE = 'meta.separator.org';
 
 // region Generic Block Parts
 // =================================================================
+
+/** A block of insignificant whitespace. */
+export const PUNCTUATION_WHITESPACE = 'punctuation.whitespace.org';
 
 /** Leading whitespace for lists and blocks. */
 export const LEADING_WHITESPACE = 'string.other.whitespace.leading.org';
@@ -189,8 +196,7 @@ export const LINK_ABBREVIATION_KEYWORD = 'keyword.other.link.abbreviation.org';
 export const LINK_ABBREVIATION_KEY = 'variable.parameter.link.abbreviation.org';
 
 /** The URL template for an abbreviation. */
-export const LINK_ABBREVIATION_URL =
-  'string.unquoted.link.abbreviation.url.org';
+export const LINK_ABBREVIATION_URL = 'string.unquoted.link.abbreviation.url.org';
 
 /** The meta scope for the entire planning line. */
 export const PLANNING_LINE_META = 'meta.directive.planning.org';
@@ -222,12 +228,10 @@ export const DRAWER_CONTENT = 'markup.block.drawer.content.org';
 export const PROPERTY_DRAWER_META = 'meta.block.drawer.property.org';
 
 /** The keyword for the beginning of a properties drawer. */
-export const PROPERTY_DRAWER_BEGIN_KEYWORD =
-  'punctuation.definition.property-drawer.begin.org';
+export const PROPERTY_DRAWER_BEGIN_KEYWORD = 'punctuation.definition.property-drawer.begin.org';
 
 /** The keyword for the end of a properties drawer. */
-export const PROPERTY_DRAWER_END_KEYWORD =
-  'punctuation.definition.property-drawer.end.org';
+export const PROPERTY_DRAWER_END_KEYWORD = 'punctuation.definition.property-drawer.end.org';
 
 /** The meta scope for a single property line. */
 export const PROPERTY_META = 'meta.property.org';
@@ -267,6 +271,25 @@ export const STRIKETHROUGH = 'markup.strikethrough.org';
 export const CODE = 'markup.inline.raw.org';
 export const VERBATIM = 'markup.inline.raw.org';
 export const LINK = 'markup.underline.link.org';
+export const LATEX = 'markup.math.org';
+export const ENTITY = 'constant.character.entity.org';
+export const SUB_SUPER_SCRIPT = 'markup.other.sub-super-script.org';
+
+/** Punctuation for inline markup, e.g., the * in *bold*. */
+export const BOLD_PUNCTUATION = 'punctuation.definition.bold.org';
+export const ITALIC_PUNCTUATION = 'punctuation.definition.italic.org';
+export const UNDERLINE_PUNCTUATION = 'punctuation.definition.underline.org';
+export const STRIKETHROUGH_PUNCTUATION = 'punctuation.definition.strikethrough.org';
+export const CODE_PUNCTUATION = 'punctuation.definition.raw.code.org';
+export const VERBATIM_PUNCTUATION = 'punctuation.definition.raw.verbatim.org';
+
+/** The meta scope for an entire inline markup construct. */
+export const META_INLINE_BOLD = 'meta.inline.bold.org';
+export const META_INLINE_ITALIC = 'meta.inline.italic.org';
+export const META_INLINE_UNDERLINE = 'meta.inline.underline.org';
+export const META_INLINE_STRIKETHROUGH = 'meta.inline.strikethrough.org';
+export const META_INLINE_CODE = 'meta.inline.code.org';
+export const META_INLINE_VERBATIM = 'meta.inline.verbatim.org';
 
 /** The entire link structure, e.g., [[...]]. */
 export const LINK_META = 'meta.link.org';
