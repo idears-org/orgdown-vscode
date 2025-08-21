@@ -1,0 +1,209 @@
+#+TITLE: Test Suite for Footnotes (migrated from colorize-fixtures)
+
+#+NAME: Basic footnote reference
+#+BEGIN_FIXTURE
+This is a footnote reference[fn:1].
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | 1              |
+
+#+NAME: Footnote definition (single-line)
+#+BEGIN_FIXTURE
+[fn:1] This is the footnote definition.
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteDefinitionStartRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 3       | 1              |
+| 5       | This is the footnote definition. |
+
+#+NAME: Footnote definition (second example)
+#+BEGIN_FIXTURE
+[fn:2] Another footnote.
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteDefinitionStartRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 3       | 2              |
+| 5       | Another footnote. |
+
+#+NAME: Inline footnote definition (inline-def style)
+#+BEGIN_FIXTURE
+This is an inline footnote[fn:: Inline definition].
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+no-match
+#+EXPECTED: :type scope
+"[fn:: Inline definition]" => markup.footnote.reference.org, punctuation.definition.footnote.org
+"Inline definition" => markup.footnote.content.org
+
+#+NAME: Multiple references to same footnote (first)
+#+BEGIN_FIXTURE
+First reference[fn:multi].
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | multi          |
+
+#+NAME: Multiple references to same footnote (second)
+#+BEGIN_FIXTURE
+Second reference[fn:multi].
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | multi          |
+
+#+NAME: Footnote in headline
+#+BEGIN_FIXTURE
+** Headline with footnote[fn:headline]
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | headline       |
+
+#+NAME: Footnote in list
+#+BEGIN_FIXTURE
+- Item with footnote[fn:list]
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | list           |
+
+#+NAME: Footnote in table
+#+BEGIN_FIXTURE
+| Foo  | [fn:table]           |
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | table          |
+
+#+NAME: Footnote in property drawer
+#+BEGIN_FIXTURE
+:PROPERTIES:
+:Note: [fn:prop]
+:END:
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | prop           |
+
+#+NAME: Footnote in comment (should still be recognized)
+#+BEGIN_FIXTURE
+#+COMMENT: [fn:comment]
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | comment        |
+
+#+NAME: Footnote with inline markup
+#+BEGIN_FIXTURE
+*Important*: [fn:inline]
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | inline         |
+
+#+NAME: Nested footnote (edge case)
+#+BEGIN_FIXTURE
+[fn:nest] See [fn:inner] inside.
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | nest           |
+
+#+NAME: Footnote with empty definition (reference only)
+#+BEGIN_FIXTURE
+[fn:empty]
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | empty          |
+
+#+NAME: Footnote with missing label (error)
+#+BEGIN_FIXTURE
+[fn:] No label.
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+no-match
+
+#+NAME: Footnote with missing brackets (error)
+#+BEGIN_FIXTURE
+[fn:broken No closing bracket.
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+no-match
+
+#+NAME: Footnote with tag context
+#+BEGIN_FIXTURE
+* Footnote Example :footnote:
+  [fn:tagged] Footnote with tag.
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteDefinitionStartRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 3       | tagged         |
+| 5       | Footnote with tag. |
+
+#+NAME: Footnote in todo headline
+#+BEGIN_FIXTURE
+*** TODO [#A] Review [fn:todo]
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | todo           |
+
+#+NAME: Footnote in drawer
+#+BEGIN_FIXTURE
+:LOGBOOK:
+:Note: [fn:drawer]
+:END:
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | drawer         |
+
+#+NAME: Footnote in block (multi-line region) — scope test
+#+BEGIN_FIXTURE
+#+BEGIN_QUOTE
+See [fn:block] for details.
+#+END_QUOTE
+[fn:block] Footnote in block.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"[fn:block]" => markup.footnote.reference.org, punctuation.definition.footnote.org
+"Footnote in block." => markup.footnote.content.org
+
+#+NAME: Footnote in plain text
+#+BEGIN_FIXTURE
+For more info, see [fn:plain].
+[fn:plain] Footnote in plain text.
+#+END_FIXTURE
+#+EXPECTED: :type regex :name footnoteReferenceRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | plain          |
+
+#+NAME: Consecutive footnote definitions (adjacent lines)
+#+BEGIN_FIXTURE
+[fn:one] First footnote.
+[fn:two] Second footnote.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"[fn:one]" => markup.footnote.reference.org, punctuation.definition.footnote.org
+"First footnote." => markup.footnote.content.org
+"[fn:two]" => markup.footnote.reference.org, punctuation.definition.footnote.org
+"Second footnote." => markup.footnote.content.org

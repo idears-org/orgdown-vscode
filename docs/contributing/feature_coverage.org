@@ -78,8 +78,9 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F14-inline-markup.org~
   _syntax: `inline-markup`_
-- [ ] **Footnotes**: Definitions and inline references.
-  _fixture: ~test/fixtures/F17-footnote-edge-cases.org~
+- [X] **Footnotes**: Definitions and inline references.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active, migrated 2025-08-22_
+  _fixture: ~test/fixtures/F15-footnotes.org~
   _syntax: `footnote`_
 - [ ] **Macros**: Definition and usage.
   _fixture: ~test/fixtures/F20-macros.org~, ~test/fixtures/F21-macro-expansion-edge-cases.org~

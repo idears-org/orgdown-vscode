@@ -357,11 +357,26 @@ export const tableRegex = createRegexPattern(
 /**
  * Footnotes
  */
-export const footnoteDefinitionRegex = createRegexPattern(
-  /^\[fn:([^\]]+)\]/
-);
+// Footnote reference (inline) - exclude inline-definition style which uses double-colon `[fn:: ...]`
 export const footnoteReferenceRegex = createRegexPattern(
-  /\[fn:([^\]]+)\]/
+  /\[fn:([^:\]]+)\]/
+);
+
+// Inline footnote definition: [fn:: content]
+// Capture groups:
+// 1 = content
+export const footnoteInlineDefinitionRegex = createRegexPattern(
+  /\[fn::\s*(.*?)\]/
+);
+
+// Footnote definition start - capture groups designed to match fixtures' expectations:
+// 1 = leading indent
+// 2 = full marker (e.g. "[fn:label]")
+// 3 = label
+// 4 = separator whitespace
+// 5 = content (rest of the line)
+export const footnoteDefinitionStartRegex = createRegexPattern(
+  /^(\s*)(\[fn:([^\]]+)\])(\s*)(.*)$/
 );
 
 /**

@@ -310,3 +310,23 @@ export const LINK_DESCRIPTION = 'string.other.link.description.org';
 export const LINK_PROTOCOL = 'keyword.other.link.protocol.org';
 
 // endregion
+
+// region Footnotes
+// =================================================================
+
+/** The scope for an inline footnote reference, e.g., `[fn:1]`. */
+export const FOOTNOTE_REFERENCE = 'markup.footnote.reference.org';
+
+/** Punctuation used to define or reference a footnote (brackets, colons). */
+export const FOOTNOTE_PUNCTUATION = 'punctuation.definition.footnote.org';
+
+/** The label/id of a footnote, e.g., `1` or `label`. */
+export const FOOTNOTE_LABEL = 'constant.other.footnote.label.org';
+
+/** Meta scope for a footnote definition block/line. */
+export const FOOTNOTE_DEFINITION = 'meta.footnote.definition.org';
+
+/** The content text of a footnote definition. */
+export const FOOTNOTE_CONTENT = 'markup.footnote.content.org';
+
+// endregion

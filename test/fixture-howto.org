@@ -90,6 +90,18 @@ This is not a headline.
 no-match
 #+END_SRC
 
+*** 4.3. Test style guidance: prefer regex for single-line, scope for multi-line
+
+To keep fixtures precise and easy to maintain, prefer the following guideline when choosing assertion types:
+
+- Single-line constructs (like an isolated headline, inline link, or a single footnote definition line) should primarily use `:type regex` assertions. Regex tests are ideal for verifying capture groups and exact textual structure.
+- Begin/end constructs that represent multi-line regions (for example a block, a multi-line footnote definition, a src block, or an example block) should primarily use `:type scope` assertions. Scope assertions express the expected tokenization and are better suited to validating multi-line highlighting and nesting.
+
+Rationale: Regex assertions give tight control over capture groups and are fast to author for single-line expectations. Scope assertions are more robust for region-based highlighting and for tests that must verify token scopes across line boundaries.
+
+You may combine both styles in a single fixture when useful (see Section 7 "One-to-Many Testing"). Prefer the style that makes the test easiest to understand and least brittle.
+
+
 * 5. Scope Assertions for Theming & Scoping
 
 To make fixtures a complete reference for theme developers, scope expectations are specified with an arrow-based, multi-line, human-friendly format.
