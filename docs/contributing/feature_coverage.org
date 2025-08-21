@@ -74,8 +74,9 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F13-links.org~
   _syntax: `link`_
-- [ ] **Inline Markup**: Bold, italic, underline, verbatim, code, strike-through.
-  _fixture: ~test/fixtures/F18-inline-markup.org~, ~test/fixtures/F19-inline-markup-nesting.org~
+- [X] **Inline Markup**: Bold, italic, underline, verbatim, code, strike-through.
+  _status: SSoT Refactored, L1/L2/L3 Tests Active_
+  _fixture: ~test/fixtures/F14-inline-markup.org~
   _syntax: `inline-markup`_
 - [ ] **Footnotes**: Definitions and inline references.
   _fixture: ~test/fixtures/F17-footnote-edge-cases.org~

@@ -9,6 +9,7 @@
 #+BEGIN_FIXTURE
 This is *bold* text.
 #+END_FIXTURE
+
 #+EXPECTED: :type scope
 "*" => {{scopes.BOLD_PUNCTUATION}}
 "bold" => {{scopes.BOLD}}
@@ -133,3 +134,143 @@ This is =verbatim= text.
 "=" => {{scopes.VERBATIM_PUNCTUATION}}
 "verbatim" => {{scopes.VERBATIM}}
 "=" => {{scopes.VERBATIM_PUNCTUATION}}
+
+* Colorize fixtures: F18 - Inline Markup (contexts)
+
+#+NAME: F18: Inline Markup - Contexts
+#+BEGIN_FIXTURE
+/italic/ *bold* _underline_ +strikethrough+ =code= ~verbatim~
+sub^script sub_script
+
+* Inline markup in headline
+** Headline with /italic/ and *bold*
+
+* Inline markup in list
+- /italic/ item
+- *bold* item
+- _underline_ item
+- +strikethrough+ item
+- =code= item
+- ~verbatim~ item
+
+* Inline markup in table
+| Type         | Example           |
+|--------------+------------------|
+| Italic       | /italic/         |
+| Bold         | *bold*           |
+| Underline    | _underline_      |
+| Strike       | +strike+         |
+| Code         | =code=           |
+| Verbatim     | ~verbatim~       |
+
+* Inline markup in property drawer
+:PROPERTIES:
+:Note: /italic/ *bold* _underline_ +strike+ =code= ~verbatim~
+:END:
+
+* Inline markup in comment
+#+COMMENT: /italic/ *bold*
+
+* Inline markup with link
+[[https://orgmode.org][*bold link*]]
+
+* Inline markup with footnote
+See /italic/[fn:1] and *bold*[fn:2].
+[fn:1] Italic footnote.
+[fn:2] Bold footnote.
+
+* Inline markup with LaTeX
+$\\LaTeX$ /italic/ *bold* \\alpha^2_3
+
+* Inline markup with tags
+* Example :inline:
+	/italic/ *bold*
+
+* Inline markup with priority and todo
+*** TODO [#A] Review /italic/ and *bold*
+
+* Inline markup in drawer
+:LOGBOOK:
+:Note: /italic/ *bold*
+:END:
+
+* Inline markup in block
+#+BEGIN_QUOTE
+/italic/ *bold* _underline_ +strike+ =code= ~verbatim~
+#+END_QUOTE
+
+* Inline markup in plain text
+This is /italic/, this is *bold*, this is _underline_, this is +strike+, this is =code=, this is ~verbatim~.
+
+* Inline markup with emoji and multilingual
+/你好/ *Привет* _안녕하세요_ +مرحبا+ =שלום= ~こんにちは~
+
+* Edge cases
+/not closed *bold _underline+
+/italic/ *bold*_/nested/_
+*bold*/italic/
+*bold* * *not bold*
+*bold* /italic/ *bold*
+
+#+END_FIXTURE
+
+* Colorize fixtures: F19 - Inline Markup Nesting
+
+#+NAME: F19: Inline Markup - Nesting
+#+BEGIN_FIXTURE
+/italic *bold _underline~/ text*/
+=code *bold= ~verbatim~/=
+*bold /italic/ _underline_*
+/italic/ *bold* _underline_ +strike+ =code= ~verbatim~
+
+* Inline markup nesting in headline
+** Headline with /italic *bold*/ and =code ~verbatim~/=
+
+* Inline markup nesting in list
+- /italic *bold*/ item
+- =code *bold= ~verbatim~/= item
+
+* Inline markup nesting in table
+| Type   | Example                |
+|--------+------------------------|
+| Mix    | /italic *bold*/        |
+| Mix2   | =code *bold= ~verb~/=  |
+
+* Inline markup nesting with link
+[[https://orgmode.org][*bold /italic/ link*]]
+
+* Inline markup nesting with footnote
+See /italic *bold*/[fn:1].
+[fn:1] Nested markup footnote.
+
+* Inline markup nesting with LaTeX
+$\\LaTeX$ /italic *bold*/ \\alpha^2_3
+
+* Inline markup nesting with tags
+* Example :inline:
+	/italic *bold*/
+
+* Inline markup nesting with priority and todo
+*** TODO [#A] Review /italic *bold*/
+
+* Inline markup nesting in drawer
+:LOGBOOK:
+:Note: /italic *bold*/
+:END:
+
+* Inline markup nesting in block
+#+BEGIN_QUOTE
+/italic *bold*/ =code *bold= ~verbatim~/=
+#+END_QUOTE
+
+* Inline markup nesting in plain text
+This is /italic *bold*/ and =code *bold= ~verbatim~/=.
+
+* Edge cases
+/not closed *bold _underline+
+/italic *bold*/_/nested/_
+*bold*/italic/
+*bold* * *not bold*
+*bold* /italic/ *bold*
+
+#+END_FIXTURE

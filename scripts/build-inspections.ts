@@ -87,6 +87,41 @@ function compileFixture(content: string, originalFilename: string): string {
     }
 
     if (lower.startsWith('#+end_fixture')) {
+      // End of fixture block. If there is no EXPECTED block following this
+      // fixture we should still emit the fixture as a Test so that build
+      // inspections include fixtures without EXPECTED sections.
+      // Look ahead to see if an EXPECTED block appears before the next test
+      // marker or headline.
+      let j = i + 1;
+      let hasExpectedFollowing = false;
+      for (; j < lines.length; j++) {
+        const nxt = lines[j].trim().toLowerCase();
+        if (nxt === '') { continue; }
+        if (nxt.startsWith('|')) { continue; }
+        if (nxt.startsWith('#+expected')) { hasExpectedFollowing = true; break; }
+        // If we hit another fixture, name or a headline, stop searching
+        if (nxt.startsWith('#+begin_fixture') || nxt.startsWith('#+name:') || /^\*+\s/.test(lines[j])) {
+          break;
+        }
+        // otherwise stop search (some other content)
+        break;
+      }
+
+      if (!hasExpectedFollowing && srcContent.length > 0) {
+        const parentLevel = currentHeadlineLevel + 1;
+        const effectiveName = testName || 'Fixture';
+        compiledLines.push(`${'*'.repeat(parentLevel)} Test: ${effectiveName}`);
+        if (testDescription) {
+          compiledLines.push(`  #+DESCRIPTION: ${testDescription}`);
+        }
+        const transformedSrc = transformSrcContent(srcContent.join('\n'), parentLevel);
+        compiledLines.push(transformedSrc);
+        compiledLines.push('');
+        srcContent = [];
+        testName = null;
+        testDescription = null;
+      }
+
       isOrgBlock = false;
       continue;
     }
