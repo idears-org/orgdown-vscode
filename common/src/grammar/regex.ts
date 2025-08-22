@@ -238,6 +238,17 @@ export const genericKeywordRegex = createRegexPattern(
 );
 // #endregion KEYWORD
 
+/**
+ * Macro definition: "#+MACRO: name body"
+ * Capture groups:
+ * 1 = leading keyword ("#+MACRO:")
+ * 2 = macro name
+ * 3 = macro body
+ */
+export const macroDefinitionRegex = createRegexPattern(
+  /^\s*(#\+MACRO:)\s+([a-zA-Z_][a-zA-Z0-9_-]*)\s+(.*)$/i
+);
+
 
 // #region DRAWERS
 /**
@@ -347,13 +358,16 @@ export const linkAbbreviationRegex = createRegexPattern(
 );
 // #endregion LINKS
 
+// #region TABLE
 /**
  * Tables
  */
 export const tableRegex = createRegexPattern(
   /^\s*\|.*\|$/
 );
+// #endregion
 
+// #region FOOTNOTES
 /**
  * Footnotes
  */
@@ -378,7 +392,9 @@ export const footnoteInlineDefinitionRegex = createRegexPattern(
 export const footnoteDefinitionStartRegex = createRegexPattern(
   /^(\s*)(\[fn:([^\]]+)\])(\s*)(.*)$/
 );
+// #endregion
 
+// #region PARAGRAPHS
 /**
  * Paragraphs
  */
@@ -391,7 +407,9 @@ export const paragraphEndRegex = createRegexPattern(
     'm'
   )
 );
+// #endregion
 
+// #region INLINE_MARKUP
 export const boldBeginRegex = createRegexPattern(
   /(?<=^|\s)(\*)(?=[^\s*])(?=.*?([^\s*])\*(?!\w))/
 );
@@ -443,6 +461,24 @@ export const latexRegex = createRegexPattern(
 );
 
 /**
+ * Inline macro - matches Org Mode inline macro usages like {{{name}}} or {{{name(arg)}}}
+ * Capture groups:
+ * 1 = opening braces "{{{"
+ * 2 = macro body (name and optional args)
+ * 3 = closing braces "}}}"
+ */
+export const inlineMacroRegex = createRegexPattern(
+  /(\{\{\{)([^}\n]+?)(\}\}\})/
+);
+
+// Macro name fragment (used inside inline macro body)
+export const macroNameFragment = createRegexPattern(/[a-zA-Z_][a-zA-Z0-9_-]*/);
+
+// Macro arguments fragment - matches a parenthesized argument list (simplified)
+// Capture includes parentheses so grammar can assign parameter scope to the inner content if desired.
+export const macroArgsFragment = createRegexPattern(/\([^\)]*\)/);
+
+/**
  * Entities and subscripts/superscripts
  */
 export const entitiesRegex = createRegexPattern(
@@ -451,3 +487,4 @@ export const entitiesRegex = createRegexPattern(
 export const subSuperScriptRegex = createRegexPattern(
   /[_^](\{[^}]+\}|\S)/
 );
+// #endregion

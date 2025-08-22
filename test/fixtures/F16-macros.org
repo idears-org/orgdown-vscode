@@ -1,0 +1,309 @@
+#+TITLE: Macro Test Suite (F16)
+
+#+NAME: Simple inline macro usage
+#+BEGIN_FIXTURE
+This is an inline macro: {{{today}}} used in text.
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | today          |
+| 3       | }}}            |
+#+END_SRC
+
+#+EXPECTED: :type scope
+"{{{" => {{scopes.MACRO_PUNCTUATION}}
+"today" => {{scopes.MACRO}}
+"}}}" => {{scopes.MACRO_PUNCTUATION}}
+
+
+#+NAME: Parameterized inline macro
+#+BEGIN_FIXTURE
+Value: {{{format-date("2025-08-22","%Y")}}} and more text.
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | format-date("2025-08-22","%Y") |
+| 3       | }}}            |
+#+END_SRC
+
+#+EXPECTED: :type scope
+"{{{" => {{scopes.MACRO_PUNCTUATION}}
+"format-date" => {{scopes.MACRO}}
+"}}}" => {{scopes.MACRO_PUNCTUATION}}
+
+#+NAME: Unterminated macro should not match
+#+BEGIN_FIXTURE
+Broken: {{{unclosed-macro and trailing text
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+no-match
+#+END_SRC
+
+#+NAME: Macro definition line
+#+BEGIN_FIXTURE
+#+MACRO: author John Doe
+#+END_FIXTURE
+#+EXPECTED: :type regex :name macroDefinitionRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+MACRO:       |
+| 2       | author         |
+| 3       | John Doe       |
+#+END_SRC
+
+#+EXPECTED: :type scope
+"#+MACRO:" => {{scopes.KEYWORD_KEY}}, {{scopes.KEYWORD}}
+"author" => {{scopes.MACRO_NAME}}
+"John Doe" => {{scopes.KEYWORD_VALUE}}
+
+#+NAME: Macro usage inline
+#+BEGIN_FIXTURE
+Author: {{{author}}}
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | author         |
+| 3       | }}}            |
+#+END_SRC
+
+#+EXPECTED: :type scope
+"{{{" => {{scopes.MACRO_PUNCTUATION}}
+"author" => {{scopes.MACRO}}
+"}}}" => {{scopes.MACRO_PUNCTUATION}}
+
+#+NAME: Basic macro expansion (usage lines)
+#+BEGIN_FIXTURE
+#+MACRO: greet Hello, $1!
+{{{greet(John)}}}
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Nested macro expansion (usage)
+#+BEGIN_FIXTURE
+{{{wrap(Jane)}}}
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | wrap(Jane)     |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Multi-parameter macro
+#+BEGIN_FIXTURE
+#+MACRO: info $1 is $2 years old.
+{{{info(Alice, 30)}}}
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | info(Alice, 30)|
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro in headline
+#+BEGIN_FIXTURE
+** Author: {{{greet(John)}}}
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro in list
+#+BEGIN_FIXTURE
+- {{{greet(John)}}}
+- {{{info(Bob, 25)}}}
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro in table row
+#+BEGIN_FIXTURE
+| Alice | {{{info(Alice, 30)}}}     |
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | info(Alice, 30)|
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro in property drawer
+#+BEGIN_FIXTURE
+:PROPERTIES:
+:Author: {{{greet(John)}}}
+:END:
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro in comment
+#+BEGIN_FIXTURE
+#+COMMENT: {{{greet(John)}}}
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro with inline markup
+#+BEGIN_FIXTURE
+/italic/ {{{greet(John)}}} *bold*
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro with footnote usage
+#+BEGIN_FIXTURE
+{{{greet(John)}}}[fn:macro]
+[fn:macro] Macro in footnote.
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro with LaTeX
+#+BEGIN_FIXTURE
+$\\LaTeX$ {{{greet(John)}}}
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro with tags (indented)
+#+BEGIN_FIXTURE
+* Example :macro:
+	{{{greet(John)}}}
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro with priority and todo
+#+BEGIN_FIXTURE
+*** TODO [#A] Review {{{greet(John)}}}
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro in log/drawer
+#+BEGIN_FIXTURE
+:LOGBOOK:
+:Note: {{{greet(John)}}}
+:END:
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro in block
+#+BEGIN_FIXTURE
+#+BEGIN_QUOTE
+{{{greet(John)}}}
+#+END_QUOTE
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro in plain text
+#+BEGIN_FIXTURE
+The author is {{{greet(John)}}} and {{{info(Alice, 30)}}}.
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(John)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Macro with emoji and multilingual
+#+BEGIN_FIXTURE
+{{{greet(你好)}}} {{{info(Привет, 20)}}} {{{greet(こんにちは)}}}
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet(你好)    |
+| 3       | }}}            |
+#+END_SRC
+
+#+NAME: Edge cases: missing or malformed
+#+BEGIN_FIXTURE
+{{{greet()}}}         # missing argument
+{{{info(Alice)}}}     # missing second argument
+{{{unknown}}}         # undefined macro
+{{{greet(John, Bob)}}} # extra argument
+{{{greet(John)}}      # missing closing braces
+#+END_FIXTURE
+#+EXPECTED: :type regex :name inlineMacroRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | {{{            |
+| 2       | greet()        |
+| 3       | }}}            |
+#+END_SRC

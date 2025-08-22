@@ -261,6 +261,27 @@ export const TIMESTAMP_INACTIVE_RANGE = 'constant.other.timestamp.inactive.range
 
 // endregion
 
+
+// region Macros (inline)
+// =================================================================
+
+/** Meta scope for an entire inline macro construct (e.g. {{{name(...)}}}). */
+export const META_INLINE_MACRO = 'meta.inline.macro.org';
+
+/** The macro itself (container scope). */
+export const MACRO = 'variable.other.macro.org';
+
+/** Punctuation for macro delimiters (opening/closing braces). */
+export const MACRO_PUNCTUATION = 'punctuation.definition.macro.org';
+
+/** The macro name (function-like identifier). */
+export const MACRO_NAME = 'entity.name.function.macro.org';
+
+/** Macro parameter or argument scope. */
+export const MACRO_PARAMETER = 'variable.parameter.macro.org';
+
+// endregion
+
 // region Inline Markup
 // =================================================================
 

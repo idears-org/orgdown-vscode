@@ -57,6 +57,7 @@ repository:
     patterns:
       - include: '#planning-lines'
       - include: '#link-abbreviations'
+      - include: '#macro-definition'
       - include: '#keywords'
 
   blocks:
@@ -85,6 +86,7 @@ repository:
     - include: '#links'
     - include: '#timestamps'
     - include: '#footnotes'
+    - include: '#macros'
     - include: '#latex'
     - include: '#bold'
     - include: '#italic'
@@ -190,6 +192,19 @@ repository:
       '2': { name: '{{scopes.LINK_ABBREVIATION_KEYWORD}}' }
       '3': { name: '{{scopes.LINK_ABBREVIATION_KEY}}' }
       '4': { name: '{{scopes.LINK_ABBREVIATION_URL}}' }
+
+  # Macro definition line: #+MACRO: name body
+  macro-definition:
+    match: '{{regexs.macroDefinitionRegex}}'
+    name: '{{scopes.KEYWORD}}'
+    captures:
+      '1': { name: '{{scopes.KEYWORD_KEY}}' }
+      '2': { name: '{{scopes.MACRO_NAME}}' }
+      '3':
+        name: '{{scopes.KEYWORD_VALUE}}'
+        patterns:
+          - match: "(\\$[0-9]+)"
+            name: '{{scopes.MACRO_PARAMETER}}'
 
   planning-lines:
     name: '{{scopes.PLANNING_LINE_META}}'
@@ -440,4 +455,20 @@ repository:
   sub-super-scripts:
     name: '{{scopes.SUB_SUPER_SCRIPT}}'
     match: "{{regexs.subSuperScriptRegex}}"
+
+  # Macros (inline) - matches {{{name}}} and {{{name(arg,...)}}}
+  macros:
+    name: '{{scopes.META_INLINE_MACRO}}'
+    begin: "(\\{\\{\\{)"
+    end: "(\\}\\}\\})"
+    beginCaptures:
+      '1': { name: '{{scopes.MACRO_PUNCTUATION}}' }
+    endCaptures:
+      '1': { name: '{{scopes.MACRO_PUNCTUATION}}' }
+    contentName: '{{scopes.MACRO}}'
+    patterns:
+      - match: "{{regexs.macroNameFragment}}"
+        name: '{{scopes.MACRO_NAME}}'
+      - match: "{{regexs.macroArgsFragment}}"
+        name: '{{scopes.MACRO_PARAMETER}}'
   #endregion

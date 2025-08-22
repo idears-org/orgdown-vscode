@@ -17,75 +17,60 @@ For the complete technical workflow on how to add a new feature or test case, pl
 
 *** Core Structure [Priority: High]
 - [X] **Headlines**: Levels, TODOs, priorities, tags, commented headlines.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F01-headlines.org~
   _syntax: `headline`_
 - [X] **Lists & Checkboxes**: Unordered, ordered, description lists, and checkboxes.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F02-lists.org~
   _syntax: `list-item`_
 - [X] **Horizontal Rules**: Standard `-----`.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F03-horizontal-rules.org~
   _syntax: `horizontal-rule`_
 
 *** Block-Level Elements [Priority: High]
 - [X] **Standard Blocks**: EXAMPLE, QUOTE, VERSE, CENTER, COMMENT.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F04-standard-blocks.org~
   _syntax: `standard-block`_
 - [X] **Source Code Blocks**: `#+BEGIN_SRC` ... `#+END_SRC` with language identifiers.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F05-src-blocks.org~
   _syntax: `src-block`_
 - [X] **Customized Blocks**: Generic `#+BEGIN_...` / `#+END_...` blocks.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F06-customized-blocks.org~
   _syntax: `customized-block`_
 - [X] **Dynamic Blocks**: `#+BEGIN:` ... `#+END:`.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F07-dynamic-blocks.org~
   _syntax: `dynamic-block`_
 
 *** Metadata and Planning [Priority: High]
 - [X] **Keywords**: File-level keywords like `#+TITLE`, `#+AUTHOR`, `#+FILETAGS`.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F08-keywords.org~
   _syntax: `keyword`_
 - [X] **Drawers**: LOGBOOK and custom drawers. Generic fallback for all drawer types.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active. Logic updated to explicitly exclude PROPERTIES._
   _fixture: ~test/fixtures/F09-drawers.org~
   _syntax: `drawer`_
 - [X] **Planning Lines**: SCHEDULED, DEADLINE, CLOSED timestamps.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F10-planning-lines.org~
   _syntax: `planning-line`_
 - [X] **Timestamps**: Active, inactive, ranges, and repeaters.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F11-timestamps.org~
   _syntax: `timestamp`_
 - [X] **Properties**: The `:PROPERTIES:` drawer, a special case of the generic drawer.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F12-properties.org~
   _syntax: `property`_
 
 *** Inline Elements [Priority: Medium]
 - [X] **Links**: All link types (internal, external, file, etc.).
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F13-links.org~
   _syntax: `link`_
 - [X] **Inline Markup**: Bold, italic, underline, verbatim, code, strike-through.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active_
   _fixture: ~test/fixtures/F14-inline-markup.org~
   _syntax: `inline-markup`_
 - [X] **Footnotes**: Definitions and inline references.
-  _status: SSoT Refactored, L1/L2/L3 Tests Active, migrated 2025-08-22_
   _fixture: ~test/fixtures/F15-footnotes.org~
   _syntax: `footnote`_
-- [ ] **Macros**: Definition and usage.
-  _fixture: ~test/fixtures/F20-macros.org~, ~test/fixtures/F21-macro-expansion-edge-cases.org~
+- [X] **Macros**: Definition and usage (consolidated and SSoT-aligned).
+  _fixture: ~test/fixtures/F16-macros.org~
   _syntax: `macro`_
-- [ ] **Inline LaTeX**: Math fragments like `\alpha`, `$ ... , etc.
+- [ ] **Inline LaTeX**: Math fragments like `\alpha`, `$ ... $`, etc.
   _fixture: ~test/fixtures/F32-inline-latex.org~
   _syntax: `inline-latex`_
 
