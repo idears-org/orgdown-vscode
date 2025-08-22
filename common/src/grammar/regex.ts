@@ -457,7 +457,7 @@ export const verbatimEndRegex = createRegexPattern(
  * LaTeX
  */
 export const latexRegex = createRegexPattern(
-  /(\$)[^$\n]+?(\$)|(\[(])[^\n]+?(\[)])|(\[\[])[^\n]+?(\[\]])/
+  /\$[^\$\n]+?\$|\\\([^\n]+?\\\)|\\\[[^\n]+?\\\]/
 );
 
 /**

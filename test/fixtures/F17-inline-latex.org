@@ -1,0 +1,92 @@
+#+TITLE: Inline LaTeX Fixture Suite
+
+#+NAME: Simple inline math
+#+BEGIN_FIXTURE
+Some math: $\\alpha + \\beta = \\gamma$
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"$\\alpha + \\beta = \\gamma$" => {{scopes.LATEX}}
+
+#+NAME: Inline parentheses math
+#+BEGIN_FIXTURE
+Inline: \\( x^2 + y^2 = z^2 \\\)
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"\\( x^2 + y^2 = z^2 \\\)" => {{scopes.LATEX}}
+
+#+NAME: Display math
+#+BEGIN_FIXTURE
+Display: \\\[ \\int_0^1 x \\; dx \\\]
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"\\[ \\int_0^1 x \\; dx \\\]" => {{scopes.LATEX}}
+
+#+NAME: Headline with inline LaTeX
+#+BEGIN_FIXTURE
+* Headline with inline LaTeX $E=mc^2$
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"$E=mc^2$" => {{scopes.LATEX}}
+
+#+NAME: List item with LaTeX
+#+BEGIN_FIXTURE
+- List item with LaTeX: $\\frac{a}{b}$ and $\\sqrt{x}$
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"$\\frac{a}{b}$" => {{scopes.LATEX}}
+"$\\sqrt{x}$" => {{scopes.LATEX}}
+
+#+NAME: Table cell with LaTeX
+#+BEGIN_FIXTURE
+| Table | With | LaTeX |
+|-------+------+-------|
+| $x_i$ | $y_j$ | $z_k$ |
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"$x_i$" => {{scopes.LATEX}}
+"$y_j$" => {{scopes.LATEX}}
+"$z_k$" => {{scopes.LATEX}}
+
+#+NAME: Comment with LaTeX
+#+BEGIN_FIXTURE
+# This is a comment with LaTeX $\\sum_{i=1}^n i$
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"$\\sum_{i=1}^n i$" => {{scopes.LATEX}}
+
+#+NAME: Inline mixed with markup
+#+BEGIN_FIXTURE
+*bold* /italic/ $a^2$ in mixed inline markup
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"$a^2$" => {{scopes.LATEX}}
+
+#+NAME: Multiple inline maths on one line
+#+BEGIN_FIXTURE
+Some text with multiple $x$ $y$ $z$
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"$x$" => {{scopes.LATEX}}
+"$y$" => {{scopes.LATEX}}
+"$z$" => {{scopes.LATEX}}
+
+#+NAME: Nested subscripts and superscripts
+#+BEGIN_FIXTURE
+Some text with nested $a_{b_{c}}$
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"$a_{b_{c}}$" => {{scopes.LATEX}}
+
+#+NAME: Unclosed LaTeX should not match
+#+BEGIN_FIXTURE
+Some text with unclosed LaTeX: $x^2 + y^2
+#+END_FIXTURE
+#+EXPECTED: :type regex :name latexRegex
+no-match
+
+#+NAME: Multilingual with LaTeX
+#+BEGIN_FIXTURE
+Multilingual: 公式 $\\int_0^\\infty e^{-x} dx$ 中文
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"$\\int_0^\\infty e^{-x} dx$" => {{scopes.LATEX}}

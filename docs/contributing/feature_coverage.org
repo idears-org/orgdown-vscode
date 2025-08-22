@@ -70,8 +70,8 @@ For the complete technical workflow on how to add a new feature or test case, pl
 - [X] **Macros**: Definition and usage (consolidated and SSoT-aligned).
   _fixture: ~test/fixtures/F16-macros.org~
   _syntax: `macro`_
-- [ ] **Inline LaTeX**: Math fragments like `\alpha`, `$ ... $`, etc.
-  _fixture: ~test/fixtures/F32-inline-latex.org~
+- [X] **Inline LaTeX**: Math fragments like `\\alpha`, `$ ... $`, etc.
+  _fixture: ~test/fixtures/F17-inline-latex.org~
   _syntax: `inline-latex`_
 
 *** Advanced Features & Edge Cases [Priority: Medium]
