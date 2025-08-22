@@ -89,11 +89,9 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _syntax: `archive`, `tag`_
 
 *** Integration & Stress Tests [Priority: Low]
-- [ ] **Multilingual**: Fixtures with non-ASCII characters.
-  _fixture: ~test/fixtures/F31-multilingual-fixture.org~_
-- [ ] **Malformed Syntax**: Tests for graceful handling of broken syntax.
-  _fixture: ~test/fixtures/F36-malformed-syntax.org~_
-- [ ] **Complex Nesting**: Deeply nested and combined structures.
-  _fixture: ~test/fixtures/F37-complex-noweb-reference.org~, ~test/fixtures/F38-block-edge-cases.org~_
-- [ ] **Kitchen Sink**: A single, comprehensive file combining all features.
-  _fixture: ~test/fixtures/F34-kitchen-sink.org~_
+- [X] **Multilingual**: Fixtures with non-ASCII characters.
+  _fixture: ~test/fixtures/IT01-multilingual-fixture.org~_
+- [X] **Malformed Syntax**: Tests for graceful handling of broken syntax.
+  _fixture: ~test/fixtures/IT02-malformed-syntax.org~_
+- [X] **Kitchen Sink**: A single, comprehensive file combining all features.
+  _fixture: ~test/fixtures/0000-kitchen-sink.org~_
