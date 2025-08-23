@@ -109,11 +109,20 @@ To make fixtures a complete reference for theme developers, scope expectations a
 - Use `#+EXPECTED: :type scope` followed by one or more lines in the form:
   `text => scope[, scope2, ...]`
 
-- Left side `text` is matched to a single token's exact text. You can quote it with single or double quotes to include spaces or special characters.
-- Right side is one or more scope names, comma-separated.
-- Matching semantics:
-  - The token's scopes MUST include all scopes listed on the right (superset), but may include additional scopes. Scope order is ignored.
-  - One assertion consumes exactly one token (no multi-token concatenation).
+- Left side `text` identifies a contiguous region on a single line. You can quote it with single or double quotes to include spaces or special characters.
+- Right side is one or more scope names, comma-separated. Prefix with `!` to mark a forbidden scope.
+- Matching semantics (unit test harness):
+  - Candidate selection: when `text` appears multiple times, the harness evaluates all candidate regions and prefers, in order:
+    1) An exact token whose text equals `text` and starts at the same column (aligned-exact),
+    2) Otherwise, the candidate whose nearest exact-token occurrence is closest in columns,
+    3) Otherwise, the first occurrence by position.
+  - Scope aggregation per region: the region may overlap multiple tokens. We compute:
+    - UNION: the set of all scopes present on any overlapping token,
+    - INTERSECTION: the set of scopes common to all overlapping tokens.
+  - Assertions:
+    - Positive scopes (right-hand side without `!`) are checked against the UNION. All listed scopes MUST be present in the UNION.
+    - Forbidden scopes (prefixed with `!`) are checked against the INTERSECTION. None of the listed scopes may appear in the INTERSECTION.
+  - Rationale: This allows region-level assertions such as `"*bold*" => !markup.bold.org, meta.inline.bold.org` where the region is recognized as a bold container (`meta.inline.bold.org`) but its content scope (`markup.bold.org`) is not considered part of every overlapping token (thus forbidden in the intersection), even though some sub-token carries it.
 - Readability helpers (optional):
   - You may indent lines or prefix with `- ` for visual grouping; they will be ignored by the parser.
   - Special placeholders in `text` are supported and will be converted before matching:
@@ -148,6 +157,20 @@ To make fixtures a complete reference for theme developers, scope expectations a
 "<sp:1>" => markup.heading.org, markup.heading.1.org
 "TODO" => markup.heading.org, markup.heading.1.org, keyword.other.todo.org
 ... etc.
+#+END_SRC
+
+**Example (region-based, inline markup)**
+#+BEGIN_SRC org
+#+NAME: Bold: Showcase
+#+BEGIN_FIXTURE
+This is *bold* text.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"*" => punctuation.definition.bold.org
+"bold" => markup.bold.org
+"*" => punctuation.definition.bold.org
+#+EXPECTED: :type scope
+"*bold*" => !markup.bold.org, meta.inline.bold.org
 #+END_SRC
 
 * 6. Special Syntaxes in Results

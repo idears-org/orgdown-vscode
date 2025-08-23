@@ -27,6 +27,8 @@ This is the most common contribution. Here’s your fast track:
 6.  **Update Snapshots**: Run `pnpm test:integration -u` to update the visual snapshot.
 7.  **Commit**: Commit your changes.
 
+Note: For scope assertion semantics (union vs. intersection and region selection), see [[../../test/fixture-howto.org][Fixture How-To Guide]], Section 5.
+
 * 3. Useful Commands
 
 - `pnpm dev`: Watches source files and rebuilds them automatically.
