@@ -209,6 +209,20 @@ export const PLANNING_TIMESTAMP = 'constant.other.timestamp.planning.org';
 
 // endregion
 
+// region Include Directive
+// =================================================================
+
+/** The include directive token, e.g., #+INCLUDE: */
+export const INCLUDE_KEYWORD = 'keyword.other.include.org';
+
+/** The include path/target, e.g., "file.org" or <file> */
+export const INCLUDE_PATH = 'string.quoted.include.path.org';
+
+/** Options following the include (e.g., :lines, :minlevel, etc.) */
+export const INCLUDE_OPTIONS = 'meta.directive.include.options.org';
+
+// endregion
+
 // region Drawers
 // =================================================================
 

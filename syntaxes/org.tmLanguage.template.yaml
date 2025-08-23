@@ -8,13 +8,12 @@ patterns:
   - include: '#document-root'
 
 repository:
-  # ===================================================================
-  # 1. DOCUMENT: The root of the grammar.
-  # ===================================================================
+  # region DOCUMENT: The root of the grammar.
   document-root:
     patterns:
       - include: '#file-header'
       - include: '#outline-node'
+  # endregion
 
   # ===================================================================
   # 2. TOP-LEVEL STRUCTURE
@@ -57,6 +56,7 @@ repository:
   keyword-like-lines:
     name: '{{scopes.META_DIRECTIVE}}'
     patterns:
+      - include: '#include-directive'
       - include: '#planning-lines'
       - include: '#link-abbreviations'
       - include: '#macro-definition'
@@ -103,6 +103,23 @@ repository:
   # ===================================================================
   # 4. DETAILED IMPLEMENTATIONS
   # ===================================================================
+
+  #region INCLUDE DIRECTIVE
+  include-directive:
+    patterns:
+      - begin: '{{regexs.includeDirectiveBeginRegex}}'
+        beginCaptures:
+          '1': { name: '{{scopes.INCLUDE_KEYWORD}}' }
+          '2': { name: '{{scopes.INCLUDE_PATH}}' }
+        end: '$'
+        name: '{{scopes.META_DIRECTIVE}}'
+        patterns:
+          - begin: '\s+(:\w+)(?=\b)'
+            beginCaptures:
+              '1': { name: '{{scopes.BLOCK_PARAMETER_KEY}}' }
+            end: '$'
+            name: '{{scopes.INCLUDE_OPTIONS}}'
+  #endregion
 
   # region COMMENTS
   # Reusable: line comments with inline LaTeX support

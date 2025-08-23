@@ -1,0 +1,112 @@
+#+TITLE: Include Directive - Canonicalized Tests
+
+#+NAME: Simple include with quoted path
+#+BEGIN_FIXTURE
+#+INCLUDE: "otherfile.org"
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name includeDirectiveBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+INCLUDE:     |
+| 2       | "otherfile.org" |
+
+#+NAME: Include with options (:lines)
+#+BEGIN_FIXTURE
+#+INCLUDE: "otherfile.org" :lines "1-10"
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name includeDirectiveBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+INCLUDE:     |
+| 2       | "otherfile.org" |
+
+#+NAME: Include with minlevel option
+#+BEGIN_FIXTURE
+#+INCLUDE: "otherfile.org" :minlevel 2
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name includeDirectiveBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+INCLUDE:     |
+| 2       | "otherfile.org" |
+
+#+NAME: Include with example and only-contents
+#+BEGIN_FIXTURE
+#+INCLUDE: "otherfile.org" :example :only-contents t
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name includeDirectiveBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+INCLUDE:     |
+| 2       | "otherfile.org" |
+
+#+NAME: Include with comments option
+#+BEGIN_FIXTURE
+#+INCLUDE: "otherfile.org" :comments t
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name includeDirectiveBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+INCLUDE:     |
+| 2       | "otherfile.org" |
+
+#+NAME: Include after headline
+#+BEGIN_FIXTURE
+* Heading
+#+INCLUDE: "headline.org"
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+'#+INCLUDE: "headline.org"' => {{scopes.META_DIRECTIVE}}, {{scopes.INCLUDE_KEYWORD}}, {{scopes.INCLUDE_PATH}}
+
+#+NAME: Include inside list item
+#+BEGIN_FIXTURE
+- Item 1
+  #+INCLUDE: "list.org"
+- Item 2
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+'#+INCLUDE: "list.org"' => {{scopes.META_DIRECTIVE}}, {{scopes.INCLUDE_KEYWORD}}, {{scopes.INCLUDE_PATH}}
+
+#+NAME: Include inside table cell
+#+BEGIN_FIXTURE
+| Table | With | Include |
+|-------+------+---------|
+| #+INCLUDE: "table.org" | Foo | Bar |
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+'#+INCLUDE: "table.org"' => !{{scopes.META_DIRECTIVE}}, !{{scopes.INCLUDE_KEYWORD}}, !{{scopes.INCLUDE_PATH}}
+
+#+NAME: Include inside comment should be treated as comment content
+#+BEGIN_FIXTURE
+# This is a comment with #+INCLUDE: "commented.org"
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+'# This is a comment with #+INCLUDE: "commented.org"' => {{scopes.COMMENT_LINE}}
+
+#+NAME: Malformed include should not match begin regex
+#+BEGIN_FIXTURE
+#+INCLUDE "missing-colon.org"
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name includeDirectiveBeginRegex
+no-match
+
+#+NAME: Empty quoted include is valid (matches begin regex)
+#+BEGIN_FIXTURE
+#+INCLUDE: ""
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name includeDirectiveBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | #+INCLUDE:     |
+| 2       | ""             |

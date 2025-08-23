@@ -244,7 +244,7 @@ export const dynamicBlockEndRegex = createRegexPattern(
  * Generic fallback for keywords. Excludes keywords that have their own dedicated rules.
  */
 export const genericKeywordRegex = createRegexPattern(
-  /^\s*(#\+(?!LINK|SCHEDULED|DEADLINE|CLOSED)([^:]+):)\s*(.*)\s*$/i
+  /^\s*(#\+(?!LINK|SCHEDULED|DEADLINE|CLOSED|INCLUDE)([^:]+):)\s*(.*)\s*$/i
 );
 // #endregion KEYWORD
 
@@ -376,6 +376,28 @@ export const tableRegex = createRegexPattern(
   /^\s*\|.*\|$/
 );
 // #endregion
+
+// #region INCLUDE DIRECTIVE
+/**
+ * Include directive - matches a full line include with path and optional options
+ * Capture groups:
+ * 1 = the include keyword token (#+INCLUDE:)
+ * 2 = the include path (quoted, angle-bracketed, or bare)
+ */
+export const includeDirectiveBeginRegex = createRegexPattern(
+  /^\s*(#\+INCLUDE:)\s+("[^"]+"|<[^>]+>|[^ \t]+)(?=\s|$)/i
+);
+
+/**
+ * Include directive (inline) - for table cell content where we are not at BOL
+ * Capture groups:
+ * 1 = the include keyword token (#+INCLUDE:)
+ * 2 = the include path (quoted, angle-bracketed, or bare)
+ */
+export const includeDirectiveInlineBeginRegex = createRegexPattern(
+  /(?:^|\|)\s*(#\+INCLUDE:)\s+("[^"]+"|<[^>]+>|[^ \t|]+)(?=\s|$)/i
+);
+// #endregion INCLUDE DIRECTIVE
 
 // #region FOOTNOTES
 /**

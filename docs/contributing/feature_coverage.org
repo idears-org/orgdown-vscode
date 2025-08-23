@@ -18,7 +18,7 @@ For the complete technical workflow on how to add a new feature or test case, pl
 *** Core Structure [Priority: High]
 - [X] **Headlines**: Levels, TODOs, priorities, tags, commented headlines.
   _fixture: ~test/fixtures/F01-headlines.org~
-  _syntax: `headline`_
+  _syntax: `headline`, `todo`, `priority`, `tag`, `comment`_
 - [X] **Lists & Checkboxes**: Unordered, ordered, description lists, and checkboxes.
   _fixture: ~test/fixtures/F02-lists.org~
   _syntax: `list-item`_
@@ -79,14 +79,14 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _fixture: ~test/fixtures/F18-tables.org~
   _syntax: `table`_
 - [X] **Comments**: Line comments and commented subtrees.
-  _fixture: ~test/fixtures/F30-comment-subtree.org~
+  _fixture: ~test/fixtures/F19-comment-subtree.org~
   _syntax: `comment`_
-- [ ] **Include Directive**: `#+INCLUDE` keyword.
-  _fixture: ~test/fixtures/F33-include.org~
+- [X] **Include Directive**: `#+INCLUDE` keyword.
+  _fixture: ~test/fixtures/F20-include.org~
   _syntax: `include`_
-- [ ] **Archive & Tags**: Archive subtrees and tags.
-  _fixture: ~test/fixtures/F35-archive-subtree.org~, ~test/fixtures/F27-tags.org~
-  _syntax: `archive`, `tag`_
+- [ ] **Archive & Tags**: Archive subtrees.
+  _fixture: ~test/fixtures/F21-archive-subtree.org~
+  _syntax: `archive`_
 
 *** Integration & Stress Tests [Priority: Low]
 - [X] **Multilingual**: Fixtures with non-ASCII characters.
