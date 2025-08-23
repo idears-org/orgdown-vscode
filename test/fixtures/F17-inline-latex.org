@@ -52,7 +52,7 @@ Display: \[ \int_0^1 x \; dx \]
 # This is a comment with LaTeX $\sum_{i=1}^n i$
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"$\sum_{i=1}^n i$" => {{scopes.LATEX}}
+"$\sum_{i=1}^n i$" => {{scopes.COMMENT_LINE}}, {{scopes.LATEX}}
 
 #+NAME: Inline mixed with markup
 #+BEGIN_FIXTURE

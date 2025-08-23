@@ -24,6 +24,7 @@ repository:
     begin: '\A(?!\*+\s)' # Anchor to start only if not immediately a headline.
     end: '{{regexs.headlineDetectToCloseBlockRegex}}' # End before the first headline.
     patterns:
+      - include: '#line-comments'
       - include: '#blocks'
       - include: '#keyword-like-lines'
       - include: '#lists'
@@ -42,6 +43,7 @@ repository:
     begin: '(^|\G)'
     end: '{{regexs.headlineDetectToCloseBlockRegex}}|(?=^\Z)'
     patterns:
+      - include: '#line-comments'
       - include: '#blocks'
       - include: '#keyword-like-lines'
       - include: '#lists'
@@ -101,6 +103,16 @@ repository:
   # ===================================================================
   # 4. DETAILED IMPLEMENTATIONS
   # ===================================================================
+
+  # region COMMENTS
+  # Reusable: line comments with inline LaTeX support
+  line-comments:
+    patterns:
+      - begin: '^\s*#\s'
+        end: '$'
+        name: '{{scopes.COMMENT_LINE}}'
+        patterns: *inline-markup-patterns
+  #endregion
 
   #region HEADLINE
   headline-captures: &headline-captures
@@ -282,6 +294,7 @@ repository:
     beginCaptures:
       '0': { name: '{{scopes.TABLE_META}}' }
     patterns:
+      - include: '#line-comments'
       - match: '^\s*\|\s*[-:]+[+\-:|\s]*\|\s*$'
         name: '{{scopes.TABLE_ROW_SEPARATOR}}'
       - begin: '^\s*(?=\|)'

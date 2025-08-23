@@ -1,0 +1,71 @@
+#+TITLE: Comments - Canonicalized Tests
+
+#+NAME: Line comment
+#+BEGIN_FIXTURE
+# This is a line comment and should not be exported
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"# This is a line comment and should not be exported" => {{scopes.COMMENT_LINE}}
+
+#+NAME: Comment block (BEGIN_COMMENT)
+#+BEGIN_FIXTURE
+#+BEGIN_COMMENT
+This block should be ignored by export and colorization.
+It can contain headlines, lists, tables, etc.
+** COMMENT Nested headline in block
+- List item in comment block
+| Table | In | Comment |
+#+END_COMMENT
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"#+BEGIN_COMMENT" => {{scopes.META_BEGIN_END_BLOCK}}, {{scopes.BLOCK_STANDARD_META}}
+"This block should be ignored by export and colorization." => {{scopes.BLOCK_STANDARD_CONTENT}}
+"** COMMENT Nested headline in block" => {{scopes.BLOCK_STANDARD_CONTENT}}
+"- List item in comment block" => {{scopes.BLOCK_STANDARD_CONTENT}}
+"| Table | In | Comment |" => {{scopes.BLOCK_STANDARD_CONTENT}}
+"#+END_COMMENT" => {{scopes.META_BEGIN_END_BLOCK}}, {{scopes.BLOCK_STANDARD_META}}
+
+#+NAME: Commented subtree headline
+#+BEGIN_FIXTURE
+** COMMENT This subtree is commented
+Some content in a commented subtree.
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"** COMMENT This subtree is commented" => {{scopes.HEADING_BLOCK}}
+"Some content in a commented subtree." => {{scopes.META_SECTION}}
+
+#+NAME: Non-commented 'COMMENTED' headline (should not be treated as comment)
+#+BEGIN_FIXTURE
+* Headline with COMMENTED (should not be treated as comment)
+** COMMENTED This is not a valid comment subtree
+Some content that should not be ignored.
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"** COMMENTED This is not a valid comment subtree" => {{scopes.HEADING_BLOCK}}
+"Some content that should not be ignored." => {{scopes.META_SECTION}}
+
+#+NAME: Comment in a list
+#+BEGIN_FIXTURE
+* List with comment
+- Item 1
+  # This is a comment in a list
+- Item 2
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"  # This is a comment in a list" => {{scopes.COMMENT_LINE}}
+
+#+NAME: Comment in a table
+#+BEGIN_FIXTURE
+| Col1 | Col2 |
+|------|------|
+# This is a comment in a table
+|  A   |  B   |
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"# This is a comment in a table" => {{scopes.COMMENT_LINE}}

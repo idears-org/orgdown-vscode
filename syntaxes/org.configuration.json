@@ -1,7 +1,7 @@
 {
   // VS Code language configuration for Org Mode
   "comments": {
-    "lineComment": "# "
+    "lineComment": "#"
   },
   "brackets": [
     ["[", "]"],

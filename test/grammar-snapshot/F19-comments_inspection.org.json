@@ -56,7 +56,7 @@
 		}
 	},
 	{
-		"c": "Inspection for F13-links.org (Auto-Generated)",
+		"c": "Inspection for F19-comments.org (Auto-Generated)",
 		"t": "text.org meta.file.header.org meta.directive.keyword.org string.unquoted.org",
 		"r": {
 			"dark_plus": "string: #CE9178",
@@ -126,7 +126,7 @@
 		}
 	},
 	{
-		"c": "F13-links.org",
+		"c": "F19-comments.org",
 		"t": "text.org meta.file.header.org meta.directive.keyword.org string.unquoted.org",
 		"r": {
 			"dark_plus": "string: #CE9178",
@@ -196,7 +196,7 @@
 		}
 	},
 	{
-		"c": "Test Suite for Links",
+		"c": "Comments - Canonicalized Tests",
 		"t": "text.org meta.file.header.org meta.directive.keyword.org string.unquoted.org",
 		"r": {
 			"dark_plus": "string: #CE9178",
@@ -280,7 +280,7 @@
 		}
 	},
 	{
-		"c": "Test: Standard external link with description",
+		"c": "Test: Line comment",
 		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
@@ -294,8 +294,120 @@
 		}
 	},
 	{
-		"c": "[[",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.definition.link.begin.org",
+		"c": "# This is a line comment and should not be exported",
+		"t": "text.org meta.outline-node.org meta.section.org comment.line.number-sign.org",
+		"r": {
+			"dark_plus": "comment: #6A9955",
+			"light_plus": "comment: #008000",
+			"dark_vs": "comment: #6A9955",
+			"light_vs": "comment: #008000",
+			"hc_black": "comment: #7CA668",
+			"dark_modern": "comment: #6A9955",
+			"hc_light": "comment: #515151",
+			"light_modern": "comment: #008000"
+		}
+	},
+	{
+		"c": "*",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "Test: Comment block (BEGIN",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "_C",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org markup.other.sub-super-script.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "OMMENT)",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "#+BEGIN_",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.begin-end.org meta.block.begin-end.standard.org keyword.control.block.org",
+		"r": {
+			"dark_plus": "keyword.control: #C586C0",
+			"light_plus": "keyword.control: #AF00DB",
+			"dark_vs": "keyword.control: #569CD6",
+			"light_vs": "keyword.control: #0000FF",
+			"hc_black": "keyword.control: #C586C0",
+			"dark_modern": "keyword.control: #C586C0",
+			"hc_light": "keyword.control: #B5200D",
+			"light_modern": "keyword.control: #AF00DB"
+		}
+	},
+	{
+		"c": "COMMENT",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.begin-end.org meta.block.begin-end.standard.org entity.name.function.block.org",
+		"r": {
+			"dark_plus": "entity.name.function: #DCDCAA",
+			"light_plus": "entity.name.function: #795E26",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "entity.name.function: #DCDCAA",
+			"dark_modern": "entity.name.function: #DCDCAA",
+			"hc_light": "entity.name.function: #5E2CBC",
+			"light_modern": "entity.name.function: #795E26"
+		}
+	},
+	{
+		"c": "This block should be ignored by export and colorization.",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.begin-end.org meta.block.begin-end.standard.org markup.block.org markup.block.standard.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -308,22 +420,8 @@
 		}
 	},
 	{
-		"c": "https",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
-		"r": {
-			"dark_plus": "keyword: #569CD6",
-			"light_plus": "keyword: #0000FF",
-			"dark_vs": "keyword: #569CD6",
-			"light_vs": "keyword: #0000FF",
-			"hc_black": "keyword: #569CD6",
-			"dark_modern": "keyword: #569CD6",
-			"hc_light": "keyword: #0F4A85",
-			"light_modern": "keyword: #0000FF"
-		}
-	},
-	{
-		"c": "://orgmode.org/",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org markup.underline.link.org",
+		"c": "It can contain headlines, lists, tables, etc.",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.begin-end.org meta.block.begin-end.standard.org markup.block.org markup.block.standard.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -336,8 +434,8 @@
 		}
 	},
 	{
-		"c": "][",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.separator.link.org",
+		"c": "*** COMMENT Nested headline in block",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.begin-end.org meta.block.begin-end.standard.org markup.block.org markup.block.standard.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -350,8 +448,36 @@
 		}
 	},
 	{
-		"c": "The Org Mode Website",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org string.other.link.description.org",
+		"c": "    - List item in comment block",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.begin-end.org meta.block.begin-end.standard.org markup.block.org markup.block.standard.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "    | Table | In | Comment |",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.begin-end.org meta.block.begin-end.standard.org markup.block.org markup.block.standard.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "    ",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.begin-end.org meta.block.begin-end.standard.org string.other.whitespace.leading.org",
 		"r": {
 			"dark_plus": "string: #CE9178",
 			"light_plus": "string: #A31515",
@@ -364,17 +490,31 @@
 		}
 	},
 	{
-		"c": "]]",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.definition.link.end.org",
+		"c": "#+END_",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.begin-end.org meta.block.begin-end.standard.org keyword.control.block.org",
 		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
+			"dark_plus": "keyword.control: #C586C0",
+			"light_plus": "keyword.control: #AF00DB",
+			"dark_vs": "keyword.control: #569CD6",
+			"light_vs": "keyword.control: #0000FF",
+			"hc_black": "keyword.control: #C586C0",
+			"dark_modern": "keyword.control: #C586C0",
+			"hc_light": "keyword.control: #B5200D",
+			"light_modern": "keyword.control: #AF00DB"
+		}
+	},
+	{
+		"c": "COMMENT",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.begin-end.org meta.block.begin-end.standard.org entity.name.function.block.org",
+		"r": {
+			"dark_plus": "entity.name.function: #DCDCAA",
+			"light_plus": "entity.name.function: #795E26",
 			"dark_vs": "default: #D4D4D4",
 			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
+			"hc_black": "entity.name.function: #DCDCAA",
+			"dark_modern": "entity.name.function: #DCDCAA",
+			"hc_light": "entity.name.function: #5E2CBC",
+			"light_modern": "entity.name.function: #795E26"
 		}
 	},
 	{
@@ -406,7 +546,7 @@
 		}
 	},
 	{
-		"c": "Test: External link without description",
+		"c": "Test: Commented subtree headline",
 		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
@@ -420,64 +560,8 @@
 		}
 	},
 	{
-		"c": "[[",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.definition.link.begin.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "https",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
-		"r": {
-			"dark_plus": "keyword: #569CD6",
-			"light_plus": "keyword: #0000FF",
-			"dark_vs": "keyword: #569CD6",
-			"light_vs": "keyword: #0000FF",
-			"hc_black": "keyword: #569CD6",
-			"dark_modern": "keyword: #569CD6",
-			"hc_light": "keyword: #0F4A85",
-			"light_modern": "keyword: #0000FF"
-		}
-	},
-	{
-		"c": "://orgmode.org/",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org markup.underline.link.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "]]",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.definition.link.end.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "*",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"c": "***",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.3.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -491,7 +575,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.3.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -504,232 +588,8 @@
 		}
 	},
 	{
-		"c": "Test: Internal link to a headline",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
-		"r": {
-			"dark_plus": "markup.heading: #569CD6",
-			"light_plus": "markup.heading: #800000",
-			"dark_vs": "markup.heading: #569CD6",
-			"light_vs": "markup.heading: #800000",
-			"hc_black": "markup.heading: #6796E6",
-			"dark_modern": "markup.heading: #569CD6",
-			"hc_light": "markup.heading: #0F4A85",
-			"light_modern": "markup.heading: #800000"
-		}
-	},
-	{
-		"c": "[[",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.definition.link.begin.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "*Some Headline",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org markup.underline.link.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "]]",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.definition.link.end.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "*",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
-		"r": {
-			"dark_plus": "markup.heading: #569CD6",
-			"light_plus": "markup.heading: #800000",
-			"dark_vs": "markup.heading: #569CD6",
-			"light_vs": "markup.heading: #800000",
-			"hc_black": "markup.heading: #6796E6",
-			"dark_modern": "markup.heading: #569CD6",
-			"hc_light": "markup.heading: #0F4A85",
-			"light_modern": "markup.heading: #800000"
-		}
-	},
-	{
-		"c": " ",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org",
-		"r": {
-			"dark_plus": "markup.heading: #569CD6",
-			"light_plus": "markup.heading: #800000",
-			"dark_vs": "markup.heading: #569CD6",
-			"light_vs": "markup.heading: #800000",
-			"hc_black": "markup.heading: #6796E6",
-			"dark_modern": "markup.heading: #569CD6",
-			"hc_light": "markup.heading: #0F4A85",
-			"light_modern": "markup.heading: #800000"
-		}
-	},
-	{
-		"c": "Test: File link with description",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
-		"r": {
-			"dark_plus": "markup.heading: #569CD6",
-			"light_plus": "markup.heading: #800000",
-			"dark_vs": "markup.heading: #569CD6",
-			"light_vs": "markup.heading: #800000",
-			"hc_black": "markup.heading: #6796E6",
-			"dark_modern": "markup.heading: #569CD6",
-			"hc_light": "markup.heading: #0F4A85",
-			"light_modern": "markup.heading: #800000"
-		}
-	},
-	{
-		"c": "[[",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.definition.link.begin.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "file",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
-		"r": {
-			"dark_plus": "keyword: #569CD6",
-			"light_plus": "keyword: #0000FF",
-			"dark_vs": "keyword: #569CD6",
-			"light_vs": "keyword: #0000FF",
-			"hc_black": "keyword: #569CD6",
-			"dark_modern": "keyword: #569CD6",
-			"hc_light": "keyword: #0F4A85",
-			"light_modern": "keyword: #0000FF"
-		}
-	},
-	{
-		"c": ":~/docs/main.org",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org markup.underline.link.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "][",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.separator.link.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "My Document",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org string.other.link.description.org",
-		"r": {
-			"dark_plus": "string: #CE9178",
-			"light_plus": "string: #A31515",
-			"dark_vs": "string: #CE9178",
-			"light_vs": "string: #A31515",
-			"hc_black": "string: #CE9178",
-			"dark_modern": "string: #CE9178",
-			"hc_light": "string: #0F4A85",
-			"light_modern": "string: #A31515"
-		}
-	},
-	{
-		"c": "]]",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.definition.link.end.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "*",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
-		"r": {
-			"dark_plus": "markup.heading: #569CD6",
-			"light_plus": "markup.heading: #800000",
-			"dark_vs": "markup.heading: #569CD6",
-			"light_vs": "markup.heading: #800000",
-			"hc_black": "markup.heading: #6796E6",
-			"dark_modern": "markup.heading: #569CD6",
-			"hc_light": "markup.heading: #0F4A85",
-			"light_modern": "markup.heading: #800000"
-		}
-	},
-	{
-		"c": " ",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org",
-		"r": {
-			"dark_plus": "markup.heading: #569CD6",
-			"light_plus": "markup.heading: #800000",
-			"dark_vs": "markup.heading: #569CD6",
-			"light_vs": "markup.heading: #800000",
-			"hc_black": "markup.heading: #6796E6",
-			"dark_modern": "markup.heading: #569CD6",
-			"hc_light": "markup.heading: #0F4A85",
-			"light_modern": "markup.heading: #800000"
-		}
-	},
-	{
-		"c": "Test: Link abbreviation definition",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
-		"r": {
-			"dark_plus": "markup.heading: #569CD6",
-			"light_plus": "markup.heading: #800000",
-			"dark_vs": "markup.heading: #569CD6",
-			"light_vs": "markup.heading: #800000",
-			"hc_black": "markup.heading: #6796E6",
-			"dark_modern": "markup.heading: #569CD6",
-			"hc_light": "markup.heading: #0F4A85",
-			"light_modern": "markup.heading: #800000"
-		}
-	},
-	{
-		"c": "#+LINK:",
-		"t": "text.org meta.outline-node.org meta.section.org meta.directive.link-abbreviation.org keyword.other.link.abbreviation.org",
+		"c": "COMMENT",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.3.org keyword.other.todo.org",
 		"r": {
 			"dark_plus": "keyword: #569CD6",
 			"light_plus": "keyword: #0000FF",
@@ -743,63 +603,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.org meta.section.org meta.directive.link-abbreviation.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "gh",
-		"t": "text.org meta.outline-node.org meta.section.org meta.directive.link-abbreviation.org variable.parameter.link.abbreviation.org",
-		"r": {
-			"dark_plus": "variable: #9CDCFE",
-			"light_plus": "variable: #001080",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "variable: #9CDCFE",
-			"dark_modern": "variable: #9CDCFE",
-			"hc_light": "variable: #001080",
-			"light_modern": "variable: #001080"
-		}
-	},
-	{
-		"c": " ",
-		"t": "text.org meta.outline-node.org meta.section.org meta.directive.link-abbreviation.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "https://github.com/%s",
-		"t": "text.org meta.outline-node.org meta.section.org meta.directive.link-abbreviation.org string.unquoted.link.abbreviation.url.org",
-		"r": {
-			"dark_plus": "string: #CE9178",
-			"light_plus": "string: #A31515",
-			"dark_vs": "string: #CE9178",
-			"light_vs": "string: #A31515",
-			"hc_black": "string: #CE9178",
-			"dark_modern": "string: #CE9178",
-			"hc_light": "string: #0F4A85",
-			"light_modern": "string: #A31515"
-		}
-	},
-	{
-		"c": "*",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.3.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -812,8 +616,8 @@
 		}
 	},
 	{
-		"c": " ",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"c": "This subtree is commented",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.3.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -826,204 +630,596 @@
 		}
 	},
 	{
-		"c": "Test: Link using an abbreviation",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
-		"r": {
-			"dark_plus": "markup.heading: #569CD6",
-			"light_plus": "markup.heading: #800000",
-			"dark_vs": "markup.heading: #569CD6",
-			"light_vs": "markup.heading: #800000",
-			"hc_black": "markup.heading: #6796E6",
-			"dark_modern": "markup.heading: #569CD6",
-			"hc_light": "markup.heading: #0F4A85",
-			"light_modern": "markup.heading: #800000"
-		}
-	},
-	{
-		"c": "[[",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.definition.link.begin.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "gh",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
-		"r": {
-			"dark_plus": "keyword: #569CD6",
-			"light_plus": "keyword: #0000FF",
-			"dark_vs": "keyword: #569CD6",
-			"light_vs": "keyword: #0000FF",
-			"hc_black": "keyword: #569CD6",
-			"dark_modern": "keyword: #569CD6",
-			"hc_light": "keyword: #0F4A85",
-			"light_modern": "keyword: #0000FF"
-		}
-	},
-	{
-		"c": ":orgdown/orgdown-vscode",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org markup.underline.link.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "]]",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.definition.link.end.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "*",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
-		"r": {
-			"dark_plus": "markup.heading: #569CD6",
-			"light_plus": "markup.heading: #800000",
-			"dark_vs": "markup.heading: #569CD6",
-			"light_vs": "markup.heading: #800000",
-			"hc_black": "markup.heading: #6796E6",
-			"dark_modern": "markup.heading: #569CD6",
-			"hc_light": "markup.heading: #0F4A85",
-			"light_modern": "markup.heading: #800000"
-		}
-	},
-	{
-		"c": " ",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org",
-		"r": {
-			"dark_plus": "markup.heading: #569CD6",
-			"light_plus": "markup.heading: #800000",
-			"dark_vs": "markup.heading: #569CD6",
-			"light_vs": "markup.heading: #800000",
-			"hc_black": "markup.heading: #6796E6",
-			"dark_modern": "markup.heading: #569CD6",
-			"hc_light": "markup.heading: #0F4A85",
-			"light_modern": "markup.heading: #800000"
-		}
-	},
-	{
-		"c": "Test: Malformed link with extra brackets",
-		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
-		"r": {
-			"dark_plus": "markup.heading: #569CD6",
-			"light_plus": "markup.heading: #800000",
-			"dark_vs": "markup.heading: #569CD6",
-			"light_vs": "markup.heading: #800000",
-			"hc_black": "markup.heading: #6796E6",
-			"dark_modern": "markup.heading: #569CD6",
-			"hc_light": "markup.heading: #0F4A85",
-			"light_modern": "markup.heading: #800000"
-		}
-	},
-	{
-		"c": "[[",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.definition.link.begin.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "https",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
-		"r": {
-			"dark_plus": "keyword: #569CD6",
-			"light_plus": "keyword: #0000FF",
-			"dark_vs": "keyword: #569CD6",
-			"light_vs": "keyword: #0000FF",
-			"hc_black": "keyword: #569CD6",
-			"dark_modern": "keyword: #569CD6",
-			"hc_light": "keyword: #0F4A85",
-			"light_modern": "keyword: #0000FF"
-		}
-	},
-	{
-		"c": "://a.com",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org markup.underline.link.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "][",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.separator.link.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "b",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org string.other.link.description.org",
-		"r": {
-			"dark_plus": "string: #CE9178",
-			"light_plus": "string: #A31515",
-			"dark_vs": "string: #CE9178",
-			"light_vs": "string: #A31515",
-			"hc_black": "string: #CE9178",
-			"dark_modern": "string: #CE9178",
-			"hc_light": "string: #0F4A85",
-			"light_modern": "string: #A31515"
-		}
-	},
-	{
-		"c": "]]",
-		"t": "text.org meta.outline-node.org meta.section.org meta.link.org punctuation.definition.link.end.org",
-		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
-		}
-	},
-	{
-		"c": "]",
+		"c": "    Some content in a commented subtree.",
 		"t": "text.org meta.outline-node.org meta.section.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "*",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "Test: Non-commented 'COMMENTED' headline (should not be treated as comment)",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "**",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.2.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "Headline with COMMENTED (should not be treated as comment)",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.2.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "***",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.3.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.3.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "COMMENTED This is not a valid comment subtree",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.3.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "    Some content that should not be ignored.",
+		"t": "text.org meta.outline-node.org meta.section.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "*",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "Test: Comment in a list",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "**",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.2.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "List with comment",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.2.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "  ",
+		"t": "text.org meta.outline-node.org meta.section.org markup.list.unnumbered.org string.other.whitespace.leading.org",
+		"r": {
+			"dark_plus": "string: #CE9178",
+			"light_plus": "string: #A31515",
+			"dark_vs": "string: #CE9178",
+			"light_vs": "string: #A31515",
+			"hc_black": "string: #CE9178",
+			"dark_modern": "string: #CE9178",
+			"hc_light": "string: #0F4A85",
+			"light_modern": "string: #A31515"
+		}
+	},
+	{
+		"c": "-",
+		"t": "text.org meta.outline-node.org meta.section.org markup.list.unnumbered.org punctuation.definition.list.begin.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": " Item 1",
+		"t": "text.org meta.outline-node.org meta.section.org markup.list.unnumbered.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "    # This is a comment in a list",
+		"t": "text.org meta.outline-node.org meta.section.org comment.line.number-sign.org",
+		"r": {
+			"dark_plus": "comment: #6A9955",
+			"light_plus": "comment: #008000",
+			"dark_vs": "comment: #6A9955",
+			"light_vs": "comment: #008000",
+			"hc_black": "comment: #7CA668",
+			"dark_modern": "comment: #6A9955",
+			"hc_light": "comment: #515151",
+			"light_modern": "comment: #008000"
+		}
+	},
+	{
+		"c": "  ",
+		"t": "text.org meta.outline-node.org meta.section.org markup.list.unnumbered.org string.other.whitespace.leading.org",
+		"r": {
+			"dark_plus": "string: #CE9178",
+			"light_plus": "string: #A31515",
+			"dark_vs": "string: #CE9178",
+			"light_vs": "string: #A31515",
+			"hc_black": "string: #CE9178",
+			"dark_modern": "string: #CE9178",
+			"hc_light": "string: #0F4A85",
+			"light_modern": "string: #A31515"
+		}
+	},
+	{
+		"c": "-",
+		"t": "text.org meta.outline-node.org meta.section.org markup.list.unnumbered.org punctuation.definition.list.begin.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": " Item 2",
+		"t": "text.org meta.outline-node.org meta.section.org markup.list.unnumbered.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "*",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "Test: Comment in a table",
+		"t": "text.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "| ",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "Col1",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "| ",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "Col2",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "|",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "|------|------|",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org punctuation.definition.table.row-separator.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "# This is a comment in a table",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org comment.line.number-sign.org",
+		"r": {
+			"dark_plus": "comment: #6A9955",
+			"light_plus": "comment: #008000",
+			"dark_vs": "comment: #6A9955",
+			"light_vs": "comment: #008000",
+			"hc_black": "comment: #7CA668",
+			"dark_modern": "comment: #6A9955",
+			"hc_light": "comment: #515151",
+			"light_modern": "comment: #008000"
+		}
+	},
+	{
+		"c": "|  ",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "A",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "   ",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "|  ",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "B",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "   ",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "|",
+		"t": "text.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",

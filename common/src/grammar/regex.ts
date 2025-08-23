@@ -152,6 +152,16 @@ export const horizontalRuleRegex = createRegexPattern(
 );
 // #endregion HORIZONTAL_RULES
 
+// #region COMMENTS
+/**
+ * Line comments - lines starting with optional whitespace, then '# ' (hash + space)
+ * Per Org manual 13.6, such lines are treated as comments and not exported.
+ */
+export const lineCommentRegex = createRegexPattern(
+  /^\s*#\s.*$/
+);
+// #endregion COMMENTS
+
 // #region BLOCKS
 /**
  * Block parameters

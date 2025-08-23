@@ -211,44 +211,44 @@
 	},
 	{
 		"c": "# DO NOT EDIT. Run 'pnpm build:inspections' to regenerate.",
-		"t": "text.org meta.file.header.org",
+		"t": "text.org meta.file.header.org comment.line.number-sign.org",
 		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
+			"dark_plus": "comment: #6A9955",
+			"light_plus": "comment: #008000",
+			"dark_vs": "comment: #6A9955",
+			"light_vs": "comment: #008000",
+			"hc_black": "comment: #7CA668",
+			"dark_modern": "comment: #6A9955",
+			"hc_light": "comment: #515151",
+			"light_modern": "comment: #008000"
 		}
 	},
 	{
 		"c": "# Content start after this line",
-		"t": "text.org meta.file.header.org",
+		"t": "text.org meta.file.header.org comment.line.number-sign.org",
 		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
+			"dark_plus": "comment: #6A9955",
+			"light_plus": "comment: #008000",
+			"dark_vs": "comment: #6A9955",
+			"light_vs": "comment: #008000",
+			"hc_black": "comment: #7CA668",
+			"dark_modern": "comment: #6A9955",
+			"hc_light": "comment: #515151",
+			"light_modern": "comment: #008000"
 		}
 	},
 	{
 		"c": "# --------------------------------------------------------",
-		"t": "text.org meta.file.header.org",
+		"t": "text.org meta.file.header.org comment.line.number-sign.org",
 		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
+			"dark_plus": "comment: #6A9955",
+			"light_plus": "comment: #008000",
+			"dark_vs": "comment: #6A9955",
+			"light_vs": "comment: #008000",
+			"hc_black": "comment: #7CA668",
+			"dark_modern": "comment: #6A9955",
+			"hc_light": "comment: #515151",
+			"light_modern": "comment: #008000"
 		}
 	},
 	{
@@ -1051,30 +1051,30 @@
 	},
 	{
 		"c": "# This is a comment with LaTeX ",
-		"t": "text.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.org meta.section.org comment.line.number-sign.org",
 		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
+			"dark_plus": "comment: #6A9955",
+			"light_plus": "comment: #008000",
+			"dark_vs": "comment: #6A9955",
+			"light_vs": "comment: #008000",
+			"hc_black": "comment: #7CA668",
+			"dark_modern": "comment: #6A9955",
+			"hc_light": "comment: #515151",
+			"light_modern": "comment: #008000"
 		}
 	},
 	{
 		"c": "$\\sum_{i=1}^n i$",
-		"t": "text.org meta.outline-node.org meta.section.org markup.math.org",
+		"t": "text.org meta.outline-node.org meta.section.org comment.line.number-sign.org markup.math.org",
 		"r": {
-			"dark_plus": "default: #D4D4D4",
-			"light_plus": "default: #000000",
-			"dark_vs": "default: #D4D4D4",
-			"light_vs": "default: #000000",
-			"hc_black": "default: #FFFFFF",
-			"dark_modern": "default: #CCCCCC",
-			"hc_light": "default: #292929",
-			"light_modern": "default: #3B3B3B"
+			"dark_plus": "comment: #6A9955",
+			"light_plus": "comment: #008000",
+			"dark_vs": "comment: #6A9955",
+			"light_vs": "comment: #008000",
+			"hc_black": "comment: #7CA668",
+			"dark_modern": "comment: #6A9955",
+			"hc_light": "comment: #515151",
+			"light_modern": "comment: #008000"
 		}
 	},
 	{

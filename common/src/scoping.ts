@@ -382,3 +382,11 @@ export const TABLE_ATTR_META = 'meta.directive.table.attr.org';
 export const TABLE_FORMULA = 'meta.directive.table.formula.org';
 
 // endregion
+
+// region Comments
+// =================================================================
+
+/** A single-line comment starting with '# ' */
+export const COMMENT_LINE = 'comment.line.number-sign.org';
+
+// endregion
