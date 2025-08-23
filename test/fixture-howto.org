@@ -112,10 +112,9 @@ To make fixtures a complete reference for theme developers, scope expectations a
 - Left side `text` identifies a contiguous region on a single line. You can quote it with single or double quotes to include spaces or special characters.
 - Right side is one or more scope names, comma-separated. Prefix with `!` to mark a forbidden scope.
 - Matching semantics (unit test harness):
-  - Candidate selection: when `text` appears multiple times, the harness evaluates all candidate regions and prefers, in order:
-    1) An exact token whose text equals `text` and starts at the same column (aligned-exact),
-    2) Otherwise, the candidate whose nearest exact-token occurrence is closest in columns,
-    3) Otherwise, the first occurrence by position.
+  - Candidate selection: when `text` appears multiple times,
+    - If assertions are indented (tree model), resolve parent first and restrict children to the parent’s region;
+    - Otherwise, pick the earliest occurrence by (line, column).
   - Scope aggregation per region: the region may overlap multiple tokens. We compute:
     - UNION: the set of all scopes present on any overlapping token,
     - INTERSECTION: the set of scopes common to all overlapping tokens.
@@ -171,6 +170,35 @@ This is *bold* text.
 "*" => punctuation.definition.bold.org
 #+EXPECTED: :type scope
 "*bold*" => !markup.bold.org, meta.inline.bold.org
+#+END_SRC
+
+*** 5.1 Indentation-based nesting (tree model)
+
+- You can express parent–child relationships using indentation before each assertion line. Tabs are normalized to 4 spaces before measuring. An optional leading bullet "- " is for readability and is ignored when computing depth.
+- Execution semantics:
+  - The harness first resolves a parent node to a specific region (line + [start, end)).
+  - Child nodes are evaluated with candidates restricted to the same line and within the parent’s [start, end) span.
+  - Scope checks remain: mustContain via UNION; mustNotContain via INTERSECTION.
+- Backward compatibility: Without indentation, assertions are independent; indentation only narrows candidate search.
+
+Example (table cell with nested inline markup):
+#+BEGIN_SRC org
+#+NAME: Table - inline markup edgecases
+#+BEGIN_FIXTURE
+| Header | H2 |
+|-------+----|
+| *a* /b/ =c= | mixed |
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"| *a* /b/ =c= | mixed |" => meta.table.row.org, meta.table.content.org
+- "*a* /b/ =c=" => meta.table.cell.org
+  - "*a*" => meta.inline.bold.org
+    - "a" => markup.bold.org
+  - "/b/" => meta.inline.italic.org
+    - "b" => markup.italic.org
+  - "=c=" => meta.inline.verbatim.org
+    - "c" => markup.verbatim.org
 #+END_SRC
 
 * 6. Special Syntaxes in Results

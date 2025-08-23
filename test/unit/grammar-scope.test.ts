@@ -15,10 +15,9 @@ type Candidate = {
   lineIndex: number;
   start: number;
   end: number;
-  alignedExact: boolean;
+  alignedExact: boolean; // retained for debug only
   intersection: Set<string>;
   union: Set<string>;
-  nearestExactDelta?: number;
 };
 
 function unionScopes(tokens: IToken[]): Set<string> {
@@ -112,21 +111,34 @@ describe('Grammar Scope Unit Tests', () => {
 
           const scopeExpectations = testCase.expectations.filter((e) => e.type === 'scope') as ScopeExpectation[];
           for (const expectation of scopeExpectations) {
-            for (const assertion of expectation.assertions) {
+            // Helper to evaluate a single node with optional parent region constraint
+            const evalNode = (node: { text: string; mustContain: string[]; mustNotContain: string[] }, parentRegion?: { lineIndex: number; start: number; end: number }) => {
               const candidates: Candidate[] = [];
+              const parent = parentRegion;
 
               for (let li = 0; li < lines.length; li++) {
-                const line = lines[li];
-                if (!assertion.text) {
+                // If anchored to a parent region, only consider the same line
+                if (parent && li !== parent.lineIndex) {
                   continue;
                 }
-                let pos = line.indexOf(assertion.text);
+                const line = lines[li];
+                if (!node.text) {
+                  continue;
+                }
+                let pos = line.indexOf(node.text);
                 while (pos !== -1) {
-                  const end = pos + assertion.text.length;
+                  const end = pos + node.text.length;
+                  // If anchored to a parent region, candidate must be within parent span
+                  if (parent) {
+                    if (!(pos >= parent.start && end <= parent.end)) {
+                      pos = line.indexOf(node.text, pos + 1);
+                      continue;
+                    }
+                  }
                   const { tokens } = tokenizedLines[li];
 
                   const alignedExact = tokens.find(
-                    (t) => t.startIndex === pos && line.slice(t.startIndex, t.endIndex) === assertion.text,
+                    (t) => t.startIndex === pos && line.slice(t.startIndex, t.endIndex) === node.text,
                   );
 
                   const overlapping = tokens.filter((t) => t.startIndex < end && t.endIndex > pos);
@@ -135,13 +147,6 @@ describe('Grammar Scope Unit Tests', () => {
                     const inter = intersectionScopes(overlapping);
                     const uni = unionScopes(overlapping);
 
-                    const exactMatches = tokens.filter((t) => line.slice(t.startIndex, t.endIndex) === assertion.text);
-                    let nearestExactDelta: number | undefined = undefined;
-                    if (exactMatches.length > 0) {
-                      exactMatches.sort((a, b) => Math.abs(a.startIndex - pos) - Math.abs(b.startIndex - pos));
-                      nearestExactDelta = Math.abs(exactMatches[0].startIndex - pos);
-                    }
-
                     candidates.push({
                       lineIndex: li,
                       start: pos,
@@ -149,89 +154,88 @@ describe('Grammar Scope Unit Tests', () => {
                       alignedExact: Boolean(alignedExact),
                       intersection: inter,
                       union: uni,
-                      nearestExactDelta,
                     });
                   }
 
-                  pos = line.indexOf(assertion.text, pos + 1);
+                  pos = line.indexOf(node.text, pos + 1);
                 }
               }
 
-              // Choose the best candidate
+              // Choose the best candidate (elegant rule):
+              // - Filter by: no forbidden in INTERSECTION; all expected in UNION
+              // - Pick earliest by (lineIndex, start)
               let chosen: Candidate | undefined;
               for (let ci = 0; ci < candidates.length; ci++) {
                 const c = candidates[ci];
-                const hasForbidden = assertion.mustNotContain.some((fs) => c.intersection.has(fs));
+                const hasForbidden = node.mustNotContain.some((fs) => c.intersection.has(fs));
                 if (hasForbidden) {
                   continue;
                 }
-                const hasAllExpected = assertion.mustContain.every((es) => c.union.has(es));
+                const hasAllExpected = node.mustContain.every((es) => c.union.has(es));
                 if (!hasAllExpected) {
                   continue;
                 }
                 if (!chosen) {
                   chosen = c;
-                } else {
-                  if (c.alignedExact && !chosen.alignedExact) {
-                    chosen = c;
-                  } else if (c.alignedExact === chosen.alignedExact) {
-                    const da = c.nearestExactDelta ?? Number.MAX_SAFE_INTEGER;
-                    const db = chosen.nearestExactDelta ?? Number.MAX_SAFE_INTEGER;
-                    if (da < db) {
-                      chosen = c;
-                    }
-                  }
+                  continue;
+                }
+                if (c.lineIndex < chosen.lineIndex || (c.lineIndex === chosen.lineIndex && c.start < chosen.start)) {
+                  chosen = c;
                 }
               }
 
               if (!chosen && candidates.length > 0) {
-                candidates.sort((a, b) => {
-                  if (a.alignedExact && !b.alignedExact) {
-                    return -1;
-                  }
-                  if (!a.alignedExact && b.alignedExact) {
-                    return 1;
-                  }
-                  const da = a.nearestExactDelta ?? Number.MAX_SAFE_INTEGER;
-                  const db = b.nearestExactDelta ?? Number.MAX_SAFE_INTEGER;
-                  if (da !== db) {
-                    return da - db;
-                  }
-                  if (a.lineIndex !== b.lineIndex) {
-                    return a.lineIndex - b.lineIndex;
-                  }
-                  return a.start - b.start;
-                });
-                chosen = candidates[0];
+                candidates.sort((a, b) => (a.lineIndex - b.lineIndex) || (a.start - b.start));
+                chosen = candidates[0]; // best-effort for error messages
               }
 
               expect(
                 chosen,
-                `No token/region candidate found for '${assertion.text}' in test '${testCase.name}'`,
+                `No token/region candidate found for '${node.text}' in test '${testCase.name}'`,
               ).toBeDefined();
               if (!chosen) {
-                continue; // type narrowing
+                throw new Error(`No candidate resolved for '${node.text}' in '${testCase.name}'`);
               }
 
-              const foundIntersection = chosen.intersection;
-              const foundUnion = chosen.union;
+              const picked = chosen as Candidate;
+              const foundIntersection = picked.intersection;
+              const foundUnion = picked.union;
 
-              for (let mi = 0; mi < assertion.mustContain.length; mi++) {
-                const expectedScope = assertion.mustContain[mi];
+              for (let mi = 0; mi < node.mustContain.length; mi++) {
+                const expectedScope = node.mustContain[mi];
                 const ok = foundUnion.has(expectedScope);
                 expect(
                   ok,
-                  `Expected scope '${expectedScope}' for '${assertion.text}' in '${testCase.name}', but it was not found. Intersection: ${[...foundIntersection].join(', ')}, Union: ${[...foundUnion].join(', ')}`,
+                  `Expected scope '${expectedScope}' for '${node.text}' in '${testCase.name}', but it was not found. Intersection: ${[...foundIntersection].join(', ')}, Union: ${[...foundUnion].join(', ')}`,
                 ).toBe(true);
               }
 
-              for (let fi = 0; fi < assertion.mustNotContain.length; fi++) {
-                const forbiddenScope = assertion.mustNotContain[fi];
+              for (let fi = 0; fi < node.mustNotContain.length; fi++) {
+                const forbiddenScope = node.mustNotContain[fi];
                 const bad = foundIntersection.has(forbiddenScope);
                 expect(
                   bad,
-                  `Forbidden scope '${forbiddenScope}' for '${assertion.text}' in '${testCase.name}' was found. Intersection: ${[...foundIntersection].join(', ')}, Union: ${[...foundUnion].join(', ')}`,
+                  `Forbidden scope '${forbiddenScope}' for '${node.text}' in '${testCase.name}' was found. Intersection: ${[...foundIntersection].join(', ')}, Union: ${[...foundUnion].join(', ')}`,
                 ).toBe(false);
+              }
+              return { lineIndex: picked.lineIndex, start: picked.start, end: picked.end };
+            };
+
+            const walk = (nodes: Array<{ text: string; mustContain: string[]; mustNotContain: string[]; children?: any }>, parentRegion?: { lineIndex: number; start: number; end: number }) => {
+              for (const n of nodes) {
+                const region = evalNode(n, parentRegion);
+                if (n.children && n.children.length > 0) {
+                  walk(n.children, region);
+                }
+              }
+            };
+
+            if (expectation.tree && expectation.tree.length > 0) {
+              walk(expectation.tree);
+            } else {
+              // Fallback to flat assertions order (no explicit tree provided)
+              for (const a of expectation.assertions) {
+                evalNode(a as any);
               }
             }
           }

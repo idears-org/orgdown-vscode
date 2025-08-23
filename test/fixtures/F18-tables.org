@@ -86,8 +86,11 @@
 
 #+EXPECTED: :type scope
 | *bold* | plain | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+- b => {{scopes.BOLD}}
 - *bold* => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_BOLD}}
   - bold => {{scopes.BOLD}}
+  - b => {{scopes.BOLD}}
+    - b => {{scopes.BOLD}}
 - *nopad* => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_BOLD}}
   - nopad => {{scopes.BOLD}}
 - *b* => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_BOLD}}
@@ -99,6 +102,7 @@
     - b => {{scopes.ITALIC}}
   - =c= => {{scopes.META_INLINE_VERBATIM}}
     - c => {{scopes.VERBATIM}}
+- b => !{{scopes.ITALIC}}
 - =*not-bold*= => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_VERBATIM}}
   - *not-bold* => {{scopes.VERBATIM}}
 |      | *x* | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}

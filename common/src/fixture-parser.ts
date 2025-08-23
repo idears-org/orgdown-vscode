@@ -11,6 +11,15 @@ export interface RegexExpectation {
 export interface ScopeExpectation {
   type: "scope";
   assertions: { text: string; mustContain: string[]; mustNotContain: string[] }[];
+  // Optional tree representation, built from indentation depth
+  tree?: ScopeNode[];
+}
+
+export interface ScopeNode {
+  text: string;
+  mustContain: string[];
+  mustNotContain: string[];
+  children: ScopeNode[];
 }
 
 export type Expectation = RegexExpectation | ScopeExpectation;
@@ -128,12 +137,20 @@ function parseExpectedBlock(
         mustContain: string[];
         mustNotContain: string[];
       }[] = [];
+
+  // Build a tree from indentation
+  const roots: ScopeNode[] = [];
+  const nodeStack: Array<{ depth: number; node: ScopeNode }> = [];
       for (const raw of blockContentLines) {
         const normalized = raw.replace(/\t/g, "    ");
         let line = normalized;
         if (line.trim() === "" || line.trim().startsWith("#")) {
           continue;
         }
+        // determine indentation depth BEFORE stripping bullets (spaces-only depth)
+        const leadingSpacesMatch = line.match(/^(\s*)/);
+        const leadingSpaces = leadingSpacesMatch ? leadingSpacesMatch[1] : "";
+        const depth = leadingSpaces.length > 0 ? leadingSpaces.length : 0;
         // strip optional leading bullet and spaces
         line = line.replace(/^\s*-\s*/, "");
         if (!line.includes("=>")) {
@@ -175,6 +192,18 @@ function parseExpectedBlock(
 
         if (mustContain.length > 0 || mustNotContain.length > 0) {
           assertions.push({ text, mustContain, mustNotContain });
+
+          // insert into tree using depth-based stack
+          const node: ScopeNode = { text, mustContain, mustNotContain, children: [] };
+          while (nodeStack.length > 0 && nodeStack[nodeStack.length - 1].depth >= depth) {
+            nodeStack.pop();
+          }
+          if (nodeStack.length === 0) {
+            roots.push(node);
+          } else {
+            nodeStack[nodeStack.length - 1].node.children.push(node);
+          }
+          nodeStack.push({ depth, node });
         }
       }
 
@@ -193,7 +222,7 @@ function parseExpectedBlock(
         );
       }
 
-      allExpectations.push({ type: "scope", assertions });
+  allExpectations.push({ type: "scope", assertions, tree: roots });
     }
 
     currentIndex = blockEndIndex + 1;
