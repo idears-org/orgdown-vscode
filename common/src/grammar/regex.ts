@@ -411,7 +411,7 @@ export const paragraphEndRegex = createRegexPattern(
 
 // #region INLINE_MARKUP
 export const boldBeginRegex = createRegexPattern(
-  /(?<=^|\s)(\*)(?=[^\s*])(?=.*?([^\s*])\*(?!\w))/
+  /(?<=^|\s|\|)(\*)(?=[^\s*])(?=.*?([^\s*])\*(?!\w))/
 );
 export const boldEndRegex = createRegexPattern(
   /(?<=[^\s*])(\*)(?!\w)/

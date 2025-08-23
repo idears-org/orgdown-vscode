@@ -65,6 +65,7 @@ repository:
     patterns:
       - include: '#begin-end-blocks'
       - include: '#drawer-blocks'
+      - include: '#tables'
       - include: '#horizontal-rules'
 
   begin-end-blocks:
@@ -271,6 +272,29 @@ repository:
     beginCaptures: { <<: *block-captures }
     endCaptures: { <<: *end-captures }
     patterns: *inline-markup-patterns
+
+  # Tables
+  tables:
+    name: '{{scopes.META_TABLE}}'
+    contentName: '{{scopes.TABLE_CONTENT}}'
+    begin: '(?={{regexs.tableRegex}})'
+    end: '(?=^\s*$|{{regexs.headlineDetectToCloseBlockRegex}})'
+    beginCaptures:
+      '0': { name: '{{scopes.TABLE_META}}' }
+    patterns:
+      - match: '^\s*\|\s*[-:]+[+\-:|\s]*\|\s*$'
+        name: '{{scopes.TABLE_ROW_SEPARATOR}}'
+      - begin: '^\s*(?=\|)'
+        name: '{{scopes.TABLE_ROW}}'
+        contentName: '{{scopes.TABLE_CONTENT}} {{scopes.TABLE_ROW}}'
+        end: '$'
+        patterns:
+          - begin: '\|\s*'
+            beginCaptures:
+              '0': { name: '{{scopes.TABLE_CELL_PUNCTUATION}}' }
+            contentName: '{{scopes.TABLE_CELL}}'
+            end: '\s*(?=\||\+|$)'
+            patterns: *inline-markup-patterns
 
   org-src-blocks: { patterns: [] } # Injected by build script
 

@@ -1,0 +1,104 @@
+#+TITLE: Tables - Migrated and Canonicalized Tests
+
+* 1. Basic tables
+
+#+NAME: Table - simple table + TBLFM
+#+BEGIN_FIXTURE
+| Name   | Age | Score |
+|--------+-----+-------|
+| Alice  |  30 |    95 |
+| Bob    |  25 |    88 |
+|--------+-----+-------|
+#+TBLFM: $3=$2*3
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| Name   | Age | Score | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|--------+-----+-------| => {{scopes.TABLE_ROW_SEPARATOR}}
+| Alice  |  30 |    95 | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - alignment and empty cells
+#+BEGIN_FIXTURE
+| Left   | Center   | Right |
+|:-------|:--------:|------:|
+| l1     |   c1     |   r1  |
+| l2     |   c2     |   r2  |
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| Left   | Center   | Right | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|:-------|:--------:|------:| => {{scopes.TABLE_ROW_SEPARATOR}}
+
+#+NAME: Table - inline markup inside cells
+#+BEGIN_FIXTURE
+| *Bold* | /Italic/ | =Verbatim= | ~Code~ |
+|--------+----------+--------+-----------|
+| Data   | Value    | 123    | Some text |
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| *Bold* | /Italic/ | =Verbatim= | ~Code~ | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+- *Bold* => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_BOLD}}
+  - Bold => {{scopes.BOLD}}
+- /Italic/ => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_ITALIC}}
+  - Italic => {{scopes.ITALIC}}
+- =Verbatim= => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_VERBATIM}}
+  - Verbatim => {{scopes.VERBATIM}}
+- ~Code~ => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_CODE}}
+  - Code => {{scopes.CODE}}
+| Data   | Value    | 123    | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - header/footer and caption/attributes
+#+BEGIN_FIXTURE
+#+CAPTION: This is a table with lines around and between cells
+#+ATTR_HTML: :border 2 :rules all :frame border
+| Name  | Phone | Age |
+|-------+-------+-----|
+| Peter | 1234  | 17  |
+| Anna  | 4321  | 25  |
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| Name  | Phone | Age | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|-------+-------+-----| => {{scopes.TABLE_ROW_SEPARATOR}}
+
+#+NAME: Table - nested table as cell content
+#+BEGIN_FIXTURE
+| Outer | Inner Table |
+|-------+-------------|
+| Row 1 | | a | b |\n|---+---|\n| 1 | 2 | |
+| Row 2 | text        |
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| Outer | Inner Table | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - inline markup edgecases
+#+BEGIN_FIXTURE
+| Header | H2 |
+|-------+----|
+| *bold* | plain |
+|*nopad*| *b* |
+| *a* /b/ =c= | mixed |
+| =*not-bold*= | conflict |
+|      | *x* |
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| *bold* | plain | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+- *bold* => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_BOLD}}
+  - bold => {{scopes.BOLD}}
+- *nopad* => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_BOLD}}
+  - nopad => {{scopes.BOLD}}
+- *b* => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_BOLD}}
+  - b => {{scopes.BOLD}}
+- *a* /b/ =c= => {{scopes.TABLE_CELL}}
+  - *a* => {{scopes.META_INLINE_BOLD}}
+    - a => {{scopes.BOLD}}
+  - /b/ => {{scopes.META_INLINE_ITALIC}}
+    - b => {{scopes.ITALIC}}
+  - =c= => {{scopes.META_INLINE_VERBATIM}}
+    - c => {{scopes.VERBATIM}}
+- =*not-bold*= => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_VERBATIM}}
+  - *not-bold* => {{scopes.VERBATIM}}
+|      | *x* | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}

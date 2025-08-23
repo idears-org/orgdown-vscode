@@ -351,3 +351,34 @@ export const FOOTNOTE_DEFINITION = 'meta.footnote.definition.org';
 export const FOOTNOTE_CONTENT = 'markup.footnote.content.org';
 
 // endregion
+
+// region Tables (table-specific scopes)
+// =================================================================
+
+/** Meta scope for a whole table block. */
+export const META_TABLE = 'meta.block.table.org';
+
+/** Alias used in the grammar template for the table begin/end meta scope. */
+export const TABLE_META = 'meta.block.begin-end.table.org';
+
+/** The content area of a table block. */
+export const TABLE_CONTENT = 'markup.block.table.org';
+
+/** A single table row. */
+export const TABLE_ROW = 'markup.block.table.row.org';
+
+/** A table cell content scope. */
+export const TABLE_CELL = 'markup.table.cell.org';
+
+/** Punctuation for table cell separators ("|" or "+"). */
+export const TABLE_CELL_PUNCTUATION = 'punctuation.separator.table.cell.org';
+
+/** A row-separator line (e.g., "|---+---|"). */
+export const TABLE_ROW_SEPARATOR = 'punctuation.definition.table.row-separator.org';
+
+/** Optional meta scopes for caption/attributes and formulas. */
+export const TABLE_CAPTION_META = 'meta.directive.table.caption.org';
+export const TABLE_ATTR_META = 'meta.directive.table.attr.org';
+export const TABLE_FORMULA = 'meta.directive.table.formula.org';
+
+// endregion

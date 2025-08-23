@@ -2,24 +2,24 @@
 
 #+NAME: Simple inline math
 #+BEGIN_FIXTURE
-Some math: $\\alpha + \\beta = \\gamma$
+Some math: $\alpha + \beta = \gamma$
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"$\\alpha + \\beta = \\gamma$" => {{scopes.LATEX}}
+"$\alpha + \beta = \gamma$" => {{scopes.LATEX}}
 
 #+NAME: Inline parentheses math
 #+BEGIN_FIXTURE
-Inline: \\( x^2 + y^2 = z^2 \\\)
+Inline: \( x^2 + y^2 = z^2 \)
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"\\( x^2 + y^2 = z^2 \\\)" => {{scopes.LATEX}}
+"\( x^2 + y^2 = z^2 \)" => {{scopes.LATEX}}
 
 #+NAME: Display math
 #+BEGIN_FIXTURE
-Display: \\\[ \\int_0^1 x \\; dx \\\]
+Display: \[ \int_0^1 x \; dx \]
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"\\[ \\int_0^1 x \\; dx \\\]" => {{scopes.LATEX}}
+"\[ \int_0^1 x \; dx \]" => {{scopes.LATEX}}
 
 #+NAME: Headline with inline LaTeX
 #+BEGIN_FIXTURE
@@ -30,11 +30,11 @@ Display: \\\[ \\int_0^1 x \\; dx \\\]
 
 #+NAME: List item with LaTeX
 #+BEGIN_FIXTURE
-- List item with LaTeX: $\\frac{a}{b}$ and $\\sqrt{x}$
+- List item with LaTeX: $\frac{a}{b}$ and $\sqrt{x}$
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"$\\frac{a}{b}$" => {{scopes.LATEX}}
-"$\\sqrt{x}$" => {{scopes.LATEX}}
+"$\frac{a}{b}$" => {{scopes.LATEX}}
+"$\sqrt{x}$" => {{scopes.LATEX}}
 
 #+NAME: Table cell with LaTeX
 #+BEGIN_FIXTURE
@@ -49,10 +49,10 @@ Display: \\\[ \\int_0^1 x \\; dx \\\]
 
 #+NAME: Comment with LaTeX
 #+BEGIN_FIXTURE
-# This is a comment with LaTeX $\\sum_{i=1}^n i$
+# This is a comment with LaTeX $\sum_{i=1}^n i$
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"$\\sum_{i=1}^n i$" => {{scopes.LATEX}}
+"$\sum_{i=1}^n i$" => {{scopes.LATEX}}
 
 #+NAME: Inline mixed with markup
 #+BEGIN_FIXTURE
@@ -86,7 +86,8 @@ no-match
 
 #+NAME: Multilingual with LaTeX
 #+BEGIN_FIXTURE
-Multilingual: 公式 $\\int_0^\\infty e^{-x} dx$ 中文
+Multilingual: 公式 $\int_0^\infty e^{-x} dx$ 中文
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"$\\int_0^\\infty e^{-x} dx$" => {{scopes.LATEX}}
+"$\int_0^\infty e^{-x} dx$" => {{scopes.LATEX}}
+Multilingual: 公式 $\\int_0^\\infty e^{-x} dx$ 中文
