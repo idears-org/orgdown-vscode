@@ -84,7 +84,7 @@ For the complete technical workflow on how to add a new feature or test case, pl
 - [X] **Include Directive**: `#+INCLUDE` keyword.
   _fixture: ~test/fixtures/F20-include.org~
   _syntax: `include`_
-- [ ] **Archive & Tags**: Archive subtrees.
+- [X] **Archive** Archive subtrees.
   _fixture: ~test/fixtures/F21-archive-subtree.org~
   _syntax: `archive`_
 

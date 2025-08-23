@@ -14,6 +14,13 @@ export const META_HEADER = 'meta.file.header.org';
 /** The entire outline node, from a headline to the next. */
 export const META_NODE = 'meta.outline-node.org';
 
+/** A meta scope for an active (normal) outline node. */
+export const META_NODE_ACTIVE = 'meta.outline-node.active.org';
+
+/** A meta scope for an inactive (commented or archived) outline node. */
+export const META_NODE_INACTIVE =
+  'meta.outline-node.inactive.org';
+
 /** The content of a section, between headlines. */
 export const META_SECTION = 'meta.section.org';
 
@@ -38,6 +45,12 @@ export const META_DRAWER = 'meta.block.drawer.org';
 
 /** The entire headline block, applied to the whole line. */
 export const HEADING_BLOCK = 'markup.heading.org';
+
+/** A headline that is active (not commented out or archived). */
+export const HEADING_ACTIVE = 'markup.heading.active.org';
+
+/** A headline that is commented out or archived. */
+export const HEADING_INACTIVE = 'markup.heading.inactive.org';
 
 /** The headline level, e.g., heading.1.org */
 export const HEADING_LEVEL_1 = 'markup.heading.1.org';
@@ -403,4 +416,9 @@ export const TABLE_FORMULA = 'meta.directive.table.formula.org';
 /** A single-line comment starting with '# ' */
 export const COMMENT_LINE = 'comment.line.number-sign.org';
 
+/** A block-level comment, e.g. #+BEGIN_COMMENT ... #+END_COMMENT */
+export const COMMENT_BLOCK =
+  'comment.block.org meta.block.begin-end.org meta.block.begin-end.standard.org';
+
+export const COMMENT_BLOCK_CONTENT = 'comment.block.content.org';
 // endregion

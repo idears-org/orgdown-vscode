@@ -8,15 +8,17 @@ patterns:
   - include: '#document-root'
 
 repository:
-  # region DOCUMENT: The root of the grammar.
+  # ===================================================================
+  # 1. TOP-LEVEL STRUCTURE (THE "DISPATCHER")
+  # ===================================================================
   document-root:
     patterns:
       - include: '#file-header'
+      - include: '#inactive-outline-node'
       - include: '#outline-node'
-  # endregion
 
   # ===================================================================
-  # 2. TOP-LEVEL STRUCTURE
+  # 2. STRUCTURAL COMPONENTS
   # ===================================================================
   file-header:
     name: '{{scopes.META_HEADER}}'
@@ -29,12 +31,89 @@ repository:
       - include: '#lists'
       - include: '#paragraph'
 
-  outline-node:
-    name: '{{scopes.META_NODE}}'
-    begin: '(^|\G)'
-    end: '(?=^\Z)'
+  # Anchor for all inline markup patterns for easy reuse
+  inline-markup-patterns: &inline-markup-patterns
+    - include: '#links'
+    - include: '#timestamps'
+    - include: '#footnotes'
+    - include: '#macros'
+    - include: '#latex'
+    - include: '#bold'
+    - include: '#italic'
+    - include: '#underline'
+    - include: '#strikethrough'
+    - include: '#code'
+    - include: '#verbatim'
+    - include: '#entities'
+    - include: '#sub-super-scripts'
+
+  headline-captures: &headline-captures
+    '1': { name: '{{scopes.HEADING_PUNCTUATION}}' }
+    '2': { name: '{{scopes.TODO_KEYWORD}}' }
+    '3': { name: '{{scopes.PRIORITY_COOKIE}}' }
+    '4': { name: '{{scopes.PRIORITY_VALUE}}' }
+    '5':
+      name: '{{scopes.HEADING_TITLE}}'
+      patterns: *inline-markup-patterns
+    '6': { name: '{{scopes.PROGRESS_COOKIE}}' }
+    '7': { name: '{{scopes.TAG}}' }
+
+  inactive-outline-node:
+    name: '{{scopes.META_NODE_INACTIVE}} {{scopes.META_NODE}}'
+    begin: '{{regexs.inactiveHeadlineDetectRegex}}'
+    end: '(?={{regexs.endOfSectionRegex}})'
+    beginCaptures:
+      '1':
+        name: '{{scopes.HEADING_BLOCK}}'
+        patterns:
+          - name: '{{scopes.HEADING_LEVEL_1}}'
+            match: "{{regexs.headlineLevel1Regex}}"
+            captures: { <<: *headline-captures }
+          - name: '{{scopes.HEADING_LEVEL_2}}'
+            match: "{{regexs.headlineLevel2Regex}}"
+            captures: { <<: *headline-captures }
+          - name: '{{scopes.HEADING_LEVEL_3}}'
+            match: "{{regexs.headlineLevel3Regex}}"
+            captures: { <<: *headline-captures }
+          - name: '{{scopes.HEADING_LEVEL_4}}'
+            match: "{{regexs.headlineLevel4Regex}}"
+            captures: { <<: *headline-captures }
+          - name: '{{scopes.HEADING_LEVEL_5}}'
+            match: "{{regexs.headlineLevel5Regex}}"
+            captures: { <<: *headline-captures }
+          - name: '{{scopes.HEADING_LEVEL_6}}'
+            match: "{{regexs.headlineLevel6Regex}}"
+            captures: { <<: *headline-captures }
     patterns:
-      - include: '#headline'
+      - include: '#section-content'
+
+  outline-node:
+    name: '{{scopes.META_NODE_ACTIVE}} {{scopes.META_NODE}}'
+    begin: '{{regexs.headlineDetectRegex}}'
+    end: '(?={{regexs.endOfSectionRegex}})'
+    beginCaptures:
+      '1':
+        name: '{{scopes.HEADING_BLOCK}}'
+        patterns:
+          - name: '{{scopes.HEADING_LEVEL_1}}'
+            match: "{{regexs.headlineLevel1Regex}}"
+            captures: { <<: *headline-captures }
+          - name: '{{scopes.HEADING_LEVEL_2}}'
+            match: "{{regexs.headlineLevel2Regex}}"
+            captures: { <<: *headline-captures }
+          - name: '{{scopes.HEADING_LEVEL_3}}'
+            match: "{{regexs.headlineLevel3Regex}}"
+            captures: { <<: *headline-captures }
+          - name: '{{scopes.HEADING_LEVEL_4}}'
+            match: "{{regexs.headlineLevel4Regex}}"
+            captures: { <<: *headline-captures }
+          - name: '{{scopes.HEADING_LEVEL_5}}'
+            match: "{{regexs.headlineLevel5Regex}}"
+            captures: { <<: *headline-captures }
+          - name: '{{scopes.HEADING_LEVEL_6}}'
+            match: "{{regexs.headlineLevel6Regex}}"
+            captures: { <<: *headline-captures }
+    patterns:
       - include: '#section-content'
 
   section-content:
@@ -73,6 +152,7 @@ repository:
   begin-end-blocks:
     name: '{{scopes.META_BEGIN_END_BLOCK}}'
     patterns:
+      - include: '#comment-block'
       - include: '#standard-blocks'
       - include: '#dynamic-blocks'
       - include: '#org-src-blocks' # Injected by build script
@@ -84,21 +164,7 @@ repository:
       - include: '#property-drawer'
       - include: '#drawers'
 
-  # Anchor for all inline markup patterns for easy reuse
-  inline-markup-patterns: &inline-markup-patterns
-    - include: '#links'
-    - include: '#timestamps'
-    - include: '#footnotes'
-    - include: '#macros'
-    - include: '#latex'
-    - include: '#bold'
-    - include: '#italic'
-    - include: '#underline'
-    - include: '#strikethrough'
-    - include: '#code'
-    - include: '#verbatim'
-    - include: '#entities'
-    - include: '#sub-super-scripts'
+
 
   # ===================================================================
   # 4. DETAILED IMPLEMENTATIONS
@@ -122,51 +188,53 @@ repository:
   #endregion
 
   # region COMMENTS
-  # Reusable: line comments with inline LaTeX support
+  comment-block:
+    name: '{{scopes.COMMENT_BLOCK}}'
+    begin: '{{regexs.commentBlockBeginRegex}}'
+    end: '{{regexs.commentBlockEndRegex}}'
+    contentName: '{{scopes.COMMENT_BLOCK_CONTENT}}'
+    beginCaptures:
+      '2': { name: '{{scopes.BLOCK_KEYWORD}}' }
+    endCaptures:
+      '2': { name: '{{scopes.BLOCK_KEYWORD}}' }
+
   line-comments:
-    patterns:
-      - begin: '^\s*#\s'
-        end: '$'
-        name: '{{scopes.COMMENT_LINE}}'
-        patterns: *inline-markup-patterns
+    begin: '(^\s*#\s)'
+    end: '$'
+    name: '{{scopes.COMMENT_LINE}}'
+    beginCaptures:
+      '1': { name: '{{scopes.PUNCTUATION_WHITESPACE}}' }
+    patterns: *inline-markup-patterns
   #endregion
 
   #region HEADLINE
-  headline-captures: &headline-captures
-    '1': { name: '{{scopes.HEADING_PUNCTUATION}}' }
-    '2': { name: '{{scopes.TODO_KEYWORD}}' }
-    '3': { name: '{{scopes.PRIORITY_COOKIE}}' }
-    '4': { name: '{{scopes.PRIORITY_VALUE}}' }
-    '5':
-      name: '{{scopes.HEADING_TITLE}}'
-      patterns: *inline-markup-patterns
-    '6': { name: '{{scopes.PROGRESS_COOKIE}}' }
-    '7': { name: '{{scopes.TAG}}' }
 
-  headline:
-    match: "{{regexs.headlineDetectRegex}}"
-    name: '{{scopes.HEADING_BLOCK}}'
-    captures:
-      '1':
-        patterns:
-          - name: '{{scopes.HEADING_LEVEL_1}}'
-            match: "{{regexs.headlineLevel1Regex}}"
-            captures: { <<: *headline-captures }
-          - name: '{{scopes.HEADING_LEVEL_2}}'
-            match: "{{regexs.headlineLevel2Regex}}"
-            captures: { <<: *headline-captures }
-          - name: '{{scopes.HEADING_LEVEL_3}}'
-            match: "{{regexs.headlineLevel3Regex}}"
-            captures: { <<: *headline-captures }
-          - name: '{{scopes.HEADING_LEVEL_4}}'
-            match: "{{regexs.headlineLevel4Regex}}"
-            captures: { <<: *headline-captures }
-          - name: '{{scopes.HEADING_LEVEL_5}}'
-            match: "{{regexs.headlineLevel5Regex}}"
-            captures: { <<: *headline-captures }
-          - name: '{{scopes.HEADING_LEVEL_6}}'
-            match: "{{regexs.headlineLevel6Regex}}"
-            captures: { <<: *headline-captures }
+
+  # The headline rule is now merged into outline-node.
+  # headline:
+  #   match: "{{regexs.headlineDetectRegex}}"
+  #   name: '{{scopes.HEADING_BLOCK}}'
+  #   captures:
+  #     '1':
+  #       patterns:
+  #         - name: '{{scopes.HEADING_LEVEL_1}}'
+  #           match: "{{regexs.headlineLevel1Regex}}"
+  #           captures: { <<: *headline-captures }
+  #         - name: '{{scopes.HEADING_LEVEL_2}}'
+  #           match: "{{regexs.headlineLevel2Regex}}"
+  #           captures: { <<: *headline-captures }
+  #         - name: '{{scopes.HEADING_LEVEL_3}}'
+  #           match: "{{regexs.headlineLevel3Regex}}"
+  #           captures: { <<: *headline-captures }
+  #         - name: '{{scopes.HEADING_LEVEL_4}}'
+  #           match: "{{regexs.headlineLevel4Regex}}"
+  #           captures: { <<: *headline-captures }
+  #         - name: '{{scopes.HEADING_LEVEL_5}}'
+  #           match: "{{regexs.headlineLevel5Regex}}"
+  #           captures: { <<: *headline-captures }
+  #         - name: '{{scopes.HEADING_LEVEL_6}}'
+  #           match: "{{regexs.headlineLevel6Regex}}"
+  #           captures: { <<: *headline-captures }
   #endregion
 
   #region LISTS

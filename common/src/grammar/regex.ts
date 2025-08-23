@@ -93,6 +93,15 @@ export const tagsFragment = createRegexPattern(
 export const headlineDetectRegex = createRegexPattern(
   /^(\*+\s+.*)/
 );
+export const activeHeadlineDetectRegex = createRegexPattern(
+  /^(\*+\s+(?!COMMENT\b|.*\s:ARCHIVE:).*)/i
+);
+export const inactiveHeadlineDetectRegex = createRegexPattern(
+  /^(\*+\s+(?:COMMENT\b\s.*|.*:ARCHIVE:))/i
+);
+export const endOfSectionRegex = createRegexPattern(
+  /(?=^\*+\s)/i
+);
 export const headlineDetectToCloseBlockRegex = createRegexPattern(
   /(?=^\*+\s)/
 );
@@ -159,6 +168,16 @@ export const horizontalRuleRegex = createRegexPattern(
  */
 export const lineCommentRegex = createRegexPattern(
   /^\s*#\s.*$/
+);
+
+/**
+ * Comment block
+ */
+export const commentBlockBeginRegex = createRegexPattern(
+  /^(\s*)(#\+BEGIN_COMMENT)\s*$/i
+);
+export const commentBlockEndRegex = createRegexPattern(
+  /^(\s*)(#\+END_COMMENT)\s*$/i
 );
 // #endregion COMMENTS
 

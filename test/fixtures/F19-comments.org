@@ -21,10 +21,10 @@ It can contain headlines, lists, tables, etc.
 
 #+EXPECTED: :type scope
 "#+BEGIN_COMMENT" => {{scopes.META_BEGIN_END_BLOCK}}, {{scopes.BLOCK_STANDARD_META}}
-"This block should be ignored by export and colorization." => {{scopes.BLOCK_STANDARD_CONTENT}}
-"** COMMENT Nested headline in block" => {{scopes.BLOCK_STANDARD_CONTENT}}
-"- List item in comment block" => {{scopes.BLOCK_STANDARD_CONTENT}}
-"| Table | In | Comment |" => {{scopes.BLOCK_STANDARD_CONTENT}}
+"This block should be ignored by export and colorization." => {{scopes.COMMENT_BLOCK_CONTENT}}
+"** COMMENT Nested headline in block" => {{scopes.COMMENT_BLOCK_CONTENT}}
+"- List item in comment block" => {{scopes.COMMENT_BLOCK_CONTENT}}
+"| Table | In | Comment |" => {{scopes.COMMENT_BLOCK_CONTENT}}
 "#+END_COMMENT" => {{scopes.META_BEGIN_END_BLOCK}}, {{scopes.BLOCK_STANDARD_META}}
 
 #+NAME: Commented subtree headline
