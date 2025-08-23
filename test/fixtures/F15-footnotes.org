@@ -8,6 +8,9 @@ This is a footnote reference[fn:1].
 | Group # | Expected Value |
 |---------+----------------|
 | 1       | 1              |
+#+EXPECTED: :type scope
+"[fn:1]" => {{scopes.FOOTNOTE_REFERENCE}}
+"1" => {{scopes.FOOTNOTE_LABEL}}
 
 #+NAME: Footnote definition (single-line)
 #+BEGIN_FIXTURE
@@ -203,7 +206,38 @@ For more info, see [fn:plain].
 [fn:two] Second footnote.
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"[fn:one]" => markup.footnote.reference.org, punctuation.definition.footnote.org
-"First footnote." => markup.footnote.content.org
-"[fn:two]" => markup.footnote.reference.org, punctuation.definition.footnote.org
-"Second footnote." => markup.footnote.content.org
+"[fn:one]" => {{scopes.FOOTNOTE_DEFINITION}}
+"First footnote." => {{scopes.FOOTNOTE_CONTENT}}
+"[fn:two]" => {{scopes.FOOTNOTE_DEFINITION}}
+"Second footnote." => {{scopes.FOOTNOTE_CONTENT}}
+
+#+NAME: Multi-line footnote definition
+#+BEGIN_FIXTURE
+[fn:multi-line] This is the first line.
+  This is the second line, indented.
+This is the third line, not indented but still part of it.
+
+This line is no longer part of the footnote.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"[fn:multi-line]" => {{scopes.FOOTNOTE_DEFINITION}}
+"This is the first line." => {{scopes.FOOTNOTE_CONTENT}}
+"  This is the second line, indented." => {{scopes.FOOTNOTE_CONTENT}}
+"This is the third line, not indented but still part of it." => {{scopes.FOOTNOTE_CONTENT}}
+"This line is no longer part of the footnote." => !{{scopes.FOOTNOTE_CONTENT}}
+
+#+NAME: Anonymous footnote reference
+#+BEGIN_FIXTURE
+An anonymous reference[fn].
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"[fn]" => {{scopes.FOOTNOTE_REFERENCE}}
+
+#+NAME: Footnote definition with deferred content
+#+BEGIN_FIXTURE
+[fn:deferred]
+  The content starts on the next line.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"[fn:deferred]" => {{scopes.FOOTNOTE_DEFINITION}}
+"  The content starts on the next line." => {{scopes.FOOTNOTE_CONTENT}}

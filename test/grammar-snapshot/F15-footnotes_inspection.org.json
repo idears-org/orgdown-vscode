@@ -476,6 +476,146 @@
 		}
 	},
 	{
+		"c": "\"",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "[fn:",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "1",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.footnote.reference.org punctuation.definition.footnote.org constant.other.footnote.label.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "]",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "\" => {{scopes.FOOTNOTE",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "_R",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.other.sub-super-script.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "EFERENCE}}",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "\"1\" => {{scopes.FOOTNOTE",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "_L",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.other.sub-super-script.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "ABEL}}",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
 		"c": "*",
 		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
@@ -519,7 +659,7 @@
 	},
 	{
 		"c": "[fn:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -533,7 +673,7 @@
 	},
 	{
 		"c": "1",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org constant.other.footnote.label.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org constant.other.footnote.label.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -547,7 +687,7 @@
 	},
 	{
 		"c": "]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -561,7 +701,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.whitespace.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.whitespace.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -575,7 +715,7 @@
 	},
 	{
 		"c": "This is the footnote definition.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org markup.footnote.content.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -631,7 +771,7 @@
 	},
 	{
 		"c": "[fn:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -645,7 +785,7 @@
 	},
 	{
 		"c": "2",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org constant.other.footnote.label.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org constant.other.footnote.label.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -659,7 +799,7 @@
 	},
 	{
 		"c": "]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -673,7 +813,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.whitespace.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.whitespace.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -687,7 +827,7 @@
 	},
 	{
 		"c": "Another footnote.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org markup.footnote.content.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1835,7 +1975,7 @@
 	},
 	{
 		"c": "[fn:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1849,7 +1989,7 @@
 	},
 	{
 		"c": "nest",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org constant.other.footnote.label.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org constant.other.footnote.label.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1863,7 +2003,7 @@
 	},
 	{
 		"c": "]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1877,7 +2017,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.whitespace.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.whitespace.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1890,8 +2030,64 @@
 		}
 	},
 	{
-		"c": "See [fn:inner] inside.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org markup.footnote.content.org",
+		"c": "See ",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "[fn:",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "inner",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org markup.footnote.reference.org punctuation.definition.footnote.org constant.other.footnote.label.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "]",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": " inside.",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1947,7 +2143,7 @@
 	},
 	{
 		"c": "[fn:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1961,7 +2157,7 @@
 	},
 	{
 		"c": "empty",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org constant.other.footnote.label.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org constant.other.footnote.label.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1975,7 +2171,7 @@
 	},
 	{
 		"c": "]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2605,7 +2801,7 @@
 	},
 	{
 		"c": "[fn:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2619,7 +2815,7 @@
 	},
 	{
 		"c": "block",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org constant.other.footnote.label.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org constant.other.footnote.label.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2633,7 +2829,7 @@
 	},
 	{
 		"c": "]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2647,7 +2843,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.whitespace.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.whitespace.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2661,7 +2857,7 @@
 	},
 	{
 		"c": "Footnote in block.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org markup.footnote.content.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2787,7 +2983,7 @@
 	},
 	{
 		"c": "[fn:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2801,7 +2997,7 @@
 	},
 	{
 		"c": "plain",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org constant.other.footnote.label.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org constant.other.footnote.label.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2815,7 +3011,7 @@
 	},
 	{
 		"c": "]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2829,7 +3025,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.whitespace.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.whitespace.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2843,7 +3039,7 @@
 	},
 	{
 		"c": "Footnote in plain text.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org markup.footnote.content.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2899,7 +3095,7 @@
 	},
 	{
 		"c": "[fn:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2913,7 +3109,7 @@
 	},
 	{
 		"c": "one",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org constant.other.footnote.label.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org constant.other.footnote.label.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2927,7 +3123,7 @@
 	},
 	{
 		"c": "]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2941,7 +3137,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.whitespace.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.whitespace.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2955,7 +3151,7 @@
 	},
 	{
 		"c": "First footnote.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org markup.footnote.content.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2969,7 +3165,7 @@
 	},
 	{
 		"c": "[fn:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2983,7 +3179,7 @@
 	},
 	{
 		"c": "two",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org constant.other.footnote.label.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org constant.other.footnote.label.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -2997,7 +3193,7 @@
 	},
 	{
 		"c": "]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -3011,7 +3207,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org punctuation.whitespace.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.whitespace.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -3025,7 +3221,343 @@
 	},
 	{
 		"c": "Second footnote.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.reference.org markup.footnote.content.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "*",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "Test: Multi-line footnote definition",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "[fn:",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "multi-line",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org constant.other.footnote.label.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "]",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.whitespace.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "This is the first line.",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "  This is the second line, indented.",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "This is the third line, not indented but still part of it.",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "This line is no longer part of the footnote.",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "*",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "Test: Anonymous footnote reference",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "An anonymous reference",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "[fn]",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.footnote.reference.org punctuation.definition.footnote.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": ".",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "*",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": " ",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "Test: Footnote definition with deferred content",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"r": {
+			"dark_plus": "markup.heading: #569CD6",
+			"light_plus": "markup.heading: #800000",
+			"dark_vs": "markup.heading: #569CD6",
+			"light_vs": "markup.heading: #800000",
+			"hc_black": "markup.heading: #6796E6",
+			"dark_modern": "markup.heading: #569CD6",
+			"hc_light": "markup.heading: #0F4A85",
+			"light_modern": "markup.heading: #800000"
+		}
+	},
+	{
+		"c": "[fn:",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "deferred",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org constant.other.footnote.label.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "]",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org punctuation.definition.footnote.org",
+		"r": {
+			"dark_plus": "default: #D4D4D4",
+			"light_plus": "default: #000000",
+			"dark_vs": "default: #D4D4D4",
+			"light_vs": "default: #000000",
+			"hc_black": "default: #FFFFFF",
+			"dark_modern": "default: #CCCCCC",
+			"hc_light": "default: #292929",
+			"light_modern": "default: #3B3B3B"
+		}
+	},
+	{
+		"c": "  The content starts on the next line.",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.footnote.definition.org markup.footnote.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",

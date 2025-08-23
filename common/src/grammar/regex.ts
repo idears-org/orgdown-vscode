@@ -422,14 +422,17 @@ export const includeDirectiveInlineBeginRegex = createRegexPattern(
 /**
  * Footnotes
  */
-// Footnote reference (inline) - exclude inline-definition style which uses double-colon `[fn:: ...]`
+// Footnote reference: [fn:LABEL]
 export const footnoteReferenceRegex = createRegexPattern(
   /\[fn:([^:\]]+)\]/
 );
 
-// Inline footnote definition: [fn:: content]
-// Capture groups:
-// 1 = content
+// Anonymous footnote reference: [fn]
+export const footnoteAnonymousReferenceRegex = createRegexPattern(
+  /\[fn\]/
+);
+
+// Inline footnote definition: [fn:: a definition]
 export const footnoteInlineDefinitionRegex = createRegexPattern(
   /\[fn::\s*(.*?)\]/
 );

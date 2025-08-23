@@ -32,7 +32,8 @@ Value: {{{format-date("2025-08-22","%Y")}}} and more text.
 
 #+EXPECTED: :type scope
 "{{{" => {{scopes.MACRO_PUNCTUATION}}
-"format-date" => {{scopes.MACRO}}
+"format-date" => {{scopes.MACRO_NAME}}
+'("2025-08-22","%Y")' => {{scopes.MACRO_PARAMETER}}
 "}}}" => {{scopes.MACRO_PUNCTUATION}}
 
 #+NAME: Unterminated macro should not match
@@ -89,6 +90,10 @@ Author: {{{author}}}
 | 2       | greet(John)    |
 | 3       | }}}            |
 #+END_SRC
+#+EXPECTED: :type scope
+"$1" => {{scopes.MACRO_PARAMETER}}
+"greet" => {{scopes.MACRO_NAME}}
+"(John)" => {{scopes.MACRO_PARAMETER}}
 
 #+NAME: Nested macro expansion (usage)
 #+BEGIN_FIXTURE
@@ -205,7 +210,7 @@ Author: {{{author}}}
 
 #+NAME: Macro with LaTeX
 #+BEGIN_FIXTURE
-$\\LaTeX$ {{{greet(John)}}}
+$\LaTeX$ {{{greet(John)}}}
 #+END_FIXTURE
 #+EXPECTED: :type regex :name inlineMacroRegex
 | Group # | Expected Value |
@@ -307,3 +312,12 @@ The author is {{{greet(John)}}} and {{{info(Alice, 30)}}}.
 | 2       | greet()        |
 | 3       | }}}            |
 #+END_SRC
+
+#+NAME: Case-insensitive macro definition
+#+BEGIN_FIXTURE
+#+macro: mymacro test
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"#+macro:" => {{scopes.KEYWORD_KEY}}
+"mymacro" => {{scopes.MACRO_NAME}}
+"test" => {{scopes.KEYWORD_VALUE}}

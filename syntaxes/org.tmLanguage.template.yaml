@@ -458,39 +458,36 @@ repository:
   # Footnotes repository block (inline markup and block definition handling)
   footnotes:
     patterns:
-      # Single-line footnote definition: capture the label and content on the same line
-      - match: "{{regexs.footnoteDefinitionStartRegex}}"
-        name: '{{scopes.FOOTNOTE_DEFINITION}} {{scopes.FOOTNOTE_REFERENCE}}'
-        captures:
-          '1': { name: '{{scopes.LEADING_WHITESPACE}}' }
-          '2': { name: '{{scopes.FOOTNOTE_PUNCTUATION}}' }
-          '3': { name: '{{scopes.FOOTNOTE_LABEL}}' }
-          '4': { name: '{{scopes.PUNCTUATION_WHITESPACE}}' }
-          '5': { name: '{{scopes.FOOTNOTE_CONTENT}}' }
-
-      # Footnote definition start (line): [fn:label] content
-      - begin: "{{regexs.footnoteDefinitionStartRegex}}"
+      # Unified rule for all footnote definitions
+      - name: '{{scopes.FOOTNOTE_DEFINITION}}'
+        begin: '{{regexs.footnoteDefinitionStartRegex}}'
+        end: '(?=^\s*$|^\[fn:)'
         beginCaptures:
           '1': { name: '{{scopes.LEADING_WHITESPACE}}' }
           '2': { name: '{{scopes.FOOTNOTE_PUNCTUATION}}' }
           '3': { name: '{{scopes.FOOTNOTE_LABEL}}' }
           '4': { name: '{{scopes.PUNCTUATION_WHITESPACE}}' }
-          '5': { name: '{{scopes.FOOTNOTE_CONTENT}}' }
-        end: "(?=^\\s*$|{{regexs.headlineDetectToCloseBlockRegex}})"
-        contentName: '{{scopes.FOOTNOTE_CONTENT}}'
-        patterns: *inline-markup-patterns
+          '5': { name: '{{scopes.FOOTNOTE_CONTENT}}', patterns: *inline-markup-patterns }
+        patterns:
+          - name: '{{scopes.FOOTNOTE_CONTENT}}'
+            match: '.*\S.*'
+            patterns: *inline-markup-patterns
 
-      # Inline footnote definition: [fn:: content]
+      # Rule 3: Inline anonymous definition
       - match: "{{regexs.footnoteInlineDefinitionRegex}}"
         name: '{{scopes.FOOTNOTE_REFERENCE}} {{scopes.FOOTNOTE_PUNCTUATION}}'
         captures:
           '1': { name: '{{scopes.FOOTNOTE_CONTENT}}' }
 
-      # Inline footnote reference: [fn:label]
+      # Rule 4: Standard reference
       - match: "{{regexs.footnoteReferenceRegex}}"
         name: '{{scopes.FOOTNOTE_REFERENCE}} {{scopes.FOOTNOTE_PUNCTUATION}}'
         captures:
           '1': { name: '{{scopes.FOOTNOTE_LABEL}}' }
+
+      # Rule 5: Anonymous reference
+      - match: "{{regexs.footnoteAnonymousReferenceRegex}}"
+        name: '{{scopes.FOOTNOTE_REFERENCE}} {{scopes.FOOTNOTE_PUNCTUATION}}'
 
   link-protocol:
     match: '{{regexs.linkProtocolRegex}}'
