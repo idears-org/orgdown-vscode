@@ -106,3 +106,263 @@
 - =*not-bold*= => {{scopes.TABLE_CELL}}, {{scopes.META_INLINE_VERBATIM}}
   - *not-bold* => {{scopes.VERBATIM}}
 |      | *x* | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - empty cells and special characters
+#+BEGIN_FIXTURE
+| Name | Age | Note |
+|------+-----+------|
+| Tom  |     | !@#$ |
+|      |  42 |      |
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| Name | Age | Note | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|------+-----+------| => {{scopes.TABLE_ROW_SEPARATOR}}
+| Tom  |     | !@#$ | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+- !@#$ => {{scopes.TABLE_CELL}}
+|      |  42 |      | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - links, tags, and emoji inside cells
+#+BEGIN_FIXTURE
+| Link [[https://orgmode.org][OrgMode]] | :tag: | 😀 |
+|--------------------------------------+-------+----|
+| Row 1                                | t1    | e1 |
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| Link [[https://orgmode.org][OrgMode]] | :tag: | 😀 | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+- [[https://orgmode.org][OrgMode]] => {{scopes.TABLE_CELL}}, {{scopes.LINK_META}}
+  - https => {{scopes.LINK_PROTOCOL}}
+- :tag: => !{{scopes.TAG}}
+| Row 1                                | t1    | e1 | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - column width and alignment cookies
+#+BEGIN_FIXTURE
+| Name <10> | Age <r5> | Score <c8> |
+|-----------+---------+-----------|
+| Alice     | 30      | 95        |
+| Bob       | 25      | 88        |
+|-----------+---------+-----------|
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| Name <10> | Age <r5> | Score <c8> | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|-----------+---------+-----------| => {{scopes.TABLE_ROW_SEPARATOR}}
+| Alice     | 30      | 95        | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|-----------+---------+-----------| => {{scopes.TABLE_ROW_SEPARATOR}}
+
+#+NAME: Table - column groups row
+#+BEGIN_FIXTURE
+| N | N^2 | N^3 | N^4 | sqrt(n) | sqrt[4](N) |
+|---+-----+-----+-----+---------+------------|
+| / | <   |     | >   | <       | >          |
+| 1 | 1   | 1   | 1   | 1.4142  | 1.1892     |
+| 2 | 4   | 8   | 16  | 1.4142  | 1.1892     |
+|---+-----+-----+-----+---------+------------|
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| N | N^2 | N^3 | N^4 | sqrt(n) | sqrt[4](N) | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|---+-----+-----+-----+---------+------------| => {{scopes.TABLE_ROW_SEPARATOR}}
+| / | <   |     | >   | <       | >          | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - radio table with ORGTBL and formula
+#+BEGIN_FIXTURE
+#+ORGTBL: SEND salesfigures orgtbl-to-latex
+| Month | Days | Nr sold | per day |
+|-------+------+---------+---------|
+| Jan   | 23   | 55      | 2.4     |
+| Feb   | 21   | 16      | 0.8     |
+| March | 22   | 278     | 12.6    |
+#+TBLFM: $4=$3/$2;%.1f
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| Month | Days | Nr sold | per day | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|-------+------+---------+---------| => {{scopes.TABLE_ROW_SEPARATOR}}
+| Jan   | 23   | 55      | 2.4     | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - multi-row header
+#+BEGIN_FIXTURE
+| Name | Age | Score |
+|------+-----+-------|
+|      |     |       |
+|------+-----+-------|
+| Tom  | 22  | 80    |
+| Ann  | 24  | 90    |
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| Name | Age | Score | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|------+-----+-------| => {{scopes.TABLE_ROW_SEPARATOR}}
+|      |     |       | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|------+-----+-------| => {{scopes.TABLE_ROW_SEPARATOR}}
+
+#+NAME: Table - multiple TBLFM lines (edge cases)
+#+BEGIN_FIXTURE
+| A | B | C |
+|---+---+---|
+| 1 | 2 | 3 |
+| 4 | 5 | 6 |
+#+TBLFM: $3=$1+$2
+#+TBLFM: $2=$1*2
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| A | B | C | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|---+---+---| => {{scopes.TABLE_ROW_SEPARATOR}}
+| 4 | 5 | 6 | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - header and footer totals
+#+BEGIN_FIXTURE
+| Name | Age |
+|------+-----|
+| Alice|  30 |
+|------+-----|
+| Total|  30 |
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| Name | Age | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|------+-----| => {{scopes.TABLE_ROW_SEPARATOR}}
+| Alice|  30 | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|------+-----| => {{scopes.TABLE_ROW_SEPARATOR}}
+| Total|  30 | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - absolute/relative references in TBLFM
+#+BEGIN_FIXTURE
+| X | Y | Z |
+|---+---+---|
+| 2 | 3 |   |
+| 5 | 7 |   |
+#+TBLFM: $3=$1+$2;%.1f::$2=@-1$2+1
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| X | Y | Z | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|---+---+---| => {{scopes.TABLE_ROW_SEPARATOR}}
+| 2 | 3 |   | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - named references and constants
+#+BEGIN_FIXTURE
+#+CONSTANTS: pi=3.1416
+| Angle | Sin | Pi |
+|-------+-----+----|
+| 30    |     |    |
+| 90    |     |    |
+#+TBLFM: $2=sin($1*pi/180);%.3f::$3=$pi
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| Angle | Sin | Pi | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|-------+-----+----| => {{scopes.TABLE_ROW_SEPARATOR}}
+| 30    |     |    | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - remote references
+#+BEGIN_FIXTURE
+#+NAME: table1
+| A | B |
+|---+---|
+| 1 | 2 |
+| 3 | 4 |
+
+| RefA | RefB |
+|------+------|
+|      |      |
+#+TBLFM: $1='(identity remote(table1,@1$1))'::$2='(identity remote(table1,@2$2))'
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| A | B | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|---+---| => {{scopes.TABLE_ROW_SEPARATOR}}
+| 3 | 4 | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+| RefA | RefB | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|------+------| => {{scopes.TABLE_ROW_SEPARATOR}}
+|      |      | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - range references and vector functions
+#+BEGIN_FIXTURE
+| V1 | V2 | Mean |
+|----+----+------|
+| 10 | 20 |      |
+| 30 | 40 |      |
+#+TBLFM: $3=vmean($1..$2);%.2f
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| V1 | V2 | Mean | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|----+----+------| => {{scopes.TABLE_ROW_SEPARATOR}}
+| 10 | 20 |      | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - field/column/range formulas
+#+BEGIN_FIXTURE
+| A | B | C |
+|---+---+---|
+| 1 | 2 |   |
+| 3 | 4 |   |
+#+TBLFM: $3=$1+$2::$2=2*$1
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| A | B | C | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|---+---+---| => {{scopes.TABLE_ROW_SEPARATOR}}
+| 1 | 2 |   | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - anchor references (hline anchors)
+#+BEGIN_FIXTURE
+| A | B | C |
+|---+---+---|
+| 1 | 2 | 3 |
+|---+---+---|
+| 4 | 5 | 6 |
+#+TBLFM: $3=@<..@>;%.1f
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| A | B | C | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|---+---+---| => {{scopes.TABLE_ROW_SEPARATOR}}
+| 1 | 2 | 3 | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|---+---+---| => {{scopes.TABLE_ROW_SEPARATOR}}
+| 4 | 5 | 6 | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - empty fields and error handling
+#+BEGIN_FIXTURE
+| A | B | C |
+|---+---+---|
+|   | 2 |   |
+| 3 |   |   |
+#+TBLFM: $3=if("$1"=="nan"||"$2"=="nan",string("error"),$1+$2)
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| A | B | C | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|---+---+---| => {{scopes.TABLE_ROW_SEPARATOR}}
+|   | 2 |   | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - Emacs Lisp formula
+#+BEGIN_FIXTURE
+| S | T |
+|---+---|
+| ab |   |
+| cd |   |
+#+TBLFM: $2='(concat $1 "-suffix")
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| S | T | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|---+---| => {{scopes.TABLE_ROW_SEPARATOR}}
+| ab |   | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table - formula debugging divide by zero
+#+BEGIN_FIXTURE
+| A | B |
+|---+---|
+| 1 | 0 |
+| 2 | 0 |
+#+TBLFM: $2=$1/0
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+| A | B | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+|---+---| => {{scopes.TABLE_ROW_SEPARATOR}}
+| 1 | 0 | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
