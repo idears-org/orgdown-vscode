@@ -180,7 +180,7 @@ See /italic/[fn:1] and *bold*[fn:2].
 [fn:2] Bold footnote.
 
 * Inline markup with LaTeX
-$\\LaTeX$ /italic/ *bold* \\alpha^2_3
+$\LaTeX$ /italic/ *bold* \alpha^2_3
 
 * Inline markup with tags
 * Example :inline:
@@ -244,7 +244,7 @@ See /italic *bold*/[fn:1].
 [fn:1] Nested markup footnote.
 
 * Inline markup nesting with LaTeX
-$\\LaTeX$ /italic *bold*/ \\alpha^2_3
+$\LaTeX$ /italic *bold*/ \alpha^2_3
 
 * Inline markup nesting with tags
 * Example :inline:
@@ -274,3 +274,37 @@ This is /italic *bold*/ and =code *bold= ~verbatim~/=.
 *bold* /italic/ *bold*
 
 #+END_FIXTURE
+
+* Added Edge Cases
+
+#+NAME: Markup followed by punctuation
+#+BEGIN_FIXTURE
+This is *bold*, and this is /italic/.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"bold" => {{scopes.BOLD}}
+"," => !{{scopes.BOLD}}
+"italic" => {{scopes.ITALIC}}
+"." => !{{scopes.ITALIC}}
+
+#+NAME: Negative test for URL-like text
+#+BEGIN_FIXTURE
+A link: http://example.com/
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"http://example.com/" => !{{scopes.ITALIC}}
+
+#+NAME: Negative test for path-like text
+#+BEGIN_FIXTURE
+A path: /path/to/a/file
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"/path/to/a/file" => !{{scopes.ITALIC}}
+
+#+NAME: Mismatched markup markers
+#+BEGIN_FIXTURE
+Mismatched: *bold/ and /italic*
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"*bold/" => !{{scopes.BOLD}}, !{{scopes.ITALIC}}
+"/italic*" => !{{scopes.BOLD}}, !{{scopes.ITALIC}}
