@@ -21,6 +21,9 @@
 |---------+----------------|
 | 1       | #+INCLUDE:     |
 | 2       | "otherfile.org" |
+#+EXPECTED: :type scope
+":lines" => {{scopes.BLOCK_PARAMETER_KEY}}
+'"1-10"' => {{scopes.BLOCK_PARAMETER_VALUE}}
 
 #+NAME: Include with minlevel option
 #+BEGIN_FIXTURE
@@ -110,3 +113,29 @@ no-match
 |---------+----------------|
 | 1       | #+INCLUDE:     |
 | 2       | ""             |
+
+#+NAME: Include with bare and single-quoted paths
+#+BEGIN_FIXTURE
+#+INCLUDE: bare/path/file.org
+#+INCLUDE: 'single/quoted.org'
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"bare/path/file.org" => {{scopes.INCLUDE_PATH}}
+"'single/quoted.org'" => {{scopes.INCLUDE_PATH}}
+
+#+NAME: Case-insensitive INCLUDE keyword
+#+BEGIN_FIXTURE
+#+include: "case.org"
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"#+include:" => {{scopes.INCLUDE_KEYWORD}}
+'"case.org"' => {{scopes.INCLUDE_PATH}}
+
+#+NAME: Include with extra whitespace
+#+BEGIN_FIXTURE
+#+INCLUDE:    "extra/space.org"    :lines   "1-5"
+#+END_FIXTURE
+#+EXPECTED: :type scope
+'"extra/space.org"' => {{scopes.INCLUDE_PATH}}
+":lines" => {{scopes.BLOCK_PARAMETER_KEY}}
+'"1-5"' => {{scopes.BLOCK_PARAMETER_VALUE}}

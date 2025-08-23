@@ -69,3 +69,40 @@ Some content that should not be ignored.
 
 #+EXPECTED: :type scope
 "# This is a comment in a table" => {{scopes.COMMENT_LINE}}
+
+
+#+NAME: Not a comment (no space after #)
+#+BEGIN_FIXTURE
+#not-a-comment
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"#not-a-comment" => !{{scopes.COMMENT_LINE}}
+
+#+NAME: Case-insensitive comment block
+#+BEGIN_FIXTURE
+#+begin_comment
+This should also be a comment.
+#+end_comment
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"#+begin_comment" => {{scopes.META_BEGIN_END_BLOCK}}
+"This should also be a comment." => {{scopes.COMMENT_BLOCK_CONTENT}}
+"#+end_comment" => {{scopes.META_BEGIN_END_BLOCK}}
+
+#+NAME: Inline markup inside a line comment
+#+BEGIN_FIXTURE
+# This is a *bold* comment.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"# This is a *bold* comment." => {{scopes.COMMENT_LINE}}
+"*bold*" => {{scopes.META_INLINE_BOLD}}
+"bold" => {{scopes.BOLD}}
+
+#+NAME: Empty comment block
+#+BEGIN_FIXTURE
+#+BEGIN_COMMENT
+#+END_COMMENT
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"#+BEGIN_COMMENT" => {{scopes.META_BEGIN_END_BLOCK}}
+"#+END_COMMENT" => {{scopes.META_BEGIN_END_BLOCK}}

@@ -366,3 +366,12 @@
 | A | B | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
 |---+---| => {{scopes.TABLE_ROW_SEPARATOR}}
 | 1 | 0 | => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+
+#+NAME: Table without a header separator
+#+BEGIN_FIXTURE
+| A | B |
+| 1 | 2 |
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"| A | B |" => {{scopes.TABLE_ROW}}
+"| 1 | 2 |" => {{scopes.TABLE_ROW}}

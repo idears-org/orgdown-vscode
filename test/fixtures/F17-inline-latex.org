@@ -81,7 +81,7 @@ Some text with nested $a_{b_{c}}$
 #+BEGIN_FIXTURE
 Some text with unclosed LaTeX: $x^2 + y^2
 #+END_FIXTURE
-#+EXPECTED: :type regex :name latexRegex
+#+EXPECTED: :type regex :name latexInlineRegex
 no-match
 
 #+NAME: Multilingual with LaTeX
@@ -90,4 +90,29 @@ Multilingual: 公式 $\int_0^\infty e^{-x} dx$ 中文
 #+END_FIXTURE
 #+EXPECTED: :type scope
 "$\int_0^\infty e^{-x} dx$" => {{scopes.LATEX}}
-Multilingual: 公式 $\\int_0^\\infty e^{-x} dx$ 中文
+
+#+NAME: Display math with double dollar signs
+#+BEGIN_FIXTURE
+$$ \frac{1}{2} \sum_{i=1}^n i^2 $$
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"$$ \frac{1}{2} \sum_{i=1}^n i^2 $$" => {{scopes.LATEX}}
+
+#+NAME: LaTeX environment (equation)
+#+BEGIN_FIXTURE
+\begin{equation}
+e^{i\pi} + 1 = 0
+\end{equation}
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"\begin{equation}" => {{scopes.LATEX}}
+"e^{i\pi} + 1 = 0" => {{scopes.LATEX}}
+"\end{equation}" => {{scopes.LATEX}}
+
+#+NAME: Empty LaTeX fragments
+#+BEGIN_FIXTURE
+Empty: $$ and \(\)
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"$$" => {{scopes.LATEX}}
+"\(\)" => {{scopes.LATEX}}

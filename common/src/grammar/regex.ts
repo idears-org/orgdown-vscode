@@ -507,9 +507,13 @@ export const verbatimEndRegex = createRegexPattern(
 /**
  * LaTeX
  */
-export const latexRegex = createRegexPattern(
-  /\$[^\$\n]+?\$|\\\([^\n]+?\\\)|\\\[[^\n]+?\\\]/
+export const latexInlineRegex = createRegexPattern(
+  /\$\$.*?\$\$|\$.*?\$|\\\(.*?\\\)|\\\[.*?\\\]/
 );
+export const latexEnvironmentBeginRegex = createRegexPattern(
+  /\\begin\{([a-zA-Z*]+)\}/
+);
+export const latexEnvironmentEndRegex = createRegexPattern(/\\end\{\\1\}/);
 
 /**
  * Inline macro - matches Org Mode inline macro usages like {{{name}}} or {{{name(arg)}}}

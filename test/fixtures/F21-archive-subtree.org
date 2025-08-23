@@ -38,3 +38,29 @@
 "NEXT" => {{scopes.HEADING_LEVEL_3}}, {{scopes.TODO_KEYWORD}}
 "An archived task that is not last" => {{scopes.HEADING_LEVEL_3}}, {{scopes.HEADING_TITLE}}
 ":ARCHIVE:work:" => {{scopes.HEADING_LEVEL_3}}, {{scopes.TAG}}
+
+
+#+NAME: Case-insensitivity of ARCHIVE tag
+#+BEGIN_FIXTURE
+* A task with lowercase archive tag :archive:
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"* A task with lowercase archive tag :archive:" => {{scopes.META_NODE_INACTIVE}}
+":archive:" => {{scopes.TAG}}
+
+#+NAME: Archived headline with priority
+#+BEGIN_FIXTURE
+* DONE [#C] An archived task with priority :ARCHIVE:
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"* DONE [#C] An archived task with priority :ARCHIVE:" => {{scopes.META_NODE_INACTIVE}}
+"[#C]" => {{scopes.PRIORITY_COOKIE}}
+":ARCHIVE:" => {{scopes.TAG}}
+
+#+NAME: Non-archived headline with "archive" in title
+#+BEGIN_FIXTURE
+* TODO An item to archive
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"* TODO An item to archive" => {{scopes.META_NODE_ACTIVE}}
+"* TODO An item to archive" => !{{scopes.META_NODE_INACTIVE}}

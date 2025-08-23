@@ -37,7 +37,7 @@ repository:
     - include: '#timestamps'
     - include: '#footnotes'
     - include: '#macros'
-    - include: '#latex'
+    - include: '#latex-inline'
     - include: '#bold'
     - include: '#italic'
     - include: '#underline'
@@ -145,6 +145,7 @@ repository:
     name: '{{scopes.META_BLOCK}}'
     patterns:
       - include: '#begin-end-blocks'
+      - include: '#latex-environment-block'
       - include: '#drawer-blocks'
       - include: '#tables'
       - include: '#horizontal-rules'
@@ -172,19 +173,14 @@ repository:
 
   #region INCLUDE DIRECTIVE
   include-directive:
+    name: '{{scopes.META_DIRECTIVE}}'
+    begin: '{{regexs.includeDirectiveBeginRegex}}'
+    end: '(?=$)' # End at the end of the line
+    beginCaptures:
+      '1': { name: '{{scopes.INCLUDE_KEYWORD}}' }
+      '2': { name: '{{scopes.INCLUDE_PATH}}' }
     patterns:
-      - begin: '{{regexs.includeDirectiveBeginRegex}}'
-        beginCaptures:
-          '1': { name: '{{scopes.INCLUDE_KEYWORD}}' }
-          '2': { name: '{{scopes.INCLUDE_PATH}}' }
-        end: '$'
-        name: '{{scopes.META_DIRECTIVE}}'
-        patterns:
-          - begin: '\s+(:\w+)(?=\b)'
-            beginCaptures:
-              '1': { name: '{{scopes.BLOCK_PARAMETER_KEY}}' }
-            end: '$'
-            name: '{{scopes.INCLUDE_OPTIONS}}'
+      - include: '#block-parameter-pair'
   #endregion
 
   # region COMMENTS
@@ -482,8 +478,7 @@ repository:
           '5': { name: '{{scopes.FOOTNOTE_CONTENT}}' }
         end: "(?=^\\s*$|{{regexs.headlineDetectToCloseBlockRegex}})"
         contentName: '{{scopes.FOOTNOTE_CONTENT}}'
-        patterns:
-          - include: *inline-markup-patterns
+        patterns: *inline-markup-patterns
 
       # Inline footnote definition: [fn:: content]
       - match: "{{regexs.footnoteInlineDefinitionRegex}}"
@@ -502,9 +497,20 @@ repository:
     captures:
       '1': { name: '{{scopes.LINK_PROTOCOL}}' }
 
-  latex:
+
+
+  latex-inline:
     name: '{{scopes.LATEX}}'
-    match: "{{regexs.latexRegex}}"
+    match: "{{regexs.latexInlineRegex}}"
+
+  latex-environment-block:
+    name: '{{scopes.LATEX}}'
+    begin: '{{regexs.latexEnvironmentBeginRegex}}'
+    end: '{{regexs.latexEnvironmentEndRegex}}'
+    beginCaptures:
+      '0': { name: 'keyword.control.math.block.latex' }
+    endCaptures:
+      '0': { name: 'keyword.control.math.block.latex' }
 
   bold:
     name: '{{scopes.META_INLINE_BOLD}}'
