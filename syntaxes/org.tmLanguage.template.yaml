@@ -33,6 +33,8 @@ repository:
 
   # Anchor for all inline markup patterns for easy reuse
   inline-markup-patterns: &inline-markup-patterns
+    - include: '#plain-link'
+    - include: '#angle-bracket-link'
     - include: '#links'
     - include: '#timestamps'
     - include: '#footnotes'
@@ -442,6 +444,14 @@ repository:
         match: '{{regexs.timestampActiveRegex}}'
       - name: '{{scopes.TIMESTAMP_INACTIVE}}'
         match: '{{regexs.timestampInactiveRegex}}'
+
+  plain-link:
+    name: '{{scopes.LINK_PLAIN}}'
+    match: '{{regexs.plainLinkRegex}}'
+
+  angle-bracket-link:
+    name: '{{scopes.LINK_ANGLE}}'
+    match: '{{regexs.angleBracketLinkRegex}}'
 
   links:
     match: '{{regexs.linkRegex}}'

@@ -354,6 +354,12 @@ export const LINK_SEPARATOR_PUNCTUATION = 'punctuation.separator.link.org';
 /** The description part of a link. */
 export const LINK_DESCRIPTION = 'string.other.link.description.org';
 
+/** A plain URL in text that is automatically linked. */
+export const LINK_PLAIN = 'markup.underline.link.plain.org';
+
+/** A URL enclosed in angle brackets. */
+export const LINK_ANGLE = 'markup.underline.link.angle.org';
+
 /** The protocol of a link, e.g., `http:`, `file:`. */
 export const LINK_PROTOCOL = 'keyword.other.link.protocol.org';
 

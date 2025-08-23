@@ -77,3 +77,35 @@ This is a URL https://google.com in text.
 #+END_FIXTURE
 #+EXPECTED: :type regex :name linkRegex
 no-match
+
+#+NAME: Plain URL is auto-linked
+#+BEGIN_FIXTURE
+Go to https://www.google.com for more info.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"https://www.google.com" => markup.underline.link.plain.org
+
+#+NAME: Angle bracket link
+#+BEGIN_FIXTURE
+See also: <https://orgmode.org>
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"<https://orgmode.org>" => markup.underline.link.angle.org
+
+#+NAME: Internal link to a custom ID
+#+BEGIN_FIXTURE
+A link to a [[#my-custom-id]].
+#+END_FIXTURE
+#+EXPECTED: :type regex :name linkRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | #my-custom-id  |
+
+#+NAME: Image file link
+#+BEGIN_FIXTURE
+An image: [[file:images/logo.png]]
+#+END_FIXTURE
+#+EXPECTED: :type regex :name linkRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 2       | file:images/logo.png |

@@ -385,6 +385,16 @@ export const linkProtocolRegex = createRegexPattern(
 export const linkAbbreviationRegex = createRegexPattern(
   /^(\s*)(#\+LINK:)\s+([a-zA-Z0-9_-]+)\s+(.*)$/i
 );
+
+/**
+ * Plain and angle-bracket links
+ */
+export const plainLinkRegex = createRegexPattern(
+  /(https?|ftp|file):\/\/[^\s<>]+/i
+);
+export const angleBracketLinkRegex = createRegexPattern(
+  /<(https?:\/\/[^>]+)>/i
+);
 // #endregion LINKS
 
 // #region TABLE
