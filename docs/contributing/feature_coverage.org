@@ -75,7 +75,7 @@ For the complete technical workflow on how to add a new feature or test case, pl
   _syntax: `inline-latex`_
 
 *** Advanced Features & Edge Cases [Priority: Medium]
-- [ ] **Tables**: Simple tables, alignment, and formulas.
+- [X] **Tables**: Simple tables, alignment, and formulas.
   _fixture: ~test/fixtures/F05-tables.org~, ~test/fixtures/F06-table-formula-edge-cases.org~
   _syntax: `table`_
 - [ ] **Comments**: Line comments and commented subtrees.
