@@ -11,6 +11,10 @@ export const META_DOCUMENT = 'text.org';
 /** The entire file header, from the beginning to the first heading. */
 export const META_HEADER = 'meta.file.header.org';
 
+export const META_PARAGRAPH = 'meta.paragraph.org';
+
+export const PARAGRAPH = 'markup.paragraph.org';
+
 /** The entire outline node, from a headline to the next. */
 export const META_NODE = 'meta.outline-node.org';
 

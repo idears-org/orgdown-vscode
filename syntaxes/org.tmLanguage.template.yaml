@@ -430,6 +430,7 @@ repository:
 
   #region INLINE MARKUP & OTHERS
   paragraph:
+    name: '{{scopes.META_PARAGRAPH}} {{scopes.PARAGRAPH}}'
     begin: "{{regexs.paragraphBeginRegex}}"
     end: "{{regexs.paragraphEndRegex}}"
     patterns: *inline-markup-patterns

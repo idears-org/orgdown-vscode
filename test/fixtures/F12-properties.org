@@ -105,9 +105,44 @@ Owner: Alice
 #+EXPECTED: :type regex :name propertyRegex
 no-match
 
-#+NAME: Malformed property with no space after key
+#+NAME: Property with no space between key and value
 #+BEGIN_FIXTURE
 :Key:value
 #+END_FIXTURE
 #+EXPECTED: :type regex :name propertyRegex
-no-match
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | Key            |
+| 2       | value          |
+
+#+NAME: Case-insensitive properties drawer
+#+BEGIN_FIXTURE
+:properties:
+:KEY: value
+:end:
+#+END_FIXTURE
+#+EXPECTED: :type regex :name propertyDrawerBeginRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | :properties:   |
+
+#+NAME: Property key with underscore
+#+BEGIN_FIXTURE
+:MY_KEY: some_value
+#+END_FIXTURE
+#+EXPECTED: :type regex :name propertyRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 1       | MY_KEY         |
+| 2       | some_value     |
+
+#+NAME: Properties drawer not under a headline
+#+BEGIN_FIXTURE
+Some text
+:PROPERTIES:
+:KEY: value
+:END:
+#+END_FIXTURE
+#+EXPECTED: :type scope
+# ":PROPERTIES:" => {{scopes.DRAWER_BEGIN_KEYWORD}}, !{{scopes.PROPERTY_DRAWER_META}}
+# ":KEY: value" => !{{scopes.PROPERTY_META}}

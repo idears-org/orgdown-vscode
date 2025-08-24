@@ -302,7 +302,7 @@ export const propertyDrawerBeginRegex = createRegexPattern(
  * 2. Value (e.g., "Alice")
  */
 export const propertyRegex = createRegexPattern(
-  /^\s*:([a-zA-Z0-9_+-]+):(?:[ \t]+(.*))?[ \t]*$/
+  /^\s*:([a-zA-Z0-9_+-]+):(?:[ \t]*(.*))?$/
 );
 // #endregion PROPERTIES
 
