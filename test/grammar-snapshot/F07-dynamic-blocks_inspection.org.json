@@ -1163,7 +1163,7 @@
 	},
 	{
 		"c": ":files \"agenda.org\"",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",

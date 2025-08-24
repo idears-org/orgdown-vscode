@@ -337,7 +337,7 @@
 	},
 	{
 		"c": "This section is the primary source for the snapshot test. It covers various",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -351,7 +351,7 @@
 	},
 	{
 		"c": "customized block types.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -897,7 +897,7 @@
 	},
 	{
 		"c": "This section contains isolated unit tests for the customized block regexes.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1401,7 +1401,7 @@
 	},
 	{
 		"c": ":description \"This is a description\"",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",

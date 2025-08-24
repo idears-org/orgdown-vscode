@@ -561,7 +561,7 @@
 	},
 	{
 		"c": "[[",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -575,7 +575,7 @@
 	},
 	{
 		"c": "https://example.com]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.underline.link.plain.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.underline.link.plain.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -589,7 +589,7 @@
 	},
 	{
 		"c": "[[broken-link][Missing closing brackets",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -645,7 +645,7 @@
 	},
 	{
 		"c": "*bold",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -659,7 +659,7 @@
 	},
 	{
 		"c": "/italic",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -673,7 +673,7 @@
 	},
 	{
 		"c": "_u",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.other.sub-super-script.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.other.sub-super-script.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -687,7 +687,7 @@
 	},
 	{
 		"c": "nderline",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -701,7 +701,7 @@
 	},
 	{
 		"c": "=code",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -715,7 +715,7 @@
 	},
 	{
 		"c": "~verbatim",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -729,7 +729,7 @@
 	},
 	{
 		"c": "+strike",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -743,7 +743,7 @@
 	},
 	{
 		"c": "H~2~O x",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -757,7 +757,7 @@
 	},
 	{
 		"c": "^2",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.other.sub-super-script.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.other.sub-super-script.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -771,7 +771,7 @@
 	},
 	{
 		"c": "^ y",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -785,7 +785,7 @@
 	},
 	{
 		"c": "_{",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.other.sub-super-script.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.other.sub-super-script.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -799,7 +799,7 @@
 	},
 	{
 		"c": "sub",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1023,7 +1023,7 @@
 	},
 	{
 		"c": "1 Ordered item missing dot",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1191,7 +1191,7 @@
 	},
 	{
 		"c": "SCHEDULED ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1205,7 +1205,7 @@
 	},
 	{
 		"c": "<2025-08-10>",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.active.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.active.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1219,7 +1219,7 @@
 	},
 	{
 		"c": "DEADLINE ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1233,7 +1233,7 @@
 	},
 	{
 		"c": "<2025-08-11>",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.active.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.active.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1247,7 +1247,7 @@
 	},
 	{
 		"c": "CLOSED [2025-08-12",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1303,7 +1303,7 @@
 	},
 	{
 		"c": "<2025-08-10",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1317,7 +1317,7 @@
 	},
 	{
 		"c": "[2025-08-10",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1373,7 +1373,7 @@
 	},
 	{
 		"c": "#+KEYWORD value",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1387,7 +1387,7 @@
 	},
 	{
 		"c": "#+KEYWORD:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1401,7 +1401,7 @@
 	},
 	{
 		"c": "#+KEYWORD",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",

@@ -337,7 +337,7 @@
 	},
 	{
 		"c": "This section is the primary source for the snapshot test. It covers various",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -351,7 +351,7 @@
 	},
 	{
 		"c": "language identifiers, switches, and header arguments.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -11327,7 +11327,7 @@
 	},
 	{
 		"c": "This section contains isolated unit tests for the src block begin regex.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -11915,7 +11915,7 @@
 	},
 	{
 		"c": "-n",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -11971,7 +11971,7 @@
 	},
 	{
 		"c": "-l \"-a -b\"",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -12027,7 +12027,7 @@
 	},
 	{
 		"c": ":results output",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -12083,7 +12083,7 @@
 	},
 	{
 		"c": "-l \"-a -b\" :results value",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -12139,7 +12139,7 @@
 	},
 	{
 		"c": ":results value -l \"-a -b\"",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -12195,7 +12195,7 @@
 	},
 	{
 		"c": ":tangle \"my file.py\"",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",

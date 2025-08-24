@@ -337,7 +337,7 @@
 	},
 	{
 		"c": "<2025-08-01 Fri>",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.active.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.active.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -393,7 +393,7 @@
 	},
 	{
 		"c": "[2025-08-01 Fri]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.inactive.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.inactive.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -449,7 +449,7 @@
 	},
 	{
 		"c": "<2025-08-01 Fri 10:00>",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.active.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.active.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -505,7 +505,7 @@
 	},
 	{
 		"c": "<2025-08-01 Fri 10:00-12:00>",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.active.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.active.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -561,7 +561,7 @@
 	},
 	{
 		"c": "<2025-08-01 Fri>--<2025-08-05 Tue>",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.active.range.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.active.range.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -617,7 +617,7 @@
 	},
 	{
 		"c": "[2025-08-01 Fri]--[2025-08-05 Tue]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.inactive.range.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.inactive.range.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -673,7 +673,7 @@
 	},
 	{
 		"c": "<2025-08-01 Fri +1w>",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.active.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.active.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -729,7 +729,7 @@
 	},
 	{
 		"c": "<2025-08-01 Fri +2d/3w>",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.active.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.active.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -785,7 +785,7 @@
 	},
 	{
 		"c": "<2025-08-01 Fri -5d>",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.active.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.active.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -841,7 +841,7 @@
 	},
 	{
 		"c": "<2025-08-23 Sat>",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.active.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.active.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -855,7 +855,7 @@
 	},
 	{
 		"c": "No space after",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -911,7 +911,7 @@
 	},
 	{
 		"c": "<2025-08-18 Mon>",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.active.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.active.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -925,7 +925,7 @@
 	},
 	{
 		"c": " #!@# ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -939,7 +939,7 @@
 	},
 	{
 		"c": "[2025-08-19 Tue]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org constant.other.timestamp.inactive.org",
+		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org constant.other.timestamp.inactive.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
