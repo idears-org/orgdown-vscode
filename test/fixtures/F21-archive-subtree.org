@@ -8,7 +8,7 @@
 #+END_FIXTURE
 #+EXPECTED: :type scope
 # The entire line should be an inactive node.
-"* DONE A completed and archived task :work:project:ARCHIVE:" => {{scopes.META_NODE_INACTIVE}}, {{scopes.HEADING_BLOCK}}
+"* DONE A completed and archived task :work:project:ARCHIVE:" => comment.block.org, {{scopes.HEADING_BLOCK}}
 # Now check token-level scopes.
 "*" => {{scopes.HEADING_LEVEL_1}}, {{scopes.HEADING_PUNCTUATION}}
 "DONE" => {{scopes.HEADING_LEVEL_1}}, {{scopes.TODO_KEYWORD}}
@@ -22,7 +22,7 @@
 ** COMMENT An archived comment :ARCHIVE:
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"** COMMENT An archived comment :ARCHIVE:" => {{scopes.META_NODE_INACTIVE}}, {{scopes.HEADING_BLOCK}}
+"** COMMENT An archived comment :ARCHIVE:" => comment.block.org, {{scopes.HEADING_BLOCK}}
 "**" =>  {{scopes.HEADING_LEVEL_2}}, {{scopes.HEADING_PUNCTUATION}}
 "COMMENT" => {{scopes.HEADING_LEVEL_2}}, {{scopes.TODO_KEYWORD}}
 "An archived comment" => {{scopes.HEADING_LEVEL_2}}, {{scopes.HEADING_TITLE}}
@@ -33,7 +33,7 @@
 *** NEXT An archived task that is not last :ARCHIVE:work:
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"*** NEXT An archived task that is not last :ARCHIVE:work:" => {{scopes.META_NODE_INACTIVE}}, {{scopes.HEADING_BLOCK}}
+"*** NEXT An archived task that is not last :ARCHIVE:work:" => comment.block.org, {{scopes.HEADING_BLOCK}}
 "***" => {{scopes.HEADING_LEVEL_3}}, {{scopes.HEADING_PUNCTUATION}}
 "NEXT" => {{scopes.HEADING_LEVEL_3}}, {{scopes.TODO_KEYWORD}}
 "An archived task that is not last" => {{scopes.HEADING_LEVEL_3}}, {{scopes.HEADING_TITLE}}
@@ -45,7 +45,7 @@
 * A task with lowercase archive tag :archive:
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"* A task with lowercase archive tag :archive:" => {{scopes.META_NODE_INACTIVE}}
+"* A task with lowercase archive tag :archive:" => comment.block.org
 ":archive:" => {{scopes.TAG}}
 
 #+NAME: Archived headline with priority
@@ -53,7 +53,7 @@
 * DONE [#C] An archived task with priority :ARCHIVE:
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"* DONE [#C] An archived task with priority :ARCHIVE:" => {{scopes.META_NODE_INACTIVE}}
+"* DONE [#C] An archived task with priority :ARCHIVE:" => comment.block.org
 "[#C]" => {{scopes.PRIORITY_COOKIE}}
 ":ARCHIVE:" => {{scopes.TAG}}
 
@@ -62,5 +62,5 @@
 * TODO An item to archive
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"* TODO An item to archive" => {{scopes.META_NODE_ACTIVE}}
-"* TODO An item to archive" => !{{scopes.META_NODE_INACTIVE}}
+"* TODO An item to archive" => meta.outline.1.org
+"* TODO An item to archive" => !comment.block.org

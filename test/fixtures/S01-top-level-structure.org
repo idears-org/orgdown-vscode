@@ -17,10 +17,10 @@ Headline content last line
 #+EXPECTED: :type scope
 "#+TITLE: File Header Scope Tests" => {{scopes.META_HEADER}}
 "This is the last line of the file header." => {{scopes.META_HEADER}}
-"* First headline" => {{scopes.META_NODE}}
-"Headline content line 1" => {{scopes.META_NODE}}
-"Headline content last line" => {{scopes.META_NODE}}
-"* Second headline" => {{scopes.META_NODE}}
+"* First headline" =>  meta.outline.1.org
+"Headline content line 1" =>  meta.outline.1.org
+"Headline content last line" =>  meta.outline.1.org
+"* Second headline" =>  meta.outline.1.org
 
 #+NAME: Top-level structure - headline-first (no header)
 #+BEGIN_FIXTURE
@@ -29,8 +29,8 @@ Content after headline
 #+END_FIXTURE
 
 #+EXPECTED: :type scope
-"* Headline starts immediately" => {{scopes.META_NODE}}
-"Content after headline" => {{scopes.META_NODE}}
+"* Headline starts immediately" =>  meta.outline.1.org
+"Content after headline" =>  meta.outline.1.org
 
 #+NAME: Top-level structure - header tricky lines
 #+BEGIN_FIXTURE
@@ -46,7 +46,7 @@ Content after headline
 "*Not a headline" => {{scopes.META_HEADER}}
 "  * Indented asterisk line" => {{scopes.META_HEADER}}
 "-----" => {{scopes.META_HEADER}}
-"* Real headline" => {{scopes.META_NODE}}
+"* Real headline" =>  meta.outline.1.org
 
 #+NAME: Top-level structure - empty section
 #+BEGIN_FIXTURE
@@ -55,5 +55,5 @@ Content after headline
 #+END_FIXTURE
 
 #+EXPECTED: :type scope
-"* Empty section" => {{scopes.META_NODE}}
-"* Next headline" => {{scopes.META_NODE}}
+"* Empty section" =>  meta.outline.1.org
+"* Next headline" =>  meta.outline.1.org

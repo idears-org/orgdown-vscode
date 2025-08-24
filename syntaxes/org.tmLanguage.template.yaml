@@ -12,8 +12,175 @@ repository:
   document-root:
     patterns:
       - include: "#file-header"
-      - include: "#inactive-outline-node"
-      - include: "#outline-node"
+      - include: "#outline"
+  outline:
+    patterns:
+      - include: "#outline-inactive-level-1"
+      - include: "#outline-inactive-level-2"
+      - include: "#outline-inactive-level-3"
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-active-level-1"
+      - include: "#outline-active-level-2"
+      - include: "#outline-active-level-3"
+      - include: "#outline-active-level-4"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+
+  outline-level-base: &outline-level-base
+    beginCaptures:
+      "0":
+        name: "{{scopes.HEADING_BLOCK}}"
+        patterns:
+          - include: "#headline-block"
+    patterns:
+      - include: "#section-content"
+
+  outline-inactive-level-1:
+    <<: *outline-level-base
+    # name: meta.outline.inactive.1.org
+    name: comment.block.org
+    begin: "{{regexs.inactiveHeadlineLevel1Regex}}"
+    end: "(?=^\\*{1,1}\\s)"
+    patterns:
+      - include: "#outline-inactive-level-2"
+      - include: "#outline-inactive-level-3"
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#section-content"
+
+  outline-inactive-level-2:
+    <<: *outline-level-base
+    # name: meta.outline.inactive.2.org
+    name: comment.block.org
+    begin: "{{regexs.inactiveHeadlineLevel2Regex}}"
+    end: "(?=^\\*{1,2}\\s)"
+    patterns:
+      - include: "#outline-inactive-level-3"
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#section-content"
+
+  outline-inactive-level-3:
+    <<: *outline-level-base
+    # name: meta.outline.inactive.3.org
+    name: comment.block.org
+    begin: "{{regexs.inactiveHeadlineLevel3Regex}}"
+    end: "(?=^\\*{1,3}\\s)"
+    patterns:
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#section-content"
+  outline-inactive-level-4:
+    <<: *outline-level-base
+    name: comment.block.org
+    begin: "{{regexs.inactiveHeadlineLevel4Regex}}"
+    end: "(?=^\\*{1,4}\\s)"
+    patterns:
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#section-content"
+
+  outline-inactive-level-5:
+    <<: *outline-level-base
+    name: comment.block.org
+    begin: "{{regexs.inactiveHeadlineLevel5Regex}}"
+    end: "(?=^\\*{1,5}\\s)"
+    patterns:
+      - include: "#outline-inactive-level-6"
+      - include: "#section-content"
+
+  outline-inactive-level-6:
+    <<: *outline-level-base
+    name: comment.block.org
+    begin: "{{regexs.inactiveHeadlineLevel6Regex}}"
+    end: "(?=^\\*{1,6}\\s)"
+    patterns:
+      - include: "#outline-inactive-level-6"
+      - include: "#section-content"
+
+  outline-active-level-1:
+    <<: *outline-level-base
+    name: meta.outline.1.org
+    begin: "{{regexs.headlineLevel1Regex}}"
+    end: "(?=^\\*{1,1}\\s)"
+    patterns:
+      - include: "#outline-inactive-level-2"
+      - include: "#outline-inactive-level-3"
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-active-level-2"
+      - include: "#outline-active-level-3"
+      - include: "#outline-active-level-4"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#section-content"
+
+  outline-active-level-2:
+    <<: *outline-level-base
+    name: meta.outline.2.org
+    begin: "{{regexs.headlineLevel2Regex}}"
+    end: "(?=^\\*{1,2}\\s)"
+    patterns:
+      - include: "#outline-inactive-level-3"
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-active-level-3"
+      - include: "#outline-active-level-4"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#section-content"
+
+  outline-active-level-3:
+    <<: *outline-level-base
+    name: meta.outline.3.org
+    begin: "{{regexs.headlineLevel3Regex}}"
+    end: "(?=^\\*{1,3}\\s)"
+    patterns:
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-active-level-4"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#section-content"
+  outline-active-level-4:
+    <<: *outline-level-base
+    name: meta.outline.4.org
+    begin: "{{regexs.headlineLevel4Regex}}"
+    end: "(?=^\\*{1,4}\\s)"
+    patterns:
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#section-content"
+
+  outline-active-level-5:
+    <<: *outline-level-base
+    name: meta.outline.5.org
+    begin: "{{regexs.headlineLevel5Regex}}"
+    end: "(?=^\\*{1,5}\\s)"
+    patterns:
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-active-level-6"
+      - include: "#section-content"
+
+  outline-active-level-6:
+    <<: *outline-level-base
+    name: meta.outline.6.org
+    begin: "{{regexs.headlineLevel6Regex}}"
+    end: "(?=^\\*{1,6}\\s)"
+    patterns:
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-active-level-6"
+      - include: "#section-content"
   #endregion
 
   #region Structural Components
@@ -29,45 +196,17 @@ repository:
       - include: "#paragraph"
   #endregion
 
-  #region Outline Node
-  inactive-outline-node:
-    name: "{{scopes.META_NODE_INACTIVE}} {{scopes.META_NODE}}"
-    begin: "{{regexs.inactiveHeadlineDetectRegex}}"
-    end: "(?={{regexs.endOfSectionRegex}})"
-    beginCaptures:
-      "1":
-        name: "{{scopes.HEADING_BLOCK}}"
-        patterns:
-          - include: "#headline-block"
-    patterns:
-      - include: "#section-content"
-
-  outline-node:
-    name: "{{scopes.META_NODE_ACTIVE}} {{scopes.META_NODE}}"
-    begin: "{{regexs.headlineDetectRegex}}"
-    end: "(?={{regexs.endOfSectionRegex}})"
-    beginCaptures:
-      "1":
-        name: "{{scopes.HEADING_BLOCK}}"
-        patterns:
-          - include: "#headline-block"
-    patterns:
-      - include: "#section-content"
-  #endregion
-
   #region Section Content
   section-content:
     name: "{{scopes.META_SECTION}}"
     begin: '(^|\G)'
-    end: '{{regexs.headlineDetectToCloseBlockRegex}}|(?=^\Z)'
+    end: '{{regexs.headlineDetectToCloseBlockRegex}}'
     patterns:
       - include: "#line-comments"
       - include: "#blocks"
       - include: "#keyword-like-lines"
       - include: "#lists"
       - include: "#paragraph"
-      - match: '^\s*$'
-        name: "{{scopes.PUNCTUATION_WHITESPACE}}"
   #endregion
 
   #region Anchors: Inline Markup

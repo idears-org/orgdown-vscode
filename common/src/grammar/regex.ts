@@ -130,6 +130,44 @@ export const headlineLevel6Regex = createRegexPattern(
   new RegExp(
     `^${(starsLevel6Fragment as any).regex.source}${(todoFragment as any).regex.source}${(priorityFragment as any).regex.source}${(headlineTextFragment as any).regex.source}${(cookieFragment as any).regex.source}${(tagsFragment as any).regex.source}\\s*$`
   ));
+
+
+export const inactiveHeadlineLevel1Regex = createRegexPattern(
+  new RegExp(
+    `^${(starsLevel1Fragment as any).regex.source}(?:COMMENT\\b\\s.*|.*:ARCHIVE:)(?:\\s+)?${(todoFragment as any).regex.source}${(priorityFragment as any).regex.source}${(headlineTextFragment as any).regex.source}${(cookieFragment as any).regex.source}${(tagsFragment as any).regex.source}\\s*$`,
+    "i"
+  )
+);
+export const inactiveHeadlineLevel2Regex = createRegexPattern(
+  new RegExp(
+    `^${(starsLevel2Fragment as any).regex.source}(?:COMMENT\\b\\s.*|.*:ARCHIVE:)(?:\\s+)?${(todoFragment as any).regex.source}${(priorityFragment as any).regex.source}${(headlineTextFragment as any).regex.source}${(cookieFragment as any).regex.source}${(tagsFragment as any).regex.source}\\s*$`,
+    "i"
+  )
+);
+export const inactiveHeadlineLevel3Regex = createRegexPattern(
+  new RegExp(
+    `^${(starsLevel3Fragment as any).regex.source}(?:COMMENT\\b\\s.*|.*:ARCHIVE:)(?:\\s+)?${(todoFragment as any).regex.source}${(priorityFragment as any).regex.source}${(headlineTextFragment as any).regex.source}${(cookieFragment as any).regex.source}${(tagsFragment as any).regex.source}\\s*$`,
+    "i"
+  )
+);
+export const inactiveHeadlineLevel4Regex = createRegexPattern(
+  new RegExp(
+    `^${(starsLevel4Fragment as any).regex.source}(?:COMMENT\\b\\s.*|.*:ARCHIVE:)(?:\\s+)?${(todoFragment as any).regex.source}${(priorityFragment as any).regex.source}${(headlineTextFragment as any).regex.source}${(cookieFragment as any).regex.source}${(tagsFragment as any).regex.source}\\s*$`,
+    "i"
+  )
+);
+export const inactiveHeadlineLevel5Regex = createRegexPattern(
+  new RegExp(
+    `^${(starsLevel5Fragment as any).regex.source}(?:COMMENT\\b\\s.*|.*:ARCHIVE:)(?:\\s+)?${(todoFragment as any).regex.source}${(priorityFragment as any).regex.source}${(headlineTextFragment as any).regex.source}${(cookieFragment as any).regex.source}${(tagsFragment as any).regex.source}\\s*$`,
+    "i"
+  )
+);
+export const inactiveHeadlineLevel6Regex = createRegexPattern(
+  new RegExp(
+    `^${(starsLevel6Fragment as any).regex.source}(?:COMMENT\\b\\s.*|.*:ARCHIVE:)(?:\\s+)?${(todoFragment as any).regex.source}${(priorityFragment as any).regex.source}${(headlineTextFragment as any).regex.source}${(cookieFragment as any).regex.source}${(tagsFragment as any).regex.source}\\s*$`,
+    "i"
+  )
+);
 // #endregion HEADLINES
 
 // #region LISTS
