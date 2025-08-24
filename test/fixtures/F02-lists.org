@@ -182,6 +182,40 @@
 #+EXPECTED: :type regex :name unorderedListRegex
 no-match
 
+#+NAME: Show Case - scope assertions for lists
+#+BEGIN_FIXTURE
+- [ ] Unchecked task
++ [X] Checked task
+- [-] Intermediate task
+1. Parent item
+  - Child item
+- Term :: Description
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"- [ ] Unchecked task" => {{scopes.LIST_UNORDERED_TEXT}}
+  - "-" => {{scopes.LIST_BULLET}}
+  - "[ ]" => {{scopes.CHECKBOX}}
+  - "Unchecked task" => {{scopes.LIST_UNORDERED_TEXT}}
+"+ [X] Checked task" => {{scopes.LIST_UNORDERED_TEXT}}
+  - "+" => {{scopes.LIST_BULLET}}
+  - "[X]" => {{scopes.CHECKBOX}}
+  - "Checked task" => {{scopes.LIST_UNORDERED_TEXT}}
+"- [-] Intermediate task" => {{scopes.LIST_UNORDERED_TEXT}}
+  - "-" => {{scopes.LIST_BULLET}}
+  - "[-]" => {{scopes.CHECKBOX}}
+  - "Intermediate task" => {{scopes.LIST_UNORDERED_TEXT}}
+"1. Parent item" => {{scopes.LIST_ORDERED_TEXT}}
+  - "1." => {{scopes.LIST_BULLET}}
+  - "Parent item" => {{scopes.LIST_ORDERED_TEXT}}
+"<sp:2>- Child item" => {{scopes.LIST_UNORDERED_TEXT}}
+  - "<sp:2>" => {{scopes.LEADING_WHITESPACE}}
+  - "-" => {{scopes.LIST_BULLET}}
+  - "Child item" => {{scopes.LIST_UNORDERED_TEXT}}
+"- Term :: Description" => {{scopes.LIST_UNORDERED_TEXT}}
+  - "-" => {{scopes.LIST_BULLET}}
+  - "Term" => {{scopes.DESCRIPTION_TERM}}
+  - "::" => {{scopes.DESCRIPTION_SEPARATOR}}
+  - "Description" => {{scopes.LIST_UNORDERED_TEXT}}
 #+NAME: Not a list - no space after bullet
 #+BEGIN_FIXTURE
 -Not a list

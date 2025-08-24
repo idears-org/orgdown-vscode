@@ -375,3 +375,18 @@
 #+EXPECTED: :type scope
 "| A | B |" => {{scopes.TABLE_ROW}}
 "| 1 | 2 |" => {{scopes.TABLE_ROW}}
+
+#+NAME: Show Case - scope assertions for table cell punctuation
+#+BEGIN_FIXTURE
+| A | B |
+| 1 | 2 |
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"| A | B |" => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+- "|" => {{scopes.TABLE_CELL_PUNCTUATION}}
+- "|" => {{scopes.TABLE_CELL_PUNCTUATION}}
+- "|" => {{scopes.TABLE_CELL_PUNCTUATION}}
+"| 1 | 2 |" => {{scopes.TABLE_CONTENT}}, {{scopes.TABLE_ROW}}
+- "|" => {{scopes.TABLE_CELL_PUNCTUATION}}
+- "|" => {{scopes.TABLE_CELL_PUNCTUATION}}
+- "|" => {{scopes.TABLE_CELL_PUNCTUATION}}

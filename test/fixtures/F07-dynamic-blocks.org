@@ -157,3 +157,17 @@ no-match
 | 2       | #+BEGIN:       |
 | 3       | agenda         |
 | 4       | :files         |
+
+#+NAME: Show Case - scope assertions for dynamic blocks
+#+BEGIN_FIXTURE
+#+BEGIN: clocktable :maxlevel 2
+Some dynamic content
+#+END:
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"#+BEGIN: clocktable :maxlevel 2" => {{scopes.DYNAMIC_BLOCK_META}}, {{scopes.BLOCK_KEYWORD}}
+  - "#+BEGIN:" => {{scopes.BLOCK_KEYWORD}}
+  - ":maxlevel" => {{scopes.BLOCK_PARAMETER_KEY}}
+  - "2" => {{scopes.BLOCK_PARAMETER_VALUE}}
+"Some dynamic content" => {{scopes.DYNAMIC_BLOCK_CONTENT}}
+"#+END:" => {{scopes.BLOCK_KEYWORD}}

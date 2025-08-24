@@ -4,23 +4,33 @@
 
 #+NAME: Complete headline with all elements
 #+BEGIN_FIXTURE
-* TODO [#A] Complete headline example [2/5] :work:project:
+* TODO [#A] Complete headline example *inline bold* [2/5] :work:project:
 #+END_FIXTURE
 #+EXPECTED: :type regex :name headlineLevel1Regex
-| Group # | Expected Value            |
-|---------+---------------------------|
-| 1       | *                         |
-| 2       | TODO                      |
-| 3       | [#A]                      |
-| 4       | A                         |
-| 5       | Complete headline example |
-| 6       | [2/5]                     |
-| 7       | :work:project:            |
+| Group # | Expected Value                           |
+|---------+------------------------------------------|
+| 1       | *                                        |
+| 2       | TODO                                     |
+| 3       | [#A]                                     |
+| 4       | A                                        |
+| 5       | Complete headline example *inline bold*  |
+| 6       | [2/5]                                    |
+| 7       | :work:project:                           |
 
 #+EXPECTED: :type regex :name headlineDetectRegex
 | Group # | Expected Value                                          |
 |---------+---------------------------------------------------------|
-| 1       | * TODO [#A] Complete headline example [2/5] :work:project: |
+| 1       | * TODO [#A] Complete headline example *inline bold* [2/5] :work:project: |
+
+#+EXPECTED: :type scope
+"* TODO [#A] Complete headline example *inline bold* [2/5] :work:project:" => {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_1}}
+  - "*" => {{scopes.HEADING_PUNCTUATION}}
+  - "TODO" => {{scopes.TODO_KEYWORD}}
+  - "[#A]" => {{scopes.PRIORITY_COOKIE}}
+  - "Complete headline example *inline bold*" => {{scopes.HEADING_TITLE}}
+    - "inline bold" => {{scopes.META_INLINE_BOLD}}
+  - "[2/5]" => {{scopes.PROGRESS_COOKIE}}
+  - ":work:project:" => {{scopes.TAG}}
 
 * Normal Cases
 

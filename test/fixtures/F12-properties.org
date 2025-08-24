@@ -146,3 +146,28 @@ Some text
 #+EXPECTED: :type scope
 # ":PROPERTIES:" => {{scopes.DRAWER_BEGIN_KEYWORD}}, !{{scopes.PROPERTY_DRAWER_META}}
 # ":KEY: value" => !{{scopes.PROPERTY_META}}
+
+#+NAME: Show Case - scope assertions for properties drawer
+#+BEGIN_FIXTURE
+:PROPERTIES:
+:Owner: Alice
+:effort-estimate: 1:00
+:CREATED+: [2025-08-02]
+:Empty:
+:END:
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+":PROPERTIES:" => {{scopes.PROPERTY_DRAWER_META}}, {{scopes.DRAWER_BEGIN_KEYWORD}}
+":Owner: Alice" => {{scopes.PROPERTY_META}}
+	- ":Owner:" => {{scopes.PROPERTY_KEY}}
+	- "Alice" => {{scopes.PROPERTY_VALUE}}
+":effort-estimate: 1:00" => {{scopes.PROPERTY_META}}
+	- ":effort-estimate:" => {{scopes.PROPERTY_KEY}}
+	- "1:00" => {{scopes.PROPERTY_VALUE}}
+":CREATED+: [2025-08-02]" => {{scopes.PROPERTY_META}}
+	- ":CREATED+:" => {{scopes.PROPERTY_KEY}}
+	- "[2025-08-02]" => {{scopes.PROPERTY_VALUE}}
+":Empty:" => {{scopes.PROPERTY_META}}
+	- ":Empty:" => {{scopes.PROPERTY_KEY}}
+":END:" => {{scopes.DRAWER_END_KEYWORD}}

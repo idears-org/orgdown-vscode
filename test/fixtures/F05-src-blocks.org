@@ -381,6 +381,34 @@ This is a block with no language.
 |---------+----------------|
 | 1       | -l "-a -b"     |
 
+#+NAME: Show Case - scope assertions for source blocks
+#+BEGIN_FIXTURE
+#+BEGIN_SRC python -n :results output
+print("hello")
+#+END_SRC
+
+#+BEGIN_SRC shell :tangle "my file.py"
+echo hi
+#+END_SRC
+#+END_FIXTURE
+#+EXPECTED: :type scope
+'#+BEGIN_SRC python -n :results output' => {{scopes.BLOCK_SRC_META}}, {{scopes.BLOCK_KEYWORD}}
+  - "#+BEGIN_" => {{scopes.BLOCK_KEYWORD}}
+  - "python" => {{scopes.BLOCK_PARAMETERS}}
+  - "-n" => {{scopes.BLOCK_PARAMETERS}}
+  - ":results" => {{scopes.BLOCK_PARAMETERS}}
+  - "output" => {{scopes.BLOCK_PARAMETERS}}
+'print("hello")' => {{scopes.BLOCK_SRC_CONTENT}}
+"#+END_SRC" => {{scopes.BLOCK_KEYWORD}}
+
+'#+BEGIN_SRC shell :tangle "my file.py"' => {{scopes.BLOCK_SRC_META}}, {{scopes.BLOCK_KEYWORD}}
+  - "#+BEGIN_" => {{scopes.BLOCK_KEYWORD}}
+  - "shell" => {{scopes.BLOCK_PARAMETERS}}
+  - ":tangle" => {{scopes.BLOCK_PARAMETERS}}
+  - '"my file.py"' => {{scopes.BLOCK_PARAMETERS}}
+"echo hi" => {{scopes.BLOCK_SRC_CONTENT}}
+"#+END_SRC" => {{scopes.BLOCK_KEYWORD}}
+
 #+NAME: Unit Test: SRC block switch with quoted argument mix with header argument different order
 #+BEGIN_FIXTURE
 :results value -l "-a -b"

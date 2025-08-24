@@ -83,14 +83,14 @@ no-match
 Go to https://www.google.com for more info.
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"https://www.google.com" => markup.underline.link.plain.org
+"https://www.google.com" => {{scopes.LINK_PLAIN}}
 
 #+NAME: Angle bracket link
 #+BEGIN_FIXTURE
 See also: <https://orgmode.org>
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"<https://orgmode.org>" => markup.underline.link.angle.org
+"<https://orgmode.org>" => {{scopes.LINK_ANGLE}}
 
 #+NAME: Internal link to a custom ID
 #+BEGIN_FIXTURE

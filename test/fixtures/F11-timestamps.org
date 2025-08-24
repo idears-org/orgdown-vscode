@@ -133,3 +133,43 @@ no-match
 | Group # | Expected Value |
 |---------+----------------|
 | 0       | <2025-08-18 Mon> |
+
+#+NAME: Active timestamp (date only)
+#+BEGIN_FIXTURE
+<2025-08-01>
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name timestampActiveRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | <2025-08-01> |
+
+#+NAME: Active timestamp with timezone
+#+BEGIN_FIXTURE
+<2025-08-01 Fri 10:00 +0000>
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name timestampActiveRegex
+| Group # | Expected Value |
+|---------+----------------|
+| 0       | <2025-08-01 Fri 10:00 +0000> |
+
+#+NAME: Timestamp scope assertions
+#+BEGIN_FIXTURE
+<2025-08-01 Fri>
+[2025-08-01 Fri]
+<2025-08-01 Fri 10:00>
+<2025-08-01 Fri 10:00-12:00>
+[2025-08-01 Fri]--[2025-08-05 Tue]
+<2025-08-01>
+<2025-08-01 Fri 10:00 +0000>
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"<2025-08-01 Fri>" => {{scopes.TIMESTAMP_ACTIVE}}
+"[2025-08-01 Fri]" => {{scopes.TIMESTAMP_INACTIVE}}
+"<2025-08-01 Fri 10:00>" => {{scopes.TIMESTAMP_ACTIVE}}
+"<2025-08-01 Fri 10:00-12:00>" => {{scopes.TIMESTAMP_ACTIVE}}
+"[2025-08-01 Fri]--[2025-08-05 Tue]" => {{scopes.TIMESTAMP_INACTIVE_RANGE}}
+"<2025-08-01>" => {{scopes.TIMESTAMP_ACTIVE}}
+"<2025-08-01 Fri 10:00 +0000>" => {{scopes.TIMESTAMP_ACTIVE}}

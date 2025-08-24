@@ -39,8 +39,8 @@ This is an inline footnote[fn:: Inline definition].
 #+EXPECTED: :type regex :name footnoteReferenceRegex
 no-match
 #+EXPECTED: :type scope
-"[fn:: Inline definition]" => markup.footnote.reference.org, punctuation.definition.footnote.org
-"Inline definition" => markup.footnote.content.org
+"[fn:: Inline definition]" => {{scopes.FOOTNOTE_REFERENCE}}, {{scopes.FOOTNOTE_PUNCTUATION}}
+"Inline definition" => {{scopes.FOOTNOTE_CONTENT}}
 
 #+NAME: Multiple references to same footnote (first)
 #+BEGIN_FIXTURE
@@ -187,8 +187,8 @@ See [fn:block] for details.
 [fn:block] Footnote in block.
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"[fn:block]" => markup.footnote.reference.org, punctuation.definition.footnote.org
-"Footnote in block." => markup.footnote.content.org
+"[fn:block]" => {{scopes.FOOTNOTE_REFERENCE}}, {{scopes.FOOTNOTE_PUNCTUATION}}
+"Footnote in block." => {{scopes.FOOTNOTE_CONTENT}}
 
 #+NAME: Footnote in plain text
 #+BEGIN_FIXTURE

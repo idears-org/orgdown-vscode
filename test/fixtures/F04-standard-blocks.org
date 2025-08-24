@@ -189,3 +189,31 @@ no-match
 |---------+----------------|
 | 1       | :author        |
 | 2       | "John Doe"     |
+
+#+NAME: Show Case - scope assertions for standard blocks
+#+BEGIN_FIXTURE
+#+BEGIN_QUOTE :author "John Doe"
+This is a simple quote block with *markup*.
+#+END_QUOTE
+
+#+BEGIN_EXAMPLE
+*This is literal text*, not markup.
+#+END_EXAMPLE
+#+END_FIXTURE
+#+EXPECTED: :type scope
+'#+BEGIN_QUOTE :author "John Doe"' => {{scopes.META_BEGIN_END_BLOCK}}, {{scopes.BLOCK_STANDARD_META}}, {{scopes.BLOCK_KEYWORD}}
+  - "#+BEGIN_" => {{scopes.BLOCK_KEYWORD}}
+  - "QUOTE" => {{scopes.BLOCK_NAME}}
+  - ":author" => {{scopes.BLOCK_PARAMETER_KEY}}
+  - '"John Doe"' => {{scopes.BLOCK_PARAMETER_VALUE}}
+"This is a simple quote block with *markup*." => {{scopes.BLOCK_STANDARD_CONTENT}}
+  - "*markup*" => {{scopes.META_INLINE_BOLD}}
+    - "markup" => {{scopes.BOLD}}
+"#+END_QUOTE" => {{scopes.BLOCK_KEYWORD}}
+
+"#+BEGIN_EXAMPLE" => {{scopes.META_BEGIN_END_BLOCK}}, {{scopes.BLOCK_STANDARD_META}}, {{scopes.BLOCK_KEYWORD}}
+  - "#+BEGIN_" => {{scopes.BLOCK_KEYWORD}}
+  - "EXAMPLE" => {{scopes.BLOCK_NAME}}
+"*This is literal text*, not markup." => {{scopes.BLOCK_STANDARD_CONTENT}}
+  - "*This is literal text*" => !{{scopes.META_INLINE_BOLD}}, !{{scopes.BOLD}}
+"#+END_EXAMPLE" => {{scopes.BLOCK_KEYWORD}}

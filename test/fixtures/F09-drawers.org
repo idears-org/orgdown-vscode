@@ -130,6 +130,29 @@ This drawer is not closed
 #+EXPECTED: :type regex :name drawerEndRegex
 no-match
 
+#+NAME: Show Case - scope assertions for drawers (generic)
+#+BEGIN_FIXTURE
+:LOGBOOK:
+- State "TODO" from "" [2025-08-02 Sat 10:00]
+- State "DONE" from "TODO" [2025-08-02 Sat 12:00]
+:END:
+
+:CUSTOM:
+Custom drawer content
+:END:
+#+END_FIXTURE
+#+EXPECTED: :type scope
+":LOGBOOK:" => {{scopes.META_DRAWER}}, {{scopes.DRAWER_BEGIN_KEYWORD}}
+    - "LOGBOOK" => {{scopes.DRAWER_NAME}}
+'- State "TODO" from "" [2025-08-02 Sat 10:00]' => {{scopes.DRAWER_CONTENT}}
+'- State "DONE" from "TODO" [2025-08-02 Sat 12:00]' => {{scopes.DRAWER_CONTENT}}
+":END:" => {{scopes.DRAWER_END_KEYWORD}}
+
+":CUSTOM:" => {{scopes.META_DRAWER}}, {{scopes.DRAWER_BEGIN_KEYWORD}}
+    - "CUSTOM" => {{scopes.DRAWER_NAME}}
+"Custom drawer content" => {{scopes.DRAWER_CONTENT}}
+":END:" => {{scopes.DRAWER_END_KEYWORD}}
+
 #+NAME: Drawer with block inside should not match generic
 #+BEGIN_FIXTURE
 :PROPERTIES:

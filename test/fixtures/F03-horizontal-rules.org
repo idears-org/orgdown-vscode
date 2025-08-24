@@ -60,3 +60,12 @@ no-match
 #+END_FIXTURE
 #+EXPECTED: :type regex :name horizontalRuleRegex
 no-match
+
+#+NAME: Show Case - scope assertions for horizontal rules
+#+BEGIN_FIXTURE
+-----
+----------
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"-----" => {{scopes.HORIZONTAL_RULE}}
+"----------" => {{scopes.HORIZONTAL_RULE}}

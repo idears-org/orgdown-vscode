@@ -272,6 +272,26 @@
 #+EXPECTED: :type regex :name genericKeywordRegex
 no-match
 
+#+NAME: Show Case - scope assertions for keywords
+#+BEGIN_FIXTURE
+#+TITLE: My document
+#+AUTHOR: Example Author
+#+OPTIONS: toc:nil
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"#+TITLE: My document" => {{scopes.KEYWORD}}
+	- "#+TITLE:" => {{scopes.KEYWORD_KEY}}
+	- "TITLE" => {{scopes.KEYWORD_NAME}}
+	- "My document" => {{scopes.KEYWORD_VALUE}}
+"#+AUTHOR: Example Author" => {{scopes.KEYWORD}}
+	- "#+AUTHOR:" => {{scopes.KEYWORD_KEY}}
+	- "AUTHOR" => {{scopes.KEYWORD_NAME}}
+	- "Example Author" => {{scopes.KEYWORD_VALUE}}
+"#+OPTIONS: toc:nil" => {{scopes.KEYWORD}}
+	- "#+OPTIONS:" => {{scopes.KEYWORD_KEY}}
+	- "OPTIONS" => {{scopes.KEYWORD_NAME}}
+	- "toc:nil" => {{scopes.KEYWORD_VALUE}}
+
 #+NAME: Overwritten title
 #+BEGIN_FIXTURE
 #+TITLE: Overwritten Title

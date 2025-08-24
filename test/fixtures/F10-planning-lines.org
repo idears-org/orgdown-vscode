@@ -107,6 +107,32 @@ SCHEDULED: <2025-08-15 Fri> some text
 #+EXPECTED: :type regex :name planningLineRegex
 no-match
 
+# +NAME: Show Case - scope assertions for planning lines
+#+BEGIN_FIXTURE
+SCHEDULED: <2025-08-01 Fri>
+DEADLINE: <2025-08-05 Tue>
+CLOSED: [2025-08-03 Sun 12:00]
+scheduled: <2025-08-19 Tue>
+SCHEDULED:<2025-08-17 Sun>
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"SCHEDULED: <2025-08-01 Fri>" => {{scopes.PLANNING_LINE_META}}
+	- "SCHEDULED:" => {{scopes.PLANNING_KEYWORD}}
+	- "<2025-08-01 Fri>" => {{scopes.PLANNING_TIMESTAMP}}
+"DEADLINE: <2025-08-05 Tue>" => {{scopes.PLANNING_LINE_META}}
+	- "DEADLINE:" => {{scopes.PLANNING_KEYWORD}}
+	- "<2025-08-05 Tue>" => {{scopes.PLANNING_TIMESTAMP}}
+"CLOSED: [2025-08-03 Sun 12:00]" => {{scopes.PLANNING_LINE_META}}
+	- "CLOSED:" => {{scopes.PLANNING_KEYWORD}}
+	- "[2025-08-03 Sun 12:00]" => {{scopes.PLANNING_TIMESTAMP}}
+"scheduled: <2025-08-19 Tue>" => {{scopes.PLANNING_LINE_META}}
+	- "scheduled:" => {{scopes.PLANNING_KEYWORD}}
+	- "<2025-08-19 Tue>" => {{scopes.PLANNING_TIMESTAMP}}
+"SCHEDULED:<2025-08-17 Sun>" => {{scopes.PLANNING_LINE_META}}
+	- "SCHEDULED:" => {{scopes.PLANNING_KEYWORD}}
+	- "<2025-08-17 Sun>" => {{scopes.PLANNING_TIMESTAMP}}
+
 #+NAME: Planning line with text before
 #+BEGIN_FIXTURE
 some text SCHEDULED: <2025-08-16 Sat>

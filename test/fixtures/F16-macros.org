@@ -321,3 +321,16 @@ The author is {{{greet(John)}}} and {{{info(Alice, 30)}}}.
 "#+macro:" => {{scopes.KEYWORD_KEY}}
 "mymacro" => {{scopes.MACRO_NAME}}
 "test" => {{scopes.KEYWORD_VALUE}}
+
+#+NAME: Show Case - scope assertions for inline macros
+#+BEGIN_FIXTURE
+Text {{{format-date("2025-08-22","%Y")}}} and {{{author}}}.
+#+END_FIXTURE
+#+EXPECTED: :type scope
+"{{{" => {{scopes.MACRO_PUNCTUATION}}
+"format-date" => {{scopes.MACRO_NAME}}
+'("2025-08-22","%Y")' => {{scopes.MACRO_PARAMETER}}
+"}}}" => {{scopes.MACRO_PUNCTUATION}}
+"{{{" => {{scopes.MACRO_PUNCTUATION}}
+"author" => {{scopes.MACRO}}
+"}}}" => {{scopes.MACRO_PUNCTUATION}}
