@@ -53,21 +53,6 @@ function compileFixture(content: string, originalFilename: string): string {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const lower = line.trim().toLowerCase();
-    // When true, we're skipping lines that belong to an EXPECTED block
-    // (regex tables, scope assertions, notes). We resume on the next test marker
-    // or a non-assertion headline.
-    if ((compileFixture as any).skipExpected) {
-      const isNextTestMarker = lower.startsWith('#+name:') ||
-                               lower.startsWith('#+begin_fixture') ||
-                               lower.startsWith('#+expected:');
-      const isNonAssertionHeadline = /^\*+\s/.test(line) && !line.includes('=>');
-      if (isNextTestMarker || isNonAssertionHeadline) {
-        (compileFixture as any).skipExpected = false;
-        // fall through to process this line normally
-      } else {
-        continue;
-      }
-    }
 
     if (lower.startsWith('#+name:')) {
       testName = line.replace(/^\s*#\+name:/i, '').trim();
@@ -80,7 +65,6 @@ function compileFixture(content: string, originalFilename: string): string {
     }
 
     // Only process begin_fixture (ignore case)
-
     if (lower.startsWith('#+begin_fixture')) {
       isOrgBlock = true;
       continue;
@@ -126,31 +110,47 @@ function compileFixture(content: string, originalFilename: string): string {
       continue;
     }
 
-    // Check for #+EXPECTED: and see if the next non-empty, non-table line is 'no-match'
-    // Emit a test section for both regex and scope tests; never include EXPECTED content itself.
-    if (lower.startsWith('#+expected') && testName) {
+    // Handle EXPECTED blocks explicitly: parse and skip the entire EXPECTED
+    // block here instead of using a separate skip flag. This makes handling
+    // consecutive EXPECTED blocks deterministic.
+    if (lower.startsWith('#+expected')) {
       // Look ahead for 'no-match' (skip empty and table lines)
       let j = i + 1;
       let foundNoMatch = false;
-      while (j < lines.length) {
-        const nextLine = lines[j].trim();
-        if (nextLine === '') { j++; continue; }
-        if (nextLine.startsWith('|')) { j++; continue; }
-        if (nextLine.toLowerCase() === 'no-match') { foundNoMatch = true; break; }
-        break;
+      // Collected lines of the EXPECTED block (for potential future use)
+      const expectedBlockLines: string[] = [];
+      for (; j < lines.length; j++) {
+        const raw = lines[j];
+        const trimmed = raw.trim();
+        const lowerTrim = trimmed.toLowerCase();
+        // If we hit a marker that terminates the EXPECTED block, stop
+        if (trimmed === '') { expectedBlockLines.push(raw); continue; }
+        if (trimmed.startsWith('|')) { expectedBlockLines.push(raw); continue; }
+        if (lowerTrim === 'no-match') { foundNoMatch = true; expectedBlockLines.push(raw); j++; break; }
+        // If the next meaningful line starts a new section, end the expected block
+        if (lowerTrim.startsWith('#+expected') || lowerTrim.startsWith('#+name:') || lowerTrim.startsWith('#+begin_fixture') || (/^\*+\s/.test(trimmed) && !trimmed.includes('=>'))) {
+          break;
+        }
+        // Otherwise this line is part of the EXPECTED block content (e.g. scope lines)
+        expectedBlockLines.push(raw);
       }
+
       if (!foundNoMatch) {
         const parentLevel = currentHeadlineLevel + 1;
-        compiledLines.push(`${'*'.repeat(parentLevel)} Test: ${testName}`);
-        if (testDescription) {
-          compiledLines.push(`  #+DESCRIPTION: ${testDescription}`);
+        if (testName) {
+          compiledLines.push(`${'*'.repeat(parentLevel)} Test: ${testName}`);
+          if (testDescription) {
+            compiledLines.push(`  #+DESCRIPTION: ${testDescription}`);
+          }
+          const transformedSrc = transformSrcContent(srcContent.join('\n'), parentLevel);
+          compiledLines.push(transformedSrc);
+          compiledLines.push('');
         }
-        const transformedSrc = transformSrcContent(srcContent.join('\n'), parentLevel);
-        compiledLines.push(transformedSrc);
-        compiledLines.push('');
       }
-      // From here until the next test marker, skip EXPECTED block content lines
-      (compileFixture as any).skipExpected = true;
+
+      // Advance the main index to the last line consumed by the EXPECTED block
+      i = Math.max(i, j - 1);
+      // Reset fixture state
       srcContent = [];
       testName = null;
       testDescription = null;
