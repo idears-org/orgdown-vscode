@@ -107,7 +107,7 @@ SCHEDULED: <2025-08-15 Fri> some text
 #+EXPECTED: :type regex :name planningLineRegex
 no-match
 
-# +NAME: Show Case - scope assertions for planning lines
+#+NAME: Show Case - scope assertions for planning lines
 #+BEGIN_FIXTURE
 SCHEDULED: <2025-08-01 Fri>
 DEADLINE: <2025-08-05 Tue>
