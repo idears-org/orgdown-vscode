@@ -159,8 +159,8 @@ function compileFixture(content: string, originalFilename: string): string {
 
     if (isOrgBlock) {
       srcContent.push(line);
-    } else if (line.match(/^(\*{1,6}) /)) {
-      const match = line.match(/^(\*{1,6}) /)!;
+    } else if (line.match(/^(\*+) /)) {
+      const match = line.match(/^(\*+) /)!;
       currentHeadlineLevel = match[1].length;
       compiledLines.push(`${'*'.repeat(currentHeadlineLevel + 1)}${line.substring(currentHeadlineLevel)}`);
     } else if (!lower.startsWith('#+expected') &&
@@ -186,18 +186,15 @@ function compileFixture(content: string, originalFilename: string): string {
 function transformSrcContent(content: string, parentLevel: number): string {
   const lines = content.split('\n');
   const transformed: string[] = [];
-  let currentSublevel = 0;
 
   for (const line of lines) {
-    const headlineMatch = line.match(/^(\*{1,6}) /);
+    const headlineMatch = line.match(/^(\*+) /);
     if (headlineMatch) {
       const level = headlineMatch[1].length;
-      currentSublevel = level;
       const newLevel = parentLevel + level;
       transformed.push(`${'*'.repeat(newLevel)}${line.substring(level)}`);
     } else {
-      const indent = '  '.repeat(currentSublevel);
-      transformed.push(`${indent}${line}`);
+      transformed.push(line);
     }
   }
   return transformed.join('\n');

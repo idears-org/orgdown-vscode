@@ -100,6 +100,14 @@ repository:
     - include: "#verbatim"
     - include: "#entities"
     - include: "#sub-super-scripts"
+
+  # Common section body patterns used by file header and section-content
+  common-section-patterns: &common-section-patterns
+    - include: "#line-comments"
+    - include: "#blocks"
+    - include: "#keyword-like-lines"
+    - include: "#lists"
+    - include: "#paragraph"
   #endregion
 
   #region Top-Level Structure
@@ -129,23 +137,13 @@ repository:
     name: "{{scopes.META_HEADER}}"
     begin: "{{regexs.fileHeaderBeginRegex}}" # Anchor to start only if not immediately a headline.
     end: "{{regexs.headlineDetectToCloseBlockRegex}}" # End before the first headline.
-    patterns:
-      - include: "#line-comments"
-      - include: "#blocks"
-      - include: "#keyword-like-lines"
-      - include: "#lists"
-      - include: "#paragraph"
+    patterns: *common-section-patterns
 
   section-content:
     name: "{{scopes.META_SECTION}}"
     begin: "{{regexs.sectionContentBeginRegex}}"
     end: "{{regexs.headlineDetectToCloseBlockRegex}}"
-    patterns:
-      - include: "#line-comments"
-      - include: "#blocks"
-      - include: "#keyword-like-lines"
-      - include: "#lists"
-      - include: "#paragraph"
+    patterns: *common-section-patterns
   #endregion
 
   #region Outline Levels
@@ -156,6 +154,7 @@ repository:
         patterns:
           - include: "#headline-block"
     patterns:
+      - include: "#outline"
       - include: "#section-content"
 
   outline-inactive-level-1:
@@ -163,198 +162,84 @@ repository:
     name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_1}}"
     begin: "{{regexs.inactiveHeadlineLevel1Regex}}"
     end: "{{regexs.outlineEndLevel1Regex}}"
-    patterns:
-      - include: "#outline-inactive-level-2"
-      - include: "#outline-inactive-level-3"
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-2"
-      - include: "#outline-active-level-3"
-      - include: "#outline-active-level-4"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
 
   outline-inactive-level-2:
     <<: *outline-level-base
     name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_2}}"
     begin: "{{regexs.inactiveHeadlineLevel2Regex}}"
     end: "{{regexs.outlineEndLevel2Regex}}"
-    patterns:
-      - include: "#outline-inactive-level-3"
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-3"
-      - include: "#outline-active-level-4"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
 
   outline-inactive-level-3:
     <<: *outline-level-base
     name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_3}}"
     begin: "{{regexs.inactiveHeadlineLevel3Regex}}"
     end: "{{regexs.outlineEndLevel3Regex}}"
-    patterns:
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-4"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
+
   outline-inactive-level-4:
     <<: *outline-level-base
     name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_4}}"
     begin: "{{regexs.inactiveHeadlineLevel4Regex}}"
     end: "{{regexs.outlineEndLevel4Regex}}"
-    patterns:
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
 
   outline-inactive-level-5:
     <<: *outline-level-base
     name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_5}}"
     begin: "{{regexs.inactiveHeadlineLevel5Regex}}"
     end: "{{regexs.outlineEndLevel5Regex}}"
-    patterns:
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
 
   outline-inactive-level-6:
     <<: *outline-level-base
     name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_6}}"
     begin: "{{regexs.inactiveHeadlineLevel6Regex}}"
     end: "{{regexs.outlineEndLevel6Regex}}"
-    patterns:
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
 
   outline-inactive-level-more-than-6:
     <<: *outline-level-base
     name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_MORE_THAN_6}}"
     begin: "{{regexs.inactiveHeadlineLevelMoreThan6Regex}}"
     end: "{{regexs.headlineDetectToCloseBlockRegex}}" # Any headline terminates this
-    patterns:
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
 
   outline-active-level-1:
     <<: *outline-level-base
     name: "{{scopes.META_OUTLINE_1}}"
     begin: "{{regexs.headlineLevel1Regex}}"
     end: "{{regexs.outlineEndLevel1Regex}}"
-    patterns:
-      - include: "#outline-inactive-level-2"
-      - include: "#outline-inactive-level-3"
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-2"
-      - include: "#outline-active-level-3"
-      - include: "#outline-active-level-4"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
 
   outline-active-level-2:
     <<: *outline-level-base
     name: "{{scopes.META_OUTLINE_2}}"
     begin: "{{regexs.headlineLevel2Regex}}"
     end: "{{regexs.outlineEndLevel2Regex}}"
-    patterns:
-      - include: "#outline-inactive-level-3"
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-3"
-      - include: "#outline-active-level-4"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
 
   outline-active-level-3:
     <<: *outline-level-base
     name: "{{scopes.META_OUTLINE_3}}"
     begin: "{{regexs.headlineLevel3Regex}}"
     end: "{{regexs.outlineEndLevel3Regex}}"
-    patterns:
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-4"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
+
   outline-active-level-4:
     <<: *outline-level-base
     name: "{{scopes.META_OUTLINE_4}}"
     begin: "{{regexs.headlineLevel4Regex}}"
     end: "{{regexs.outlineEndLevel4Regex}}"
-    patterns:
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
 
   outline-active-level-5:
     <<: *outline-level-base
     name: "{{scopes.META_OUTLINE_5}}"
     begin: "{{regexs.headlineLevel5Regex}}"
     end: "{{regexs.outlineEndLevel5Regex}}"
-    patterns:
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
 
   outline-active-level-6:
     <<: *outline-level-base
     name: "{{scopes.META_OUTLINE_6}}"
     begin: "{{regexs.headlineLevel6Regex}}"
     end: "{{regexs.outlineEndLevel6Regex}}"
-    patterns:
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
 
   outline-active-level-more-than-6:
     <<: *outline-level-base
-    name: "{{scopes.META_OUTLINE_MORE_THAN_6}}" # Re-use level 6 scope for deep headlines
+    name: "{{scopes.META_OUTLINE_MORE_THAN_6}}"
     begin: "{{regexs.headlineLevelMoreThan6Regex}}"
     end: "{{regexs.headlineDetectToCloseBlockRegex}}" # Any headline terminates this
-    patterns:
-      - include: "#outline-inactive-level-more-than-6"
-      - include: "#outline-active-level-more-than-6"
-      - include: "#section-content"
   #endregion
 
   #region Content Elements
