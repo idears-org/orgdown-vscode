@@ -365,7 +365,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -379,7 +379,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -393,7 +393,7 @@
 	},
 	{
 		"c": "Test: Basic horizontal rule",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -407,7 +407,7 @@
 	},
 	{
 		"c": "-----",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.separator.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.separator.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -421,7 +421,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -435,7 +435,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -449,7 +449,7 @@
 	},
 	{
 		"c": "Test: Horizontal rule with leading spaces",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -463,7 +463,7 @@
 	},
 	{
 		"c": "  -----",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.separator.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.separator.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -477,7 +477,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -491,7 +491,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -505,7 +505,7 @@
 	},
 	{
 		"c": "Test: Longer horizontal rule",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -519,7 +519,7 @@
 	},
 	{
 		"c": "----------",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.separator.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.separator.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -533,7 +533,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -547,7 +547,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -561,7 +561,7 @@
 	},
 	{
 		"c": "Test: Rule with trailing whitespace is a valid rule",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -575,7 +575,7 @@
 	},
 	{
 		"c": "-----",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.separator.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.separator.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -589,7 +589,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -603,7 +603,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -617,7 +617,7 @@
 	},
 	{
 		"c": "Test: Show Case - scope assertions for horizontal rules",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -631,7 +631,7 @@
 	},
 	{
 		"c": "-----",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.separator.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.separator.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -645,7 +645,7 @@
 	},
 	{
 		"c": "----------",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.separator.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.separator.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",

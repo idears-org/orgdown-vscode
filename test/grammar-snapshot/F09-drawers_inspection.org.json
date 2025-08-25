@@ -365,7 +365,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -379,7 +379,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -393,7 +393,7 @@
 	},
 	{
 		"c": "Test: LOGBOOK drawer",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -407,7 +407,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -421,7 +421,7 @@
 	},
 	{
 		"c": "LOGBOOK",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
 		"r": {
 			"dark_plus": "entity.name.function: #DCDCAA",
 			"light_plus": "entity.name.function: #795E26",
@@ -435,7 +435,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -449,7 +449,7 @@
 	},
 	{
 		"c": "- State \"TODO\"       from \"\"        [2025-08-02 Sat 10:00]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -463,7 +463,7 @@
 	},
 	{
 		"c": "- State \"DONE\"       from \"TODO\"    [2025-08-02 Sat 12:00]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -477,7 +477,7 @@
 	},
 	{
 		"c": ":END:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -491,7 +491,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -505,7 +505,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -519,7 +519,7 @@
 	},
 	{
 		"c": "Test: Custom drawer",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -533,7 +533,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -547,7 +547,7 @@
 	},
 	{
 		"c": "CUSTOM",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
 		"r": {
 			"dark_plus": "entity.name.function: #DCDCAA",
 			"light_plus": "entity.name.function: #795E26",
@@ -561,7 +561,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -575,7 +575,7 @@
 	},
 	{
 		"c": "This is a custom drawer.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -589,7 +589,7 @@
 	},
 	{
 		"c": ":END:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -603,7 +603,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -617,7 +617,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -631,7 +631,7 @@
 	},
 	{
 		"c": "Test: Drawer with mixed case name",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -645,7 +645,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -659,7 +659,7 @@
 	},
 	{
 		"c": "LogBook",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
 		"r": {
 			"dark_plus": "entity.name.function: #DCDCAA",
 			"light_plus": "entity.name.function: #795E26",
@@ -673,7 +673,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -687,7 +687,7 @@
 	},
 	{
 		"c": "Mixed case drawer name",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -701,7 +701,7 @@
 	},
 	{
 		"c": ":END:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -715,7 +715,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -729,7 +729,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -743,7 +743,7 @@
 	},
 	{
 		"c": "Test: Drawer with whitespace and indentation",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -757,7 +757,7 @@
 	},
 	{
 		"c": "    :",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -771,7 +771,7 @@
 	},
 	{
 		"c": "INDENTED",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
 		"r": {
 			"dark_plus": "entity.name.function: #DCDCAA",
 			"light_plus": "entity.name.function: #795E26",
@@ -785,7 +785,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -799,7 +799,7 @@
 	},
 	{
 		"c": "    Indented drawer content",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -813,7 +813,7 @@
 	},
 	{
 		"c": "    :END:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -827,7 +827,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -841,7 +841,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -855,7 +855,7 @@
 	},
 	{
 		"c": "Test: Drawer with special characters and multiline content",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -869,7 +869,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -883,7 +883,7 @@
 	},
 	{
 		"c": "DATA",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
 		"r": {
 			"dark_plus": "entity.name.function: #DCDCAA",
 			"light_plus": "entity.name.function: #795E26",
@@ -897,7 +897,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -911,7 +911,7 @@
 	},
 	{
 		"c": "Line 1",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -925,7 +925,7 @@
 	},
 	{
 		"c": "Line 2: with :colon:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -939,7 +939,7 @@
 	},
 	{
 		"c": "Line 3",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -953,7 +953,7 @@
 	},
 	{
 		"c": ":END:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -967,7 +967,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -981,7 +981,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -995,7 +995,7 @@
 	},
 	{
 		"c": "Test: Drawer with empty content",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1009,7 +1009,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1023,7 +1023,7 @@
 	},
 	{
 		"c": "EMPTY",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
 		"r": {
 			"dark_plus": "entity.name.function: #DCDCAA",
 			"light_plus": "entity.name.function: #795E26",
@@ -1037,7 +1037,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1051,7 +1051,7 @@
 	},
 	{
 		"c": ":END:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1065,7 +1065,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1079,7 +1079,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1093,7 +1093,7 @@
 	},
 	{
 		"c": "Test: Drawer not closed",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1107,7 +1107,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1121,7 +1121,7 @@
 	},
 	{
 		"c": "UNFINISHED",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
 		"r": {
 			"dark_plus": "entity.name.function: #DCDCAA",
 			"light_plus": "entity.name.function: #795E26",
@@ -1135,7 +1135,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1149,7 +1149,7 @@
 	},
 	{
 		"c": "This drawer is not closed",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1163,7 +1163,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1177,7 +1177,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1191,7 +1191,7 @@
 	},
 	{
 		"c": "Test: Show Case - scope assertions for drawers (generic)",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1205,7 +1205,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1219,7 +1219,7 @@
 	},
 	{
 		"c": "LOGBOOK",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
 		"r": {
 			"dark_plus": "entity.name.function: #DCDCAA",
 			"light_plus": "entity.name.function: #795E26",
@@ -1233,7 +1233,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1247,7 +1247,7 @@
 	},
 	{
 		"c": "- State \"TODO\" from \"\" [2025-08-02 Sat 10:00]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1261,7 +1261,7 @@
 	},
 	{
 		"c": "- State \"DONE\" from \"TODO\" [2025-08-02 Sat 12:00]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1275,7 +1275,7 @@
 	},
 	{
 		"c": ":END:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1289,7 +1289,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1303,7 +1303,7 @@
 	},
 	{
 		"c": "CUSTOM",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
 		"r": {
 			"dark_plus": "entity.name.function: #DCDCAA",
 			"light_plus": "entity.name.function: #795E26",
@@ -1317,7 +1317,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1331,7 +1331,7 @@
 	},
 	{
 		"c": "Custom drawer content",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org markup.block.drawer.content.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1345,7 +1345,7 @@
 	},
 	{
 		"c": ":END:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.end.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1359,7 +1359,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1373,7 +1373,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1387,7 +1387,7 @@
 	},
 	{
 		"c": "Test: Drawer with headline inside",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1401,7 +1401,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1415,7 +1415,7 @@
 	},
 	{
 		"c": "LOGBOOK",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org entity.name.function.drawer.org",
 		"r": {
 			"dark_plus": "entity.name.function: #DCDCAA",
 			"light_plus": "entity.name.function: #795E26",
@@ -1429,7 +1429,7 @@
 	},
 	{
 		"c": ":",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.drawer.org keyword.control.block.drawer.begin.org",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1443,7 +1443,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org meta.outline.2.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1457,7 +1457,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.2.org",
+		"t": "text.org meta.outline.1.org meta.outline.2.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1471,7 +1471,7 @@
 	},
 	{
 		"c": "This headline should not be inside a drawer",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.2.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org meta.outline.2.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1484,8 +1484,8 @@
 		}
 	},
 	{
-		"c": "  :END:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org",
+		"c": ":END:",
+		"t": "text.org meta.outline.1.org meta.outline.2.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",

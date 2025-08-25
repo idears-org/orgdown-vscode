@@ -435,7 +435,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -449,7 +449,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -463,7 +463,7 @@
 	},
 	{
 		"c": "Test: Standard external link with description",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -477,7 +477,7 @@
 	},
 	{
 		"c": "[[",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -491,7 +491,7 @@
 	},
 	{
 		"c": "https",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
 		"r": {
 			"dark_plus": "keyword: #569CD6",
 			"light_plus": "keyword: #0000FF",
@@ -505,7 +505,7 @@
 	},
 	{
 		"c": "://orgmode.org/",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -519,7 +519,7 @@
 	},
 	{
 		"c": "][",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.separator.link.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.separator.link.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -533,7 +533,7 @@
 	},
 	{
 		"c": "The Org Mode Website",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org string.other.link.description.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org string.other.link.description.org",
 		"r": {
 			"dark_plus": "string: #CE9178",
 			"light_plus": "string: #A31515",
@@ -547,7 +547,7 @@
 	},
 	{
 		"c": "]]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -561,7 +561,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -575,7 +575,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -589,7 +589,7 @@
 	},
 	{
 		"c": "Test: External link without description",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -603,7 +603,7 @@
 	},
 	{
 		"c": "[[",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -617,7 +617,7 @@
 	},
 	{
 		"c": "https",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
 		"r": {
 			"dark_plus": "keyword: #569CD6",
 			"light_plus": "keyword: #0000FF",
@@ -631,7 +631,7 @@
 	},
 	{
 		"c": "://orgmode.org/",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -645,7 +645,7 @@
 	},
 	{
 		"c": "]]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -659,7 +659,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -673,7 +673,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -687,7 +687,7 @@
 	},
 	{
 		"c": "Test: Internal link to a headline",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -701,7 +701,7 @@
 	},
 	{
 		"c": "[[",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -715,7 +715,7 @@
 	},
 	{
 		"c": "*Some Headline",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -729,7 +729,7 @@
 	},
 	{
 		"c": "]]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -743,7 +743,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -757,7 +757,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -771,7 +771,7 @@
 	},
 	{
 		"c": "Test: File link with description",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -785,7 +785,7 @@
 	},
 	{
 		"c": "[[",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -799,7 +799,7 @@
 	},
 	{
 		"c": "file",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
 		"r": {
 			"dark_plus": "keyword: #569CD6",
 			"light_plus": "keyword: #0000FF",
@@ -813,7 +813,7 @@
 	},
 	{
 		"c": ":~/docs/main.org",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -827,7 +827,7 @@
 	},
 	{
 		"c": "][",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.separator.link.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.separator.link.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -841,7 +841,7 @@
 	},
 	{
 		"c": "My Document",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org string.other.link.description.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org string.other.link.description.org",
 		"r": {
 			"dark_plus": "string: #CE9178",
 			"light_plus": "string: #A31515",
@@ -855,7 +855,7 @@
 	},
 	{
 		"c": "]]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -869,7 +869,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -883,7 +883,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -897,7 +897,7 @@
 	},
 	{
 		"c": "Test: Link abbreviation definition",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -911,7 +911,7 @@
 	},
 	{
 		"c": "#+LINK:",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.directive.link-abbreviation.org keyword.other.link.abbreviation.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.directive.link-abbreviation.org keyword.other.link.abbreviation.org",
 		"r": {
 			"dark_plus": "keyword: #569CD6",
 			"light_plus": "keyword: #0000FF",
@@ -925,7 +925,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.directive.link-abbreviation.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.directive.link-abbreviation.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -939,7 +939,7 @@
 	},
 	{
 		"c": "gh",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.directive.link-abbreviation.org variable.parameter.link.abbreviation.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.directive.link-abbreviation.org variable.parameter.link.abbreviation.org",
 		"r": {
 			"dark_plus": "variable: #9CDCFE",
 			"light_plus": "variable: #001080",
@@ -953,7 +953,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.directive.link-abbreviation.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.directive.link-abbreviation.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -967,7 +967,7 @@
 	},
 	{
 		"c": "https://github.com/%s",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.directive.link-abbreviation.org string.unquoted.link.abbreviation.url.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.directive.link-abbreviation.org string.unquoted.link.abbreviation.url.org",
 		"r": {
 			"dark_plus": "string: #CE9178",
 			"light_plus": "string: #A31515",
@@ -981,7 +981,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -995,7 +995,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1009,7 +1009,7 @@
 	},
 	{
 		"c": "Test: Link using an abbreviation",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1023,7 +1023,7 @@
 	},
 	{
 		"c": "[[",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1037,7 +1037,7 @@
 	},
 	{
 		"c": "gh",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
 		"r": {
 			"dark_plus": "keyword: #569CD6",
 			"light_plus": "keyword: #0000FF",
@@ -1051,7 +1051,7 @@
 	},
 	{
 		"c": ":orgdown/orgdown-vscode",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1065,7 +1065,7 @@
 	},
 	{
 		"c": "]]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1079,7 +1079,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1093,7 +1093,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1107,7 +1107,7 @@
 	},
 	{
 		"c": "Test: Malformed link with extra brackets",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1121,7 +1121,7 @@
 	},
 	{
 		"c": "[[",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1135,7 +1135,7 @@
 	},
 	{
 		"c": "https",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
 		"r": {
 			"dark_plus": "keyword: #569CD6",
 			"light_plus": "keyword: #0000FF",
@@ -1149,7 +1149,7 @@
 	},
 	{
 		"c": "://a.com",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1163,7 +1163,7 @@
 	},
 	{
 		"c": "][",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.separator.link.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.separator.link.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1177,7 +1177,7 @@
 	},
 	{
 		"c": "b",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org string.other.link.description.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org string.other.link.description.org",
 		"r": {
 			"dark_plus": "string: #CE9178",
 			"light_plus": "string: #A31515",
@@ -1191,7 +1191,7 @@
 	},
 	{
 		"c": "]]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1205,7 +1205,7 @@
 	},
 	{
 		"c": "]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1219,7 +1219,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1233,7 +1233,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1247,7 +1247,7 @@
 	},
 	{
 		"c": "Test: Plain URL is auto-linked",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1261,7 +1261,7 @@
 	},
 	{
 		"c": "Go to ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1275,7 +1275,7 @@
 	},
 	{
 		"c": "https://www.google.com",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.underline.link.plain.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org markup.underline.link.plain.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1289,7 +1289,7 @@
 	},
 	{
 		"c": " for more info.",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1303,7 +1303,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1317,7 +1317,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1331,7 +1331,7 @@
 	},
 	{
 		"c": "Test: Angle bracket link",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1345,7 +1345,7 @@
 	},
 	{
 		"c": "See also: ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1359,7 +1359,7 @@
 	},
 	{
 		"c": "<https://orgmode.org>",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.underline.link.angle.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org markup.underline.link.angle.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1373,7 +1373,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1387,7 +1387,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1401,7 +1401,7 @@
 	},
 	{
 		"c": "Test: Internal link to a custom ID",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1415,7 +1415,7 @@
 	},
 	{
 		"c": "A link to a ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1429,7 +1429,7 @@
 	},
 	{
 		"c": "[[",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1443,7 +1443,7 @@
 	},
 	{
 		"c": "#my-custom-id",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1457,7 +1457,7 @@
 	},
 	{
 		"c": "]]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1471,7 +1471,7 @@
 	},
 	{
 		"c": ".",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1485,7 +1485,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1499,7 +1499,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1513,7 +1513,7 @@
 	},
 	{
 		"c": "Test: Image file link",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1527,7 +1527,7 @@
 	},
 	{
 		"c": "An image: ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1541,7 +1541,7 @@
 	},
 	{
 		"c": "[[",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.begin.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1555,7 +1555,7 @@
 	},
 	{
 		"c": "file",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org keyword.other.link.protocol.org",
 		"r": {
 			"dark_plus": "keyword: #569CD6",
 			"light_plus": "keyword: #0000FF",
@@ -1569,7 +1569,7 @@
 	},
 	{
 		"c": ":images/logo.png",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org markup.underline.link.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1583,7 +1583,7 @@
 	},
 	{
 		"c": "]]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.link.org punctuation.definition.link.end.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",

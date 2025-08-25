@@ -365,7 +365,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -379,7 +379,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -393,7 +393,7 @@
 	},
 	{
 		"c": "Test: Simple inline math",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -407,7 +407,7 @@
 	},
 	{
 		"c": "Some math: ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -421,7 +421,7 @@
 	},
 	{
 		"c": "$\\alpha + \\beta = \\gamma$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -435,7 +435,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -449,7 +449,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -463,7 +463,7 @@
 	},
 	{
 		"c": "Test: Inline parentheses math",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -477,7 +477,7 @@
 	},
 	{
 		"c": "Inline: ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -491,7 +491,7 @@
 	},
 	{
 		"c": "\\( x^2 + y^2 = z^2 \\)",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -505,7 +505,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -519,7 +519,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -533,7 +533,7 @@
 	},
 	{
 		"c": "Test: Display math",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -547,7 +547,7 @@
 	},
 	{
 		"c": "Display: ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -561,7 +561,7 @@
 	},
 	{
 		"c": "\\[ \\int_0^1 x \\; dx \\]",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -575,7 +575,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -589,7 +589,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -603,7 +603,7 @@
 	},
 	{
 		"c": "Test: Headline with inline LaTeX",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -617,7 +617,7 @@
 	},
 	{
 		"c": "**",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org meta.outline.2.org markup.heading.org markup.heading.2.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -631,7 +631,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.2.org",
+		"t": "text.org meta.outline.1.org meta.outline.2.org markup.heading.org markup.heading.2.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -645,7 +645,7 @@
 	},
 	{
 		"c": "Headline with inline LaTeX ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.2.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org meta.outline.2.org markup.heading.org markup.heading.2.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -659,7 +659,7 @@
 	},
 	{
 		"c": "$E=mc^2$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.2.org entity.name.section.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.outline.2.org markup.heading.org markup.heading.2.org entity.name.section.org markup.math.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -673,7 +673,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -687,7 +687,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -701,7 +701,7 @@
 	},
 	{
 		"c": "Test: List item with LaTeX",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -715,7 +715,7 @@
 	},
 	{
 		"c": "-",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.list.unnumbered.org punctuation.definition.list.begin.org",
+		"t": "text.org meta.outline.1.org meta.section.org markup.list.unnumbered.org punctuation.definition.list.begin.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -729,7 +729,7 @@
 	},
 	{
 		"c": " List item with LaTeX: ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.list.unnumbered.org",
+		"t": "text.org meta.outline.1.org meta.section.org markup.list.unnumbered.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -743,7 +743,7 @@
 	},
 	{
 		"c": "$\\frac{a}{b}$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.list.unnumbered.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org markup.list.unnumbered.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -757,7 +757,7 @@
 	},
 	{
 		"c": " and ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.list.unnumbered.org",
+		"t": "text.org meta.outline.1.org meta.section.org markup.list.unnumbered.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -771,7 +771,7 @@
 	},
 	{
 		"c": "$\\sqrt{x}$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.list.unnumbered.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org markup.list.unnumbered.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -785,7 +785,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -799,7 +799,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -813,7 +813,7 @@
 	},
 	{
 		"c": "Test: Table cell with LaTeX",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -827,7 +827,7 @@
 	},
 	{
 		"c": "| ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -841,7 +841,7 @@
 	},
 	{
 		"c": "Table",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -855,7 +855,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -869,7 +869,7 @@
 	},
 	{
 		"c": "| ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -883,7 +883,7 @@
 	},
 	{
 		"c": "With",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -897,7 +897,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -911,7 +911,7 @@
 	},
 	{
 		"c": "| ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -925,7 +925,7 @@
 	},
 	{
 		"c": "LaTeX",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -939,7 +939,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -953,7 +953,7 @@
 	},
 	{
 		"c": "|",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -967,7 +967,7 @@
 	},
 	{
 		"c": "|-------+------+-------|",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org punctuation.definition.table.row-separator.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org punctuation.definition.table.row-separator.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -981,7 +981,7 @@
 	},
 	{
 		"c": "| ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -995,7 +995,7 @@
 	},
 	{
 		"c": "$x_i$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1009,7 +1009,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1023,7 +1023,7 @@
 	},
 	{
 		"c": "| ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1037,7 +1037,7 @@
 	},
 	{
 		"c": "$y_j$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1051,7 +1051,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1065,7 +1065,7 @@
 	},
 	{
 		"c": "| ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1079,7 +1079,7 @@
 	},
 	{
 		"c": "$z_k$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org markup.table.cell.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1093,7 +1093,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1107,7 +1107,7 @@
 	},
 	{
 		"c": "|",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.block.table.org markup.block.table.org markup.block.table.row.org markup.block.table.org markup.block.table.row.org punctuation.separator.table.cell.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1121,7 +1121,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1135,7 +1135,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1149,7 +1149,7 @@
 	},
 	{
 		"c": "Test: Comment with LaTeX",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1163,7 +1163,7 @@
 	},
 	{
 		"c": "# ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org comment.line.number-sign.org punctuation.whitespace.org",
+		"t": "text.org meta.outline.1.org meta.section.org comment.line.number-sign.org punctuation.whitespace.org",
 		"r": {
 			"dark_plus": "comment: #6A9955",
 			"light_plus": "comment: #008000",
@@ -1177,7 +1177,7 @@
 	},
 	{
 		"c": "This is a comment with LaTeX ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org comment.line.number-sign.org",
+		"t": "text.org meta.outline.1.org meta.section.org comment.line.number-sign.org",
 		"r": {
 			"dark_plus": "comment: #6A9955",
 			"light_plus": "comment: #008000",
@@ -1191,7 +1191,7 @@
 	},
 	{
 		"c": "$\\sum_{i=1}^n i$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org comment.line.number-sign.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org comment.line.number-sign.org markup.math.org",
 		"r": {
 			"dark_plus": "comment: #6A9955",
 			"light_plus": "comment: #008000",
@@ -1205,7 +1205,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1219,7 +1219,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1233,7 +1233,7 @@
 	},
 	{
 		"c": "Test: Inline mixed with markup",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1247,7 +1247,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.inline.bold.org punctuation.definition.bold.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.inline.bold.org punctuation.definition.bold.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1261,7 +1261,7 @@
 	},
 	{
 		"c": "bold",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.inline.bold.org markup.bold.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.inline.bold.org markup.bold.org",
 		"r": {
 			"dark_plus": "markup.bold: #569CD6",
 			"light_plus": "markup.bold: #000080",
@@ -1275,7 +1275,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.inline.bold.org punctuation.definition.bold.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.inline.bold.org punctuation.definition.bold.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1289,7 +1289,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1303,7 +1303,7 @@
 	},
 	{
 		"c": "/",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.inline.italic.org punctuation.definition.italic.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.inline.italic.org punctuation.definition.italic.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1317,7 +1317,7 @@
 	},
 	{
 		"c": "italic",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.inline.italic.org markup.italic.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.inline.italic.org markup.italic.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1331,7 +1331,7 @@
 	},
 	{
 		"c": "/",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org meta.inline.italic.org punctuation.definition.italic.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org meta.inline.italic.org punctuation.definition.italic.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1345,7 +1345,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1359,7 +1359,7 @@
 	},
 	{
 		"c": "$a^2$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1373,7 +1373,7 @@
 	},
 	{
 		"c": " in mixed inline markup",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1387,7 +1387,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1401,7 +1401,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1415,7 +1415,7 @@
 	},
 	{
 		"c": "Test: Multiple inline maths on one line",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1429,7 +1429,7 @@
 	},
 	{
 		"c": "Some text with multiple ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1443,7 +1443,7 @@
 	},
 	{
 		"c": "$x$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1457,7 +1457,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1471,7 +1471,7 @@
 	},
 	{
 		"c": "$y$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1485,7 +1485,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1499,7 +1499,7 @@
 	},
 	{
 		"c": "$z$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1513,7 +1513,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1527,7 +1527,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1541,7 +1541,7 @@
 	},
 	{
 		"c": "Test: Nested subscripts and superscripts",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1555,7 +1555,7 @@
 	},
 	{
 		"c": "Some text with nested ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1569,7 +1569,7 @@
 	},
 	{
 		"c": "$a_{b_{c}}$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1583,7 +1583,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1597,7 +1597,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1611,7 +1611,7 @@
 	},
 	{
 		"c": "Test: Multilingual with LaTeX",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1625,7 +1625,7 @@
 	},
 	{
 		"c": "Multilingual: 公式 ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1639,7 +1639,7 @@
 	},
 	{
 		"c": "$\\int_0^\\infty e^{-x} dx$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1653,7 +1653,7 @@
 	},
 	{
 		"c": " 中文",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1667,7 +1667,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1681,7 +1681,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1695,7 +1695,7 @@
 	},
 	{
 		"c": "Test: Display math with double dollar signs",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1709,7 +1709,7 @@
 	},
 	{
 		"c": "$$ \\frac{1}{2} \\sum_{i=1}^n i^2 $$",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org meta.paragraph.org markup.paragraph.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1723,7 +1723,7 @@
 	},
 	{
 		"c": "*",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org punctuation.definition.heading.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1737,7 +1737,7 @@
 	},
 	{
 		"c": " ",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1751,7 +1751,7 @@
 	},
 	{
 		"c": "Test: LaTeX environment (equation)",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org markup.heading.org markup.heading.1.org entity.name.section.org",
+		"t": "text.org meta.outline.1.org markup.heading.org markup.heading.1.org entity.name.section.org",
 		"r": {
 			"dark_plus": "markup.heading: #569CD6",
 			"light_plus": "markup.heading: #800000",
@@ -1765,7 +1765,7 @@
 	},
 	{
 		"c": "\\begin{equation}",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.math.org keyword.control.math.block.latex",
+		"t": "text.org meta.outline.1.org meta.section.org markup.math.org keyword.control.math.block.latex",
 		"r": {
 			"dark_plus": "keyword.control: #C586C0",
 			"light_plus": "keyword.control: #AF00DB",
@@ -1779,7 +1779,7 @@
 	},
 	{
 		"c": "e^{i\\pi} + 1 = 0",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1793,7 +1793,7 @@
 	},
 	{
 		"c": "\\end{equation}",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1807,7 +1807,7 @@
 	},
 	{
 		"c": "* Test: Empty LaTeX fragments",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
@@ -1821,7 +1821,7 @@
 	},
 	{
 		"c": "Empty: $$ and \\(\\)",
-		"t": "text.org meta.outline-node.active.org meta.outline-node.org meta.section.org markup.math.org",
+		"t": "text.org meta.outline.1.org meta.section.org markup.math.org",
 		"r": {
 			"dark_plus": "default: #D4D4D4",
 			"light_plus": "default: #000000",
