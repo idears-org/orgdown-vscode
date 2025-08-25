@@ -96,7 +96,7 @@ Custom content line
 #+END_MYBLOCK
 #+END_FIXTURE
 #+EXPECTED: :type scope
-'#+BEGIN_MYBLOCK :arg1 value1 :arg2 "quoted value"' => {{scopes.BLOCK_CUSTOMIZED_META}}, {{scopes.BLOCK_KEYWORD}}
+'#+BEGIN_MYBLOCK :arg1 value1 :arg2 "quoted value"' => {{scopes.BLOCK_CUSTOMIZED_META}}
   - "#+BEGIN_" => {{scopes.BLOCK_KEYWORD}}
   - "MYBLOCK" => {{scopes.BLOCK_NAME}}
   - ":arg1" => {{scopes.BLOCK_PARAMETER_KEY}}
@@ -104,4 +104,4 @@ Custom content line
   - ":arg2" => {{scopes.BLOCK_PARAMETER_KEY}}
   - '"quoted value"' => {{scopes.BLOCK_PARAMETER_VALUE}}
 "Custom content line" => {{scopes.BLOCK_CUSTOMIZED_CONTENT}}
-"#+END_MYBLOCK" => {{scopes.BLOCK_KEYWORD}}
+"#+END_MYBLOCK" => {{scopes.BLOCK_CUSTOMIZED_META}}

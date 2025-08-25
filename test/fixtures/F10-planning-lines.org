@@ -118,19 +118,19 @@ SCHEDULED:<2025-08-17 Sun>
 
 #+EXPECTED: :type scope
 "SCHEDULED: <2025-08-01 Fri>" => {{scopes.PLANNING_LINE_META}}
-	- "SCHEDULED:" => {{scopes.PLANNING_KEYWORD}}
+	- "SCHEDULED" => {{scopes.PLANNING_KEYWORD}}
 	- "<2025-08-01 Fri>" => {{scopes.PLANNING_TIMESTAMP}}
 "DEADLINE: <2025-08-05 Tue>" => {{scopes.PLANNING_LINE_META}}
-	- "DEADLINE:" => {{scopes.PLANNING_KEYWORD}}
+	- "DEADLINE" => {{scopes.PLANNING_KEYWORD}}
 	- "<2025-08-05 Tue>" => {{scopes.PLANNING_TIMESTAMP}}
 "CLOSED: [2025-08-03 Sun 12:00]" => {{scopes.PLANNING_LINE_META}}
-	- "CLOSED:" => {{scopes.PLANNING_KEYWORD}}
+	- "CLOSED" => {{scopes.PLANNING_KEYWORD}}
 	- "[2025-08-03 Sun 12:00]" => {{scopes.PLANNING_TIMESTAMP}}
 "scheduled: <2025-08-19 Tue>" => {{scopes.PLANNING_LINE_META}}
-	- "scheduled:" => {{scopes.PLANNING_KEYWORD}}
+	- "scheduled" => {{scopes.PLANNING_KEYWORD}}
 	- "<2025-08-19 Tue>" => {{scopes.PLANNING_TIMESTAMP}}
 "SCHEDULED:<2025-08-17 Sun>" => {{scopes.PLANNING_LINE_META}}
-	- "SCHEDULED:" => {{scopes.PLANNING_KEYWORD}}
+	- "SCHEDULED" => {{scopes.PLANNING_KEYWORD}}
 	- "<2025-08-17 Sun>" => {{scopes.PLANNING_TIMESTAMP}}
 
 #+NAME: Planning line with text before

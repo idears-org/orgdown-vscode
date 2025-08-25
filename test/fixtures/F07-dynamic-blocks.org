@@ -165,7 +165,7 @@ Some dynamic content
 #+END:
 #+END_FIXTURE
 #+EXPECTED: :type scope
-"#+BEGIN: clocktable :maxlevel 2" => {{scopes.DYNAMIC_BLOCK_META}}, {{scopes.BLOCK_KEYWORD}}
+"#+BEGIN: clocktable :maxlevel 2" => {{scopes.DYNAMIC_BLOCK_META}}
   - "#+BEGIN:" => {{scopes.BLOCK_KEYWORD}}
   - ":maxlevel" => {{scopes.BLOCK_PARAMETER_KEY}}
   - "2" => {{scopes.BLOCK_PARAMETER_VALUE}}

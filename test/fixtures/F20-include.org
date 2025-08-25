@@ -65,7 +65,9 @@
 #+END_FIXTURE
 
 #+EXPECTED: :type scope
-'#+INCLUDE: "headline.org"' => {{scopes.META_DIRECTIVE}}, {{scopes.INCLUDE_KEYWORD}}, {{scopes.INCLUDE_PATH}}
+'#+INCLUDE: "headline.org"' => {{scopes.META_DIRECTIVE}}
+  - '#+INCLUDE:' => {{scopes.INCLUDE_KEYWORD}}
+  - '"headline.org"' => {{scopes.INCLUDE_PATH}}
 
 #+NAME: Include inside list item
 #+BEGIN_FIXTURE
@@ -75,7 +77,9 @@
 #+END_FIXTURE
 
 #+EXPECTED: :type scope
-'#+INCLUDE: "list.org"' => {{scopes.META_DIRECTIVE}}, {{scopes.INCLUDE_KEYWORD}}, {{scopes.INCLUDE_PATH}}
+'#+INCLUDE: "list.org"' => {{scopes.META_DIRECTIVE}}
+  - '#+INCLUDE:' => {{scopes.INCLUDE_KEYWORD}}
+  - '"list.org"' => {{scopes.INCLUDE_PATH}}
 
 #+NAME: Include inside table cell
 #+BEGIN_FIXTURE
@@ -85,7 +89,9 @@
 #+END_FIXTURE
 
 #+EXPECTED: :type scope
-'#+INCLUDE: "table.org"' => !{{scopes.META_DIRECTIVE}}, !{{scopes.INCLUDE_KEYWORD}}, !{{scopes.INCLUDE_PATH}}
+'#+INCLUDE: "table.org"' => !{{scopes.META_DIRECTIVE}}
+  - '#+INCLUDE:' => !{{scopes.INCLUDE_KEYWORD}}
+  - '"table.org"' => !{{scopes.INCLUDE_PATH}}
 
 #+NAME: Include inside comment should be treated as comment content
 #+BEGIN_FIXTURE
@@ -145,7 +151,9 @@ no-match
 #+INCLUDE: "file.org" :lines "1-3" :minlevel 2 :only-contents t
 #+END_FIXTURE
 #+EXPECTED: :type scope
-'#+INCLUDE: "file.org"' => {{scopes.META_DIRECTIVE}}, {{scopes.INCLUDE_KEYWORD}}, {{scopes.INCLUDE_PATH}}
+'#+INCLUDE: "file.org"' => {{scopes.META_DIRECTIVE}}
+  - '#+INCLUDE:' => {{scopes.INCLUDE_KEYWORD}}
+  - '"file.org"' => {{scopes.INCLUDE_PATH}}
 ":lines" => {{scopes.BLOCK_PARAMETER_KEY}}
 '"1-3"' => {{scopes.BLOCK_PARAMETER_VALUE}}
 ":minlevel" => {{scopes.BLOCK_PARAMETER_KEY}}

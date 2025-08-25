@@ -160,14 +160,14 @@ Some text
 #+EXPECTED: :type scope
 ":PROPERTIES:" => {{scopes.PROPERTY_DRAWER_META}}, {{scopes.DRAWER_BEGIN_KEYWORD}}
 ":Owner: Alice" => {{scopes.PROPERTY_META}}
-	- ":Owner:" => {{scopes.PROPERTY_KEY}}
+	- "Owner" => {{scopes.PROPERTY_KEY}}
 	- "Alice" => {{scopes.PROPERTY_VALUE}}
 ":effort-estimate: 1:00" => {{scopes.PROPERTY_META}}
-	- ":effort-estimate:" => {{scopes.PROPERTY_KEY}}
+	- "effort-estimate" => {{scopes.PROPERTY_KEY}}
 	- "1:00" => {{scopes.PROPERTY_VALUE}}
 ":CREATED+: [2025-08-02]" => {{scopes.PROPERTY_META}}
-	- ":CREATED+:" => {{scopes.PROPERTY_KEY}}
+	- "CREATED+" => {{scopes.PROPERTY_KEY}}
 	- "[2025-08-02]" => {{scopes.PROPERTY_VALUE}}
 ":Empty:" => {{scopes.PROPERTY_META}}
-	- ":Empty:" => {{scopes.PROPERTY_KEY}}
+	- "Empty" => {{scopes.PROPERTY_KEY}}
 ":END:" => {{scopes.DRAWER_END_KEYWORD}}

@@ -4,7 +4,7 @@
 
 #+NAME: Complete headline with all elements
 #+BEGIN_FIXTURE
-* TODO [#A] Complete headline example *inline bold* [2/5] :work:project:
+,* TODO [#A] Complete headline example *inline bold* [2/5] :work:project:
 #+END_FIXTURE
 #+EXPECTED: :type regex :name headlineLevel1Regex
 | Group # | Expected Value                           |
@@ -36,7 +36,7 @@
 
 #+NAME: Simple headline (Level 1)
 #+BEGIN_FIXTURE
-* Simple headline
+,* Simple headline
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -52,7 +52,7 @@
 
 #+NAME: Multi-level headline with TODO (Level 2)
 #+BEGIN_FIXTURE
-** DONE Multi-level task
+,** DONE Multi-level task
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel2Regex
@@ -69,7 +69,7 @@
 
 #+NAME: Priority without TODO (Level 3)
 #+BEGIN_FIXTURE
-*** [#B] Priority headline without todo
+,*** [#B] Priority headline without todo
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel3Regex
@@ -87,7 +87,7 @@
 
 #+NAME: Complex headline with unicode and symbols (Level 4)
 #+BEGIN_FIXTURE
-**** WAITING [#C] 复杂标题 with symbols !@#$% :chinese:symbols:
+,**** WAITING [#C] 复杂标题 with symbols !@#$% :chinese:symbols:
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel4Regex
@@ -107,7 +107,7 @@
 
 #+NAME: Level 5 headline
 #+BEGIN_FIXTURE
-***** A level 5 headline
+,***** A level 5 headline
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel5Regex
@@ -123,7 +123,7 @@
 
 #+NAME: Very deep level headline (Level 6)
 #+BEGIN_FIXTURE
-****** NEXT [#A] Deep level headline :deep:level:nested:
+,****** NEXT [#A] Deep level headline :deep:level:nested:
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel6Regex
@@ -143,7 +143,7 @@
 
 #+NAME: Headline with too many stars (7)
 #+BEGIN_FIXTURE
-******* Too many stars
+,******* Too many stars
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevelMoreThan6Regex
@@ -161,7 +161,7 @@
 
 #+NAME: No space after stars
 #+BEGIN_FIXTURE
-*TODO No space
+,*TODO No space
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -172,7 +172,7 @@ no-match
 
 #+NAME: Multiple spaces between elements
 #+BEGIN_FIXTURE
-*    TODO    Headline    :tag:
+,*    TODO    Headline    :tag:
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -190,7 +190,7 @@ no-match
 
 #+NAME: Multiple priorities
 #+BEGIN_FIXTURE
-* [#A][#B] Task
+,* [#A][#B] Task
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -208,7 +208,7 @@ no-match
 
 #+NAME: Headline with only stars
 #+BEGIN_FIXTURE
-*
+,*
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -219,7 +219,7 @@ no-match
 
 #+NAME: Headline with only tags
 #+BEGIN_FIXTURE
-* :tag1:
+,* :tag1:
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -235,7 +235,7 @@ no-match
 
 #+NAME: Duplicate tags
 #+BEGIN_FIXTURE
-* Task :tag1:tag1:
+,* Task :tag1:tag1:
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -252,7 +252,7 @@ no-match
 
 #+NAME: Tag with special characters
 #+BEGIN_FIXTURE
-* Task :tag$:@:tag!:
+,* Task :tag$:@:tag!:
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -269,7 +269,7 @@ no-match
 
 #+NAME: Timestamp in headline text
 #+BEGIN_FIXTURE
-* Task <2025-08-01 Fri>
+,* Task <2025-08-01 Fri>
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -285,7 +285,7 @@ no-match
 
 #+NAME: Headline with inline markup
 #+BEGIN_FIXTURE
-* Headline /italic/ *bold* =code=
+,* Headline /italic/ *bold* =code=
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -301,7 +301,7 @@ no-match
 
 #+NAME: Malformed progress cookie
 #+BEGIN_FIXTURE
-* Project [abc%]
+,* Project [abc%]
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -319,7 +319,7 @@ no-match
 
 #+NAME: Not a headline - no leading star
 #+BEGIN_FIXTURE
-This is not a headline.
+,This is not a headline.
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -330,7 +330,7 @@ no-match
 
 #+NAME: Not a headline - star not at beginning of line
 #+BEGIN_FIXTURE
-  * This is not a headline.
+,  * This is not a headline.
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -341,7 +341,7 @@ no-match
 
 #+NAME: Not a headline - list item
 #+BEGIN_FIXTURE
-- * This is a list item
+,- * This is a list item
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -352,7 +352,7 @@ no-match
 
 #+NAME: Not a headline - escaped star
 #+BEGIN_FIXTURE
-\* This is not a headline
+,\* This is not a headline
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name headlineLevel1Regex
@@ -366,7 +366,7 @@ no-match
 
 #+NAME: Inactive headline with COMMENT keyword
 #+BEGIN_FIXTURE
-* COMMENT Inactive headline
+,* COMMENT Inactive headline
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name inactiveHeadlineDetectRegex
@@ -379,7 +379,7 @@ no-match
 
 #+NAME: Inactive headline with ARCHIVE tag
 #+BEGIN_FIXTURE
-* Inactive headline with tag :ARCHIVE:
+,* Inactive headline with tag :ARCHIVE:
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name inactiveHeadlineDetectRegex
@@ -392,7 +392,7 @@ no-match
 
 #+NAME: Inactive headline with TODO and ARCHIVE tag
 #+BEGIN_FIXTURE
-* TODO Inactive with tag and todo :ARCHIVE:
+,* TODO Inactive with tag and todo :ARCHIVE:
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name inactiveHeadlineDetectRegex
@@ -405,7 +405,7 @@ no-match
 
 #+NAME: Active headline with "comment" in text
 #+BEGIN_FIXTURE
-* This is a comment about something
+,* This is a comment about something
 #+END_FIXTURE
 
 #+EXPECTED: :type regex :name inactiveHeadlineDetectRegex
@@ -421,8 +421,8 @@ no-match
 
 #+NAME: Inactive parent with active-looking child
 #+BEGIN_FIXTURE
-* COMMENT Inactive Parent
-** Active Child
+,* COMMENT Inactive Parent
+,** Active Child
 #+END_FIXTURE
 
 #+EXPECTED: :type scope
@@ -436,8 +436,8 @@ no-match
 
 #+NAME: Scope for deep headlines
 #+BEGIN_FIXTURE
-******* Level 7
-******** Level 8
+,******* Level 7
+,******** Level 8
 #+END_FIXTURE
 
 #+EXPECTED: :type scope

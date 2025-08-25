@@ -194,15 +194,18 @@ no-match
 #+EXPECTED: :type scope
 "- [ ] Unchecked task" => {{scopes.LIST_UNORDERED_TEXT}}
   - "-" => {{scopes.LIST_BULLET}}
-  - "[ ]" => {{scopes.CHECKBOX}}
+  - "[ ]" => !{{scopes.CHECKBOX}}
+    - "<sp:1>" => {{scopes.CHECKBOX}}
   - "Unchecked task" => {{scopes.LIST_UNORDERED_TEXT}}
 "+ [X] Checked task" => {{scopes.LIST_UNORDERED_TEXT}}
   - "+" => {{scopes.LIST_BULLET}}
-  - "[X]" => {{scopes.CHECKBOX}}
+  - "[X]" => !{{scopes.CHECKBOX}}
+    - "X" => {{scopes.CHECKBOX}}
   - "Checked task" => {{scopes.LIST_UNORDERED_TEXT}}
 "- [-] Intermediate task" => {{scopes.LIST_UNORDERED_TEXT}}
   - "-" => {{scopes.LIST_BULLET}}
-  - "[-]" => {{scopes.CHECKBOX}}
+  - "[-]" => !{{scopes.CHECKBOX}}
+    - "-" => {{scopes.CHECKBOX}}
   - "Intermediate task" => {{scopes.LIST_UNORDERED_TEXT}}
 "1. Parent item" => {{scopes.LIST_ORDERED_TEXT}}
   - "1." => {{scopes.LIST_BULLET}}

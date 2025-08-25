@@ -203,7 +203,7 @@ describe('Grammar Scope Unit Tests', () => {
 
               for (let mi = 0; mi < node.mustContain.length; mi++) {
                 const expectedScope = node.mustContain[mi];
-                const ok = foundUnion.has(expectedScope);
+                const ok = foundIntersection.has(expectedScope);
                 expect(
                   ok,
                   `Expected scope '${expectedScope}' for '${node.text}' in '${testCase.name}', but it was not found. Intersection: ${[...foundIntersection].join(', ')}, Union: ${[...foundUnion].join(', ')}`,

@@ -1,4 +1,4 @@
-import * as scopeModule from './scoping';
+import * as scopeModule from "./scoping";
 export type TestType = "regex" | "scope";
 
 export interface RegexExpectation {
@@ -10,7 +10,11 @@ export interface RegexExpectation {
 
 export interface ScopeExpectation {
   type: "scope";
-  assertions: { text: string; mustContain: string[]; mustNotContain: string[] }[];
+  assertions: {
+    text: string;
+    mustContain: string[];
+    mustNotContain: string[];
+  }[];
   // Optional tree representation, built from indentation depth
   tree?: ScopeNode[];
 }
@@ -131,16 +135,16 @@ function parseExpectedBlock(
         shouldMatch,
         captures: shouldMatch ? captures : undefined,
       });
-  } else if (testType === "scope") {
+    } else if (testType === "scope") {
       const assertions: {
         text: string;
         mustContain: string[];
         mustNotContain: string[];
       }[] = [];
 
-  // Build a tree from indentation
-  const roots: ScopeNode[] = [];
-  const nodeStack: Array<{ depth: number; node: ScopeNode }> = [];
+      // Build a tree from indentation
+      const roots: ScopeNode[] = [];
+      const nodeStack: Array<{ depth: number; node: ScopeNode }> = [];
       for (const raw of blockContentLines) {
         const normalized = raw.replace(/\t/g, "    ");
         let line = normalized;
@@ -158,21 +162,24 @@ function parseExpectedBlock(
         }
         const idx = line.indexOf("=>");
         const left = line.slice(0, idx).trim();
-  let right = line.slice(idx + 2).trim();
+        let right = line.slice(idx + 2).trim();
 
         let text = left.trim();
         if (
           (text.startsWith('"') && text.endsWith('"')) ||
-          (text.startsWith("'" ) && text.endsWith("'"))
+          (text.startsWith("'") && text.endsWith("'"))
         ) {
           text = text.slice(1, -1);
         }
         text = processExpectedValue(text);
         // Resolve {{scopes.NAME}} templates in the right-hand side to actual scope strings
-        right = right.replace(/\{\{\s*scopes\.([A-Za-z0-9_]+)\s*\}\}/g, (m, key) => {
-          const val = (scopeModule as any)[key];
-          return typeof val === 'string' ? val : m;
-        });
+        right = right.replace(
+          /\{\{\s*scopes\.([A-Za-z0-9_]+)\s*\}\}/g,
+          (m, key) => {
+            const val = (scopeModule as any)[key];
+            return typeof val === "string" ? val : m;
+          }
+        );
 
         // parse scopes: comma-separated list
         const mustContain: string[] = [];
@@ -194,8 +201,16 @@ function parseExpectedBlock(
           assertions.push({ text, mustContain, mustNotContain });
 
           // insert into tree using depth-based stack
-          const node: ScopeNode = { text, mustContain, mustNotContain, children: [] };
-          while (nodeStack.length > 0 && nodeStack[nodeStack.length - 1].depth >= depth) {
+          const node: ScopeNode = {
+            text,
+            mustContain,
+            mustNotContain,
+            children: [],
+          };
+          while (
+            nodeStack.length > 0 &&
+            nodeStack[nodeStack.length - 1].depth >= depth
+          ) {
             nodeStack.pop();
           }
           if (nodeStack.length === 0) {
@@ -222,7 +237,7 @@ function parseExpectedBlock(
         );
       }
 
-  allExpectations.push({ type: "scope", assertions, tree: roots });
+      allExpectations.push({ type: "scope", assertions, tree: roots });
     }
 
     currentIndex = blockEndIndex + 1;
@@ -271,7 +286,20 @@ export function parseFixtureFile(content: string): FixtureTestCase[] {
       continue; // Unmatched BEGIN_FIXTURE
     }
 
-    const input = lines.slice(contentStartIndex, contentEndIndex).join("\n");
+    const fixtureLines = lines.slice(contentStartIndex, contentEndIndex);
+    const processedLines = fixtureLines.map((line) => {
+      // Strip a leading comma from any line inside the fixture. This allows
+      // fixture content to escape lines that might otherwise be
+      // misinterpreted by the fixture parser itself (e.g., a line
+      // starting with #+NAME:).
+      const match = line.match(/^(\s*),(.*)/);
+      if (match) {
+        return match[1] + match[2]; // return line with leading comma removed
+      }
+      return line;
+    });
+
+    const input = processedLines.join("\n");
     i = contentEndIndex;
 
     let lookaheadIndex = i + 1;
