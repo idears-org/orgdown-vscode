@@ -8,9 +8,6 @@ importers:
 
   .:
     devDependencies:
-      '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -41,9 +38,6 @@ importers:
       '@vscode/test-electron':
         specifier: ^2.5.2
         version: 2.5.2
-      chai:
-        specifier: ^5.2.1
-        version: 5.2.1
       chokidar:
         specifier: ^4.0.3
         version: 4.0.3
