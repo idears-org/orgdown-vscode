@@ -146,7 +146,7 @@
 ******* Too many stars
 #+END_FIXTURE
 
-#+EXPECTED: :type regex :name headlineLevel6Regex
+#+EXPECTED: :type regex :name headlineLevelMoreThan6Regex
 | Group # | Expected Value   |
 |---------+------------------|
 | 1       | *******          |
@@ -360,3 +360,90 @@ no-match
 
 #+EXPECTED: :type regex :name headlineDetectRegex
 no-match
+
+
+* Inactive Headlines
+
+#+NAME: Inactive headline with COMMENT keyword
+#+BEGIN_FIXTURE
+* COMMENT Inactive headline
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name inactiveHeadlineDetectRegex
+| Group # | Expected Value              |
+|---------+-----------------------------|
+| 1       | * COMMENT Inactive headline |
+
+#+EXPECTED: :type regex :name activeHeadlineDetectRegex
+no-match
+
+#+NAME: Inactive headline with ARCHIVE tag
+#+BEGIN_FIXTURE
+* Inactive headline with tag :ARCHIVE:
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name inactiveHeadlineDetectRegex
+| Group # | Expected Value                         |
+|---------+----------------------------------------|
+| 1       | * Inactive headline with tag :ARCHIVE: |
+
+#+EXPECTED: :type regex :name activeHeadlineDetectRegex
+no-match
+
+#+NAME: Inactive headline with TODO and ARCHIVE tag
+#+BEGIN_FIXTURE
+* TODO Inactive with tag and todo :ARCHIVE:
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name inactiveHeadlineDetectRegex
+| Group # | Expected Value                             |
+|---------+--------------------------------------------|
+| 1       | * TODO Inactive with tag and todo :ARCHIVE: |
+
+#+EXPECTED: :type regex :name activeHeadlineDetectRegex
+no-match
+
+#+NAME: Active headline with "comment" in text
+#+BEGIN_FIXTURE
+* This is a comment about something
+#+END_FIXTURE
+
+#+EXPECTED: :type regex :name inactiveHeadlineDetectRegex
+no-match
+
+#+EXPECTED: :type regex :name activeHeadlineDetectRegex
+| Group # | Expected Value                       |
+|---------+--------------------------------------|
+| 1       | * This is a comment about something |
+
+
+* Inactive Subtree
+
+#+NAME: Inactive parent with active-looking child
+#+BEGIN_FIXTURE
+* COMMENT Inactive Parent
+** Active Child
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"* COMMENT Inactive Parent" => {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_1}}, {{scopes.META_OUTLINE_INACTIVE}}
+  - "*" => {{scopes.HEADING_PUNCTUATION}}
+  - "COMMENT" => {{scopes.TODO_KEYWORD}}
+  - "Inactive Parent" => {{scopes.HEADING_TITLE}}
+"** Active Child" => {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_2}}, {{scopes.META_OUTLINE_INACTIVE}}
+  - "**" => {{scopes.HEADING_PUNCTUATION}}
+  - "Active Child" => {{scopes.HEADING_TITLE}}
+
+#+NAME: Scope for deep headlines
+#+BEGIN_FIXTURE
+******* Level 7
+******** Level 8
+#+END_FIXTURE
+
+#+EXPECTED: :type scope
+"******* Level 7" => {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_MORE_THAN_6}}, {{scopes.META_OUTLINE_MORE_THAN_6}}
+  - "*******" => {{scopes.HEADING_PUNCTUATION}}
+  - "Level 7" => {{scopes.HEADING_TITLE}}
+"******** Level 8" => {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_MORE_THAN_6}}, {{scopes.META_OUTLINE_MORE_THAN_6}}
+  - "********" => {{scopes.HEADING_PUNCTUATION}}
+  - "Level 8" => {{scopes.HEADING_TITLE}}

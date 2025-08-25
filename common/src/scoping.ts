@@ -47,8 +47,9 @@ export const META_OUTLINE_3 = 'meta.outline.3.org';
 export const META_OUTLINE_4 = 'meta.outline.4.org';
 export const META_OUTLINE_5 = 'meta.outline.5.org';
 export const META_OUTLINE_6 = 'meta.outline.6.org';
+export const META_OUTLINE_MORE_THAN_6 = 'meta.outline.more-than-6.org';
 /** Container scope applied to inactive (commented/archived) outline levels. */
-export const META_OUTLINE_INACTIVE = 'comment.block.org';
+export const META_OUTLINE_INACTIVE = 'comment.outline.org';
 
 // =================================================================
 // 2. DETAILED IMPLEMENTATIONS
@@ -73,6 +74,7 @@ export const HEADING_LEVEL_3 = 'markup.heading.3.org';
 export const HEADING_LEVEL_4 = 'markup.heading.4.org';
 export const HEADING_LEVEL_5 = 'markup.heading.5.org';
 export const HEADING_LEVEL_6 = 'markup.heading.6.org';
+export const HEADING_LEVEL_MORE_THAN_6 = 'markup.heading.more-than-6.org';
 
 /** The leading stars, e.g., `*` or `**`. */
 export const HEADING_PUNCTUATION = 'punctuation.definition.heading.org';

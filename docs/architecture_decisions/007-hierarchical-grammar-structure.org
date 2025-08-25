@@ -15,43 +15,10 @@ We will refactor the `tmlanguage` grammar to a hierarchical and reusable model t
 
 ** 2.1. Architecture Diagram
 
-The following diagram illustrates the hierarchical structure of the grammar rules in the `repository`.
+The authoritative hierarchical structure of the grammar is now maintained directly within the grammar file itself as a comment block. This ensures the documentation and implementation never diverge.
 
-#+BEGIN_SRC text
-#document-root
-|
-├── #file-header
-|   |
-│   └── #keyword-like-lines
-│       ├── #planning-lines
-│       ├── #link-abbreviations
-│       └── #keywords (generic)
-|
-└── #outline-node (repeats)
-    |
-    ├── #headline
-    |
-    └── #section-content
-        |
-        ├── #keyword-like-lines (reused)
-        |
-        ├── #blocks
-        |   ├── #begin-end-blocks
-        |   |   ├── #src-block
-        |   |   └── ...
-        |   ├── #drawer-blocks
-        |   |   ├── #property_drawer
-        |   |   └── #drawers (generic)
-        |   └── #horizontal-rules
-        |
-        ├── #lists
-        |
-        └── #paragraph
-            |
-            └── #inline-markup
-                ├── #links
-                └── ...
-#+END_SRC
+Please see the `GRAMMAR STRUCTURE` comment block at the top of the following file for the most up-to-date architecture diagram:
+- [[file:../../../syntaxes/org.tmLanguage.template.yaml]]
 
 ** 2.2. Logical Scope Hierarchy
 

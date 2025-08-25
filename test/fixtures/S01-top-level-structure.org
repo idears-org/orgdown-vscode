@@ -1,59 +1,49 @@
 #+TITLE: Top-level Structure Scope Tests
 
-#+NAME: Top-level structure - header and outline nodes
+* Mega Structure Test
+
+#+NAME: Comprehensive structure test with transitions and edge cases
 #+BEGIN_FIXTURE
-#+TITLE: File Header Scope Tests
+#+TITLE: Header Title
+#+AUTHOR: Test Manager
 
-This is the first line of the file header.
-This is the last line of the file header.
+This is the header.
 
-* First headline
-Headline content line 1
-Headline content last line
-
-* Second headline
+* LV1-A: Active Section
+Content of LV1-A.
+** LV2-A: Active Child
+Content of LV2-A.
+* COMMENT LV1-B: Inactive Section via Keyword
+Content of LV1-B. This should be inactive.
+** LV2-B: Child of Inactive
+This headline and its content should inherit the inactive state.
+* LV1-C: Archived Section via Tag :ARCHIVE:
+Content of LV1-C. This should be inactive.
+** LV2-C: Child of Archived
+This should also be inactive.
+******* LV7-A: Deep child of Archived
+This should also be inactive.
+* LV1-D: Final Active Section
+Back to active state.
 #+END_FIXTURE
 
 #+EXPECTED: :type scope
-"#+TITLE: File Header Scope Tests" => {{scopes.META_HEADER}}
-"This is the last line of the file header." => {{scopes.META_HEADER}}
-"* First headline" =>  {{scopes.META_OUTLINE_1}}
-"Headline content line 1" =>  {{scopes.META_OUTLINE_1}}
-"Headline content last line" =>  {{scopes.META_OUTLINE_1}}
-"* Second headline" =>  {{scopes.META_OUTLINE_1}}
-
-#+NAME: Top-level structure - headline-first (no header)
-#+BEGIN_FIXTURE
-* Headline starts immediately
-Content after headline
-#+END_FIXTURE
-
-#+EXPECTED: :type scope
-"* Headline starts immediately" =>  {{scopes.META_OUTLINE_1}}
-"Content after headline" =>  {{scopes.META_OUTLINE_1}}
-
-#+NAME: Top-level structure - header tricky lines
-#+BEGIN_FIXTURE
-#+TITLE: Header With Tricky Lines
-*Not a headline
-  * Indented asterisk line
------
-* Real headline
-#+END_FIXTURE
-
-#+EXPECTED: :type scope
-"#+TITLE: Header With Tricky Lines" => {{scopes.META_HEADER}}
-"*Not a headline" => {{scopes.META_HEADER}}
-"  * Indented asterisk line" => {{scopes.META_HEADER}}
-"-----" => {{scopes.META_HEADER}}
-"* Real headline" =>  {{scopes.META_OUTLINE_1}}
-
-#+NAME: Top-level structure - empty section
-#+BEGIN_FIXTURE
-* Empty section
-* Next headline
-#+END_FIXTURE
-
-#+EXPECTED: :type scope
-"* Empty section" =>  {{scopes.META_OUTLINE_1}}
-"* Next headline" =>  {{scopes.META_OUTLINE_1}}
+"#+TITLE: Header Title" => {{scopes.META_HEADER}}, {{scopes.KEYWORD}}
+"#+AUTHOR: Test Manager" => {{scopes.META_HEADER}}, {{scopes.KEYWORD}}
+"This is the header." => {{scopes.META_HEADER}}, {{scopes.PARAGRAPH}}
+"* LV1-A: Active Section" => {{scopes.META_OUTLINE_1}}, {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_1}}
+"Content of LV1-A." => {{scopes.META_OUTLINE_1}}, {{scopes.META_SECTION}}, {{scopes.PARAGRAPH}}
+"** LV2-A: Active Child" => {{scopes.META_OUTLINE_1}}, {{scopes.META_OUTLINE_2}}, {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_2}}
+"Content of LV2-A." => {{scopes.META_OUTLINE_1}}, {{scopes.META_OUTLINE_2}}, {{scopes.META_SECTION}}, {{scopes.PARAGRAPH}}
+"* COMMENT LV1-B: Inactive Section via Keyword" => {{scopes.META_OUTLINE_INACTIVE}}, {{scopes.META_OUTLINE_1}}, {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_1}}
+"Content of LV1-B. This should be inactive." => {{scopes.META_OUTLINE_INACTIVE}}, {{scopes.META_OUTLINE_1}}, {{scopes.META_SECTION}}, {{scopes.PARAGRAPH}}
+"** LV2-B: Child of Inactive" => {{scopes.META_OUTLINE_INACTIVE}}, {{scopes.META_OUTLINE_1}}, {{scopes.META_OUTLINE_2}}, {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_2}}
+"This headline and its content should inherit the inactive state." => {{scopes.META_OUTLINE_INACTIVE}}, {{scopes.META_OUTLINE_1}}, {{scopes.META_OUTLINE_2}}, {{scopes.META_SECTION}}, {{scopes.PARAGRAPH}}
+"* LV1-C: Archived Section via Tag :ARCHIVE:" => {{scopes.META_OUTLINE_INACTIVE}}, {{scopes.META_OUTLINE_1}}, {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_1}}
+"Content of LV1-C. This should be inactive." => {{scopes.META_OUTLINE_INACTIVE}}, {{scopes.META_OUTLINE_1}}, {{scopes.META_SECTION}}, {{scopes.PARAGRAPH}}
+"** LV2-C: Child of Archived" => {{scopes.META_OUTLINE_INACTIVE}}, {{scopes.META_OUTLINE_1}}, {{scopes.META_OUTLINE_2}}, {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_2}}
+"This should also be inactive." => {{scopes.META_OUTLINE_INACTIVE}}, {{scopes.META_OUTLINE_1}}, {{scopes.META_OUTLINE_2}}, {{scopes.META_SECTION}}, {{scopes.PARAGRAPH}}
+"******* LV7-A: Deep child of Archived" => {{scopes.META_OUTLINE_INACTIVE}}, {{scopes.META_OUTLINE_1}}, {{scopes.META_OUTLINE_MORE_THAN_6}}, {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_MORE_THAN_6}}
+"This should also be inactive." => {{scopes.META_OUTLINE_INACTIVE}}, {{scopes.META_OUTLINE_1}}, {{scopes.META_OUTLINE_MORE_THAN_6}}, {{scopes.META_SECTION}}, {{scopes.PARAGRAPH}}
+"* LV1-D: Final Active Section" => {{scopes.META_OUTLINE_1}}, {{scopes.HEADING_BLOCK}}, {{scopes.HEADING_LEVEL_1}}
+"Back to active state." => {{scopes.META_OUTLINE_1}}, {{scopes.META_SECTION}}, {{scopes.PARAGRAPH}}

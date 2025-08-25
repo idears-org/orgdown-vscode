@@ -71,8 +71,11 @@ export const starsLevel5Fragment = createRegexPattern(
   /(\*{5})\s+/
 ); // 1. stars (level 5)
 export const starsLevel6Fragment = createRegexPattern(
-  /(\*{6,})\s+/
-); // 1. stars (level 6+)
+  /(\*{6})\s+/
+); // 1. stars (level 6)
+export const starsLevelMoreThan6Fragment = createRegexPattern(
+  /(\*{7,})\s+/
+); // 1. stars (level 7+)
 export const todoFragment = createRegexPattern(
   /(?:(TODO|DONE|WAITING|NEXT|COMMENT)\s+)?/
 ); // 2. todo keyword
@@ -130,7 +133,11 @@ export const headlineLevel6Regex = createRegexPattern(
   new RegExp(
     `^${(starsLevel6Fragment as any).regex.source}${(todoFragment as any).regex.source}${(priorityFragment as any).regex.source}${(headlineTextFragment as any).regex.source}${(cookieFragment as any).regex.source}${(tagsFragment as any).regex.source}\\s*$`
   ));
-
+export const headlineLevelMoreThan6Regex = createRegexPattern(
+  new RegExp(
+    `^${(starsLevelMoreThan6Fragment as any).regex.source}${(todoFragment as any).regex.source}${(priorityFragment as any).regex.source}${(headlineTextFragment as any).regex.source}${(cookieFragment as any).regex.source}${(tagsFragment as any).regex.source}\\s*$`
+  )
+);
 
 export const inactiveHeadlineLevel1Regex = createRegexPattern(
   new RegExp(
@@ -168,6 +175,13 @@ export const inactiveHeadlineLevel6Regex = createRegexPattern(
     "i"
   )
 );
+export const inactiveHeadlineLevelMoreThan6Regex = createRegexPattern(
+  new RegExp(
+    `^${(starsLevelMoreThan6Fragment as any).regex.source}(?:COMMENT\\b\\s.*|.*:ARCHIVE:)(?:\\s+)?${(todoFragment as any).regex.source}${(priorityFragment as any).regex.source}${(headlineTextFragment as any).regex.source}${(cookieFragment as any).regex.source}${(tagsFragment as any).regex.source}\\s*$`,
+    "i"
+  )
+);
+
 // #endregion HEADLINES
 
 // #region LISTS
@@ -599,6 +613,41 @@ export const subSuperScriptRegex = createRegexPattern(
 );
 // #endregion
 
+// =================================================================
+// Helper atoms for template-only (Oniguruma-specific or structural) regex
+// These are exported as strings so build-grammar can substitute them verbatim
+// into the TextMate grammar. They are not intended for JS RegExp usage.
+// =================================================================
+
+// Anchor to the very start of the document, only if not immediately a headline
+export const fileHeaderBeginRegex = "\\A(?!\\*+\\s)";
+
+// Outline end lookaheads per level
+export const outlineEndLevel1Regex = "(?=^\\*{1,1}\\s)";
+export const outlineEndLevel2Regex = "(?=^\\*{1,2}\\s)";
+export const outlineEndLevel3Regex = "(?=^\\*{1,3}\\s)";
+export const outlineEndLevel4Regex = "(?=^\\*{1,4}\\s)";
+export const outlineEndLevel5Regex = "(?=^\\*{1,5}\\s)";
+export const outlineEndLevel6Regex = "(?=^\\*{1,6}\\s)";
+
+// Section content anchoring
+export const sectionContentBeginRegex = "(^|\\G)";
+
+// Table helper atoms
+export const tableRowBeginRegex = "^\\s*(?=\\|)";
+export const tableCellBeginRegex = "\\|\\s*";
+export const tableCellEndRegex = "\\s*(?=\\||\\+|$)";
+
+// Line comment begin capture (used as a begin pattern with capture group)
+export const lineCommentBeginCaptureRegex = "(^\\s*#\\s)";
+
+// Footnote definition block end lookahead
+export const footnoteDefinitionEndRegex = "(?=^\\s*$|^\\[fn:)";
+
+// Macro punctuation (used for begin/end in a region rule)
+export const macrosBeginPunctuationRegex = "(\\\\{\\\\{\\\\{)"; // (\{\{\{) with JSON-level escaping handled by builder
+export const macrosEndPunctuationRegex = "(\\\\}\\\\}\\\\})";   // (\}\}\}) with JSON-level escaping handled by builder
+
 // #region TEMPLATE UTILS
 // These tiny helpers are used purely by the YAML template for common anchors.
 /** End-of-line anchor for begin/end blocks */
@@ -610,5 +659,5 @@ export const emptyLine = createRegexPattern(/^\s*$/m);
 /** Table row (content) line */
 export const tableRowLine = createRegexPattern(/^\s*\|.*\|$/);
 /** Table row separator line (e.g., |---+---| or |:---|) */
-export const tableRowSeparatorLine = createRegexPattern(/^\s*\|[-+:|\s]+\|\s*$/);
+export const tableRowSeparatorLine = createRegexPattern(/^\s*\|(?:\s*[-+:]+\s*\|)+\s*$/);
 // #endregion TEMPLATE UTILS

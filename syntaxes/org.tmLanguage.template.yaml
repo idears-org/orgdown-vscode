@@ -1,5 +1,79 @@
 # Org Mode TextMate Grammar Template
-# Grammar structure based on ADR-007
+#
+# ==============================================================================
+# GRAMMAR STRUCTURE
+# ==============================================================================
+# This grammar is organized hierarchically to mirror the logical structure of
+# an Org Mode document, as outlined in ADR-007. The YAML file is the single
+# source of truth for this structure.
+#
+# document-root
+# ├── file-header
+# │   ├── line-comments
+# │   ├── blocks
+# │   │   ├── begin-end-blocks
+# │   │   │   ├── comment-block
+# │   │   │   ├── standard-blocks -> includes #inline-markup
+# │   │   │   ├── dynamic-blocks -> includes #inline-markup
+# │   │   │   ├── org-src-blocks (injected)
+# │   │   │   └── customized-blocks -> includes #inline-markup
+# │   │   ├── latex-environment-block
+# │   │   ├── drawer-blocks
+# │   │   │   ├── property-drawer
+# │   │   │   │   └── property-line
+# │   │   │   └── drawers
+# │   │   ├── tables
+# │   │   └── horizontal-rules
+# │   ├── keyword-like-lines
+# │   │   ├── include-directive
+# │   │   ├── planning-lines -> includes #timestamps
+# │   │   ├── link-abbreviations
+# │   │   ├── macro-definition
+# │   │   └── keywords
+# │   ├── lists -> includes #inline-markup
+# │   └── paragraph -> includes #inline-markup
+# │
+# └── outline
+#     ├── outline-level-1 (active & inactive variants)
+#     │   ├── outline-level-[2,6+] (active & inactive variants)
+#     │   │   ├── outline-level-[3,6+] (active & inactive variants)
+#     │   │   │   ├── ......
+#     │   │   ├── headline-block (in begin rule) -> includes #inline-markup
+#     │   │   └── section-content
+#     │   ├── headline-block (in begin rule) -> includes #inline-markup
+#     │   └── section-content
+#     │       ├── line-comments (reused)
+#     │       ├── blocks (reused)
+#     │       ├── keyword-like-lines (reused)
+#     │       ├── lists (reused)
+#     │       └── paragraph (reused)
+#     ├── outline-level-2 (active & inactive variants)
+#     │   └── ......
+#     │   ......
+#     └── outline-level-more-than-6 (active & inactive variants)
+#         └── ......
+#
+# --- Included Patterns (via anchors or direct includes) ---
+#
+# inline-markup (anchor: &inline-markup-patterns)
+# ├── plain-link
+# ├── angle-bracket-link
+# ├── links
+# │   └── link-protocol
+# ├── timestamps
+# ├── footnotes
+# ├── macros
+# ├── latex-inline
+# ├── bold -> includes #inline-markup
+# ├── italic -> includes #inline-markup
+# ├── underline -> includes #inline-markup
+# ├── strikethrough -> includes #inline-markup
+# ├── code
+# ├── verbatim
+# ├── entities
+# └── sub-super-scripts
+#
+# ==============================================================================
 
 fileTypes: [org]
 name: Org Mode
@@ -8,208 +82,8 @@ patterns:
   - include: "#document-root"
 
 repository:
-  #region Top-Level Structure
-  document-root:
-    patterns:
-      - include: "#file-header"
-      - include: "#outline"
-  outline:
-    patterns:
-      - include: "#outline-inactive-level-1"
-      - include: "#outline-inactive-level-2"
-      - include: "#outline-inactive-level-3"
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-active-level-1"
-      - include: "#outline-active-level-2"
-      - include: "#outline-active-level-3"
-      - include: "#outline-active-level-4"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-
-  outline-level-base: &outline-level-base
-    beginCaptures:
-      "0":
-        name: "{{scopes.HEADING_BLOCK}}"
-        patterns:
-          - include: "#headline-block"
-    patterns:
-      - include: "#section-content"
-
-  outline-inactive-level-1:
-    <<: *outline-level-base
-    # name: meta.outline.inactive.1.org
-    name: "{{scopes.META_OUTLINE_INACTIVE}}"
-    begin: "{{regexs.inactiveHeadlineLevel1Regex}}"
-    end: "(?=^\\*{1,1}\\s)"
-    patterns:
-      - include: "#outline-inactive-level-2"
-      - include: "#outline-inactive-level-3"
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#section-content"
-
-  outline-inactive-level-2:
-    <<: *outline-level-base
-    # name: meta.outline.inactive.2.org
-    name: "{{scopes.META_OUTLINE_INACTIVE}}"
-    begin: "{{regexs.inactiveHeadlineLevel2Regex}}"
-    end: "(?=^\\*{1,2}\\s)"
-    patterns:
-      - include: "#outline-inactive-level-3"
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#section-content"
-
-  outline-inactive-level-3:
-    <<: *outline-level-base
-    # name: meta.outline.inactive.3.org
-    name: "{{scopes.META_OUTLINE_INACTIVE}}"
-    begin: "{{regexs.inactiveHeadlineLevel3Regex}}"
-    end: "(?=^\\*{1,3}\\s)"
-    patterns:
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#section-content"
-  outline-inactive-level-4:
-    <<: *outline-level-base
-    name: "{{scopes.META_OUTLINE_INACTIVE}}"
-    begin: "{{regexs.inactiveHeadlineLevel4Regex}}"
-    end: "(?=^\\*{1,4}\\s)"
-    patterns:
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#section-content"
-
-  outline-inactive-level-5:
-    <<: *outline-level-base
-    name: "{{scopes.META_OUTLINE_INACTIVE}}"
-    begin: "{{regexs.inactiveHeadlineLevel5Regex}}"
-    end: "(?=^\\*{1,5}\\s)"
-    patterns:
-      - include: "#outline-inactive-level-6"
-      - include: "#section-content"
-
-  outline-inactive-level-6:
-    <<: *outline-level-base
-    name: "{{scopes.META_OUTLINE_INACTIVE}}"
-    begin: "{{regexs.inactiveHeadlineLevel6Regex}}"
-    end: "(?=^\\*{1,6}\\s)"
-    patterns:
-      - include: "#outline-inactive-level-6"
-      - include: "#section-content"
-
-  outline-active-level-1:
-    <<: *outline-level-base
-    name: "{{scopes.META_OUTLINE_1}}"
-    begin: "{{regexs.headlineLevel1Regex}}"
-    end: "(?=^\\*{1,1}\\s)"
-    patterns:
-      - include: "#outline-inactive-level-2"
-      - include: "#outline-inactive-level-3"
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-active-level-2"
-      - include: "#outline-active-level-3"
-      - include: "#outline-active-level-4"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-      - include: "#section-content"
-
-  outline-active-level-2:
-    <<: *outline-level-base
-    name: "{{scopes.META_OUTLINE_2}}"
-    begin: "{{regexs.headlineLevel2Regex}}"
-    end: "(?=^\\*{1,2}\\s)"
-    patterns:
-      - include: "#outline-inactive-level-3"
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-active-level-3"
-      - include: "#outline-active-level-4"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-      - include: "#section-content"
-
-  outline-active-level-3:
-    <<: *outline-level-base
-    name: "{{scopes.META_OUTLINE_3}}"
-    begin: "{{regexs.headlineLevel3Regex}}"
-    end: "(?=^\\*{1,3}\\s)"
-    patterns:
-      - include: "#outline-inactive-level-4"
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-active-level-4"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-      - include: "#section-content"
-  outline-active-level-4:
-    <<: *outline-level-base
-    name: "{{scopes.META_OUTLINE_4}}"
-    begin: "{{regexs.headlineLevel4Regex}}"
-    end: "(?=^\\*{1,4}\\s)"
-    patterns:
-      - include: "#outline-inactive-level-5"
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-active-level-5"
-      - include: "#outline-active-level-6"
-      - include: "#section-content"
-
-  outline-active-level-5:
-    <<: *outline-level-base
-    name: "{{scopes.META_OUTLINE_5}}"
-    begin: "{{regexs.headlineLevel5Regex}}"
-    end: "(?=^\\*{1,5}\\s)"
-    patterns:
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-active-level-6"
-      - include: "#section-content"
-
-  outline-active-level-6:
-    <<: *outline-level-base
-    name: "{{scopes.META_OUTLINE_6}}"
-    begin: "{{regexs.headlineLevel6Regex}}"
-    end: "(?=^\\*{1,6}\\s)"
-    patterns:
-      - include: "#outline-inactive-level-6"
-      - include: "#outline-active-level-6"
-      - include: "#section-content"
-  #endregion
-
-  #region Structural Components
-  file-header:
-    name: "{{scopes.META_HEADER}}"
-    begin: '\A(?!\*+\s)' # Anchor to start only if not immediately a headline.
-    end: "{{regexs.headlineDetectToCloseBlockRegex}}" # End before the first headline.
-    patterns:
-      - include: "#line-comments"
-      - include: "#blocks"
-      - include: "#keyword-like-lines"
-      - include: "#lists"
-      - include: "#paragraph"
-  #endregion
-
-  #region Section Content
-  section-content:
-    name: "{{scopes.META_SECTION}}"
-    begin: '(^|\G)'
-    end: '{{regexs.headlineDetectToCloseBlockRegex}}'
-    patterns:
-      - include: "#line-comments"
-      - include: "#blocks"
-      - include: "#keyword-like-lines"
-      - include: "#lists"
-      - include: "#paragraph"
-  #endregion
-
-  #region Anchors: Inline Markup
+  #region Anchors
+  # Anchor used across many features; defined within this region for cohesion
   inline-markup-patterns: &inline-markup-patterns
     - include: "#plain-link"
     - include: "#angle-bracket-link"
@@ -227,6 +101,263 @@ repository:
     - include: "#entities"
     - include: "#sub-super-scripts"
   #endregion
+
+  #region Top-Level Structure
+  document-root:
+    patterns:
+      - include: "#file-header"
+      - include: "#outline"
+
+  outline:
+    patterns:
+      - include: "#outline-inactive-level-1"
+      - include: "#outline-inactive-level-2"
+      - include: "#outline-inactive-level-3"
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-1"
+      - include: "#outline-active-level-2"
+      - include: "#outline-active-level-3"
+      - include: "#outline-active-level-4"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#outline-active-level-more-than-6"
+
+  file-header:
+    name: "{{scopes.META_HEADER}}"
+    begin: "{{regexs.fileHeaderBeginRegex}}" # Anchor to start only if not immediately a headline.
+    end: "{{regexs.headlineDetectToCloseBlockRegex}}" # End before the first headline.
+    patterns:
+      - include: "#line-comments"
+      - include: "#blocks"
+      - include: "#keyword-like-lines"
+      - include: "#lists"
+      - include: "#paragraph"
+
+  section-content:
+    name: "{{scopes.META_SECTION}}"
+    begin: "{{regexs.sectionContentBeginRegex}}"
+    end: "{{regexs.headlineDetectToCloseBlockRegex}}"
+    patterns:
+      - include: "#line-comments"
+      - include: "#blocks"
+      - include: "#keyword-like-lines"
+      - include: "#lists"
+      - include: "#paragraph"
+  #endregion
+
+  #region Outline Levels
+  outline-level-base: &outline-level-base
+    beginCaptures:
+      "0":
+        name: "{{scopes.HEADING_BLOCK}}"
+        patterns:
+          - include: "#headline-block"
+    patterns:
+      - include: "#section-content"
+
+  outline-inactive-level-1:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_1}}"
+    begin: "{{regexs.inactiveHeadlineLevel1Regex}}"
+    end: "{{regexs.outlineEndLevel1Regex}}"
+    patterns:
+      - include: "#outline-inactive-level-2"
+      - include: "#outline-inactive-level-3"
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-2"
+      - include: "#outline-active-level-3"
+      - include: "#outline-active-level-4"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+
+  outline-inactive-level-2:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_2}}"
+    begin: "{{regexs.inactiveHeadlineLevel2Regex}}"
+    end: "{{regexs.outlineEndLevel2Regex}}"
+    patterns:
+      - include: "#outline-inactive-level-3"
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-3"
+      - include: "#outline-active-level-4"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+
+  outline-inactive-level-3:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_3}}"
+    begin: "{{regexs.inactiveHeadlineLevel3Regex}}"
+    end: "{{regexs.outlineEndLevel3Regex}}"
+    patterns:
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-4"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+  outline-inactive-level-4:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_4}}"
+    begin: "{{regexs.inactiveHeadlineLevel4Regex}}"
+    end: "{{regexs.outlineEndLevel4Regex}}"
+    patterns:
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+
+  outline-inactive-level-5:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_5}}"
+    begin: "{{regexs.inactiveHeadlineLevel5Regex}}"
+    end: "{{regexs.outlineEndLevel5Regex}}"
+    patterns:
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+
+  outline-inactive-level-6:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_6}}"
+    begin: "{{regexs.inactiveHeadlineLevel6Regex}}"
+    end: "{{regexs.outlineEndLevel6Regex}}"
+    patterns:
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+
+  outline-inactive-level-more-than-6:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_INACTIVE}} {{scopes.META_OUTLINE_MORE_THAN_6}}"
+    begin: "{{regexs.inactiveHeadlineLevelMoreThan6Regex}}"
+    end: "{{regexs.headlineDetectToCloseBlockRegex}}" # Any headline terminates this
+    patterns:
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+
+  outline-active-level-1:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_1}}"
+    begin: "{{regexs.headlineLevel1Regex}}"
+    end: "{{regexs.outlineEndLevel1Regex}}"
+    patterns:
+      - include: "#outline-inactive-level-2"
+      - include: "#outline-inactive-level-3"
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-2"
+      - include: "#outline-active-level-3"
+      - include: "#outline-active-level-4"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+
+  outline-active-level-2:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_2}}"
+    begin: "{{regexs.headlineLevel2Regex}}"
+    end: "{{regexs.outlineEndLevel2Regex}}"
+    patterns:
+      - include: "#outline-inactive-level-3"
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-3"
+      - include: "#outline-active-level-4"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+
+  outline-active-level-3:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_3}}"
+    begin: "{{regexs.headlineLevel3Regex}}"
+    end: "{{regexs.outlineEndLevel3Regex}}"
+    patterns:
+      - include: "#outline-inactive-level-4"
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-4"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+  outline-active-level-4:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_4}}"
+    begin: "{{regexs.headlineLevel4Regex}}"
+    end: "{{regexs.outlineEndLevel4Regex}}"
+    patterns:
+      - include: "#outline-inactive-level-5"
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-5"
+      - include: "#outline-active-level-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+
+  outline-active-level-5:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_5}}"
+    begin: "{{regexs.headlineLevel5Regex}}"
+    end: "{{regexs.outlineEndLevel5Regex}}"
+    patterns:
+      - include: "#outline-inactive-level-6"
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+
+  outline-active-level-6:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_6}}"
+    begin: "{{regexs.headlineLevel6Regex}}"
+    end: "{{regexs.outlineEndLevel6Regex}}"
+    patterns:
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+
+  outline-active-level-more-than-6:
+    <<: *outline-level-base
+    name: "{{scopes.META_OUTLINE_MORE_THAN_6}}" # Re-use level 6 scope for deep headlines
+    begin: "{{regexs.headlineLevelMoreThan6Regex}}"
+    end: "{{regexs.headlineDetectToCloseBlockRegex}}" # Any headline terminates this
+    patterns:
+      - include: "#outline-inactive-level-more-than-6"
+      - include: "#outline-active-level-more-than-6"
+      - include: "#section-content"
+  #endregion
+
+  #region Content Elements
 
   #region Headings
   headline-captures: &headline-captures
@@ -261,9 +392,12 @@ repository:
       - name: "{{scopes.HEADING_LEVEL_6}}"
         match: "{{regexs.headlineLevel6Regex}}"
         captures: { <<: *headline-captures }
+      - name: "{{scopes.HEADING_LEVEL_MORE_THAN_6}}"
+        match: "{{regexs.headlineLevelMoreThan6Regex}}"
+        captures: { <<: *headline-captures }
   #endregion
 
-  #region ABSTRACT COLLECTIONS
+  #region Keywords & Directives
   keyword-like-lines:
     name: "{{scopes.META_DIRECTIVE}}"
     patterns:
@@ -273,34 +407,6 @@ repository:
       - include: "#macro-definition"
       - include: "#keywords"
 
-  blocks:
-    name: "{{scopes.META_BLOCK}}"
-    patterns:
-      - include: "#begin-end-blocks"
-      - include: "#latex-environment-block"
-      - include: "#drawer-blocks"
-      - include: "#tables"
-      - include: "#horizontal-rules"
-
-  begin-end-blocks:
-    name: "{{scopes.META_BEGIN_END_BLOCK}}"
-    patterns:
-      - include: "#comment-block"
-      - include: "#standard-blocks"
-      - include: "#dynamic-blocks"
-      - include: "#org-src-blocks"
-      - include: "#customized-blocks"
-
-  drawer-blocks:
-    name: "{{scopes.META_DRAWER}}"
-    patterns:
-      - include: "#property-drawer"
-      - include: "#drawers"
-  #endregion
-
-  #region DETAILED IMPLEMENTATIONS
-
-  #region INCLUDE DIRECTIVE
   include-directive:
     name: "{{scopes.META_DIRECTIVE}}"
     begin: "{{regexs.includeDirectiveBeginRegex}}"
@@ -310,66 +416,7 @@ repository:
       "2": { name: "{{scopes.INCLUDE_PATH}}" }
     patterns:
       - include: "#block-parameter-pair"
-  #endregion
 
-  #region COMMENTS
-  comment-block:
-    name: "{{scopes.COMMENT_BLOCK}}"
-    begin: "{{regexs.commentBlockBeginRegex}}"
-    end: "{{regexs.commentBlockEndRegex}}"
-    contentName: "{{scopes.COMMENT_BLOCK_CONTENT}}"
-    beginCaptures:
-      "2": { name: "{{scopes.BLOCK_KEYWORD}}" }
-    endCaptures:
-      "2": { name: "{{scopes.BLOCK_KEYWORD}}" }
-
-  line-comments:
-    begin: '(^\s*#\s)'
-    end: "$"
-    name: "{{scopes.COMMENT_LINE}}"
-    beginCaptures:
-      "1": { name: "{{scopes.PUNCTUATION_WHITESPACE}}" }
-    patterns: *inline-markup-patterns
-  #endregion
-
-  #region LISTS
-  list-description-separator:
-    match: "{{regexs.descriptionSeparatorRegex}}"
-    captures:
-      "1": { name: "{{scopes.DESCRIPTION_TERM}}" }
-      "2": { name: "{{scopes.DESCRIPTION_SEPARATOR}}" }
-
-  list-counter:
-    match: "{{regexs.listCounterRegex}}"
-    name: "{{scopes.LIST_COUNTER}}"
-    captures:
-      "1": { name: "{{scopes.LIST_COUNTER_VALUE}}" }
-
-  lists:
-    patterns:
-      - name: "{{scopes.LIST_UNORDERED_TEXT}}"
-        begin: "{{regexs.unorderedListRegex}}"
-        end: "{{regexs.endOfLine}}"
-        beginCaptures:
-          "1": { name: "{{scopes.LEADING_WHITESPACE}}" }
-          "2": { name: "{{scopes.LIST_BULLET}}" }
-          "3": { name: "{{scopes.CHECKBOX}}" }
-        patterns:
-          - include: "#list-description-separator"
-          - patterns: *inline-markup-patterns
-      - name: "{{scopes.LIST_ORDERED_TEXT}}"
-        begin: "{{regexs.orderedListRegex}}"
-        end: "{{regexs.endOfLine}}"
-        beginCaptures:
-          "1": { name: "{{scopes.LEADING_WHITESPACE}}" }
-          "2": { name: "{{scopes.LIST_BULLET}}" }
-          "3": { name: "{{scopes.CHECKBOX}}" }
-        patterns:
-          - include: "#list-counter"
-          - patterns: *inline-markup-patterns
-  #endregion
-
-  #region KEYWORD-LIKE LINES
   keywords:
     name: "{{scopes.KEYWORD}}"
     match: "{{regexs.genericKeywordRegex}}"
@@ -386,7 +433,6 @@ repository:
       "3": { name: "{{scopes.LINK_ABBREVIATION_KEY}}" }
       "4": { name: "{{scopes.LINK_ABBREVIATION_URL}}" }
 
-  # Macro definition line: #+MACRO: name body
   macro-definition:
     match: "{{regexs.macroDefinitionRegex}}"
     name: "{{scopes.KEYWORD}}"
@@ -409,9 +455,17 @@ repository:
         patterns:
           - include: "#timestamps"
   #endregion
-  #endregion
 
-  #region BLOCKS
+  #region Blocks
+  blocks:
+    name: "{{scopes.META_BLOCK}}"
+    patterns:
+      - include: "#begin-end-blocks"
+      - include: "#latex-environment-block"
+      - include: "#drawer-blocks"
+      - include: "#tables"
+      - include: "#horizontal-rules"
+
   block-captures: &block-captures
     "1": { name: "{{scopes.LEADING_WHITESPACE}}" }
     "2": { name: "{{scopes.BLOCK_KEYWORD}}" }
@@ -431,6 +485,30 @@ repository:
     captures:
       "1": { name: "{{scopes.BLOCK_PARAMETER_KEY}}" }
       "2": { name: "{{scopes.BLOCK_PARAMETER_VALUE}}" }
+
+  horizontal-rules:
+    name: "{{scopes.HORIZONTAL_RULE}}"
+    match: "{{regexs.horizontalRuleRegex}}"
+
+  #region Begin/End Blocks
+  begin-end-blocks:
+    name: "{{scopes.META_BEGIN_END_BLOCK}}"
+    patterns:
+      - include: "#comment-block"
+      - include: "#standard-blocks"
+      - include: "#dynamic-blocks"
+      - include: "#org-src-blocks"
+      - include: "#customized-blocks"
+
+  comment-block:
+    name: "{{scopes.COMMENT_BLOCK}}"
+    begin: "{{regexs.commentBlockBeginRegex}}"
+    end: "{{regexs.commentBlockEndRegex}}"
+    contentName: "{{scopes.COMMENT_BLOCK_CONTENT}}"
+    beginCaptures:
+      "2": { name: "{{scopes.BLOCK_KEYWORD}}" }
+    endCaptures:
+      "2": { name: "{{scopes.BLOCK_KEYWORD}}" }
 
   standard-blocks:
     patterns:
@@ -468,6 +546,23 @@ repository:
 
   org-src-blocks: { patterns: [] } # Injected by build script
 
+  latex-environment-block:
+    name: "{{scopes.LATEX}}"
+    begin: "{{regexs.latexEnvironmentBeginRegex}}"
+    end: "{{regexs.latexEnvironmentEndRegex}}"
+    beginCaptures:
+      "0": { name: "keyword.control.math.block.latex" }
+    endCaptures:
+      "0": { name: "keyword.control.math.block.latex" }
+  #endregion
+
+  #region Drawers
+  drawer-blocks:
+    name: "{{scopes.META_DRAWER}}"
+    patterns:
+      - include: "#property-drawer"
+      - include: "#drawers"
+
   property-drawer:
     name: "{{scopes.META_DRAWER}} {{scopes.PROPERTY_DRAWER_META}}"
     begin: "{{regexs.propertyDrawerBeginRegex}}"
@@ -496,10 +591,44 @@ repository:
       "1": { name: "{{scopes.DRAWER_NAME}}" }
     endCaptures:
       "0": { name: "{{scopes.DRAWER_END_KEYWORD}}" }
+  #endregion
+  #endregion
 
-  horizontal-rules:
-    name: "{{scopes.HORIZONTAL_RULE}}"
-    match: "{{regexs.horizontalRuleRegex}}"
+  #region Lists
+  lists:
+    patterns:
+      - name: "{{scopes.LIST_UNORDERED_TEXT}}"
+        begin: "{{regexs.unorderedListRegex}}"
+        end: "{{regexs.endOfLine}}"
+        beginCaptures:
+          "1": { name: "{{scopes.LEADING_WHITESPACE}}" }
+          "2": { name: "{{scopes.LIST_BULLET}}" }
+          "3": { name: "{{scopes.CHECKBOX}}" }
+        patterns:
+          - include: "#list-description-separator"
+          - patterns: *inline-markup-patterns
+      - name: "{{scopes.LIST_ORDERED_TEXT}}"
+        begin: "{{regexs.orderedListRegex}}"
+        end: "{{regexs.endOfLine}}"
+        beginCaptures:
+          "1": { name: "{{scopes.LEADING_WHITESPACE}}" }
+          "2": { name: "{{scopes.LIST_BULLET}}" }
+          "3": { name: "{{scopes.CHECKBOX}}" }
+        patterns:
+          - include: "#list-counter"
+          - patterns: *inline-markup-patterns
+
+  list-description-separator:
+    match: "{{regexs.descriptionSeparatorRegex}}"
+    captures:
+      "1": { name: "{{scopes.DESCRIPTION_TERM}}" }
+      "2": { name: "{{scopes.DESCRIPTION_SEPARATOR}}" }
+
+  list-counter:
+    match: "{{regexs.listCounterRegex}}"
+    name: "{{scopes.LIST_COUNTER}}"
+    captures:
+      "1": { name: "{{scopes.LIST_COUNTER_VALUE}}" }
   #endregion
 
   #region Tables
@@ -507,35 +636,40 @@ repository:
     name: "{{scopes.META_TABLE}}"
     contentName: "{{scopes.TABLE_CONTENT}}"
     begin: "(?={{regexs.tableRegex}})"
-    end: '(?={{regexs.emptyLine}}|{{regexs.headlineDetectToCloseBlockRegex}})'
+    end: "(?={{regexs.emptyLine}}|{{regexs.headlineDetectToCloseBlockRegex}})"
     beginCaptures:
       "0": { name: "{{scopes.TABLE_META}}" }
     patterns:
       - include: "#line-comments"
       - match: "{{regexs.tableRowSeparatorLine}}"
         name: "{{scopes.TABLE_ROW_SEPARATOR}}"
-      - begin: '^\s*(?=\|)'
+      - begin: "{{regexs.tableRowBeginRegex}}"
         name: "{{scopes.TABLE_ROW}}"
         contentName: "{{scopes.TABLE_CONTENT}} {{scopes.TABLE_ROW}}"
         end: "{{regexs.endOfLine}}"
         patterns:
-          - begin: '\|\s*'
+          - begin: "{{regexs.tableCellBeginRegex}}"
             beginCaptures:
               "0": { name: "{{scopes.TABLE_CELL_PUNCTUATION}}" }
             contentName: "{{scopes.TABLE_CELL}}"
-            end: '\s*(?=\||\+|$)'
+            end: "{{regexs.tableCellEndRegex}}"
             patterns: *inline-markup-patterns
   #endregion
 
-  #region paragraph & OTHERS
-  paragraph:
-    name: "{{scopes.META_PARAGRAPH}} {{scopes.PARAGRAPH}}"
-    begin: "{{regexs.paragraphBeginRegex}}"
-    end: "{{regexs.paragraphEndRegex}}"
+  #region Comments
+  # Handles line comments. For block comments (#+BEGIN_COMMENT),                                 │
+  # see #comment-block inside the 'Blocks > Begin/End Blocks' region.
+
+  line-comments:
+    begin: "{{regexs.lineCommentBeginCaptureRegex}}"
+    end: "{{regexs.endOfLine}}"
+    name: "{{scopes.COMMENT_LINE}}"
+    beginCaptures:
+      "1": { name: "{{scopes.PUNCTUATION_WHITESPACE}}" }
     patterns: *inline-markup-patterns
   #endregion
 
-  #region Inline markup
+  #region Inline Markup
   timestamps:
     patterns:
       - name: "{{scopes.TIMESTAMP_ACTIVE_RANGE}}"
@@ -547,6 +681,19 @@ repository:
       - name: "{{scopes.TIMESTAMP_INACTIVE}}"
         match: "{{regexs.timestampInactiveRegex}}"
 
+  entities:
+    name: "{{scopes.ENTITY}}"
+    match: "{{regexs.entitiesRegex}}"
+
+  sub-super-scripts:
+    name: "{{scopes.SUB_SUPER_SCRIPT}}"
+    match: "{{regexs.subSuperScriptRegex}}"
+
+  latex-inline:
+    name: "{{scopes.LATEX}}"
+    match: "{{regexs.latexInlineRegex}}"
+
+  #region Links
   plain-link:
     name: "{{scopes.LINK_PLAIN}}"
     match: "{{regexs.plainLinkRegex}}"
@@ -568,13 +715,19 @@ repository:
       "4": { name: "{{scopes.LINK_DESCRIPTION}}" }
       "5": { name: "{{scopes.LINK_END_PUNCTUATION}}" }
 
-  # Footnotes repository block (inline markup and block definition handling)
+  link-protocol:
+    match: "{{regexs.linkProtocolRegex}}"
+    captures:
+      "1": { name: "{{scopes.LINK_PROTOCOL}}" }
+  #endregion
+
+  #region Footnotes
   footnotes:
     patterns:
       # Unified rule for all footnote definitions
       - name: "{{scopes.FOOTNOTE_DEFINITION}}"
         begin: "{{regexs.footnoteDefinitionStartRegex}}"
-        end: '(?=^\s*$|^\[fn:)'
+        end: "{{regexs.footnoteDefinitionEndRegex}}"
         beginCaptures:
           "1": { name: "{{scopes.LEADING_WHITESPACE}}" }
           "2": { name: "{{scopes.FOOTNOTE_PUNCTUATION}}" }
@@ -605,25 +758,27 @@ repository:
       # Rule 5: Anonymous reference
       - match: "{{regexs.footnoteAnonymousReferenceRegex}}"
         name: "{{scopes.FOOTNOTE_REFERENCE}} {{scopes.FOOTNOTE_PUNCTUATION}}"
+  #endregion
 
-  link-protocol:
-    match: "{{regexs.linkProtocolRegex}}"
+  #region Macros
+  macros:
+    name: "{{scopes.META_INLINE_MACRO}}"
+    match: "{{regexs.inlineMacroRegex}}"
     captures:
-      "1": { name: "{{scopes.LINK_PROTOCOL}}" }
+      "1":
+        name: "{{scopes.MACRO_PUNCTUATION}}"
+      "2":
+        name: "{{scopes.MACRO}}"
+        patterns:
+          - match: "{{regexs.macroNameFragment}}"
+            name: "{{scopes.MACRO_NAME}}"
+          - match: "{{regexs.macroArgsFragment}}"
+            name: "{{scopes.MACRO_PARAMETER}}"
+      "3":
+        name: "{{scopes.MACRO_PUNCTUATION}}"
+  #endregion
 
-  latex-inline:
-    name: "{{scopes.LATEX}}"
-    match: "{{regexs.latexInlineRegex}}"
-
-  latex-environment-block:
-    name: "{{scopes.LATEX}}"
-    begin: "{{regexs.latexEnvironmentBeginRegex}}"
-    end: "{{regexs.latexEnvironmentEndRegex}}"
-    beginCaptures:
-      "0": { name: "keyword.control.math.block.latex" }
-    endCaptures:
-      "0": { name: "keyword.control.math.block.latex" }
-
+  #region Emphasis & Verbatim
   bold:
     name: "{{scopes.META_INLINE_BOLD}}"
     contentName: "{{scopes.BOLD}}"
@@ -687,28 +842,15 @@ repository:
       "1": { name: "{{scopes.VERBATIM_PUNCTUATION}}" }
     endCaptures:
       "1": { name: "{{scopes.VERBATIM_PUNCTUATION}}" }
+  #endregion
+  #endregion
 
-  entities:
-    name: "{{scopes.ENTITY}}"
-    match: "{{regexs.entitiesRegex}}"
+  #region Paragraphs
+  paragraph:
+    name: "{{scopes.META_PARAGRAPH}} {{scopes.PARAGRAPH}}"
+    begin: "{{regexs.paragraphBeginRegex}}"
+    end: "{{regexs.paragraphEndRegex}}"
+    patterns: *inline-markup-patterns
+  #endregion
 
-  sub-super-scripts:
-    name: "{{scopes.SUB_SUPER_SCRIPT}}"
-    match: "{{regexs.subSuperScriptRegex}}"
-
-  # Macros (inline) - matches {{{name}}} and {{{name(arg,...)}}}
-  macros:
-    name: "{{scopes.META_INLINE_MACRO}}"
-    begin: "(\\{\\{\\{)"
-    end: "(\\}\\}\\})"
-    beginCaptures:
-      "1": { name: "{{scopes.MACRO_PUNCTUATION}}" }
-    endCaptures:
-      "1": { name: "{{scopes.MACRO_PUNCTUATION}}" }
-    contentName: "{{scopes.MACRO}}"
-    patterns:
-      - match: "{{regexs.macroNameFragment}}"
-        name: "{{scopes.MACRO_NAME}}"
-      - match: "{{regexs.macroArgsFragment}}"
-        name: "{{scopes.MACRO_PARAMETER}}"
   #endregion
