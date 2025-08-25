@@ -277,11 +277,15 @@ export const customizedBlockBeginRegex = createRegexPattern(
   /^(\s*)(#\+BEGIN_)([a-zA-Z0-9_-]+)(?: (.*))?$/i
 );
 export const customizedBlockEndRegex = createRegexPattern(
-  /^(\s*)(#\+END_)(\3)\s*$/i
-);
+  new RegExp(
+    `^(\\s*)(#\\+END_)\\3*$|${(headlineDetectToCloseBlockRegex as any).regex.source}`,
+    'i'
+  ));
 export const customizedBlockWhileRegex = createRegexPattern(
-  /^(\s*)(#\+END_)(\3)\s*$/i
-);
+  new RegExp(
+    `^(\\s*)(#\\+END_)\\3*$|${(headlineDetectToCloseBlockRegex as any).regex.source}`,
+    'i'
+  ));
 
 /**
  * Dynamic Blocks
@@ -594,3 +598,17 @@ export const subSuperScriptRegex = createRegexPattern(
   /[_^](\{[^}]+\}|\S)/
 );
 // #endregion
+
+// #region TEMPLATE UTILS
+// These tiny helpers are used purely by the YAML template for common anchors.
+/** End-of-line anchor for begin/end blocks */
+export const endOfLine = createRegexPattern(/(?=$)/);
+/** End-of-line anchor that also matches empty line lookahead in multiline contexts */
+export const endOfLineOrEmptyNext = createRegexPattern(/(?=$)|(?=^\s*$)/);
+/** Generic empty line detection (multiline) */
+export const emptyLine = createRegexPattern(/^\s*$/m);
+/** Table row (content) line */
+export const tableRowLine = createRegexPattern(/^\s*\|.*\|$/);
+/** Table row separator line (e.g., |---+---| or |:---|) */
+export const tableRowSeparatorLine = createRegexPattern(/^\s*\|[-+:|\s]+\|\s*$/);
+// #endregion TEMPLATE UTILS

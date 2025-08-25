@@ -40,6 +40,16 @@ export const META_BEGIN_END_BLOCK = 'meta.block.begin-end.org';
 /** Any drawer block defined by `:NAME:` and `:END:`. */
 export const META_DRAWER = 'meta.block.drawer.org';
 
+// Outline container meta scopes (per-level and inactive) used by the grammar template
+export const META_OUTLINE_1 = 'meta.outline.1.org';
+export const META_OUTLINE_2 = 'meta.outline.2.org';
+export const META_OUTLINE_3 = 'meta.outline.3.org';
+export const META_OUTLINE_4 = 'meta.outline.4.org';
+export const META_OUTLINE_5 = 'meta.outline.5.org';
+export const META_OUTLINE_6 = 'meta.outline.6.org';
+/** Container scope applied to inactive (commented/archived) outline levels. */
+export const META_OUTLINE_INACTIVE = 'comment.block.org';
+
 // =================================================================
 // 2. DETAILED IMPLEMENTATIONS
 // =================================================================
